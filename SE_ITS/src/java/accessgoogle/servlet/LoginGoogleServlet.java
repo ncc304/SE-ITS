@@ -40,7 +40,7 @@ public class LoginGoogleServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 String accessToken = GoogleUtils.getToken(code);
                 GooglePojo gPojo = GoogleUtils.getUserInfo(accessToken);
-                String userID = gPojo.getId();
+//                String userID = gPojo.getId();
 //                UserDAO dao = new UserDAO();
                 String email = gPojo.getEmail();
 //                UserDTO user = dao.checkLoginGoogle(userID);
@@ -49,7 +49,7 @@ public class LoginGoogleServlet extends HttpServlet {
 //                    dao.createUserGoogle(user);
 //                }
                 session.setAttribute("email", email);
-                url = "index.jsp";
+                url = "admin/admin.jsp";
             }
         } catch (Exception e) {
         } finally {
