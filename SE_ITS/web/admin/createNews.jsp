@@ -160,7 +160,7 @@
                                     </div>
                                     <br/>
                                     
-                                    <button type="submit" class="btn btn-warning">Thêm</button>
+                                     <button type="submit" class="btn btn-warning" style="margin-left: 50%">Thêm</button>
                                 </form>
                             </div>
                         </div>
