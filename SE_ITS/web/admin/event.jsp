@@ -63,11 +63,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="student.jsp">
-                                    <i class="bi bi-people"></i> Sinh viên
+                                <a class="nav-link" href="studentLecture.jsp">
+                                    <i class="bi bi-people"></i> Sinh viên & Giảng viên
                                 </a>
                             </li>
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="lecture.jsp">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
                                          style="margin-left: -3.5%; color: black;">
@@ -76,7 +76,7 @@
                                     </svg>
                                     <p style="margin-left: 3%">Giảng viên</p>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -85,11 +85,11 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-person-square"></i> Tài khoản
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -216,6 +216,13 @@
                         </div>
                     </div>
                 </main>
+                <footer>
+                    <div class="card text-center">
+                        <div class="card-footer text-muted">
+                            © 2022 Bản quyền thuộc về Nhóm 4.
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
     </body>

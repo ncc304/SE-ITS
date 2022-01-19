@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/bootstrap-icons.svg">
 
         <title>Admin Page</title>
     </head>
@@ -63,10 +64,10 @@
                         <!-- Navigation -->
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                
-                                 <a class="nav-link active" href = "<c:url value = "/admin/admin.jsp"/>">
-                                     <i class="bi bi-house"></i> Trang chủ 
-                                   
+
+                                <a class="nav-link active" href = "<c:url value = "/admin/admin.jsp"/>">
+                                    <i class="bi bi-house"></i> Trang chủ 
+
                                 </a>
                             </li>
 
@@ -88,11 +89,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/student.jsp"/>">
-                                    <i class="bi bi-people"></i> Sinh viên
+                                <a class="nav-link" href="<c:url value = "/admin/studentLecture.jsp"/>">
+                                    <i class="bi bi-people"></i> Sinh viên & Giảng viên
                                 </a>
                             </li>
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="<c:url value = "/admin/lecture.jsp"/>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
                                          style="margin-left: -3.5%; color: black;">
@@ -101,7 +102,7 @@
                                     </svg>
                                     <p style="margin-left: 3%">Giảng viên</p>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -181,11 +182,11 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-person-square"></i> Tài khoản
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -202,37 +203,93 @@
                     <div class="container-fluid">
                         <div class="mb-npx">
                             <div class="row align-items-center">
-                                <div class="col-sm-6 col-12 mb-4 mb-sm-0">se
+                                <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Application</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Trang Chủ</h1>
                                 </div>
-                                <!-- Actions -->
-                                <div class="col-sm-6 col-12 text-sm-end">
-                                    <div class="mx-n1">
-                                        <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
-                                            <span class=" pe-2">
-                                                <i class="bi bi-pencil"></i>
-                                            </span>
-                                            <span>Edit</span>
-                                        </a>
-                                        <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                                            <span class=" pe-2">
-                                                <i class="bi bi-plus"></i>
-                                            </span>
-                                            <span>Create</span>
-                                        </a>
-                                    </div>
-                                </div>
+
                             </div>
                             <!-- Nav -->
                             <br/>
                         </div>
                     </div>
-                </header>
-                <!-- Main -->
-                
-                       
+                </header> <br/>
+                <!-- Main -->     
+                <main>
+                    <div class="container-fluid">
+                        <div class="card shadow border-0 mb-7">
+                            <div class="card-header">
+                                <h5 class="mb-0">Danh sách các bài viết gần đây nhất</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-10" style="margin-left: 2%">
+                                    <p>Tin tức</p>
+                                </div>
+                                <div class="col-3">
+                                    <a href="#">
+                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
+                                             style="width: 150px; height: 100px; margin-left: 50%">
+                                    </a>
+
+                                </div>
+                                <div class="col-7">
+                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                </div>
+                                <br>
+                                
+                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
+                                    <p>Ngành học</p>
+                                </div>
+                                <div class="col-3">
+                                    <a href="#">
+                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
+                                             style="width: 150px; height: 100px; margin-left: 50%">
+                                    </a>
+                                </div>
+                                <div class="col-7">
+                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                </div>
+                                <br>
+                                
+                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
+                                    <p>Sự kiện</p>
+                                </div>
+                                <div class="col-3">
+                                    <a href="#">
+                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
+                                             style="width: 150px; height: 100px; margin-left: 50%">
+                                    </a>
+                                </div>
+                                <div class="col-7">
+                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                </div>
+                                <br>
+
+                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
+                                    <p>Sinh viên & Giảng viên</p>
+                                </div>
+                                <div class="col-3">
+                                    <a href="#">
+                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
+                                             style="width: 150px; height: 100px; margin-left: 50%; margin-top: 1% ">
+                                    </a>
+                                </div>
+                                <div class="col-7">
+                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                </div>
+
+                            </div>
+                            <br>
+                        </div>
+                    </div>
                 </main>
+                <footer>
+                    <div class="card text-center">
+                        <div class="card-footer text-muted">
+                            © 2022 Bản quyền thuộc về Nhóm 4.
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
     </body>

@@ -5,10 +5,6 @@
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
 
-        <!--for CKEditor:-->
-        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-
         <title>Admin Page</title>
     </head>
     <body>
@@ -18,7 +14,7 @@
             <!-- Vertical Navbar -->
             <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
                 <style>
-                    .navbar-vertical.navbar-light {
+                    .navbar-vertical.navbar-light{
                         background-color: #ff9900c2 !important;
                     }
                 </style>
@@ -51,27 +47,27 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="news.jsp">
+                                <a class="nav-link" href="news.jsp">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="major.jsp">
+                                <a class="nav-link " href="major.jsp">
                                     <i class="bi bi-journal-bookmark"></i> Ngành học
-                                    <!--<span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>-->
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="event.jsp">
+                                    <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="event.jsp">
-                                    <i class="bi bi-calendar-event"></i> Sinh viên
+                                <a class="nav-link active" href="studentLecture.jsp">
+                                    <i class="bi bi-people"></i> Sinh viên & Giảng viên
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="student.jsp">
-                                    <i class="bi bi-people"></i> Sinh viên
-                                </a>
-                            </li>
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="lecture.jsp">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
                                          style="margin-left: -3.5%; color: black;">
@@ -80,7 +76,7 @@
                                     </svg>
                                     <p style="margin-left: 3%">Giảng viên</p>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -89,11 +85,11 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-person-square"></i> Tài khoản
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -112,12 +108,12 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Sinh viên</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Sinh viên & Giảng viên</h1>
                                 </div>
                                 <!-- Actions -->
                                 <div class="col-sm-6 col-12 text-sm-end">
                                     <div class="mx-n1">
-                                        <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                        <a href="createStudentLecture.jsp" class="btn d-inline-flex btn-sm btn-primary mx-1">
                                             <span class=" pe-2">
                                                 <i class="bi bi-plus"></i>
                                             </span>
@@ -137,38 +133,85 @@
 
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">Tạo bài viết về Sinh viên</h5>
+                                <h5 class="mb-0">Danh sách các bài viết về Sinh Viên & Giảng viên</h5>
                             </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-nowrap">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Tiêu đề</th>
+                                            <th scope="col">Tác giả</th>
+                                            <th scope="col">Ngày đăng</th>
+                                            <th scope="col">Trạng thái</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img alt="..." src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg" class="avatar avatar-sm rounded-circle me-2">
+                                                <a class="text-heading font-semibold" href="#">
+                                                    SV Ngành SE kể chuyện chọn trường, "ngành" đúng đắn
+                                                </a>
+                                            </td>
+                                            <td>
+                                                Trần Duy Hưng
+                                            </td>
+                                            <td>
+                                                <!--<img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">-->
+                                                <a class="text-heading font-semibold" href="#">
+                                                    14/01/2022
+                                                </a>
+                                            </td>
+                                            <!--                                            
+                                            -->                                            <td>
+                                                <span class="badge badge-lg badge-dot">
+                                                    <i class="bg-success"></i>Đã đăng
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
+                                                <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img alt="..." src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/271719124_4900691723302883_6013686438905834773_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=730e14&_nc_ohc=cTqz2ihLer0AX_OdDhb&tn=dukyNjARcINWNWzp&_nc_ht=scontent.fsgn5-12.fna&oh=00_AT8hQ4RsD4ovlPcCkJkFbraWNVgd2Oknfmsn5YSxuuomUg&oe=61E8163E" 
+                                                     class="avatar avatar-sm rounded-circle me-2">
+                                                <a class="text-heading font-semibold" href="#">
+                                                    Đại học FPT là trường đại học đầu tiên áp dụng MC ảo
+                                                </a>
+                                            </td>
+                                            <td>
+                                                Nguyễn Thành Long
+                                            </td>
+                                            <td>
+                                                <a class="text-heading font-semibold" href="#">
+                                                    14/01/2022
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <span class="badge badge-lg badge-dot">
+                                                    <i class="bg-danger"></i>Đã xóa
+                                                </span>
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
+                                                <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="card-footer border-0 py-5">
-                                <form>
-                                    <div class="form-group">
-                                        <label>Thumbnail</label> <br/>
-                                        <input type="file" class="form-control-file" accept="image/png, image/jpeg">
-                                    </div>
-                                    <br/>
-
-                                    <div class="form-group">
-                                        <label>Tiêu đề</label>
-                                        <input type="email" class="form-control" >
-                                    </div>
-                                    <br/>
-
-                                    <div class="form-group">
-                                        <label>Nội dung</label>
-                                        <textarea class="form-control" rows="5" id="content" name="content"></textarea>
-                                    </div>
-                                    <br/>
-
-<!--                                    <select class="custom-select custom-select-md">
-                                        <option selected>Ngành học</option>
-                                        <option value="1">SE</option>
-                                        <option value="2">ITS</option>
-                                    </select>
-                                    <br/> <br/> -->
-
-                                    <button type="submit" class="btn btn-warning" style="margin-left: 50%">Thêm</button>
-                                </form>
+                                <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
                             </div>
                         </div>
                     </div>
@@ -181,16 +224,6 @@
                     </div>
                 </footer>
             </div>
-
         </div>
-
     </body>
 </html>
-
-<script>
-    var editor = '';
-    $(document).ready(function () {
-        editor = CKEDITOR.replace('content');
-    })
-
-</script>

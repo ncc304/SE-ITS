@@ -4,15 +4,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
-        
+
         <!--for CKEditor:-->
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-        
+
         <title>Admin Page</title>
     </head>
     <body>
-        
+
         <!-- Dashboard -->
         <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary"  >
             <!-- Vertical Navbar -->
@@ -22,18 +22,18 @@
                         background-color: #ff9900c2 !important;
                     }
                 </style>
-                
+
                 <div class="container-fluid">
                     <!-- Toggler -->
                     <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <!-- Brand -->
-                        <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
+                    <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
                         <img src="https://dnuni.fpt.edu.vn/wp-content/uploads/2020/02/logo-1.png" alt="..." style="height: 50px; width: 152px"/>
-                         <hr style="background-color: while"/>    
-                        </a>
-                    
+                        <hr style="background-color: while"/>    
+                    </a>
+
                     <!-- Collapse -->
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
@@ -67,11 +67,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="student.jsp">
-                                    <i class="bi bi-people"></i> Sinh viên
+                                <a class="nav-link" href="studentLecture.jsp">
+                                    <i class="bi bi-people"></i> Sinh viên & Giảng viên
                                 </a>
                             </li>
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="lecture.jsp">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
                                          style="margin-left: -3.5%; color: black;">
@@ -80,20 +80,20 @@
                                     </svg>
                                     <p style="margin-left: 3%">Giảng viên</p>
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
-                        
+
                         <!-- Push content down -->
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-person-square"></i> Tài khoản
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -115,7 +115,7 @@
                                     <h1 class="h2 mb-0 ls-tight">Tin Tức</h1>
                                 </div>
                                 <!-- Actions -->
-                                <div class="col-sm-6 col-12 text-sm-end">
+<!--                                <div class="col-sm-6 col-12 text-sm-end">
                                     <div class="mx-n1">
                                         <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
                                             <span class=" pe-2">
@@ -124,7 +124,7 @@
                                             <span>Thêm</span>
                                         </a>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <!-- Nav -->
                             <br/>
@@ -134,7 +134,7 @@
                 <!-- Main -->
                 <main class="py-6 bg-surface-secondary">
                     <div class="container-fluid">
-                        
+
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
                                 <h5 class="mb-0">Tạo bài viết về Tin Tức</h5>
@@ -143,47 +143,47 @@
                             <div class="card-footer border-0 py-5">
                                 <form>
                                     <div class="form-group">
-                                    <label>Thumbnail</label> <br/>
-                                    <input type="file" class="form-control-file" accept="image/png, image/jpeg">
+                                        <label>Thumbnail</label> <br/>
+                                        <input type="file" class="form-control-file" accept="image/png, image/jpeg">
                                     </div>
                                     <br/>
-                                    
+
                                     <div class="form-group">
-                                    <label>Tiêu đề</label>
-                                    <input type="email" class="form-control" >
+                                        <label>Tiêu đề</label>
+                                        <input type="email" class="form-control" >
                                     </div>
                                     <br/>
-                                    
+
                                     <div class="form-group">
-                                    <label>Nội dung</label>
-                                    <textarea class="form-control" rows="5" id="content" name="content"></textarea>
+                                        <label>Nội dung</label>
+                                        <textarea class="form-control" rows="5" id="content" name="content"></textarea>
                                     </div>
                                     <br/>
-                                    
-                                     <button type="submit" class="btn btn-warning" style="margin-left: 50%">Thêm</button>
+
+                                    <button type="submit" class="btn btn-warning" style="margin-left: 50%">Thêm</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </main>
                 <footer>
-            <div class="card text-center">
-            <div class="card-footer text-muted">
-                © 2022 Bản quyền thuộc về Nhóm 4.
+                    <div class="card text-center">
+                        <div class="card-footer text-muted">
+                            © 2022 Bản quyền thuộc về Nhóm 4.
+                        </div>
+                    </div>
+                </footer>
             </div>
+
         </div>
-        </footer>
-            </div>
-            
-        </div>
-        
+
     </body>
 </html>
 
 <script>
     var editor = '';
-    $(document).ready(function(){
+    $(document).ready(function () {
         editor = CKEDITOR.replace('content');
     })
-    
+
 </script>
