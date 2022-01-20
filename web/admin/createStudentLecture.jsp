@@ -7,7 +7,7 @@
 
         <!--for CKEditor:-->
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/4.17.1/full-all/ckeditor.js"></script>
 
         <title>Admin Page</title>
     </head>
@@ -62,12 +62,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="event.jsp">
+                                <a class="nav-link " href="event.jsp">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="studentLecture.jsp">
+                                <a class="nav-link active" href="studentLecture.jsp">
                                     <i class="bi bi-people"></i> Sinh viên & Giảng viên
                                 </a>
                             </li>
@@ -112,7 +112,7 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Sự kiện</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Sinh viên & Giảng viên</h1>
                                 </div>
                                 <!-- Actions -->
 <!--                                <div class="col-sm-6 col-12 text-sm-end">
@@ -137,7 +137,7 @@
 
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">Tạo bài viết về Sự Kiện</h5>
+                                <h5 class="mb-0">Tạo bài viết về Sinh viên</h5>
                             </div>
 
                             <div class="card-footer border-0 py-5">
