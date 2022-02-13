@@ -1,0 +1,288 @@
+:root {
+    --gradient-color: linear-gradient(45deg, #003380 0%, #000000 100%);
+/*    --white-color: #fff;
+    --text-color: #111111;
+    --primary-color: #001261;
+    --header-contact-height: 4.6rem;
+    --header-navbar-height: 8rem;
+    --header-navbar-height: calc(var(--header-height) - var(--header-contact-height)); 
+    --header-height: 12.6rem; */
+}
+
+
+/* --gradient-color: linear-gradient(145deg, #fc00ff, #00dbde); */
+
+.margin-left-2rem {
+    margin-left: 17rem;
+}
+
+html {
+    font-family: Poppins, sans-serif !important;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    scroll-behavior: smooth;
+}
+
+*,
+body {
+    box-sizing: border-box;
+}
+
+a,
+i {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+    background: #001261;
+    color: #fff;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    80% {
+        transform: scaleY(1.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+
+/* Modal User*/
+
+.modal-user {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* display: flex; */
+    display: none;
+    transform: all 0.4s linear;
+}
+
+.modal-user.open {
+    display: flex;
+}
+
+.modal__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.modal__container {
+    margin: auto;
+    position: relative;
+    animation: fadeInModalUser 0.5s ease;
+}
+
+.no-active {
+    background-color: #3abdc1 !important;
+}
+
+@keyframes fadeInModalUser {
+    0% {
+        opacity: 0;
+        transform: translateY(-20rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Modal Search */
+
+.modal-search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    transform: all 0.4s ease;
+    z-index: 4;
+}
+
+.modal-search.open-search {
+    display: block;
+}
+
+.modal-search__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(63, 208, 212, 0.8);
+}
+
+.modal-search__container {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 93rem;
+    animation: fadeInModalSearch 0.4s linear;
+}
+
+@keyframes fadeInModalSearch {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(1);
+    }
+}
+
+
+/* Modal  Search Map */
+
+.modal__search-map {
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    right: -50%;
+    background-color: #fff;
+    width: 45rem;
+    height: 100vh;
+    overflow-y: scroll;
+    visibility: hidden;
+    transition: all 0.6s linear;
+    padding: 10rem 4rem;
+}
+
+#menu-search-map__input:checked~.modal__search-map {
+    visibility: visible;
+    right: 0;
+}
+
+
+/* .modal__search-map.open-map {
+    visibility: visible;
+    width: 45rem;
+    padding: 10rem 4rem;
+} */
+
+.modal__search-map::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes fadeInModalMap {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* Common Heading */
+
+.padding-top-86px {
+    padding-top: 8.6rem;
+}
+.padding-top-40px{
+    padding-top:40px;
+}
+
+.padding-top-106px {
+    padding-top: 10.6rem;
+}
+
+.heading-section {
+    text-align: justify;
+}
+
+.sub-heading {
+    margin-bottom: 4rem;
+    /* font-family: Satisfy, cursive; */
+    font-size: 3.2rem;
+    color: #001261;
+    text-align: center;
+    line-height: 4rem;
+}
+
+.main-heading {
+    font-size: 6.4rem;
+    color: #111111;
+    font-weight: 600;
+}
+
+.para-heading--two-row {
+    font-size: 1.6rem;
+    color: #505050;
+    line-height: 2.8rem;
+    margin-top: 1.2rem;
+    padding: 0 5rem;
+}
+/* .para-heading--two-row-ul {
+    font-size: 1.6rem;
+    color: #505050;
+    line-height: 2.8rem;
+    margin-top: 1.2rem;
+    padding: 0 20rem;
+} */
+
+
+.para-heading--three-row {
+    font-size: 1.6rem;
+    color: #505050;
+    line-height: 2.8rem;
+    margin-top: 1.2rem;
+    padding: 0 36rem;
+}
+
+.para-heading--white,
+.sub-heading--white,
+.main-heading--white {
+    color: #fff;
+}
+
+
+/* Type Travel */
+
+.margin-10px {
+    margin: 0 1rem;
+}
+
+
+/* Popular Travel (Place Popular) */
+
+.padding-44px {
+    padding-left: 4.4rem;
+    padding-right: 4.4rem;
+}
+
+
+/* Blog Section */
+
+.blog__padding {
+    padding: 0 14rem 0 4rem;
+}
+
+.padding-88px {
+    padding-left: 8.4rem;
+    padding-right: 8.4rem;
+}
+
+
+/* Footer Section */
+
+.footer__heading {
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 600;
+}

@@ -4,7 +4,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
-        
         <title>Admin Page</title>
     </head>
     <body>
@@ -62,11 +61,11 @@
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-                            <li class="nav-item">
+<!--                            <li class="nav-item">
                                 <a class="nav-link" href="studentLecture.jsp">
                                     <i class="bi bi-people"></i> Sinh viên & Giảng viên
                                 </a>
-                            </li>
+                            </li>-->
 <!--                            <li class="nav-item">
                                 <a class="nav-link" href="lecture.jsp">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"

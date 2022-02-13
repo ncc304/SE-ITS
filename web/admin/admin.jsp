@@ -88,11 +88,11 @@
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/studentLecture.jsp"/>">
+<!--                            <li class="nav-item">
+                                <a class="nav-link" href="< c:url value = "/admin/studentLecture.jsp"/>">
                                     <i class="bi bi-people"></i> Sinh viên & Giảng viên
                                 </a>
-                            </li>
+                            </li>-->
 <!--                            <li class="nav-item">
                                 <a class="nav-link" href="<c:url value = "/admin/lecture.jsp"/>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"

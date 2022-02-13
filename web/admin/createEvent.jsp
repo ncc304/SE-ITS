@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -66,21 +67,21 @@
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="studentLecture.jsp">
-                                    <i class="bi bi-people"></i> Sinh viên & Giảng viên
-                                </a>
-                            </li>
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="lecture.jsp">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
-                                         style="margin-left: -3.5%; color: black;">
-                                    <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
-                                    <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
-                                    </svg>
-                                    <p style="margin-left: 3%">Giảng viên</p>
-                                </a>
-                            </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="studentLecture.jsp">
+                                                                <i class="bi bi-people"></i> Sinh viên & Giảng viên
+                                                            </a>
+                                                        </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="lecture.jsp">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
+                                                                     style="margin-left: -3.5%; color: black;">
+                                                                <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                                                                <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+                                                                </svg>
+                                                                <p style="margin-left: 3%">Giảng viên</p>
+                                                            </a>
+                                                        </li>-->
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -89,11 +90,11 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="bi bi-person-square"></i> Tài khoản
-                                </a>
-                            </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="#">
+                                                                <i class="bi bi-person-square"></i> Tài khoản
+                                                            </a>
+                                                        </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -115,16 +116,16 @@
                                     <h1 class="h2 mb-0 ls-tight">Sự kiện</h1>
                                 </div>
                                 <!-- Actions -->
-<!--                                <div class="col-sm-6 col-12 text-sm-end">
-                                    <div class="mx-n1">
-                                        <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                                            <span class=" pe-2">
-                                                <i class="bi bi-plus"></i>
-                                            </span>
-                                            <span>Thêm</span>
-                                        </a>
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="col-sm-6 col-12 text-sm-end">
+                                                                    <div class="mx-n1">
+                                                                        <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                                                            <span class=" pe-2">
+                                                                                <i class="bi bi-plus"></i>
+                                                                            </span>
+                                                                            <span>Thêm</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>-->
                             </div>
                             <!-- Nav -->
                             <br/>
@@ -141,7 +142,7 @@
                             </div>
 
                             <div class="card-footer border-0 py-5">
-                                <form>
+                                <form method="POST" action="../CreateEventController" id="formSubmit">
                                     <div class="form-group">
                                         <label>Thumbnail</label> <br/>
                                         <input type="file" class="form-control-file" accept="image/png, image/jpeg">
@@ -160,14 +161,14 @@
                                     </div>
                                     <br/>
 
-<!--                                    <select class="custom-select custom-select-md">
-                                        <option selected>Ngành học</option>
-                                        <option value="1">SE</option>
-                                        <option value="2">ITS</option>
-                                    </select>
-                                    <br/> <br/> -->
+                                    <!--                                    <select class="custom-select custom-select-md">
+                                                                            <option selected>Ngành học</option>
+                                                                            <option value="1">SE</option>
+                                                                            <option value="2">ITS</option>
+                                                                        </select>
+                                                                        <br/> <br/> -->
 
-                                    <button type="submit" class="btn btn-warning" style="margin-left: 50%">Thêm</button>
+                                    <input type="submit" value="Thêm" name="createEvent" id="btnCreate" class="btn btn-warning" style="margin-left: 50%"></input>
                                 </form>
                             </div>
                         </div>
@@ -186,11 +187,45 @@
 
     </body>
 </html>
+<c:url var="controller" value="../CreateEventController"/>
 
 <script>
     var editor = '';
     $(document).ready(function () {
         editor = CKEDITOR.replace('content');
     })
-
+    
+    $('#btnCreate').click(function (e) {
+        e.preventDefault();
+        var data = {};
+        var formData = $('#formSubmit').serializeArray();
+        $.each(formData, function (i, v) {
+            data[""+v.name+""] = v.value;
+        });
+        data["content"] = editor.getData();
+//        var id = $('#id').val();
+//        if (id == "") {
+            addNew(data);
+//        } else {
+//            updateNew(data);
+//        }
+    });
+    
+    function addNew(data) {
+        $.ajax({
+            url: '${controller}',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (result) {
+            	window.location.href = "${NewURL}?type=edit&id="+result.id+"&message=insert_success";
+            },
+            error: function (error) {
+            	window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
+            }
+        });
+    }
+    
+    
 </script>

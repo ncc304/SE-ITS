@@ -4,9 +4,25 @@
         <servlet-name>LoginGoogleServlet</servlet-name>
         <servlet-class>accessgoogle.servlet.LoginGoogleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MainController</servlet-name>
+        <servlet-class>controllers.MainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateEventController</servlet-name>
+        <servlet-class>controllers.admin.CreateEventController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainController</servlet-name>
+        <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateEventController</servlet-name>
+        <url-pattern>/CreateEventController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,6 +30,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>admin/admin.jsp</welcome-file>
+        <welcome-file>guest/home.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
