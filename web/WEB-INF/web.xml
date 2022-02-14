@@ -12,6 +12,10 @@
         <servlet-name>CreateEventController</servlet-name>
         <servlet-class>controllers.admin.CreateEventController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FirstController</servlet-name>
+        <servlet-class>controllers.guest.FirstController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -24,12 +28,16 @@
         <servlet-name>CreateEventController</servlet-name>
         <url-pattern>/CreateEventController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FirstController</servlet-name>
+        <url-pattern>/FirstController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>guest/home.jsp</welcome-file>
+        <welcome-file>./guest/home.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

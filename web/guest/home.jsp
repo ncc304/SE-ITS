@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,16 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPT University</title>
     <link rel="icon" type="image/x-icon"
-        href="./assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
-    <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="./assets/css/grid.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
+        href="${pageContext.request.contextPath}/guest/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/grid.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
         rel="stylesheet">
+<!--    <link href="/css/loginstyle.css" rel="stylesheet" type="text/css">-->
 </head>
 
 <body>
@@ -33,7 +35,7 @@
                     </label>
                     <div class="navbar__logo">
                         <a href="" class="logo__link">
-                            <img src="./assets/images/tải xuống.png" alt="Setsail" class="navbar__logo-img">
+                            <img src="${pageContext.request.contextPath}/guest/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
                         </a>
                     </div>
                     <ul class="navbar__list">
@@ -41,48 +43,48 @@
                             <i class="fas fa-times"></i>
                         </label>
                         <li class="navbar__item">
-                            <a href="home.jsp" class="navbar__item-link">Trang chủ</a>
+                            <a href = "<c:url value = "/guest/home.jsp"/>" class="navbar__item-link">Trang chủ</a>
                             <input type="radio" name="nav-select" id="show-subnav__list--1">
                         </li>
                         <li class="navbar__item">
-                            <a href="news.jsp" class="navbar__item-link">Tin tức</a>
+                            <a href="<c:url value = "/guest/news.jsp"/>" class="navbar__item-link">Tin tức</a>
                             <input type="radio" name="nav-select" id="show-subnav__list--2">
                             <ul class="subnav__list">
                                 <li class="subnav__item">
-                                    <a href="its.jsp" class="subnav__link">Đời sống sinh viên</a>
+                                    <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link">Đời sống sinh viên</a>
                                 </li>
                                 <li class="subnav__item">
-                                    <a href="se.jsp" class="subnav__link">FPT High-tech</a>
+                                    <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link">FPT High-tech</a>
                                 </li>
                                 <li class="subnav__item">
-                                    <a href="se.jsp" class="subnav__link">Hội nhập quốc tế</a>
+                                    <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link">Hội nhập quốc tế</a>
                                 </li>
 
                             </ul>
                         </li>
                         <li class="navbar__item">
-                            <a href="major.jsp" class="navbar__item-link">Lộ trình môn chuyên sâu</a>
+                            <a href="<c:url value = "/guest/major.jsp"/>" class="navbar__item-link">Lộ trình môn chuyên sâu</a>
                             <input type="radio" name="nav-select" id="show-subnav__list--3">
                             <ul class="subnav__list">
                                 <li class="subnav__item">
-                                    <a href="its.jsp" class="subnav__link">ITS</a>
+                                    <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link">ITS</a>
                                 </li>
                                 <li class="subnav__item">
-                                    <a href="se.jsp" class="subnav__link">SE</a>
+                                    <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link">SE</a>
                                 </li>
 
                             </ul>
                         </li>
                         <li class="navbar__item">
-                            <a href="event.jsp" class="navbar__item-link">Sự kiện</a>
+                            <a href="<c:url value = "/guest/event.jsp"/>" class="navbar__item-link">Sự kiện</a>
                             <input type="radio" name="nav-select" id="show-subnav__list--4">
                         </li>
                         <li class="navbar__item">
-                            <a href="recruitment.jsp" class="navbar__item-link">Tuyển dụng</a>
+                            <a href="<c:url value = "/guest/recruitment.jsp"/>" class="navbar__item-link">Tuyển dụng</a>
                             <input type="radio" name="nav-select" id="show-subnav__list--5">
                         </li>
                         <li class="navbar__item">
-                            <a href="login.jsp" class="navbar__item-link">Đăng nhập</a>
+                            <a href="<c:url value = "/guest/login.jsp"/>" class="navbar__item-link">Đăng nhập</a>
                             <input type="radio" name="nav-select" id="show-subnav__list--5">
                         </li>
                     </ul>
@@ -96,15 +98,15 @@
         <div class="slideshow-container">
 
             <div class="mySlides fade">
-                <img src="./assets/images/background-img/nganhdaotao-banner2.png" style="width: 100%" class="banner__img2">
+                <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/nganhdaotao-banner2.png" style="width: 100%" class="banner__img2">
             </div>
             
             <div class="mySlides fade slider">
-              <img src="./assets/images/background-img/tikcok.jpg" style="width: 100%" class="banner__img2">
+              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/tikcok.jpg" style="width: 100%" class="banner__img2">
             </div>
             
             <div class="mySlides fade">
-              <img src="./assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
+              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
             </div>
             
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -136,7 +138,7 @@
    
 
         <div class="service" id="se">
-            <img src="./assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
+            <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
 
             <div class="heading-section padding-top-106px">
                 <h3 class="sub-heading sub-heading--white">Bộ môn SE</h3>
@@ -160,21 +162,20 @@
                     Chương trình được thiết kế theo chuẩn của Hiệp hội Máy tính (Association for Computing Machinery-ACM), chuẩn đào tạo kỹ sư phần mềm của Accreditation Board for Engineering and Technology (ABET – Mỹ), Hiệp hội Phần mềm Việt Nam (VINASA), Chương trình Đào tạo của EC-Council, Học viện Mạng và Phần cứng Jetking (Ấn Độ); với sự tư vấn của các chuyên gia và doanh nghiệp CNTT như Tập đoàn FPT, Tập đoàn IBM, đồng thời tích hợp các chuẩn kiến thức của giới công nghiệp như Oracle, Cisco… Nội dung đào tạo chuyên ngành Kỹ thuật phần mềm của Đại học FPT tích hợp cân bằng giữa kiến thức nền tảng với công nghệ, kỹ thuật mới: không chỉ bao gồm các kiến thức về khoa học cơ bản của nhóm ngành CNTT mà còn đào tạo đầy đủ về quy trình phát triển phần mềm, từ phương pháp, kỹ thuật, công nghệ trong phân tích, thiết kế, phát triển, kiểm thử, bảo trì phần mềm và quản lý dự án phần mềm cũng như các ứng dụng CNTT; cân bằng giữa lý thuyết với ứng dụng và thực hành: thời gian học lý thuyết chiếm chỉ tối đa một nửa thời gian của hầu hết các môn học.
                 </p>
                 <div class="more_btn col l-3 m-6 c-12">
-                    <a href="../ITS_Page/its.html" class="more_sub">Xem thêm</a>
+                    <a href="its.jsp" class="more_sub">Xem thêm</a>
                 </div>
             </div>
-            <img src="./assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
+            <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
 
         </div>
 
     
-        <div class="footer">
-
+            <div class="footer" style="height: fit-content">
             <div class="grid wide">
                 <div class="row footer__content">
                     <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
                         <div class="footer__logo-link">
-                            <img src="./assets/images/tải xuống.png" alt="" class="footer__logo-img">
+                            <img src="${pageContext.request.contextPath}/guest/assets/images/tải xuống.png" alt="" class="footer__logo-img">
                         </div>
                         <div class="footer__contact">
                             <div class="footer__contact-address">
