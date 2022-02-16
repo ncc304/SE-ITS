@@ -47,41 +47,26 @@
                         <!-- Navigation -->
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="admin.jsp">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin.jsp">
                                     <i class="bi bi-house"></i> Trang chủ
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="news.jsp">
+                                <a class="nav-link " href="${pageContext.request.contextPath}/admin/news.jsp">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="major.jsp">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/admin/major.jsp">
                                     <i class="bi bi-journal-bookmark"></i> Ngành học
-                                    <!--<span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>-->
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="event.jsp">
+                                <a class="nav-link active" href="${pageContext.request.contextPath}/admin/event.jsp">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-                            <!--                            <li class="nav-item">
-                                                            <a class="nav-link" href="studentLecture.jsp">
-                                                                <i class="bi bi-people"></i> Sinh viên & Giảng viên
-                                                            </a>
-                                                        </li>-->
-                            <!--                            <li class="nav-item">
-                                                            <a class="nav-link" href="lecture.jsp">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
-                                                                     style="margin-left: -3.5%; color: black;">
-                                                                <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
-                                                                <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
-                                                                </svg>
-                                                                <p style="margin-left: 3%">Giảng viên</p>
-                                                            </a>
-                                                        </li>-->
+                            
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -142,7 +127,7 @@
                             </div>
 
                             <div class="card-footer border-0 py-5">
-                                <form method="POST" action="../CreateEventController" id="formSubmit">
+                                <form method="POST" action="CreateEventController" id="formSubmit">
                                     <div class="form-group">
                                         <label>Thumbnail</label> <br/>
                                         <input type="file" class="form-control-file" accept="image/png, image/jpeg">
@@ -161,14 +146,7 @@
                                     </div>
                                     <br/>
 
-                                    <!--                                    <select class="custom-select custom-select-md">
-                                                                            <option selected>Ngành học</option>
-                                                                            <option value="1">SE</option>
-                                                                            <option value="2">ITS</option>
-                                                                        </select>
-                                                                        <br/> <br/> -->
-
-                                    <input type="submit" value="Thêm" name="createEvent" id="btnCreate" class="btn btn-warning" style="margin-left: 50%"></input>
+                                    <input type="submit" value="Thêm" name="createEvent" id="btnCreate" class="btn btn-warning" style="margin-left: 50%" onclick="LayNoiDung()"></input>
                                 </form>
                             </div>
                         </div>
@@ -187,7 +165,6 @@
 
     </body>
 </html>
-<c:url var="controller" value="../CreateEventController"/>
 
 <script>
     var editor = '';
@@ -195,37 +172,8 @@
         editor = CKEDITOR.replace('content');
     })
     
-    $('#btnCreate').click(function (e) {
-        e.preventDefault();
-        var data = {};
-        var formData = $('#formSubmit').serializeArray();
-        $.each(formData, function (i, v) {
-            data[""+v.name+""] = v.value;
-        });
-        data["content"] = editor.getData();
-//        var id = $('#id').val();
-//        if (id == "") {
-            addNew(data);
-//        } else {
-//            updateNew(data);
-//        }
-    });
-    
-    function addNew(data) {
-        $.ajax({
-            url: '${controller}',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function (result) {
-            	window.location.href = "${NewURL}?type=edit&id="+result.id+"&message=insert_success";
-            },
-            error: function (error) {
-            	window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-            }
-        });
-    }
-    
-    
+    function LayNoiDung(){
+            var data = CKEDITOR.instances.content.getData();
+            alert(data)
+        }
 </script>

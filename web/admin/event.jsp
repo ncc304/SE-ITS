@@ -42,23 +42,23 @@
                         <!-- Navigation -->
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="admin.jsp">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin.jsp">
                                     <i class="bi bi-house"></i> Trang chủ
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="news.jsp">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/admin/news.jsp">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="major.jsp">
+                                <a class="nav-link " href="${pageContext.request.contextPath}/admin/major.jsp">
                                     <i class="bi bi-journal-bookmark"></i> Ngành học
                                 </a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link active" href="event.jsp">
+                                <a class="nav-link active" href="${pageContext.request.contextPath}/admin/event.jsp">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
