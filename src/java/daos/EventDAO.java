@@ -27,7 +27,7 @@ public class EventDAO {
                 String sql = "insert into News(id, [content]) values(?, ?)";
 
                 ps = con.prepareStatement(sql);
-                ps.setString(1, "1");
+                ps.setString(1, "3");
                 ps.setString(2, content);
                ps.executeUpdate();
                 String a = "";

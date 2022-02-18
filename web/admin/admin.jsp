@@ -200,24 +200,33 @@
                             <div class="card-header">
                                 <h5 class="mb-0">Danh sách các bài viết gần đây nhất</h5>
                             </div>
+                            <br/>
                             <div class="row">
                                 <div class="col-10" style="margin-left: 2%">
-                                    <p>Tin tức</p>
+                                    <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #0066B2">
+                                        Tin tức
+                                    </label>
+                                   xanh #0066B2  cam #F26F21  xanh la #0EB04C
                                 </div>
                                 <div class="col-3">
                                     <a href="#">
                                         <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
                                              style="width: 150px; height: 100px; margin-left: 50%">
                                     </a>
-
+                                    
                                 </div>
                                 <div class="col-7">
-                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                    <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
+                                    <label style="font-weight: bold">Tác giả: </label> <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
+                                        Admin 1
+                                    </span>
                                 </div>
                                 <br>
                                 
                                 <div class="col-10" style="margin-left: 2%; margin-top: 2%">
-                                    <p>Ngành học</p>
+                                    <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #F26F21">
+                                        Ngành học
+                                    </label>
                                 </div>
                                 <div class="col-3">
                                     <a href="#">
@@ -226,12 +235,17 @@
                                     </a>
                                 </div>
                                 <div class="col-7">
-                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                    <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
+                                    <label style="font-weight: bold">Tác giả: </label> <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
+                                        Admin 1
+                                    </span>
                                 </div>
                                 <br>
                                 
                                 <div class="col-10" style="margin-left: 2%; margin-top: 2%">
-                                    <p>Sự kiện</p>
+                                    <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #0EB04C">
+                                        Sự kiện
+                                    </label>
                                 </div>
                                 <div class="col-3">
                                     <a href="#">
@@ -240,11 +254,14 @@
                                     </a>
                                 </div>
                                 <div class="col-7">
-                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                    <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
+                                    <label style="font-weight: bold">Tác giả: </label> <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
+                                        Admin 2
+                                    </span>
                                 </div>
                                 <br>
 
-                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
+<!--                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
                                     <p>Sinh viên & Giảng viên</p>
                                 </div>
                                 <div class="col-3">
@@ -255,7 +272,7 @@
                                 </div>
                                 <div class="col-7">
                                     <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
-                                </div>
+                                </div>-->
 
                             </div>
                             <br>

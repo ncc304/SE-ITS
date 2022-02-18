@@ -24,7 +24,7 @@ public class CreateEventController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String content = request.getParameter("createEvent");
+            String content = request.getParameter("content");
             EventDAO dao = new EventDAO();
         dao.saveContent(content);
                                     
