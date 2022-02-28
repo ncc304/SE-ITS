@@ -38,8 +38,8 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-<!--        <welcome-file>./guest/home.jsp</welcome-file>-->
-<welcome-file>./admin/createEvent.jsp</welcome-file>
+        <welcome-file>./guest/home.jsp</welcome-file>
+<!--<welcome-file>./admin/createEvent.jsp</welcome-file>-->
     </welcome-file-list>    
     
     <resource-ref>
