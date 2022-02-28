@@ -3,33 +3,58 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.admin;
+package controllers;
 
-import daos.EventDAO;
+import accessgoogle.common.GooglePojo;
+import accessgoogle.common.GoogleUtils;
+import daos.AccountDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class CreateEventController extends HttpServlet {
+public class AccountController extends HttpServlet{
+    private static final long serialVersionUID = 1L;
 
-    
+    public AccountController() {
+        super();
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = "";
         try {
-            String content = request.getParameter("content");
-            EventDAO dao = new EventDAO();
-        dao.createtEvent();
-                                    
+            String code = request.getParameter("code");
+            if (code != null || !code.isEmpty()) {
+                HttpSession session = request.getSession();
+                String accessToken = GoogleUtils.getToken(code);
+                GooglePojo gPojo = GoogleUtils.getUserInfo(accessToken);
+                String userID = gPojo.getId();
+//                UserDAO dao = new UserDAO();
+                AccountDAO dao = new AccountDAO();
+                String email = gPojo.getEmail();
+                String check = dao.checkLogin(email);
+                if(check.equals("Login Fail")){
+                    email = "You don't have permisstion";
+                }
+//                UserDTO user = dao.checkLoginGoogle(userID);
+//                if (user == null) {
+//                    user = new UserDTO(userID, email, "US");
+//                    dao.createUserGoogle(user);
+//                }
+                session.setAttribute("email", email);
+                url = "index.jsp";
+            }
         } catch (Exception e) {
-            System.out.println("sai r");
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
@@ -46,6 +71,7 @@ public class CreateEventController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     /**
@@ -60,6 +86,7 @@ public class CreateEventController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
@@ -71,5 +98,5 @@ public class CreateEventController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }

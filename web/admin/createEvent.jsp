@@ -145,7 +145,11 @@
                                         <textarea class="form-control" rows="5" id="content" name="content"></textarea>
                                     </div>
                                     <br/>
-
+                                    <select class="custom-select custom-select-md">
+                                        <option selected>Thể loại</option>
+                                        <option value="1">Trí tuệ nhân tạo</option>
+                                        <option value="2">Nhạc cụ</option>
+                                    </select>
                                     <input type="submit" value="Thêm" name="createEvent" id="btnCreate" class="btn btn-warning" style="margin-left: 50%" onclick="LayNoiDung()"></input>
                                 </form>
                             </div>

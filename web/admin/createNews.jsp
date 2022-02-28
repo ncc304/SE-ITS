@@ -159,7 +159,6 @@
                                         <textarea class="form-control" rows="5" id="content" name="content"></textarea>
                                     </div>
                                     <br/>
-
                                     <button type="submit" class="btn btn-warning" style="margin-left: 50%">Thêm</button>
                                 </form>
                             </div>

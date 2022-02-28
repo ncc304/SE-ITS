@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import accessgoogle.common.GooglePojo;
 import accessgoogle.common.GoogleUtils;
+import daos.AccountDAO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
@@ -21,10 +22,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-
 public class LoginGoogleServlet extends HttpServlet {
-
+    
     private static final long serialVersionUID = 1L;
+    private static final String adminPage = "admin/admin.jsp" ;
+    private static final String userPage = "guest/home.jsp" ;
 
     public LoginGoogleServlet() {
         super();
@@ -33,23 +35,41 @@ public class LoginGoogleServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
+        String url = userPage;
         try {
+//            String code = request.getParameter("code");
+//            if (code != null || !code.isEmpty()) {
+//                HttpSession session = request.getSession();
+//                String accessToken = GoogleUtils.getToken(code);
+//                GooglePojo gPojo = GoogleUtils.getUserInfo(accessToken);
+////                String userID = gPojo.getId();
+////                UserDAO dao = new UserDAO();
+//                String email = gPojo.getEmail();
+////                UserDTO user = dao.checkLoginGoogle(userID);
+////                if (user == null) {
+////                    user = new UserDTO(userID, email, "US");
+////                    dao.createUserGoogle(user);
+////                }
+//                session.setAttribute("email", email);
+//                url = "admin/admin.jsp";
+//            }
             String code = request.getParameter("code");
             if (code != null || !code.isEmpty()) {
                 HttpSession session = request.getSession();
                 String accessToken = GoogleUtils.getToken(code);
                 GooglePojo gPojo = GoogleUtils.getUserInfo(accessToken);
-//                String userID = gPojo.getId();
+                String userID = gPojo.getId();
 //                UserDAO dao = new UserDAO();
+                AccountDAO dao = new AccountDAO();
                 String email = gPojo.getEmail();
-//                UserDTO user = dao.checkLoginGoogle(userID);
-//                if (user == null) {
-//                    user = new UserDTO(userID, email, "US");
-//                    dao.createUserGoogle(user);
-//                }
+                String check = dao.checkLogin(email);
+                if (check == "Login Fail") {
+                    email = "You don't have permisstion";
+                }else{
+                    url = adminPage;
+                }
                 session.setAttribute("email", email);
-                url = "admin/admin.jsp";
+                
             }
         } catch (Exception e) {
         } finally {
@@ -85,7 +105,7 @@ public class LoginGoogleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**

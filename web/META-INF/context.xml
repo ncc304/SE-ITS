@@ -1,3 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/SE_ITS"/>
+<Context antiJARLocking="true" path="/SE_ITS">
+<Resource name="DBCon" auth="Container" type="javax.sql.DataSource"
+        username="admin" password="SWP391Group4"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://swp391.ca4clpm52b0g.us-east-2.rds.amazonaws.com:3306/SWP391"
+        maxActive="8" maxIdle="4"
+    />   
+</Context>
     

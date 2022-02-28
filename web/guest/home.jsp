@@ -3,124 +3,145 @@
 
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FPT University</title>
-    <link rel="icon" type="image/x-icon"
-        href="${pageContext.request.contextPath}/guest/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/grid.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
-        rel="stylesheet">
-<!--    <link href="/css/loginstyle.css" rel="stylesheet" type="text/css">-->
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FPT University</title>
+        <link rel="icon" type="image/x-icon"
+              href="${pageContext.request.contextPath}/guest/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
 
-<body>
-    <div class="wrapper" id="scroll-top">
-        <!-- Header Navbar-->
-        <div class="header">
-            <div class="navbar">
-                <div class="grid wide header-navbar--flex">
-                    <input type="checkbox" name="" id="navbar__mobile" hidden>
-                    <label for="navbar__mobile" class="navbar-mobile__menu">
-                        <i class="fas fa-bars"></i>
-                    </label>
-                    <div class="navbar__logo">
-                        <a href="" class="logo__link">
-                            <img src="${pageContext.request.contextPath}/guest/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/grid.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/base.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/responsive.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
+            rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="wrapper" id="scroll-top">
+            <!-- Header Navbar-->
+            <div class="header">
+                <div class="navbar">
+                    <div class="grid wide header-navbar--flex">
+                        <input type="checkbox" name="" id="navbar__mobile" hidden>
+                        <label for="navbar__mobile" class="navbar-mobile__menu">
+                            <i class="fas fa-bars"></i>
+                        </label>
+                        <div class="navbar__logo">
+                            <a href="" class="logo__link">
+                                <img src="${pageContext.request.contextPath}/guest/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
+                            </a>
+                        </div>
+                        <ul class="navbar__list">
+                            <label for="navbar__mobile" class="navbar-mobile__menu-close">
+                                <i class="fas fa-times"></i>
+                            </label>
+                            <li class="navbar__item">
+                                <a href = "<c:url value = "/guest/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
+
+                                <input type="radio" name="nav-select" id="show-subnav__list--1">
+                            </li>
+                            <li class="navbar__item">
+                                <a href="<c:url value = "/guest/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <input type="radio" name="nav-select" id="show-subnav__list--2">
+                                <ul class="subnav__list">
+                                    <li class="subnav__item">
+                                        <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
+                                    </li>
+                                    <li class="subnav__item">
+                                        <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
+                                    </li>
+                                    <li class="subnav__item">
+                                        <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="navbar__item">
+                                <a href="<c:url value = "/guest/major.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Lộ trình môn chuyên sâu</a>
+                                <input type="radio" name="nav-select" id="show-subnav__list--3">
+                                <ul class="subnav__list">
+                                    <li class="subnav__item">
+                                        <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                    </li>
+                                    <li class="subnav__item">
+                                        <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="navbar__item">
+                                <a href="<c:url value = "/guest/event.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
+                                <input type="radio" name="nav-select" id="show-subnav__list--4">
+                            </li>
+                            <li class="navbar__item">
+                                <a href="<c:url value = "/guest/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
+                                <input type="radio" name="nav-select" id="show-subnav__list--5">
+                            </li>
+                            <li class="navbar__item">
+                                <a href="#" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                    Đăng nhập
+                                </a>
+                                <input type="radio" name="nav-select" id="show-subnav__list--5">
+                            </li>
+                        </ul>   
+
+                        <a href="" class="navbar-mobile__user">
+                            <i class="far fa-user-circle"></i>
                         </a>
                     </div>
-                    <ul class="navbar__list">
-                        <label for="navbar__mobile" class="navbar-mobile__menu-close">
-                            <i class="fas fa-times"></i>
-                        </label>
-                        <li class="navbar__item">
-                            <a href = "<c:url value = "/guest/home.jsp"/>" class="navbar__item-link">Trang chủ</a>
-                            <input type="radio" name="nav-select" id="show-subnav__list--1">
-                        </li>
-                        <li class="navbar__item">
-                            <a href="<c:url value = "/guest/news.jsp"/>" class="navbar__item-link">Tin tức</a>
-                            <input type="radio" name="nav-select" id="show-subnav__list--2">
-                            <ul class="subnav__list">
-                                <li class="subnav__item">
-                                    <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link">Đời sống sinh viên</a>
-                                </li>
-                                <li class="subnav__item">
-                                    <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link">FPT High-tech</a>
-                                </li>
-                                <li class="subnav__item">
-                                    <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link">Hội nhập quốc tế</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="navbar__item">
-                            <a href="<c:url value = "/guest/major.jsp"/>" class="navbar__item-link">Lộ trình môn chuyên sâu</a>
-                            <input type="radio" name="nav-select" id="show-subnav__list--3">
-                            <ul class="subnav__list">
-                                <li class="subnav__item">
-                                    <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link">ITS</a>
-                                </li>
-                                <li class="subnav__item">
-                                    <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link">SE</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="navbar__item">
-                            <a href="<c:url value = "/guest/event.jsp"/>" class="navbar__item-link">Sự kiện</a>
-                            <input type="radio" name="nav-select" id="show-subnav__list--4">
-                        </li>
-                        <li class="navbar__item">
-                            <a href="<c:url value = "/guest/recruitment.jsp"/>" class="navbar__item-link">Tuyển dụng</a>
-                            <input type="radio" name="nav-select" id="show-subnav__list--5">
-                        </li>
-                        <li class="navbar__item">
-                            <a href="<c:url value = "/guest/login.jsp"/>" class="navbar__item-link">Đăng nhập</a>
-                            <input type="radio" name="nav-select" id="show-subnav__list--5">
-                        </li>
-                    </ul>
-
-                    <a href="" class="navbar-mobile__user">
-                        <i class="far fa-user-circle"></i>
-                    </a>
                 </div>
             </div>
-        </div>
-        <div class="slideshow-container">
+            <div class="slideshow-container">
 
-            <div class="mySlides fade">
-                <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/nganhdaotao-banner2.png" style="width: 100%" class="banner__img2">
+<!--                <div class="mySlides fade">
+                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event1.jpg" style="width: 100%" class="banner__img2">
+                </div>
+
+                <div class="mySlides fade slider">
+                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" style="width: 100%" class="banner__img2">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
+                </div>-->
+                <div class="mySlides fade">
+              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/thumnailhethongotovadieukhien-min.jpg" class="banner__img2">
+              <div class="banner__content banner__content--1">
+                <h2>Let's go now</h2>
+                <h1>SE and ITS</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima expedita tenetur eius ipsum ea, voluptatibus possimus perspiciatis consequatur</p>
+            </div>
             </div>
             
             <div class="mySlides fade slider">
-              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/tikcok.jpg" style="width: 100%" class="banner__img2">
+              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/event1.jpg" class="banner__img2">
             </div>
             
             <div class="mySlides fade">
-              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
+              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" class="banner__img2">
             </div>
-            
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
             </div>
             <br>
-            
+
             <div style="text-align:center">
-              <span class="dot" onclick="currentSlide(1)"></span> 
-              <span class="dot" onclick="currentSlide(2)"></span> 
-              <span class="dot" onclick="currentSlide(3)"></span> 
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span> 
             </div>
-            </div>
+        </div>
         <div class="video-about" id="aboutus">
             <div class="grid wide">
                 <div class="heading-section padding-top-86px">
@@ -129,13 +150,14 @@
             </div>
             <div class="video__link">
                 <iframe width="860" height="515" src="https://www.youtube.com/embed/b7OoE98yj5w"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
             </div>
         </div>
 
-   
+
 
         <div class="service" id="se">
             <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
@@ -169,8 +191,8 @@
 
         </div>
 
-    
-            <div class="footer" style="height: fit-content">
+
+        <div class="footer" style="height: fit-content">
             <div class="grid wide">
                 <div class="row footer__content">
                     <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
@@ -230,32 +252,39 @@
     <div class="btn-scroll-top">
         <a href="#scroll-top" class="btn-scroll-top__link">Top</a>
     </div>
-    </div>
-    </div>
+</div>
+</div>
+
 
     <script>
-       var slideIndex = 0;
-showSlides();
+        var slideIndex = 0;
+        showSlides();
 
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
-}
-        </script>
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 3000); // Change image every 2 seconds
+        }
+
+
         
-        
+    </script>
+
+
+
 </body>
 
 
