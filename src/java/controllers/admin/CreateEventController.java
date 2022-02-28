@@ -5,7 +5,7 @@
  */
 package controllers.admin;
 
-import daos.EventDAO;
+import daos.EventsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -25,8 +25,8 @@ public class CreateEventController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String content = request.getParameter("content");
-            EventDAO dao = new EventDAO();
-        dao.createtEvent();
+            EventsDAO dao = new EventsDAO();
+//        dao.createtEvent();
                                     
         } catch (Exception e) {
             System.out.println("sai r");
