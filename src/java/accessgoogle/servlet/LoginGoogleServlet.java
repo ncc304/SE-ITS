@@ -26,7 +26,7 @@ public class LoginGoogleServlet extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
     private static final String adminPage = "admin/admin.jsp" ;
-    private static final String userPage = "guest/home.jsp" ;
+    private static final String userPage = "login.jsp" ;
 
     public LoginGoogleServlet() {
         super();
@@ -58,17 +58,25 @@ public class LoginGoogleServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 String accessToken = GoogleUtils.getToken(code);
                 GooglePojo gPojo = GoogleUtils.getUserInfo(accessToken);
-                String userID = gPojo.getId();
 //                UserDAO dao = new UserDAO();
                 AccountDAO dao = new AccountDAO();
                 String email = gPojo.getEmail();
+                
+                
                 String check = dao.checkLogin(email);
                 if (check == "Login Fail") {
                     email = "You don't have permisstion";
                 }else{
                     url = adminPage;
                 }
+                // Get UserID
+                int userID = dao.getUserID(email);
+                //Get UserName
+                String userName = dao.getUserName(email);
+                
                 session.setAttribute("email", email);
+                session.setAttribute("USER_ID", userID);
+                session.setAttribute("USER_NAME", userName);
                 
             }
         } catch (Exception e) {
@@ -76,7 +84,11 @@ public class LoginGoogleServlet extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
+//    public static void main(String[] args) {
+//        AccountDAO dao = new AccountDAO();
+//        int userID = dao.getUserID("nguyenchicuong304@gmail.com");
+//        System.out.println("ID: "+userID);
+//    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

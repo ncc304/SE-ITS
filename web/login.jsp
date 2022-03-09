@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--<html>
@@ -27,15 +28,20 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/login.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Document</title>
+        <style>
+            body{
+                background: url(/SE_ITS/user/assets/images/bg-login.jpg);
+            }
+        </style>
     </head>
     <body>
         <div class="container">
             <div class="wrapper">
                 <div class="form_container">
-                    <img class="login-form-title" src="${pageContext.request.contextPath}/guest/assets/images/tải xuống.png" > </img>
+                    <img class="login-form-title" src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" > </img>
                     <div class="container-login-form-btn">
 
                         <a class="login-form-btn" style="text-decoration: none"
@@ -44,12 +50,12 @@
                             Login with Google
                             <i class="fab fa-google"></i>
                         </a>
-                    </div>
+                    </div>                    
                 </div>
-
             </div>
+
             <div class="wrap_img">
-                <img class="img_login" src="${pageContext.request.contextPath}/guest/assets/images/bg-form-login.jpg"/>
+                <img class="img_login" src="${pageContext.request.contextPath}/user/assets/images/bg-form-login.jpg"/>
             </div>
         </div>
     </body>

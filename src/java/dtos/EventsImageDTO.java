@@ -22,6 +22,11 @@ public class EventsImageDTO {
         this.link = link;
         this.eventId = eventId;
     }
+    public EventsImageDTO(String link, int eventId) {
+        this.id = id;
+        this.link = link;
+        this.eventId = eventId;
+    }
 
     public int getId() {
         return id;

@@ -106,7 +106,7 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="login.jsp" class="navbar__item-link">Đăng nhập</a>
+                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link">Đăng nhập</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                         </ul>

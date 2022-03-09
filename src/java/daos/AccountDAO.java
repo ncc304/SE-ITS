@@ -50,7 +50,7 @@ public class AccountDAO {
         }
         return "Login Fail";
     }
-
+    
     public boolean addAccountRegisEvent(AccountDTO account) {
         boolean check = false;
         try {
@@ -74,5 +74,43 @@ public class AccountDAO {
             e.printStackTrace();
         }
         return check;
+    }
+    
+    public int getUserID(String email){
+        int userID = -1;
+        try {
+            Context ctx = new InitialContext();
+            Context envCtx = (Context) ctx.lookup("java:comp/env");
+            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+            Connection con = ds.getConnection();
+            String sql = "SELECT id FROM SWP391.Account WHERE email LIKE '"+email+"';";
+            PreparedStatement pr = con.prepareStatement(sql);
+            ResultSet rs = pr.executeQuery(sql);
+            if (rs.next()) {                
+                userID = rs.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userID;
+    }
+    
+    public String getUserName(String email){
+        String userName = "";
+        try {
+            Context ctx = new InitialContext();
+            Context envCtx = (Context) ctx.lookup("java:comp/env");
+            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+            Connection con = ds.getConnection();
+            String sql = "SELECT name FROM SWP391.Account WHERE email LIKE '"+email+"';";
+            PreparedStatement pr = con.prepareStatement(sql);
+            ResultSet rs = pr.executeQuery(sql);
+            if (rs.next()) {                
+                userName = rs.getString("name");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userName;
     }
 }

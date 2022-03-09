@@ -9,9 +9,9 @@
     margin-top: 5.7%;
     
 }
-body{
-    background: url(/SE_ITS/guest/assets/images/bg-login.jpg);
-}
+/*body{
+    background: url(/SE_ITS/user/assets/images/bg-login.jpg);
+}*/
 
 .container{
     display: flex;

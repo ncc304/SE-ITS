@@ -5,7 +5,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/bootstrap-icons.svg">
 
         <title>Admin Page</title>
     </head>
@@ -63,7 +62,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/event.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
@@ -206,7 +205,7 @@
                                     <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #0066B2">
                                         Tin tức
                                     </label>
-                                   xanh #0066B2  cam #F26F21  xanh la #0EB04C
+                                   <!--xanh #0066B2  cam #F26F21  xanh la #0EB04C-->
                                 </div>
                                 <div class="col-3">
                                     <a href="#">
@@ -217,8 +216,9 @@
                                 </div>
                                 <div class="col-7">
                                     <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
-                                    <label style="font-weight: bold">Tác giả: </label> <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
-                                        Admin 1
+                                    <label style="font-weight: bold">Tác giả: </label> 
+                                    <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
+                                        <label style="font-weight: 500;">Admin 1</label>
                                     </span>
                                 </div>
                                 <br>

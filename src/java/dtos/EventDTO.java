@@ -19,8 +19,9 @@ public class EventDTO {
     boolean status;
     String description;
     String owner;
-
+    
     public EventDTO() {
+        
     }
 
     public EventDTO(int id, String name, String startDate, String endDate, boolean status, String description, String owner) {
@@ -33,6 +34,17 @@ public class EventDTO {
         this.owner = owner;
     }
 
+    public EventDTO(String name, String startDate, String endDate, boolean status, String description, String owner) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+        this.description = description;
+        this.owner = owner;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }

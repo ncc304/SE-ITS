@@ -11,39 +11,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class MainController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String GO_EVENT = "LoadEventCategoryController";
-    private static final String goEventPage = "LoadEventPageController";
-    private static final String createEvent = "CreateEventController";
-    private static final String deleteEvent = "DeleteEventController";
+public class LogoutController extends HttpServlet {
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if("goCreateEvent".equals(action)){
-                url = GO_EVENT;
-            }else if("Thêm sự kiện".equals(action)){
-                url = createEvent;
-            }else if("goEventPage".equals(action)){
-                url = goEventPage;
-            }else if("deleteEvent".equals(action)){
-                url = deleteEvent;
+            HttpSession session = request.getSession();
+            if (session != null) {
+                session.invalidate();
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("user/home.jsp");
         }
     }
 

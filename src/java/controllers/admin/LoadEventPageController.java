@@ -3,10 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.admin;
 
+import daos.EventImageDAO;
+import daos.EventsDAO;
+import dtos.EventDTO;
+import dtos.EventsImageDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,34 +21,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class MainController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String GO_EVENT = "LoadEventCategoryController";
-    private static final String goEventPage = "LoadEventPageController";
-    private static final String createEvent = "CreateEventController";
-    private static final String deleteEvent = "DeleteEventController";
-    
+public class LoadEventPageController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if("goCreateEvent".equals(action)){
-                url = GO_EVENT;
-            }else if("Thêm sự kiện".equals(action)){
-                url = createEvent;
-            }else if("goEventPage".equals(action)){
-                url = goEventPage;
-            }else if("deleteEvent".equals(action)){
-                url = deleteEvent;
-            }
+            EventsDAO dao = new EventsDAO();
+            EventImageDAO imgDAO = new EventImageDAO();
+            
+            List<EventDTO> list = dao.getListEvent();
+            List<EventsImageDTO> listImg = imgDAO.getListEventsImage();
+            
+            request.setAttribute("LIST_EVENT", list);
+            request.setAttribute("LIST_EVENT_IMG", listImg);
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("admin/event.jsp").forward(request, response);
         }
     }
 

@@ -78,14 +78,16 @@ public class EventsDAO {
             if (events.isStatus()) {
                 tmp = 1;
             }
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
             Date parsed1 = format.parse(events.getEndDate());
-            java.sql.Date sqlDate1 = new java.sql.Date(parsed1.getTime());
+//            java.sql.Date sqlDate1 = new java.sql.Date(parsed1.getTime());
+            java.sql.Timestamp sqlDate1 = new java.sql.Timestamp(parsed1.getTime());
             Date parsed2 = format.parse(events.getStartDate());
-            java.sql.Date sqlDate2 = new java.sql.Date(parsed1.getTime());
+//            java.sql.Date sqlDate2 = new java.sql.Date(parsed2.getTime());
+            java.sql.Timestamp sqlDate2 = new java.sql.Timestamp(parsed2.getTime());
             pr.setString(1, events.getName());
-            pr.setDate(2, sqlDate2);
-            pr.setDate(3, sqlDate1);
+            pr.setTimestamp(2, sqlDate2);
+            pr.setTimestamp(3, sqlDate1);
             pr.setInt(4, tmp);
             pr.setString(5, events.getDescription());
             pr.setString(6, events.getOwner());
@@ -130,7 +132,26 @@ public class EventsDAO {
         }
         return check;
     }
-
+    public boolean unableEvent(int id){
+        boolean check = false;
+        try {
+            Context ctx = new InitialContext();
+            Context envCtx = (Context) ctx.lookup("java:comp/env");
+            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+            Connection con = ds.getConnection();
+            
+            String sql = "UPDATE SWP391.Events SET `status` = ? WHERE (`id` = ?);";
+            PreparedStatement pr = con.prepareStatement(sql);
+            
+            pr.setInt(1, 0);
+            pr.setInt(2, id);
+            check = pr.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+    
     public boolean deleteEvent(int id) {
         boolean check = false;
         try {

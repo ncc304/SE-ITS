@@ -1,9 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 
         <title>Admin Page</title>
     </head>
@@ -56,27 +57,27 @@
                                     <i class="bi bi-journal-bookmark"></i> Ngành học
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link active" href="${pageContext.request.contextPath}/admin/event.jsp">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="studentLecture.jsp">
-                                    <i class="bi bi-people"></i> Sinh viên & Giảng viên
-                                </a>
-                            </li>-->
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="lecture.jsp">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
-                                         style="margin-left: -3.5%; color: black;">
-                                    <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
-                                    <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
-                                    </svg>
-                                    <p style="margin-left: 3%">Giảng viên</p>
-                                </a>
-                            </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="studentLecture.jsp">
+                                                                <i class="bi bi-people"></i> Sinh viên & Giảng viên
+                                                            </a>
+                                                        </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="lecture.jsp">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
+                                                                     style="margin-left: -3.5%; color: black;">
+                                                                <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                                                                <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+                                                                </svg>
+                                                                <p style="margin-left: 3%">Giảng viên</p>
+                                                            </a>
+                                                        </li>-->
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -85,11 +86,11 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="bi bi-person-square"></i> Tài khoản
-                                </a>
-                            </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="#">
+                                                                <i class="bi bi-person-square"></i> Tài khoản
+                                                            </a>
+                                                        </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -113,7 +114,7 @@
                                 <!-- Actions -->
                                 <div class="col-sm-6 col-12 text-sm-end">
                                     <div class="mx-n1">
-                                        <a href="createEvent.jsp" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goCreateEvent" class="btn d-inline-flex btn-sm btn-primary mx-1">
                                             <span class=" pe-2">
                                                 <i class="bi bi-plus"></i>
                                             </span>
@@ -136,79 +137,79 @@
                                 <h5 class="mb-0">Danh sách các bài viết về Sự Kiện</h5>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover table-nowrap">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">Tiêu đề</th>
-                                            <th scope="col">Tác giả</th>
-                                            <th scope="col">Ngày đăng</th>
-                                            <th scope="col">Trạng thái</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <img alt="..." src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg" class="avatar avatar-sm rounded-circle me-2">
-                                                <a class="text-heading font-semibold" href="#">
-                                                    SV Ngành SE kể chuyện chọn trường, "ngành" đúng đắn
-                                                </a>
-                                            </td>
-                                            <td>
-                                                Trần Duy Hưng
-                                            </td>
-                                            <td>
-                                                <!--<img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">-->
-                                                <a class="text-heading font-semibold" href="#">
-                                                    14/01/2022
-                                                </a>
-                                            </td>
-                                            <!--                                            
-                                            -->                                            <td>
-                                                <span class="badge badge-lg badge-dot">
-                                                    <i class="bg-success"></i>Đã đăng
-                                                </span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
-                                                <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <img alt="..." src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/271719124_4900691723302883_6013686438905834773_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=730e14&_nc_ohc=cTqz2ihLer0AX_OdDhb&tn=dukyNjARcINWNWzp&_nc_ht=scontent.fsgn5-12.fna&oh=00_AT8hQ4RsD4ovlPcCkJkFbraWNVgd2Oknfmsn5YSxuuomUg&oe=61E8163E" 
-                                                     class="avatar avatar-sm rounded-circle me-2">
-                                                <a class="text-heading font-semibold" href="#">
-                                                    Đại học FPT là trường đại học đầu tiên áp dụng MC ảo
-                                                </a>
-                                            </td>
-                                            <td>
-                                                Nguyễn Thành Long
-                                            </td>
-                                            <td>
-                                                <a class="text-heading font-semibold" href="#">
-                                                    14/01/2022
-                                                </a>
-                                            </td>
-
-                                            <td>
-                                                <span class="badge badge-lg badge-dot">
-                                                    <i class="bg-danger"></i>Đã xóa
-                                                </span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
-                                                <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
+                                <form action="MainController" method="POST">
+                                    <c:if test="${requestScope.LIST_EVENT != null}">
+                                        <c:if test="${not empty requestScope.LIST_EVENT}">
+                                            <table class="table table-hover table-nowrap">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">STT</th>
+                                                        <th scope="col">Tiêu đề</th>
+                                                        <th scope="col">Tác giả</th>
+                                                        <th scope="col">Ngày bắt đầu</th>
+                                                        <th scope="col">Ngày kết thúc</th>
+                                                        <th scope="col">Trạng thái</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${requestScope.LIST_EVENT}" var="event" varStatus="counter">
+                                                        <c:forEach items="${requestScope.LIST_EVENT_IMG}" var="eventImg">
+                                                            <tr>
+                                                                <c:if test="${event.id eq eventImg.eventId}">
+                                                                    <td><strong>${counter.count}</strong></td>
+                                                                    <td>
+                                                                        <img alt="..." src="${pageContext.request.contextPath}/user/assets/images/${eventImg.link}" class="avatar avatar-sm rounded-circle me-2">
+                                                                        <a class="text-heading font-semibold" href="#">
+                                                                            ${event.name}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        ${event.owner}
+                                                                    </td>
+                                                                    <td>
+                                                                        <!--<img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">-->
+                                                                        <a class="text-heading font-semibold" href="#">
+                                                                            ${event.startDate}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="text-heading font-semibold" href="#">
+                                                                            ${event.endDate}
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-lg badge-dot">
+                                                                            <c:choose>
+                                                                                <c:when test="${event.status}">
+                                                                                    <i class="bg-success"></i>Đã đăng
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <i class="bg-danger"></i>Đã xóa
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <input type="hidden" name="txtStatus" value="${param.txtStatus}"/>
+                                                                        <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
+                                                                        <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
+                                                                           href="MainController?action=deleteEvent&txtEventID=${event.id}">
+                                                                            <i class="bi bi-trash"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </c:if>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </c:if>
+                                    </c:if>
+                                </form>
+                                <c:if test="${requestScope.LIST_EVENT == null || empty requestScope.LIST_EVENT}">
+                                    Not found Event
+                                </c:if>
                             </div>
                             <div class="card-footer border-0 py-5">
                                 <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
@@ -220,6 +221,7 @@
                     <div class="card text-center">
                         <div class="card-footer text-muted">
                             © 2022 Bản quyền thuộc về Nhóm 4.
+
                         </div>
                     </div>
                 </footer>

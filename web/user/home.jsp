@@ -11,11 +11,11 @@
         <link rel="icon" type="image/x-icon"
               href="${pageContext.request.contextPath}/guest/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/reset.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/grid.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/base.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/style.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/guest/assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/grid.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/base.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/responsive.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
@@ -37,7 +37,7 @@
                         </label>
                         <div class="navbar__logo">
                             <a href="" class="logo__link">
-                                <img src="${pageContext.request.contextPath}/guest/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
+                                <img src="${pageContext.request.contextPath}/user/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
                             </a>
                         </div>
                         <ul class="navbar__list">
@@ -45,49 +45,49 @@
                                 <i class="fas fa-times"></i>
                             </label>
                             <li class="navbar__item">
-                                <a href = "<c:url value = "/guest/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
+                                <a href = "<c:url value = "/user/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
 
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/guest/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/guest/major.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Lộ trình môn chuyên sâu</a>
+                                <a href="<c:url value = "/user/major.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Lộ trình môn chuyên sâu</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/guest/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/guest/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/guest/event.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
+                                <a href="<c:url value = "/user/event.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/guest/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
+                                <a href="<c:url value = "/user/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="#" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
                                     Đăng nhập
                                 </a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
@@ -114,7 +114,7 @@
                     <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
                 </div>-->
                 <div class="mySlides fade">
-              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/thumnailhethongotovadieukhien-min.jpg" class="banner__img2">
+              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/thumnailhethongotovadieukhien-min.jpg" class="banner__img2">
               <div class="banner__content banner__content--1">
                 <h2>Let's go now</h2>
                 <h1>SE and ITS</h1>
@@ -123,11 +123,11 @@
             </div>
             
             <div class="mySlides fade slider">
-              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/event1.jpg" class="banner__img2">
+              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/event1.jpg" class="banner__img2">
             </div>
             
             <div class="mySlides fade">
-              <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" class="banner__img2">
+              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" class="banner__img2">
             </div>
 
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -160,7 +160,7 @@
 
 
         <div class="service" id="se">
-            <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
+            <img src="${pageContext.request.contextPath}/user/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
 
             <div class="heading-section padding-top-106px">
                 <h3 class="sub-heading sub-heading--white">Bộ môn SE</h3>
@@ -187,7 +187,7 @@
                     <a href="its.jsp" class="more_sub">Xem thêm</a>
                 </div>
             </div>
-            <img src="${pageContext.request.contextPath}/guest/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
+            <img src="${pageContext.request.contextPath}/user/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
 
         </div>
 
@@ -197,7 +197,7 @@
                 <div class="row footer__content">
                     <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
                         <div class="footer__logo-link">
-                            <img src="${pageContext.request.contextPath}/guest/assets/images/tải xuống.png" alt="" class="footer__logo-img">
+                            <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img">
                         </div>
                         <div class="footer__contact">
                             <div class="footer__contact-address">
