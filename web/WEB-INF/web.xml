@@ -32,6 +32,10 @@
         <servlet-name>DeleteEventController</servlet-name>
         <servlet-class>controllers.admin.DeleteEventController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateController</servlet-name>
+        <servlet-class>controllers.admin.UpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -64,6 +68,10 @@
         <servlet-name>DeleteEventController</servlet-name>
         <url-pattern>/DeleteEventController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateController</servlet-name>
+        <url-pattern>/UpdateController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -74,10 +82,10 @@
         <!--<welcome-file>./admin/createEvent.jsp</welcome-file>-->
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
-    <resource-ref>
+    <!--    <resource-ref>
         <description>Resource reference to javax.sql.Connection</description>
         <res-ref-name>DBCon</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
-    </resource-ref>
+    </resource-ref>-->
 </web-app>

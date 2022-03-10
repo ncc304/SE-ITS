@@ -17,13 +17,15 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import utils.MyConnection;
 
 /**
  *
  * @author Admin
  */
 public class EventsDAO {
-
+    private Connection con = null;
+    
     public List<EventDTO> getListEvent() {
         List<EventDTO> listEvent = new ArrayList<>();
         int id = 0;//
@@ -33,11 +35,33 @@ public class EventsDAO {
         boolean status;//
         String description;
         String owner;
+//        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+//            String sql = "SELECT * FROM SWP391.Events;";
+//            Statement stmt = con.createStatement();
+//            ResultSet rs = stmt.executeQuery(sql);
+//            while (rs.next()) {
+//                id = rs.getInt("id");
+//                name = rs.getString("name");
+//                if (rs.getInt("status") == 0) {
+//                    status = false;
+//                } else {
+//                    status = true;
+//                }
+//                startDate = rs.getString("startDate");
+//                endDate = rs.getString("endDate");
+//                description = rs.getString("description");
+//                owner = rs.getString("owner");
+//                EventDTO dto = new EventDTO(id, name, startDate, endDate, status, description, owner);
+//                listEvent.add(dto);
+//            }
+//        } 
+            /////////// SQLServer
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Events;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -56,7 +80,8 @@ public class EventsDAO {
                 EventDTO dto = new EventDTO(id, name, startDate, endDate, status, description, owner);
                 listEvent.add(dto);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return listEvent;
@@ -64,15 +89,43 @@ public class EventsDAO {
 
     public boolean createtEvent(EventDTO events) {
         boolean check = false;
+//        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+//            if (events.getEndDate() == null || events.getStartDate() == null) {
+//                return check;
+//            }
+//            String sql = "INSERT INTO SWP391.Events (`name`, `startDate`, `endDate`, `status`, `description`, `owner`) VALUES (?, ?, ?, ?, ?, ?);";
+//            PreparedStatement pr = con.prepareStatement(sql);
+//            int tmp = 0;
+//            if (events.isStatus()) {
+//                tmp = 1;
+//            }
+//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+//            Date parsed1 = format.parse(events.getEndDate());
+////            java.sql.Date sqlDate1 = new java.sql.Date(parsed1.getTime());
+//            java.sql.Timestamp sqlDate1 = new java.sql.Timestamp(parsed1.getTime());
+//            Date parsed2 = format.parse(events.getStartDate());
+////            java.sql.Date sqlDate2 = new java.sql.Date(parsed2.getTime());
+//            java.sql.Timestamp sqlDate2 = new java.sql.Timestamp(parsed2.getTime());
+//            pr.setString(1, events.getName());
+//            pr.setTimestamp(2, sqlDate2);
+//            pr.setTimestamp(3, sqlDate1);
+//            pr.setInt(4, tmp);
+//            pr.setString(5, events.getDescription());
+//            pr.setString(6, events.getOwner());
+//            check = pr.executeUpdate() > 0;
+//        } 
+
+            ////////// SQLServer
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             if (events.getEndDate() == null || events.getStartDate() == null) {
                 return check;
             }
-            String sql = "INSERT INTO SWP391.Events (`name`, `startDate`, `endDate`, `status`, `description`, `owner`) VALUES (?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO SWP391.Events (name, startDate, endDate, status, description, owner) VALUES (?, ?, ?, ?, ?, ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             int tmp = 0;
             if (events.isStatus()) {
@@ -92,7 +145,8 @@ public class EventsDAO {
             pr.setString(5, events.getDescription());
             pr.setString(6, events.getOwner());
             check = pr.executeUpdate() > 0;
-        } catch (Exception e) {
+        }    
+        catch (Exception e) {
             e.printStackTrace();
         }
         return check;
@@ -134,19 +188,30 @@ public class EventsDAO {
     }
     public boolean unableEvent(int id){
         boolean check = false;
+//        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+//            
+//            String sql = "UPDATE SWP391.Events SET `status` = ? WHERE (`id` = ?);";
+//            PreparedStatement pr = con.prepareStatement(sql);
+//            
+//            pr.setInt(1, 0);
+//            pr.setInt(2, id);
+//            check = pr.executeUpdate() > 0;
+//        } 
+        /////////SQLServer
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            
-            String sql = "UPDATE SWP391.Events SET `status` = ? WHERE (`id` = ?);";
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.Events SET status = ? WHERE (id = ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             
             pr.setInt(1, 0);
             pr.setInt(2, id);
             check = pr.executeUpdate() > 0;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return check;

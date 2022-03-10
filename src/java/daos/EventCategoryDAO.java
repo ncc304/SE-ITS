@@ -15,21 +15,37 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import utils.MyConnection;
 
 /**
  *
  * @author Admin
  */
 public class EventCategoryDAO {
+    private Connection con = null;
+    
     public List<EventCategoryDTO> getListEventCategory() {
         List<EventCategoryDTO> listEventCategory = new ArrayList<>();
         int id = 0;
         String name = null;
+//        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+//            String sql = "SELECT * FROM SWP391.Event_Category;";
+//            Statement stmt = con.createStatement();
+//            ResultSet rs = stmt.executeQuery(sql);
+//            while (rs.next()) {
+//                id = rs.getInt("idEvent_Category");
+//                name = rs.getString("name");
+//                EventCategoryDTO dto = new EventCategoryDTO(id, name);
+//                listEventCategory.add(dto);
+//            }
+//        }
+        ///////////////// SQLServer
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Event_Category;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -39,7 +55,8 @@ public class EventCategoryDAO {
                 EventCategoryDTO dto = new EventCategoryDTO(id, name);
                 listEventCategory.add(dto);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return listEventCategory;

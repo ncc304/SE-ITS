@@ -15,12 +15,15 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import utils.MyConnection;
 
 /**
  *
  * @author Admin
  */
 public class EventEventCategoryDAO {
+    private Connection con = null;
+    
     public List<EventEventCategoryDTO> getListEventEventCategory() {
         List<EventEventCategoryDTO> listEventEventCategory = new ArrayList<>();
         int id = 0;
@@ -49,17 +52,27 @@ public class EventEventCategoryDAO {
 
     public boolean createtEventEventCategory(EventEventCategoryDTO eventEventCategory) {
         boolean check = false;
+//        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+//            String sql = "INSERT INTO `SWP391`.`Event_Category_has_Events` (`Event_Category_id`, `Events_id`) VALUES (?, ?);";
+//            PreparedStatement pr = con.prepareStatement(sql);
+//            pr.setInt(1, eventEventCategory.getEventCategoryId());
+//            pr.setInt(2, eventEventCategory.getEventId());
+//            check = pr.executeUpdate() > 0;
+//        } 
+
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "INSERT INTO `SWP391`.`Event_Category_has_Events` (`Event_Category_id`, `Events_id`) VALUES (?, ?);";
+            con = MyConnection.getConnection();
+            String sql = "INSERT INTO SWP391.Event_Category_has_Events (Event_Category_id, Events_id) VALUES (?, ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setInt(1, eventEventCategory.getEventCategoryId());
             pr.setInt(2, eventEventCategory.getEventId());
             check = pr.executeUpdate() > 0;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return check;

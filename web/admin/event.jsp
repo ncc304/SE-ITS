@@ -191,10 +191,11 @@
                                                                         </span>
                                                                     </td>
                                                                     <td class="text-end">
-                                                                        <input type="hidden" name="txtStatus" value="${param.txtStatus}"/>
+                                                                        <!--<input type="hidden" name="txtStatus" value="${param.txtStatus}"/>-->
                                                                         <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
                                                                         <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                                                           href="MainController?action=deleteEvent&txtEventID=${event.id}">
+                                                                           href="MainController?action=deleteEvent&txtEventID=${event.id}"
+                                                                           onclick='return confirm("Bạn có muốn xóa Sự Kiện này không?");'>
                                                                             <i class="bi bi-trash"></i>
                                                                         </a>
                                                                     </td>
