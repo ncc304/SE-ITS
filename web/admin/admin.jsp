@@ -29,7 +29,7 @@
                         <img src="https://dnuni.fpt.edu.vn/wp-content/uploads/2020/02/logo-1.png" alt="..." style="height: 50px; width: 152px"/>
                         <hr style="background-color: while"/>      
                     </a>
-                    
+
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
                             .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
@@ -43,7 +43,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
 
-                                <a class="nav-link active" href = "<c:url value = "/admin/admin.jsp"/>">
+                                <a class="nav-link active" href = "/SE_ITS/MainController?action=goDashBoard">
                                     <i class="bi bi-house"></i> Trang chủ 
 
                                 </a>
@@ -66,21 +66,7 @@
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="< c:url value = "/admin/studentLecture.jsp"/>">
-                                    <i class="bi bi-people"></i> Sinh viên & Giảng viên
-                                </a>
-                            </li>-->
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/lecture.jsp"/>">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"
-                                         style="margin-left: -3.5%; color: black;">
-                                    <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
-                                    <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
-                                    </svg>
-                                    <p style="margin-left: 3%">Giảng viên</p>
-                                </a>
-                            </li>-->
+                            
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -160,13 +146,13 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="bi bi-person-square"></i> Tài khoản
-                                </a>
-                            </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="#">
+                                                                <i class="bi bi-person-square"></i> Tài khoản
+                                                            </a>
+                                                        </li>-->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goLogout">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
                                 </a>
                             </li>
@@ -205,14 +191,14 @@
                                     <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #0066B2">
                                         Tin tức
                                     </label>
-                                   <!--xanh #0066B2  cam #F26F21  xanh la #0EB04C-->
+                                    <!--xanh #0066B2  cam #F26F21  xanh la #0EB04C-->
                                 </div>
                                 <div class="col-3">
                                     <a href="#">
                                         <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
                                              style="width: 150px; height: 100px; margin-left: 50%">
                                     </a>
-                                    
+
                                 </div>
                                 <div class="col-7">
                                     <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
@@ -222,7 +208,7 @@
                                     </span>
                                 </div>
                                 <br>
-                                
+
                                 <div class="col-10" style="margin-left: 2%; margin-top: 2%">
                                     <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #F26F21">
                                         Ngành học
@@ -241,38 +227,48 @@
                                     </span>
                                 </div>
                                 <br>
-                                
+
                                 <div class="col-10" style="margin-left: 2%; margin-top: 2%">
                                     <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #0EB04C">
                                         Sự kiện
                                     </label>
                                 </div>
-                                <div class="col-3">
-                                    <a href="#">
-                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
-                                             style="width: 150px; height: 100px; margin-left: 50%">
-                                    </a>
-                                </div>
-                                <div class="col-7">
-                                    <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
-                                    <label style="font-weight: bold">Tác giả: </label> <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
-                                        Admin 2
-                                    </span>
-                                </div>
+                                <c:set var="event" scope="request" value="${requestScope.EVENT}"/>
+                                <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="img">
+                                    <c:if test="${img.eventId eq event.id}">
+                                        <div class="col-3">
+                                            <a href="#">
+
+                                                <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}"
+                                                     style="width: 150px; height: 100px; margin-left: 50%">
+
+                                            </a>
+                                        </div>
+
+                                        <div class="col-7">
+                                            <a href="#" class="text-warning">${event.name}.</a> <br/><br/>
+                                            <label style="font-weight: bold">Tác giả: </label> 
+                                            <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
+                                                <label style="font-weight: 500;">${event.owner}</label>
+                                            </span>
+                                        </div>
+                                                
+                                    </c:if>
+                                </c:forEach>
                                 <br>
 
-<!--                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
-                                    <p>Sinh viên & Giảng viên</p>
-                                </div>
-                                <div class="col-3">
-                                    <a href="#">
-                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
-                                             style="width: 150px; height: 100px; margin-left: 50%; margin-top: 1% ">
-                                    </a>
-                                </div>
-                                <div class="col-7">
-                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
-                                </div>-->
+                                <!--                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
+                                                                    <p>Sinh viên & Giảng viên</p>
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <a href="#">
+                                                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
+                                                                             style="width: 150px; height: 100px; margin-left: 50%; margin-top: 1% ">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-7">
+                                                                    <a href="#">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a>
+                                                                </div>-->
 
                             </div>
                             <br>

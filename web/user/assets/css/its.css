@@ -1,100 +1,101 @@
- 
-  .information_text {
-    width: 100%;
-    background-attachment: fixed;
-    position: relative;
-    color: black;
-    text-align: justify;
-    padding-bottom: 2rem;
-  }
-  .infor-section{
-      display: flex;
-  }
+.information_text {
+  width: 100%;
+  background-attachment: fixed;
+  position: relative;
+  color: black;
+  text-align: justify;
+  padding-bottom: 2rem;
+}
+.infor-section {
+  display: flex;
+}
 
-  .para-heading--two-row {
-    font-size: 1.6rem;
-    color: #505050;
-    line-height: 2.8rem;
-    margin-top: 1.2rem;
-    padding: 0 5rem;
+.para-heading--two-row {
+  font-size: 1.6rem;
+  color: #505050;
+  line-height: 2.8rem;
+  margin-top: 1.2rem;
+  padding: 0 5rem;
 }
 .para-heading--two-row-ul {
-    font-size: 1.6rem;
-    color: #505050;
-    line-height: 2.8rem;
-    margin-top: 1.2rem;
-    padding: 0 5rem;
-    width: 50%;
+  font-size: 1.6rem;
+  color: #505050;
+  line-height: 2.8rem;
+  margin-top: 1.2rem;
+  padding: 0 5rem;
+  width: 50%;
 }
-.wrap_info{
-    display: flex;
+.wrap_info {
+  display: flex;
+}
+.infor-section-ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.semester-section {
+  /* display: flex;  */
+  margin-bottom: 3rem;
+  align-items: center;
+  /* height: 17rem; */
+  margin: auto;
+  text-align: center;
+  font-size: medium;
+}
+.about-semester {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: wrap;
+  /* justify-content: space-around; */
+  align-items: center;
+  padding-bottom: 8rem;
+}
+.para-semester-section {
+  font-size: 1.6rem;
+  color: #505050;
+  line-height: 2.8rem;
+  margin-top: 1.2rem;
+  padding: 0 5rem;
+}
+.head-semester-right {
+  background-color: #21c7e4;
+  color: whitesmoke;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -5px;
+  border-radius: 10px;
+}
+.head-semester-left {
+  color: whitesmoke;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.para-semester-section li {
+  list-style: square;
+}
+.para-semester-section li a {
+  text-decoration: none;
+  color: #333333;
+}
+.para-semester-section li a:hover {
+  color: #2349f5;
+}
+.img_leson {
+  width: 40%;
+}
 
-}
-.infor-section-ul{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:center;
-}
-.semester-section{
-    display: flex;
-    margin-bottom: 3rem;
-    align-items: center;
-    height: 17rem;
-}
-.about-semester{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-flow: wrap;
-    /* justify-content: space-around; */
-    align-items: center;
-    padding-bottom: 8rem;
-}
-.para-semester-section{
-    font-size: 1.6rem;
-    color: #505050;
-    line-height: 2.8rem;
-    margin-top: 1.2rem;
-    padding: 0 5rem;
-  
-}
-.head-semester-right{
-    background-color:#21c7e4;
-    color: whitesmoke;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    top: -5px;
-    border-radius: 10px;
-}
-.head-semester-left{
-    color: whitesmoke;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-}
-.para-semester-section li{
-    list-style: square;
-}
-.para-semester-section li a{
-    text-decoration: none;
-    color: #333333;
-}
-.para-semester-section li a:hover{
-    color: #2349f5;
-}
-.img_leson{
-    width: 40%;
+.intro-m {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
 }
 
-.intro-m{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 6;
-}

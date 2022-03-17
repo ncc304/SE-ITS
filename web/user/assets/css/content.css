@@ -55,17 +55,17 @@ color: #333333;
     position: absolute;
     width: 258px;
 }
-.relative_news::after{
+/*.relative_news::after{
     content: "";
     display: block;
     position: absolute;
     width: 1px;
-    height: 80%;
+    height: 50%;
     background-color: #979797;
     right: 339px;
     top: 30%;
-    /* transform: translateY(-50%); */
-}
+     transform: translateY(-50%); 
+}*/
 .sub-time{
     margin-left: 52px;
 }
@@ -103,3 +103,4 @@ color: #333333;
 .caption:hover h5>a{
     color: #0004d8;
 }
+

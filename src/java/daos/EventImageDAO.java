@@ -129,5 +129,46 @@ public class EventImageDAO {
         }
         return check;
     }
+   
     
+    
+    public List<EventsImageDTO> getListEventsImageDesc() {
+        List<EventsImageDTO> listEventsImage = new ArrayList<>();
+        int id = 0;
+        String link = null;
+        int eventId = 0;
+//        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+//            String sql = "SELECT * FROM SWP391.Event_Images;";
+//            Statement stmt = con.createStatement();
+//            ResultSet rs = stmt.executeQuery(sql);
+//            while (rs.next()) {
+//                id = rs.getInt("idEvent_Images");
+//                link = rs.getString("link");
+//                eventId = rs.getInt("Events_id");
+//                EventsImageDTO dto = new EventsImageDTO(id, link, eventId);
+//                listEventsImage.add(dto);
+//            }
+//        }
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Event_Images ORDER BY idEvent_Images DESC;";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getInt("idEvent_Images");
+                link = rs.getString("link");
+                eventId = rs.getInt("Events_id");
+                EventsImageDTO dto = new EventsImageDTO(id, link, eventId);
+                listEventsImage.add(dto);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listEventsImage;
+    }
 }

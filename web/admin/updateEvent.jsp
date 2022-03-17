@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
@@ -62,33 +63,28 @@
                             }
                         </style>
                         <!-- Navigation -->
-                                                <ul class="navbar-nav">
+                        <ul class="navbar-nav">
                             <li class="nav-item">
-
-                                <a class="nav-link" href = "/SE_ITS/MainController?action=goDashBoard">
-                                    <i class="bi bi-house"></i> Trang chủ 
-
+                                <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin.jsp">
+                                    <i class="bi bi-house"></i> Trang chủ
                                 </a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/news.jsp"/>">
+                                <a class="nav-link " href="${pageContext.request.contextPath}/admin/news.jsp">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/admin/major.jsp">
                                     <i class="bi bi-journal-bookmark"></i> Ngành học
-
                                 </a>
-
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link active" href="${pageContext.request.contextPath}/admin/event.jsp">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-                            
+
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -134,17 +130,22 @@
                                 <!--                                <h5 class="mb-0">Tạo bài viết về Sự Kiện</h5>-->
                                 <div class="col-10" style="margin-left: 2%; margin-top: 2%">
                                     <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #F26F21">
-                                        Tạo sự kiện
+                                        Cập nhật sự kiện
                                     </label>
                                 </div>
                             </div>
-
+                            <c:set var="dto" scope="request" value="${requestScope.EVENT}"/>
+                            <c:set var="img" scope="request" value="${requestScope.IMG}"/>
+                            
                             <div class="card-footer border-0 py-5">
                                 <form method="POST" action="${pageContext.request.contextPath}/MainController" id="formSubmit">
                                     <div class="form-group">
                                         <span class="date1">
                                             <label>Ngày bắt đầu </label>
-                                            <input type="datetime-local" name="date1" style="border: 1px solid #00000024; margin-left: 5px;">
+                                            <c:out value="${dto.startDate}"/>
+                                            
+                                            <!--<input value="$ {dto.startDate}" type="datetime-local" name="date1"  style="border: 1px solid #00000024; margin-left: 5px;">-->
+                                            <input value="${dto.startDate}" type="datetime-local" name="date1"  style="border: 1px solid #00000024; margin-left: 5px;">
                                         </span>
 
                                         <span class="date2" style="margin-left: 10%">
@@ -166,10 +167,10 @@
                                         <!--</span>-->  
                                         <div class="image-area">
                                             <img id="imageResult"
-                                                 src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17f53cb32cf%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17f53cb32cf%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.42499923706055%22%20y%3D%22104.55999994277954%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" 
+                                                 src="${pageContext.request.contextPath}/user/assets/images/${requestScope.IMG}"
                                                  alt=""
                                                  class="shadow-sm img-thumbnail rounded  mx-auto d-block" 
-                                                 width="200" height="200">
+                                                 width="500" height="500">
                                         </div>   
                                     </div>
 
@@ -196,9 +197,9 @@
                                         <label>Thể loại</label>
                                         <select class="custom-select custom-select-md" name="category" style="border: 1px solid #00000024; margin-left: 5px;">
                                             <option selected>--Chọn thể loại--</option>
-                                            <!--                                            <option value="ai">Trí tuệ nhân tạo</option>
-                                                                                        <option value="music">Nhạc cụ</option>-->
-                                            <c:forEach items="${sessionScope.EVENT_CATE}" var="cate">
+<!--                                            <option value="ai">Trí tuệ nhân tạo</option>
+                                            <option value="music">Nhạc cụ</option>-->
+                                            <c:forEach items="${requestScope.EVENT_CATE}" var="cate">
                                                 <option value="${cate.id}">${cate.nsme}</option>
                                             </c:forEach> 
                                         </select> 
@@ -207,9 +208,8 @@
                                         <label>Phương thức</label>
                                         <select class="custom-select custom-select-md" name="method" style="border: 1px solid #00000024;">
                                             <option selected>--Chọn phương thức--</option>
-                                            <c:forEach items="${sessionScope.LIST_TYPE}" var="listType">
-                                            <option value="${listType.type}">${listType.type}</option>
-                                            </c:forEach>
+                                            <option value="offline">Offline</option>
+                                            <option value="online">Online</option>
                                         </select>
                                     </span>
 

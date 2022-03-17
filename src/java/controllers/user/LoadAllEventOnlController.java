@@ -3,35 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.user;
 
+import daos.EventsDAO;
+import dtos.EventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LogoutController extends HttpServlet {
-    
+public class LoadAllEventOnlController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession();
-            if (session != null) {
-                session.invalidate();
+            EventsDAO dao = new EventsDAO();
+            String type = "online";
+            List<EventDTO> listOnl = dao.getListEventUser(type);
+            if(listOnl != null){
+                request.setAttribute("LISTEVENTONL", listOnl);
             }
+            
         } catch (Exception e) {
+            e.printStackTrace();
         }finally{
-//            request.getRequestDispatcher("user/home.jsp");
-            response.sendRedirect("user/home.jsp");
+            request.getRequestDispatcher("user/event_online.jsp").forward(request, response);
         }
     }
 

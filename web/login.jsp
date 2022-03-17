@@ -50,12 +50,17 @@
                             Login with Google
                             <i class="fab fa-google"></i>
                         </a>
+                        <c:if test="${requestScope.XACTHUC != null}">
+                            <br/> <br/> <p style="color: red">${requestScope.XACTHUC}</p>
+                        </c:if>
+                        
                     </div>                    
                 </div>
             </div>
-
+                   
             <div class="wrap_img">
                 <img class="img_login" src="${pageContext.request.contextPath}/user/assets/images/bg-form-login.jpg"/>
+                
             </div>
         </div>
     </body>

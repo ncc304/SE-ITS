@@ -3,35 +3,63 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.user;
 
+import daos.NewsDAO;
+import dtos.NewsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LogoutController extends HttpServlet {
-    
-    
+public class LoadAllNewsTagController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String tag1 = "4";
+        String tag2 = "5";
+        String tag3 = "6";
         try {
-            HttpSession session = request.getSession();
-            if (session != null) {
-                session.invalidate();
+            String txtTagID = request.getParameter("txtTagID");
+            NewsDAO dao = new NewsDAO();
+            // Tag 1
+            if (txtTagID.equals("1")) {
+                List<NewsDTO> listNewsTag1 = dao.getAllNewsByTag(tag1);
+                if(listNewsTag1 != null){
+                    request.setAttribute("TAG_READMORE", listNewsTag1);
+                    request.setAttribute("txtTagID", txtTagID);
+                }
+            }
+
+            // Tag 2
+            if (txtTagID.equals("2")) {
+                List<NewsDTO> listNewsTag2 = dao.getAllNewsByTag(tag2);
+                if(listNewsTag2 != null){
+                    request.setAttribute("TAG_READMORE", listNewsTag2);
+                    request.setAttribute("txtTagID", txtTagID);
+                }
+            }
+
+            // Tag 3
+            if (txtTagID.equals("3")) {
+                List<NewsDTO> listNewsTag3 = dao.getAllNewsByTag(tag3);
+                if(listNewsTag3 != null){
+                    request.setAttribute("TAG_READMORE", listNewsTag3);
+                    request.setAttribute("txtTagID", txtTagID);
+                }
             }
         } catch (Exception e) {
-        }finally{
-//            request.getRequestDispatcher("user/home.jsp");
-            response.sendRedirect("user/home.jsp");
+            e.printStackTrace();
+        } finally {
+            request.getRequestDispatcher("user/newsReadMore.jsp").forward(request, response);
         }
     }
 

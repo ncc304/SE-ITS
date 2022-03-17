@@ -3,7 +3,7 @@
     Created on : Feb 13, 2022, 11:37:17 AM
     Author     : Admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,26 +26,26 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
+        <style>
+            table, th, td {
+                border:1px solid black;
+            }
+            th{
+                font-weight: bold;
+            }
+            .semester-section {
+                /* display: flex;  */
+                margin-bottom: 3rem;
+                align-items: center;
+                /* height: 17rem; */
+                margin: auto;
+                text-align: center;
+                font-size: medium;
+            }
+        </style>
     </head>
 
     <body>
-        <!-- <div class="page-different">
-            <div class="page-different-item">
-                <a href="../ITS_Page/its.html">
-                    <img src="../Homepage/assets/images/custom-icon/custom-icon-4.png" alt="Camera image"
-                        class="service-travel__img">
-                </a>
-                <a href="../ITS_Page/its.html"class="page-different-text">ITS</a>
-            </div>
-            <div class="page-different-item">
-                <a href="https://www.google.com.vn/?hl=vi">
-                    <img src="../Homepage/assets/images/custom-icon/custom-icon-4.png" alt="Camera image"
-                        class="service-travel__img">
-                </a>
-                <a href="../ITS_Page/SE.html" class="page-different-text">SE</a>
-            </div>
-        </div> -->
-
         <div class="wrapper" id="scroll-top">
             <!-- Header Navbar-->
             <div class="header">
@@ -57,7 +57,7 @@
                         </label>
                         <div class="navbar__logo">
                             <a href="" class="logo__link">
-                                <img src="./assets/images/tải xuống.png" alt="Setsail" class="navbar__logo-img">
+                                <img src="${pageContext.request.contextPath}/user/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
                             </a>
                         </div>
                         <ul class="navbar__list">
@@ -65,51 +65,54 @@
                                 <i class="fas fa-times"></i>
                             </label>
                             <li class="navbar__item">
-                                <a href="home.jsp" class="navbar__item-link">Trang chủ</a>
+                                <a href = "<c:url value = "/user/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
+
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="news.jsp" class="navbar__item-link">Tin tức</a>
+                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="its.jsp" class="subnav__link">Đời sống sinh viên</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">FPT High-tech</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">Hội nhập quốc tế</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="major.jsp" class="navbar__item-link">Lộ trình môn chuyên sâu</a>
+                                <a href="<c:url value = "/user/major.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Lộ trình môn chuyên sâu</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="its.jsp" class="subnav__link">ITS</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">SE</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="event.jsp" class="navbar__item-link">Sự kiện</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                             </li>
                             <li class="navbar__item">
-                                <a href="recruitment.jsp" class="navbar__item-link">Tuyển dụng</a>
+                                <a href="<c:url value = "/user/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link">Đăng nhập</a>
+                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                    Đăng nhập
+                                </a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
-                        </ul>
+                        </ul>   
 
                         <a href="" class="navbar-mobile__user">
                             <i class="far fa-user-circle"></i>
@@ -119,7 +122,7 @@
             </div>
             <div class="slider">
                 <div class="banner banner--1">
-                    <img src="assets/images/background-img/imager_11738.jpg" alt="Friend" class="banner__img">
+                    <img src="${pageContext.request.contextPath}/user/assets/images/background-img/imager_11738.jpg" alt="Friend" class="banner__img">
                     <div class="banner__content banner__content--1">
                         <h2>ITS</h2>
                     </div>
@@ -154,7 +157,7 @@
 
                 </div>
             </div>
-            <div class="information_text" id="test">
+            <!-- <div class="information_text" id="test">
                 <h3 class="sub-heading padding-top-86px">Kinh nghiệm tích lũy sau chương trình:</h3>
                 <div class="infor-section">
                     <p class="para-heading--two-row">
@@ -178,7 +181,7 @@
                         toán đám mây).
                     </p>
                 </div>
-            </div>
+            </div> -->
 
             <div class="wrap_info">
                 <div class="information_text" id="test">
@@ -217,7 +220,7 @@
                 <h3 class="sub-heading padding-top-86px">Giáo trình môn học</h3>
                 <div class="about-semester">
                     <div class="semester-section">
-                        <div class="infor-section-ul head-semester-left">
+                        <!-- <div class="infor-section-ul head-semester-left">
                             <ul class="para-semester-section">
                                 <li>
                                     <a href="#">Introduction to Software Engineering</a>
@@ -234,10 +237,47 @@
                                 <li>
                                     <a href="#">	.NET and C#</a>
                                 </li>
-
+    
                             </ul>
+    
+                        </div> -->
 
-                        </div>
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Môn học</th>
+                                    <th>Số tín chỉ</th>
+                                    <th>Giáo trình</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Introduction to Software Engineering</td>
+                                    <td>3</td>
+                                    <td><a href="#">link</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Computer Networking</td>
+                                    <td>3</td>
+                                    <td><a href="#">link</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Java Web Application Development</td>
+                                    <td>3</td>
+                                    <td><a href="#">link</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Desktop Java Lab</td>
+                                    <td>3</td>
+                                    <td><a href="#">link</a></td>
+                                </tr>
+                                <tr>
+                                    <td>.NET and C#</td>
+                                    <td>3</td>
+                                    <td><a href="#">link</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                     </div>
 
@@ -252,7 +292,7 @@
                     <div class="row footer__content">
                         <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
                             <div class="footer__logo-link">
-                                <img src="assets/images/tải xuống.png" alt="" class="footer__logo-img">
+                                <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img">
                             </div>
                             <div class="footer__contact">
                                 <div class="footer__contact-address">

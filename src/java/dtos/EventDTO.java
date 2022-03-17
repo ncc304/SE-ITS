@@ -19,12 +19,14 @@ public class EventDTO {
     boolean status;
     String description;
     String owner;
+    String type;
+    String createDate;
     
     public EventDTO() {
         
     }
 
-    public EventDTO(int id, String name, String startDate, String endDate, boolean status, String description, String owner) {
+    public EventDTO(int id, String name, String startDate, String endDate, boolean status, String description, String owner, String type, String createDate) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -32,17 +34,20 @@ public class EventDTO {
         this.status = status;
         this.description = description;
         this.owner = owner;
+        this.type = type;
+        this.createDate = createDate;
     }
 
-    public EventDTO(String name, String startDate, String endDate, boolean status, String description, String owner) {
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.status = status;
-        this.description = description;
-        this.owner = owner;
-    }
-    
+//    public EventDTO(int id, String name, String startDate, String endDate, boolean status, String description, String owner, String type) {
+//        this.id = id;
+//        this.name = name;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.status = status;
+//        this.description = description;
+//        this.owner = owner;
+//        this.type = type;
+//    }
     
     
     public int getId() {
@@ -99,6 +104,22 @@ public class EventDTO {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
     
     

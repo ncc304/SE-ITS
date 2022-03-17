@@ -3,35 +3,68 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.admin;
 
+import daos.EventsDAO;
+import dtos.EventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LogoutController extends HttpServlet {
-    
-    
+public class LoadEventByIDController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession();
-            if (session != null) {
-                session.invalidate();
+            String txtID = request.getParameter("txtEventID");
+            String txtName = request.getParameter("txtEventName");
+            String txtStart = request.getParameter("txtStart");
+            String txtEnd = request.getParameter("txtEnd");
+            String txtStatus = request.getParameter("txtStatus");
+            String txtDes = request.getParameter("txtDes");
+            String txtType = request.getParameter("txtType");
+            String txtImg = request.getParameter("txtImg");
+
+//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+//            java.util.Date d1 = new java.util.Date();
+//            Timestamp t1 = new Timestamp(d1.getTime());
+//            t1 = format.format(t1.);
+//            String startReal = format.format(d1);
+//            String dateTime = "2020-12-12 01:24:23";
+//            Timestamp timestamp = Timestamp.valueOf(txtStart);
+//            System.out.println("realll: " + timestamp.toString());
+//            System.out.println("realll: " + txtStart);
+            String[] tmp = txtStart.split(" ");
+            String date1 = tmp[0] + "T" + tmp[1];
+
+//            2018-06-12T19:30
+            EventDTO dto
+                    = new EventDTO(Integer.parseInt(txtID), txtName, date1, txtEnd, Boolean.parseBoolean(txtStatus), txtDes, "", txtType, "");
+
+            EventsDAO dao = new EventsDAO();
+
+            if (dto != null) {
+                request.setAttribute("EVENT", dto);
+                request.setAttribute("IMG", txtImg);
             }
+
         } catch (Exception e) {
-        }finally{
-//            request.getRequestDispatcher("user/home.jsp");
-            response.sendRedirect("user/home.jsp");
+            e.printStackTrace();
+        } finally {
+            request.getRequestDispatcher("admin/updateEvent.jsp").forward(request, response);
         }
     }
 

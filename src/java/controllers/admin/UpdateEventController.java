@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,28 +11,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LogoutController extends HttpServlet {
-    
+public class UpdateEventController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession();
-            if (session != null) {
-                session.invalidate();
-            }
-        } catch (Exception e) {
-        }finally{
-//            request.getRequestDispatcher("user/home.jsp");
-            response.sendRedirect("user/home.jsp");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

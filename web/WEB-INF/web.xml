@@ -36,6 +36,46 @@
         <servlet-name>UpdateController</servlet-name>
         <servlet-class>controllers.admin.UpdateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateEventController</servlet-name>
+        <servlet-class>controllers.admin.UpdateEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadEventUserPageController</servlet-name>
+        <servlet-class>controllers.user.LoadEventUserPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAllEventOnlController</servlet-name>
+        <servlet-class>controllers.user.LoadAllEventOnlController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAllEventOffController</servlet-name>
+        <servlet-class>controllers.user.LoadAllEventOffController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadEventByIDController</servlet-name>
+        <servlet-class>controllers.admin.LoadEventByIDController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAdminPageController</servlet-name>
+        <servlet-class>controllers.admin.LoadAdminPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadEventDetailController</servlet-name>
+        <servlet-class>controllers.user.LoadEventDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadNewsUserPageController</servlet-name>
+        <servlet-class>controllers.user.LoadNewsUserPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAllNewsTagController</servlet-name>
+        <servlet-class>controllers.user.LoadAllNewsTagController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadNewsDetailController</servlet-name>
+        <servlet-class>controllers.user.LoadNewsDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -72,15 +112,55 @@
         <servlet-name>UpdateController</servlet-name>
         <url-pattern>/UpdateController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateEventController</servlet-name>
+        <url-pattern>/UpdateEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadEventUserPageController</servlet-name>
+        <url-pattern>/LoadEventUserPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAllEventOnlController</servlet-name>
+        <url-pattern>/LoadAllEventOnlController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAllEventOffController</servlet-name>
+        <url-pattern>/LoadAllEventOffController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadEventByIDController</servlet-name>
+        <url-pattern>/LoadEventByIDController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAdminPageController</servlet-name>
+        <url-pattern>/LoadAdminPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadEventDetailController</servlet-name>
+        <url-pattern>/LoadEventDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadNewsUserPageController</servlet-name>
+        <url-pattern>/LoadNewsUserPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAllNewsTagController</servlet-name>
+        <url-pattern>/LoadAllNewsTagController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadNewsDetailController</servlet-name>
+        <url-pattern>/LoadNewsDetailController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <!--<welcome-file>./user/home.jsp</welcome-file>-->
+        <welcome-file>./user/home.jsp</welcome-file>
         <!--<welcome-file>./admin/createEvent.jsp</welcome-file>-->
-        <welcome-file>login.jsp</welcome-file>
+        <!--<welcome-file>login.jsp</welcome-file>-->
     </welcome-file-list>
     <!--    <resource-ref>
         <description>Resource reference to javax.sql.Connection</description>

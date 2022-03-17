@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +33,8 @@ public class LoadEventCategoryController extends HttpServlet {
             EventCategoryDAO dao = new EventCategoryDAO();
             List<EventCategoryDTO> listEventCategory = dao.getListEventCategory();
             if(listEventCategory != null){
-                request.setAttribute("EVENT_CATE", listEventCategory);
+                HttpSession session = request.getSession();
+                session.setAttribute("EVENT_CATE", listEventCategory);
                 url = SUCCESS;
             }
             

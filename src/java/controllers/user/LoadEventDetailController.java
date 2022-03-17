@@ -3,35 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.user;
 
+import daos.EventsDAO;
+import dtos.EventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LogoutController extends HttpServlet {
-    
+public class LoadEventDetailController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession();
-            if (session != null) {
-                session.invalidate();
+            String eventID = (String) request.getParameter("txtID");
+            EventsDAO dao = new EventsDAO();
+            EventDTO dto = dao.getEventByID(eventID);
+            if(dto != null){
+                request.setAttribute("DTO_DETAIL", dto);
             }
+            
+            // Sự kiện gần đây
+            List<EventDTO> listEvent = dao.getList4NewEventNoType();
+            if(listEvent != null){
+                request.setAttribute("LIST4EVENTRECENT", listEvent);
+            }
+            
         } catch (Exception e) {
+        e.printStackTrace();
         }finally{
-//            request.getRequestDispatcher("user/home.jsp");
-            response.sendRedirect("user/home.jsp");
+            request.getRequestDispatcher("user/eventDetail.jsp").forward(request, response);
         }
     }
 

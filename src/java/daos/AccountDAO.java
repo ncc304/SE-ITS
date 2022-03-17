@@ -56,13 +56,13 @@ public class AccountDAO {
                 ResultSet rs = pr.executeQuery();
                 while (rs.next()) {
                     if (rs.getInt("isAdmin") == 1) {
-                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 4 WHERE email LIKE ?";
+                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 5 WHERE email LIKE ?";
                         PreparedStatement pr2 = con.prepareStatement(sql2);
                         pr2.setString(1, rs.getString("email"));
                         pr2.executeUpdate();
                         return "Admin";
                     } else {
-                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 4 WHERE email LIKE ?";
+                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 5 WHERE email LIKE ?";
                         PreparedStatement pr2 = con.prepareStatement(sql2);
                         pr2.setString(1, rs.getString("email"));
                         pr2.executeUpdate();

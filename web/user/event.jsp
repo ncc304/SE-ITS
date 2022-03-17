@@ -9,16 +9,168 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Events</title>
         <link rel="icon" type="image/x-icon"
-              href="../Homepage/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
-        <link rel="stylesheet" href="./assets/css/reset.css">
-        <link rel="stylesheet" href="./assets/css/grid.css">
-        <link rel="stylesheet" href="./assets/css/base.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/css/responsive.css">
+              href="${pageContext.request.contextPath}/user/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/grid.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/base.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/responsive.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
+
+        <style>
+            .category-recruit {
+                font-size: 23px;
+                background: linear-gradient(45deg, #003380 0%, #000000 100%);
+                padding: 1%;
+                color: #fdfbfb;
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            .more_news {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 23px;
+                background: linear-gradient(45deg, #003380 0%, #000000 100%);
+                padding: 1%;
+                color: #fdfbfb;
+                text-align: center;
+                margin-top: 50px;
+            }
+            .more_news-item {
+                text-decoration: none;
+                font-size: 12px;
+                color: #fdfbfb;
+                margin-right: 2rem;
+            }
+            .navigation_img {
+                /* display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: calc(100%/3) calc(100%/3);
+                grid-gap: 2rem; */
+
+                display: flex;
+                margin: 0 15px 15px 15px;
+            }
+            .big_img {
+                flex: 2;
+                margin-top: 16px;
+            }
+            .navigation_img--item {
+                border-radius: 10px;
+                width: 100%;
+            }
+            .small_img > .nav_img--item {
+                margin-bottom: 16px;
+            }
+            .small_img {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                margin: 16px;
+            }
+            /* .nav_img--item:first-child{
+              grid-column: 1/3;
+              grid-row: 1/3;
+            
+            } */
+            .img__content {
+                position: absolute;
+                top: 70%;
+                left: 30%;
+                transform: translate(-50%, -50%);
+                color: rgb(255, 254, 254);
+                text-align: center;
+                width: 45%;
+                font-size: 18px;
+                font-weight: bold;
+                background: rgb(0, 0, 0);
+                background: rgba(0, 0, 0, 0.5); /* Black see-through */
+                transition: 0.5s ease;
+                opacity: 0;
+                padding: 20px;
+
+            }
+
+            .img__content a {
+                text-decoration: none;
+                font-size: 22px;
+                color: rgb(247, 244, 244);
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+            }
+
+            .img__content p {
+                -webkit-text-stroke-width: 0.5px;
+                -webkit-text-stroke-color: rgb(14, 13, 13, 0.8);
+            }
+            .nav_img--item:hover .img__content {
+                opacity: 1;
+                cursor: pointer;
+            }
+            .img__content-small {
+                position: relative;
+                top: -13%;
+                margin-bottom: 20px;
+                max-width: 70%;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.5);
+                padding: 5px;
+                left: 50px;
+                transition: 0.5s ease;
+                opacity: 0;
+            }
+            .img__content-small a{
+                text-decoration: none;
+                font-size: 18px;
+                color: rgb(247, 244, 244);
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+            }
+            .nav_img--item-small:hover .img__content-small a  {
+                color:#eff2f7;
+                cursor: pointer;
+            }
+            .nav_img--item-small:hover .img__content-small{
+                opacity: 1;
+            }
+            .navigation_banner {
+                position: relative;
+                font-size: 1.5em;
+                background: linear-gradient(45deg, #003380 0%, #000000 100%);
+                color: #fff;
+                width: 25rem;
+                opacity: 0.8;
+                width: 80%;
+                margin: auto;
+                padding: 10px;
+                display: flex;
+                justify-content: space-evenly;
+            }
+            .navigation_banner_items:nth-child(1)::after, .navigation_banner_items:nth-child(2)::after{
+                content: "";
+                border-right: 1px solid #a1a0a0;
+                position: relative;
+                height: 17px;
+                left: 104px;
+
+            }
+            .navigation_banner_items{
+                color: #fff;
+                text-decoration: none;
+            }
+            .navigation_banner_items:hover{
+                color: rgb(71, 98, 250);
+            }
+        </style>
     </head>
 
     <body>
@@ -34,7 +186,7 @@
                         </label>
                         <div class="navbar__logo">
                             <a href="" class="logo__link">
-                                <img src="./assets/images/tải xuống.png" alt="Setsail" class="navbar__logo-img">
+                                <img src="${pageContext.request.contextPath}/user/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
                             </a>
                         </div>
                         <ul class="navbar__list">
@@ -42,51 +194,54 @@
                                 <i class="fas fa-times"></i>
                             </label>
                             <li class="navbar__item">
-                                <a href="home.jsp" class="navbar__item-link">Trang chủ</a>
+                                <a href = "<c:url value = "/user/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
+
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="news.jsp" class="navbar__item-link">Tin tức</a>
+                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="its.jsp" class="subnav__link">Đời sống sinh viên</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">FPT High-tech</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">Hội nhập quốc tế</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="major.jsp" class="navbar__item-link">Lộ trình môn chuyên sâu</a>
+                                <a href="<c:url value = "/user/major.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Lộ trình môn chuyên sâu</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="its.jsp" class="subnav__link">ITS</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">SE</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="event.jsp" class="navbar__item-link">Sự kiện</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                             </li>
                             <li class="navbar__item">
-                                <a href="recruitment.jsp" class="navbar__item-link">Tuyển dụng</a>
+                                <a href="<c:url value = "/user/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link">Đăng nhập</a>
+                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                    Đăng nhập
+                                </a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
-                        </ul>
+                        </ul>   
 
                         <a href="" class="navbar-mobile__user">
                             <i class="far fa-user-circle"></i>
@@ -95,121 +250,136 @@
                 </div>
             </div>
 
-            <div class="slider">
-                <div class="banner banner--1">
-                    <img src="assets/images/background-img/full-slide1.jpg" alt="Friend" class="banner__img">
+            <div class="grid wide">
+                <div class="heading-section padding-top-40px">
+                    <h3 class="sub-heading">Sự Kiện Nóng Hổi</h3>
                 </div>
-                <div class="banner__content banner__content-event">
-                    <h2>EVENTS</h2>
-                </div>
-            </div>
+            </div> 
+            <c:set var="img" scope="session" value="${sessionScope.LIST_3_IMG}"/>
+            <c:if test="${requestScope.BIG_EVENT_1 != null && requestScope.BIG_EVENT_2 != null && requestScope.BIG_EVENT_3 != null}">                        
+                <div class="navigation_img">
 
-            <div class="type-travel">
-                <div class="grid wide">
-                    <div class="heading-section padding-top-86px">
-                        <h3 class="sub-heading">Sự kiện</h3>
+                    <div class="nav_img--item big_img">
+                        <a href="MainController?action=goEventDetails&txtID=${requestScope.BIG_EVENT_1.id}">
+                            <img class="navigation_img--item" src="${pageContext.request.contextPath}/user/assets/images/${img[0].link}" width="943" height="550"/>
+                        </a>
+
+                        <div class="img__content">
+                            <a href="MainController?action=goEventDetails&txtID=${requestScope.BIG_EVENT_1.id}">
+                                ${requestScope.BIG_EVENT_1.name}
+                            </a>
+
+                        </div>
                     </div>
-                </div> 
+                    <div class="small_img">
+                        <c:if test="${img['1'].eventId eq requestScope.BIG_EVENT_2.id}">
+                            <div class="nav_img--item-small">
+
+                                <a href="MainController?action=goEventDetails&txtID=${requestScope.BIG_EVENT_2.id}">
+                                    <img class="navigation_img--item" src="${pageContext.request.contextPath}/user/assets/images/${img[1].link}" width="471" height="275"/>
+                                </a>
+                                <div class="img__content-small">
+                                    <a href="MainController?action=goEventDetails&txtID=${requestScope.BIG_EVENT_2.id}">
+                                        ${requestScope.BIG_EVENT_2.name}
+                                    </a>
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${img['2'].eventId eq requestScope.BIG_EVENT_3.id}">
+                            <div class="nav_img--item-small">
+                                <a href="MainController?action=goEventDetails&txtID=${requestScope.BIG_EVENT_3.id}">
+                                    <img class="navigation_img--item" src="${pageContext.request.contextPath}/user/assets/images/${img[2].link}" width="471" height="275"/>
+                                </a>
+
+                                <div class="img__content-small">
+                                    <a href="MainController?action=goEventDetails&txtID=${requestScope.BIG_EVENT_3.id}">
+                                        ${requestScope.BIG_EVENT_3.name}
+                                    </a>
+                                </div>
+                            </div>
+                        </c:if>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+            </c:if>
+            <div class="type-travel">
+
+                <div class="more_news">
+                    <p>Sự kiện online</p>
+                    <a href="${pageContext.request.contextPath}/MainController?action=goEventOnlReadMore" class="more_news-item">Xem thêm</a>
+                </div>
                 <input type="radio" hidden name="dot" id="type-travel__input-one">
                 <input type="radio" hidden name="dot" id="type-travel__input-two">
-                <div class="grid type-travel--width">
-                    <div class="row margin-10px">
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="contentEvent.jsp" class="type-travel__link">
-                                    <img src="assets/images/tour-image/tour-img-1.jpg" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="contentEvent.jsp">
-                                        <i class="type-travel__plan-icon fas fa-map-marker-alt"></i>
-                                        <span>FPT HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="contentEvent.jsp">Ngày hội công nghệ</a>
-                                    <p class="type-travel__intro-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                        elit. Aene an commodo ligula eget dolor. Aenean massa. Cum sociis the</p>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">$1230</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="contentEvent.jsp" class="type-travel__link">
-                                    <img src="assets/images/tour-image/tour-img-5.jpg" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">                 
-                                    <a class="type-travel__plan-link" href="contentEvent.jsp">
-                                        <i class="type-travel__plan-icon fas fa-map-marker-alt"></i>
-                                        <span>FPT HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="contentEvent.jsp">Event</a>
-                                    <p class="type-travel__intro-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                        elit. Aene an commodo ligula eget dolor. Aenean massa. Cum sociis the</p>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">$2340</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="contentEvent.jsp" class="type-travel__link">
-                                    <img src="assets/images/tour-image/tour-img-5.jpg" alt=""
-                                         class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">                                
-                                    <a class="type-travel__plan-link" href="contentEvent.jsp">
-                                        <i class="type-travel__plan-icon fas fa-map-marker-alt"></i>
-                                        <span>FPT HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="contentEvent.jsp">Event</a>
-                                    <p class="type-travel__intro-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                        elit. Aene an commodo ligula eget dolor. Aenean massa. Cum sociis the</p>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">$930</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="contentEvent.jsp" class="type-travel__link">
-                                    <img src="assets/images/tour-image/tour-img-5.jpg" alt=""
-                                         class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="">
-                                        <i class="type-travel__plan-icon fas fa-map-marker-alt"></i>
-                                        <span>FPT HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="contentEvent.jsp">Event</a>
-                                    <p class="type-travel__intro-text">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                        elit. Aene an commodo ligula eget dolor. Aenean massa. Cum sociis the</p>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">$3000</span>
-                                    </div>
-                                </div>
-                            </div>
+                <c:if test="${requestScope.ONLINE4 != null}">
+                    <div class="grid type-travel--width">
 
+                        <div class="row margin-10px">
+                            <c:forEach items="${requestScope.ONLINE4}" var="onl">
+                                <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="img">
+                                    <c:if test="${onl.id eq img.eventId}">
+                                        <div class="col l-3 m-6 c-12">
+                                            <div class="type-travel-item">
+                                                <a href="MainController?action=goEventDetails&txtID=${onl.id}" class="type-travel__link">
+                                                    <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}" alt="" class="type-travel__img">
+                                                </a>
+                                                <div class="type-travel__intro">
+                                                    <a class="type-travel__intro-link" href="MainController?action=goEventDetails&txtID=${onl.id}">${onl.name}</a>
+                                                    <p class="type-travel__intro-text">
+                                                        Ngày đăng: ${onl.createDate}
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                </c:forEach>            
+                            </c:forEach>
                         </div>
 
                     </div>
-
-
+                </c:if>
+                <div class="more_news">
+                    <p>Sự kiện offline</p>
+                    <a href="MainController?action=goEventOffReadMore" class="more_news-item">Xem thêm</a>
                 </div>
-
+                <c:if test="${requestScope.OFFLINE4 != null}">
+                    <div class="grid type-travel--width">
+                        <div class="row margin-10px">
+                            <c:forEach items="${requestScope.OFFLINE4}" var="off">
+                                <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="img">
+                                    <c:if test="${off.id eq img.eventId}">
+                                        <div class="col l-3 m-6 c-12">
+                                            <div class="type-travel-item">
+                                                <a href="MainController?action=goEventDetails&txtID=${off.id}" class="type-travel__link">
+                                                    <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}" alt="" class="type-travel__img">
+                                                </a>
+                                                <div class="type-travel__intro">
+                                                    <a class="type-travel__intro-link" 
+                                                       href="MainController?action=goEventDetails&txtID=${off.id}">
+                                                        ${off.name}
+                                                    </a>
+                                                    <p class="type-travel__intro-text">
+                                                        Ngày đăng: ${off.createDate}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                </c:forEach>
+                            </c:forEach>
+                        </div>
+                    </div>               
+                </c:if>
             </div>
-
-        </div> 
+        </div>  
 
         <div class="footer">
 
@@ -217,7 +387,7 @@
                 <div class="row footer__content">
                     <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
                         <div  class="footer__logo-link">
-                            <img src="assets/images/tải xuống.png" alt="" class="footer__logo-img">
+                            <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img">
                         </div>
                         <div class="footer__contact">
                             <div class="footer__contact-address">

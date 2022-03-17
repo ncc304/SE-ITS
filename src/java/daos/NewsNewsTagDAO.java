@@ -15,12 +15,15 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import utils.MyConnection;
 
 /**
  *
  * @author Admin
  */
 public class NewsNewsTagDAO {
+
+    Connection con = null;
 
     public List<NewsNewsTagDTO> getListNewsNewsTag() {
         List<NewsNewsTagDTO> listNewsNewsTag = new ArrayList<>();
@@ -104,4 +107,31 @@ public class NewsNewsTagDAO {
         return check;
     }
 
+    // ----------------- User Page -----------------
+    // Lấy Tag theo NewsID để làm Navigation trong NewsDetail.jsp
+    public NewsNewsTagDTO getTagByNewsID(String idNews) {
+        NewsNewsTagDTO dto = null;
+        int id = 0;
+        int newTagId = 0;
+        int newId = 0;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.News_Tags_has_News WHERE News_id = " + idNews;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                id = rs.getInt("id");
+                newTagId = rs.getInt("News_Tags_idNews_Tags");
+                newId = rs.getInt("News_id");
+                dto = new NewsNewsTagDTO(id, newTagId, newId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
 }

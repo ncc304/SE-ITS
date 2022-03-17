@@ -1,31 +1,61 @@
+<%-- 
+    Document   : eventDetail
+    Created on : Mar 14, 2022, 8:43:19 AM
+    Author     : Admin
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FPT University</title>
+        <title>Event</title>
         <link rel="icon" type="image/x-icon"
-              href="${pageContext.request.contextPath}/guest/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
-
+              href="${pageContext.request.contextPath}/user/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/grid.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/base.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/content.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <style>
+            .regis_link{
+                text-align: center;
+                height: 60px;
+            }
+            .regis_link-item{
+                padding: 18px 40px;
+                background-color: #0004d8;
+                color: #fff;
+                text-decoration: none;
+            }
+            .regis_link:hover{
+                opacity: 0.8
+            }
+            .relative_news::after{
+                content: "";
+                display: block;
+                position: absolute;
+                width: 1px;
+                height: 59%;
+                background-color: #979797;
+                right: 339px;
+                top: 30%;
+                /* transform: translateY(-50%); */
+            }
+        </style>
     </head>
 
     <body>
+
         <div class="wrapper" id="scroll-top">
             <!-- Header Navbar-->
             <div class="header">
@@ -50,7 +80,7 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
@@ -100,99 +130,90 @@
                     </div>
                 </div>
             </div>
-            <div class="slideshow-container">
 
-<!--                <div class="mySlides fade">
-                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event1.jpg" style="width: 100%" class="banner__img2">
-                </div>
-
-                <div class="mySlides fade slider">
-                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" style="width: 100%" class="banner__img2">
-                </div>
-
-                <div class="mySlides fade">
-                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
-                </div>-->
-                <div class="mySlides fade">
-              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/thumnailhethongotovadieukhien-min.jpg" class="banner__img2">
-              <div class="banner__content banner__content--1">
-                <h2>Let's go now</h2>
-                <h1>SE and ITS</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima expedita tenetur eius ipsum ea, voluptatibus possimus perspiciatis consequatur</p>
-            </div>
-            </div>
-            
-            <div class="mySlides fade slider">
-              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/event1.jpg" class="banner__img2">
-            </div>
-            
-            <div class="mySlides fade">
-              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" class="banner__img2">
-            </div>
-
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-            </div>
-            <br>
-
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span> 
-                <span class="dot" onclick="currentSlide(2)"></span> 
-                <span class="dot" onclick="currentSlide(3)"></span> 
-            </div>
         </div>
-        <div class="video-about" id="aboutus">
-            <div class="grid wide">
+
+        <div class="wrap_content">
+            <div class="main_contain">
+
                 <div class="heading-section padding-top-86px">
-                    <h3 class="sub-heading">Giới thiệu</h3>
+                    <div class="site_map" style="width: auto">
+                        <a href="../Homepage/homepage.html" style="font-size: 1.17em;">Trang chủ > </a>
+                        <a href="../Event/event.html" style="font-size: 1.17em; color: #0882d9">Sự kiện </a>
+                        <c:if test="${requestScope.DTO_DETAIL.type eq 'online'}">
+                            <a href="../Event/event.html" style="font-size: 1.17em;">> Online </a>
+                        </c:if>
+                        <c:if test="${requestScope.DTO_DETAIL.type eq 'offline'}">
+                            <a href="../Event/event.html" style="font-size: 1.17em;">> Offline </a>
+                        </c:if>
+                        <a href="#" style="font-size: 1.17em;">> ${requestScope.DTO_DETAIL.name}</a> 
+                        <div class="pubDate" style="float: right; font-size: 1.17em;">
+                            ${requestScope.DTO_DETAIL.createDate}
+                        </div>
+                    </div>
+                    <h3 class="sub-heading">${requestScope.DTO_DETAIL.name}</h3>   
+                    <ul class="text-info">
+                        <!--<li>Ngày Đăng: ${requestScope.DTO_DETAIL.createDate}</li>-->
+                        <li>Bắt đầu: ${requestScope.DTO_DETAIL.startDate}</li>
+                        <li>Kết Thúc: ${requestScope.DTO_DETAIL.endDate}</li>
+                        <!--<li>Địa điểm: đại học FPT - HCM</li>-->
+                    </ul>
+                </div>
+
+                <div class="main_contain-text para-heading--two-row">
+                    <p>
+                        ${requestScope.DTO_DETAIL.description}
+                    </p>
+                </div>
+                <br/><br/><br/><br/><br/>
+                <div class="regis_link">
+                    <a class="regis_link-item" href="http">
+                        Đăng ký ngay
+                    </a>
                 </div>
             </div>
-            <div class="video__link">
-                <iframe width="860" height="515" src="https://www.youtube.com/embed/b7OoE98yj5w"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-
-
-
-        <div class="service" id="se">
-            <img src="${pageContext.request.contextPath}/user/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
-
-            <div class="heading-section padding-top-106px">
-                <h3 class="sub-heading sub-heading--white">Bộ môn SE</h3>
-                <p class="para-heading--two-row para-heading--white intro_major">
-                    Tại Đại học FPT, Kỹ thuật phần mềm là chuyên ngành học có tiếng và lâu đời nhất. Hiện tại, sinh viên Đại học FPT đã và đang làm việc, học tập tại các quốc gia như Mỹ, Đức, Nhật Bản, Singapore – những thị trường CNTT quan trọng của thế giới. Đây là kết quả của chương trình đào tạo chuẩn quốc tế, chú trọng đào tạo ngoại ngữ, phát triển kỹ năng mềm cùng định hướng đầu ra đáp ứng nhu cầu doanh nghiệp.
-                    Chương trình được thiết kế theo chuẩn của Hiệp hội Máy tính (Association for Computing Machinery-ACM), chuẩn đào tạo kỹ sư phần mềm của Accreditation Board for Engineering and Technology (ABET – Mỹ), Hiệp hội Phần mềm Việt Nam (VINASA), Chương trình Đào tạo của EC-Council, Học viện Mạng và Phần cứng Jetking (Ấn Độ); với sự tư vấn của các chuyên gia và doanh nghiệp CNTT như Tập đoàn FPT, Tập đoàn IBM, đồng thời tích hợp các chuẩn kiến thức của giới công nghiệp như Oracle, Cisco… Nội dung đào tạo chuyên ngành Kỹ thuật phần mềm của Đại học FPT tích hợp cân bằng giữa kiến thức nền tảng với công nghệ, kỹ thuật mới: không chỉ bao gồm các kiến thức về khoa học cơ bản của nhóm ngành CNTT mà còn đào tạo đầy đủ về quy trình phát triển phần mềm, từ phương pháp, kỹ thuật, công nghệ trong phân tích, thiết kế, phát triển, kiểm thử, bảo trì phần mềm và quản lý dự án phần mềm cũng như các ứng dụng CNTT; cân bằng giữa lý thuyết với ứng dụng và thực hành: thời gian học lý thuyết chiếm chỉ tối đa một nửa thời gian của hầu hết các môn học.
-                </p>
-                <div class="more_btn col l-3 m-6 c-12">
-                    <a href="../ITS_Page/its.html" class="more_sub">Xem thêm</a>
+            <div class="relative_news para-heading--two-row" style="margin-left: auto">
+                <div class="heading-section padding-top-86px">
+                    <h3 class="sub-heading">Sự kiện gần đây</h3>
                 </div>
+                <c:if test="${requestScope.LIST4EVENTRECENT != null}">
+                    <c:forEach items="${requestScope.LIST4EVENTRECENT}" var="list4">
+                        <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="eventImg">
+                            <c:if test="${eventImg.eventId eq list4.id}">
+                                <div class="thumb_item">
+                                    <div class="figure">
+                                        <div class="box_img">
+                                            <a href="MainController?action=goEventDetails&txtID=${list4.id}">
+                                                <img src="${pageContext.request.contextPath}/user/assets/images/${eventImg.link}"/>
+                                            </a>
+                                        </div>
+                                        <div class="caption">
+                                            <h5>
+                                                <a href="MainController?action=goEventDetails&txtID=${list4.id}">
+                                                    ${list4.name}
+                                                </a>
+                                                <br/>
+                                                <p style="font-size: 11px; font-style: italic;">
+                                                    ${list4.createDate}
+                                                </p>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </c:forEach>
+                </c:if>
+
+
             </div>
 
-
         </div>
-
-        <div class="service" id="its">
-            <div class="heading-section padding-top-106px">
-                <h3 class="sub-heading sub-heading--white">Bộ môn ITS</h3>
-                <p class="para-heading--two-row para-heading--white intro_major">
-                    Tại Đại học FPT, Kỹ thuật phần mềm là chuyên ngành học có tiếng và lâu đời nhất. Hiện tại, sinh viên Đại học FPT đã và đang làm việc, học tập tại các quốc gia như Mỹ, Đức, Nhật Bản, Singapore – những thị trường CNTT quan trọng của thế giới. Đây là kết quả của chương trình đào tạo chuẩn quốc tế, chú trọng đào tạo ngoại ngữ, phát triển kỹ năng mềm cùng định hướng đầu ra đáp ứng nhu cầu doanh nghiệp.
-                    Chương trình được thiết kế theo chuẩn của Hiệp hội Máy tính (Association for Computing Machinery-ACM), chuẩn đào tạo kỹ sư phần mềm của Accreditation Board for Engineering and Technology (ABET – Mỹ), Hiệp hội Phần mềm Việt Nam (VINASA), Chương trình Đào tạo của EC-Council, Học viện Mạng và Phần cứng Jetking (Ấn Độ); với sự tư vấn của các chuyên gia và doanh nghiệp CNTT như Tập đoàn FPT, Tập đoàn IBM, đồng thời tích hợp các chuẩn kiến thức của giới công nghiệp như Oracle, Cisco… Nội dung đào tạo chuyên ngành Kỹ thuật phần mềm của Đại học FPT tích hợp cân bằng giữa kiến thức nền tảng với công nghệ, kỹ thuật mới: không chỉ bao gồm các kiến thức về khoa học cơ bản của nhóm ngành CNTT mà còn đào tạo đầy đủ về quy trình phát triển phần mềm, từ phương pháp, kỹ thuật, công nghệ trong phân tích, thiết kế, phát triển, kiểm thử, bảo trì phần mềm và quản lý dự án phần mềm cũng như các ứng dụng CNTT; cân bằng giữa lý thuyết với ứng dụng và thực hành: thời gian học lý thuyết chiếm chỉ tối đa một nửa thời gian của hầu hết các môn học.
-                </p>
-                <div class="more_btn col l-3 m-6 c-12">
-                    <a href="its.jsp" class="more_sub">Xem thêm</a>
-                </div>
-            </div>
-            <img src="${pageContext.request.contextPath}/user/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
-
-        </div>
+        <br/> 
 
 
-        <div class="footer" style="height: fit-content">
+        <div class="footer">
+
             <div class="grid wide">
                 <div class="row footer__content">
                     <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
@@ -254,38 +275,6 @@
     </div>
 </div>
 </div>
-
-
-    <script>
-        var slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-            setTimeout(showSlides, 3000); // Change image every 2 seconds
-        }
-
-
-        
-    </script>
-
-
-
 </body>
-
 
 </html>

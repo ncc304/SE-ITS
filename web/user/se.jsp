@@ -3,7 +3,7 @@
     Created on : Feb 13, 2022, 11:40:17 AM
     Author     : Admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -58,7 +58,7 @@
                         </label>
                         <div class="navbar__logo">
                             <a href="" class="logo__link">
-                                <img src="./assets/images/tải xuống.png" alt="Setsail" class="navbar__logo-img">
+                                <img src="${pageContext.request.contextPath}/user/assets/images/taixuong.png" alt="Setsail" class="navbar__logo-img">
                             </a>
                         </div>
                         <ul class="navbar__list">
@@ -66,51 +66,54 @@
                                 <i class="fas fa-times"></i>
                             </label>
                             <li class="navbar__item">
-                                <a href="home.jsp" class="navbar__item-link">Trang chủ</a>
+                                <a href = "<c:url value = "/user/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
+
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="news.jsp" class="navbar__item-link">Tin tức</a>
+                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="its.jsp" class="subnav__link">Đời sống sinh viên</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">FPT High-tech</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">Hội nhập quốc tế</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="major.jsp" class="navbar__item-link">Lộ trình môn chuyên sâu</a>
+                                <a href="<c:url value = "/user/major.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Lộ trình môn chuyên sâu</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="its.jsp" class="subnav__link">ITS</a>
+                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="se.jsp" class="subnav__link">SE</a>
+                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="navbar__item">
-                                <a href="event.jsp" class="navbar__item-link">Sự kiện</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                             </li>
                             <li class="navbar__item">
-                                <a href="recruitment.jsp" class="navbar__item-link">Tuyển dụng</a>
+                                <a href="<c:url value = "/user/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link">Đăng nhập</a>
+                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                    Đăng nhập
+                                </a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
-                        </ul>
+                        </ul>   
 
                         <a href="" class="navbar-mobile__user">
                             <i class="far fa-user-circle"></i>

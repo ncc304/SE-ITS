@@ -12,6 +12,7 @@ import dtos.EventDTO;
 import dtos.EventEventCategoryDTO;
 import dtos.EventsImageDTO;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,9 +47,15 @@ public class CreateEventController extends HttpServlet {
             String userName = (String) session.getAttribute("USER_NAME");
 //            int userID = Integer.parseInt(userIDStr);
 
+            
             EventsDAO dao = new EventsDAO();
-            EventDTO dto = new EventDTO(title, date1, date2, true, content, userName);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            java.util.Date createDate = new java.util.Date();
+            String createDateStr = format.format(createDate);
+            
+            EventDTO dto = new EventDTO(0, title, date1, date2, true, content, userName, method, createDateStr);
             boolean check = dao.createtEvent(dto); // INSERT tbl EVENT
+
             if(check){
                 request.setAttribute("CONTENT", dto.getDescription());
                 EventImageDAO imgDAO = new EventImageDAO();
@@ -70,7 +77,7 @@ public class CreateEventController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(url);
         }
     }
 

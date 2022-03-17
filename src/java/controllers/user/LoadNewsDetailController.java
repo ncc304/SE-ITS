@@ -3,36 +3,58 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.user;
 
+import daos.NewsDAO;
+import daos.NewsNewsTagDAO;
+import dtos.NewsDTO;
+import dtos.NewsNewsTagDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LogoutController extends HttpServlet {
-    
+public class LoadNewsDetailController extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession();
-            if (session != null) {
-                session.invalidate();
+            String newsID = request.getParameter("txtID");
+            NewsDAO dao = new NewsDAO();
+            
+            // Lấy NewsDetail
+            NewsDTO dto = dao.getNewsByID(newsID);
+            if(dto != null){
+                request.setAttribute("NEWS_DETAIL", dto);
             }
+            
+            // Lấy Navigation
+            NewsNewsTagDAO tagDAO = new NewsNewsTagDAO();
+            NewsNewsTagDTO tagDTO = tagDAO.getTagByNewsID(newsID);
+            if(tagDTO != null){
+                request.setAttribute("TAG_ID", tagDTO);
+            }
+            
+            // Lấy 4 Tin tức gần đây
+            List<NewsDTO> list4recent = dao.getList4NewNewsNoTag();
+            if(list4recent != null){
+                request.setAttribute("LIST4_RECENT", list4recent);
+            }
+            
         } catch (Exception e) {
-        }finally{
-//            request.getRequestDispatcher("user/home.jsp");
-            response.sendRedirect("user/home.jsp");
+            e.printStackTrace();
+        } finally {
+            request.getRequestDispatcher("user/newsDetail.jsp").forward(request, response);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
