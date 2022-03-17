@@ -51,17 +51,17 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=1" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=2" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=3" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
@@ -119,9 +119,15 @@
 
                         <div class="heading-section padding-top-86px">
                             <div class="site_map" style="width: auto">
-                                <a href="../Homepage/homepage.html" style="font-size: 1.17em ">Trang chủ > </a>
-                                <a href="../Event/event.html" style="font-size: 1.17em; color: #0882d9">Tin Tức </a>
-                                <a href="#" style="font-size: 1.17em ">> Đời sống sinh viên</a>
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tin Tức 
+                                </a>
+                                <a href="#" 
+                                   style="font-size: 1.30em ">
+                                    › Đời sống sinh viên
+                                </a>
                             </div> 
                             <h3 class="sub-heading">Danh Sách Các Tin Tức Đời Sống Sinh Viên Mới Nhất</h3>
                         </div>
@@ -137,11 +143,12 @@
                                         <c:if test="${tag.id eq img.newId}">
                                             <div class="col l-3 m-6 c-12">
                                                 <div class="type-travel-item">
-                                                    <a href="../ContentPage/Content.html" class="type-travel__link">
+                                                    <a href="MainController?action=goNewsDetails&txtID=${tag.id}" class="type-travel__link">
                                                         <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}" alt="" class="type-travel__img">
                                                     </a>
                                                     <div class="type-travel__intro">
-                                                        <a class="type-travel__intro-link" href="../ContentPage/Content.html">
+                                                        <a class="type-travel__intro-link" 
+                                                           href="MainController?action=goNewsDetails&txtID=${tag.id}">
                                                             ${tag.name}
                                                         </a>
                                                         <p class="type-travel__intro-text">
@@ -165,10 +172,16 @@
                     <div class="grid wide">
                         <div class="heading-section padding-top-86px">
                             <div class="site_map" style="width: auto">
-                                <a href="../Homepage/homepage.html" style="font-size: 1.17em ">Trang chủ > </a>
-                                <a href="../Event/event.html" style="font-size: 1.17em; color: #0882d9">Tin Tức </a>
-                                <a href="#" style="font-size: 1.17em ">> Đời sống sinh viên</a>
-                            </div>
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tin Tức 
+                                </a>
+                                <a href="#" 
+                                   style="font-size: 1.30em ">
+                                    › FPT High-tech
+                                </a>
+                            </div> 
                             <h3 class="sub-heading">Danh Sách Các Tin Tức FPT High-tech Mới Nhất</h3>
                         </div>
                     </div> 
@@ -211,9 +224,15 @@
                     <div class="grid wide">
                         <div class="heading-section padding-top-86px">
                             <div class="site_map" style="width: auto">
-                                <a href="../Homepage/homepage.html" style="font-size: 1.17em ">Trang chủ > </a>
-                                <a href="../Event/event.html" style="font-size: 1.17em; color: #0882d9">Tin Tức </a>
-                                <a href="#" style="font-size: 1.17em ">> Đời sống sinh viên</a>
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tin Tức 
+                                </a>
+                                <a href="#" 
+                                   style="font-size: 1.30em ">
+                                    › Hội nhập quốc tế
+                                </a>
                             </div>
                             <h3 class="sub-heading">Danh Sách Các Tin Tức Hội Nhập Quốc Tế Mới Nhất</h3>
                         </div>

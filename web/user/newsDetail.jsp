@@ -13,7 +13,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Event</title>
+        <title>News</title>
         <link rel="icon" type="image/x-icon"
               href="${pageContext.request.contextPath}/user/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
@@ -80,17 +80,17 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=1" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=2" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=3" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
@@ -138,20 +138,26 @@
 
                 <div class="heading-section padding-top-86px">
                     <div class="site_map" style="width: auto">
-                        <a href="../Homepage/homepage.html" style="font-size: 1.17em;">Trang chủ > </a>
-                        <a href="../Event/event.html" style="font-size: 1.17em; color: #0882d9">Tin tức </a>
+                        <a href="${pageContext.request.contextPath}/user/home.jsp" 
+                           style="font-size: 1.30em;">
+                            Trang chủ › 
+                        </a>
+                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" 
+                           style="font-size: 1.30em; color: #0882d9">
+                            Tin tức 
+                        </a>
                         <c:if test="${requestScope.TAG_ID.newTagId eq 4}">
-                            <a href="../Event/event.html" style="font-size: 1.17em;">> Đời sống sinh viên </a>
+                            <a href="MainController?action=goNewsTagReadMore&txtTagID=1" style="font-size: 1.30em;">› Đời sống sinh viên </a>
                         </c:if>
                         <c:if test="${requestScope.TAG_ID.newTagId eq 5}">
-                            <a href="../Event/event.html" style="font-size: 1.17em;">> FPT High-tech </a>
+                            <a href="MainController?action=goNewsTagReadMore&txtTagID=2" style="font-size: 1.30em;">› FPT High-tech </a>
                         </c:if>
                         <c:if test="${requestScope.TAG_ID.newTagId eq 6}">
-                            <a href="../Event/event.html" style="font-size: 1.17em;">> Hội nhập quốc tế </a>
+                            <a href="MainController?action=goNewsTagReadMore&txtTagID=3" style="font-size: 1.30em;">› Hội nhập quốc tế </a>
                         </c:if>
-                        <a href="#" style="font-size: 1.17em;">> ${requestScope.NEWS_DETAIL.name}</a> 
-                        <div class="pubDate" style="float: right; font-size: 1.17em;">
-                            ${requestScope.DTO_DETAIL.createTime}
+                        <a href="#" style="font-size: 1.30em;">› ${requestScope.NEWS_DETAIL.name}</a> 
+                        <div class="pubDate" style="float: right; font-size: 1.30em;">
+                            &ensp; ${requestScope.NEWS_DETAIL.createTime}
                         </div>
                     </div>
                     <h3 class="sub-heading">${requestScope.NEWS_DETAIL.name}</h3>   

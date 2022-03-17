@@ -80,17 +80,17 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=1" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=2" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=3" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
@@ -138,26 +138,43 @@
 
                 <div class="heading-section padding-top-86px">
                     <div class="site_map" style="width: auto">
-                        <a href="../Homepage/homepage.html" style="font-size: 1.17em;">Trang chủ > </a>
-                        <a href="../Event/event.html" style="font-size: 1.17em; color: #0882d9">Sự kiện </a>
+                        <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em;">Trang chủ › </a>
+                        <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" 
+                           style="font-size: 1.30em; color: #0882d9">
+                            Sự kiện 
+                        </a>
                         <c:if test="${requestScope.DTO_DETAIL.type eq 'online'}">
-                            <a href="../Event/event.html" style="font-size: 1.17em;">> Online </a>
+                            <a href="MainController?action=goEventOnlReadMore" 
+                               style="font-size: 1.30em;">
+                                › Online 
+                            </a>
                         </c:if>
                         <c:if test="${requestScope.DTO_DETAIL.type eq 'offline'}">
-                            <a href="../Event/event.html" style="font-size: 1.17em;">> Offline </a>
+                            <a href="MainController?action=goEventOffReadMore" 
+                               style="font-size: 1.30em;">
+                                › Offline 
+                            </a>
                         </c:if>
-                        <a href="#" style="font-size: 1.17em;">> ${requestScope.DTO_DETAIL.name}</a> 
-                        <div class="pubDate" style="float: right; font-size: 1.17em;">
-                            ${requestScope.DTO_DETAIL.createDate}
+                        <a href="#" style="font-size: 1.30em;">› ${requestScope.DTO_DETAIL.name}</a> 
+                        <div class="pubDate" style="float: right; font-size: 1.30em;">
+                            &ensp;${requestScope.DTO_DETAIL.createDate}
                         </div>
                     </div>
                     <h3 class="sub-heading">${requestScope.DTO_DETAIL.name}</h3>   
-                    <ul class="text-info">
-                        <!--<li>Ngày Đăng: ${requestScope.DTO_DETAIL.createDate}</li>-->
-                        <li>Bắt đầu: ${requestScope.DTO_DETAIL.startDate}</li>
-                        <li>Kết Thúc: ${requestScope.DTO_DETAIL.endDate}</li>
-                        <!--<li>Địa điểm: đại học FPT - HCM</li>-->
-                    </ul>
+                    <!--                    <ul class="text-info">
+                                            <li>Ngày Đăng: $ {requestScope.DTO_DETAIL.createDate}</li>
+                                            <li>Bắt đầu: $ {requestScope.DTO_DETAIL.startDate}</li>
+                                            <li>Kết Thúc: $ {requestScope.DTO_DETAIL.endDate}</li>
+                                            <li>Địa điểm: đại học FPT - HCM</li>
+                                        </ul>-->
+                    <span class="text-info">
+                        Bắt đầu:  
+                    </span>
+                    <span style="font-size: 13px;">${requestScope.DTO_DETAIL.startDate}</span> <br/>
+                    <span class="text-info">
+                        Kết Thúc:  
+                    </span>
+                    <span style="font-size: 13px;">${requestScope.DTO_DETAIL.endDate}</span>
                 </div>
 
                 <div class="main_contain-text para-heading--two-row">

@@ -28,22 +28,7 @@
     </head>
 
     <body>
-        <!-- <div class="page-different">
-            <div class="page-different-item">
-                <a href="../ITS_Page/its.html">
-                    <img src="../Homepage/assets/images/custom-icon/custom-icon-4.png" alt="Camera image"
-                        class="service-travel__img">
-                </a>
-                <a href="../ITS_Page/its.html"class="page-different-text">ITS</a>
-            </div>
-            <div class="page-different-item">
-                <a href="https://www.google.com.vn/?hl=vi">
-                    <img src="../Homepage/assets/images/custom-icon/custom-icon-4.png" alt="Camera image"
-                        class="service-travel__img">
-                </a>
-                <a href="../ITS_Page/SE.html" class="page-different-text">SE</a>
-            </div>
-        </div> -->
+        
         <div class="wrapper" id="scroll-top">
             <!-- Header Navbar-->
             <div class="header">
@@ -68,17 +53,17 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=1" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=2" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=3" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>

@@ -50,17 +50,17 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/news.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" class="navbar__item-link" style="text-decoration: none;">Tin tức</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--2">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=1" class="subnav__link" style="text-decoration: none;">Đời sống sinh viên</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=2" class="subnav__link" style="text-decoration: none;">FPT High-tech</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=3" class="subnav__link" style="text-decoration: none;">Hội nhập quốc tế</a>
                                     </li>
 
                                 </ul>
@@ -114,9 +114,12 @@
                 <div class="grid wide">
                     <div class="heading-section padding-top-86px">
                         <div class="site_map" style="width: auto;">
-                            <a href="../Homepage/homepage.html" style="font-size: 1.17em ">Trang chủ > </a>
-                            <a href="../Event/event.html" style="font-size: 1.17em; color: #0882d9">Sự kiện </a>
-                            <a href="#" style="font-size: 1.17em ">> Offline</a>
+                            <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                            <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" 
+                               style="font-size: 1.30em; color: #0882d9">
+                                Sự kiện 
+                            </a>
+                            <a href="#" style="font-size: 1.30em ">› Offline</a>
                         </div>
                         <h3 class="sub-heading">Danh sách các Sự Kiện Offline</h3>
                     </div>
