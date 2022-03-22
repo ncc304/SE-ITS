@@ -17,23 +17,29 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import utils.MyConnection;
 
-/**?
+/**
+ * ?
  *
  * @author Admin
  */
 public class CompanyDAO {
+
+    Connection con = null;
 
     public List<CompanyDTO> getListCompany() {
         List<CompanyDTO> listCompany = new ArrayList<>();
         int id = 0;
         String name = null;
         String address = null;
+        String link = null;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Company;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -41,7 +47,8 @@ public class CompanyDAO {
                 id = rs.getInt("idCompany");
                 name = rs.getString("name");
                 address = rs.getString("address");
-                CompanyDTO dto = new CompanyDTO(id, name, address);
+                link = rs.getString("image");
+                CompanyDTO dto = new CompanyDTO(id, name, address, link);
                 listCompany.add(dto);
             }
         } catch (Exception e) {
@@ -105,4 +112,6 @@ public class CompanyDAO {
         }
         return check;
     }
+
+    //----------------------- User Page ------------------------
 }

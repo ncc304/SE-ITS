@@ -14,21 +14,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Recruitment</title>
         <link rel="icon" type="image/x-icon"
-              href="../Homepage/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
-        <link rel="stylesheet" href="./assets/css/reset.css">
-        <link rel="stylesheet" href="./assets/css/grid.css">
-        <link rel="stylesheet" href="./assets/css/base.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/css/responsive.css">
-        <link rel="stylesheet" href="./recr.css">
+              href="${pageContext.request.contextPath}/guest/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/grid.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/base.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/recr.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
+
+        <style>
+            .more_news {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 23px;
+                background: linear-gradient(45deg, #003380 0%, #000000 100%);
+                padding: 1%;
+                color: #fdfbfb;
+                text-align: center;
+                margin-top: 50px;
+            }
+            .more_news p{
+                margin: 0 auto;
+
+            }
+            .more_news-item {
+                text-decoration: none;
+                font-size: 12px;
+                color: #fdfbfb;
+                margin-right: 2rem;
+            }
+        </style>
     </head>
 
     <body>
-        
         <div class="wrapper" id="scroll-top">
             <!-- Header Navbar-->
             <div class="header">
@@ -86,7 +110,7 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
@@ -106,7 +130,7 @@
 
             <div class="slider">
                 <div class="banner banner--1">
-                    <img src="assets/images/background-img/full-slide1.jpg" alt="Friend" class="banner__img">
+                    <img src="${pageContext.request.contextPath}/user/assets/images/background-img/full-slide1.jpg" alt="Friend" class="banner__img">
                 </div>
                 <div class="banner__content banner__content-event">
                     <h2>NGHỀ NGHIỆP</h2>
@@ -116,199 +140,205 @@
             <div class="type-travel">
                 <div class="grid wide">
                     <div class="heading-section padding-top-86px">
-                        <h3 class="sub-heading">Tin tuyển dụng</h3>
+                        <h3 class="sub-heading">TIN TUYỂN DỤNG, VIỆC LÀM TỐT NHẤT</h3>
                     </div>
                 </div> 
-                <div class="category-recruit">
-                    <p>Back-end</p>
-                </div>
-                <div class="grid type-travel--width">
-                    <div class="row margin-10px">
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="https://scontent.fhan3-4.fna.fbcdn.net/v/t1.15752-9/251312062_900563330575510_4873178814651720165_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=ae9488&_nc_ohc=-6RDwJZuOqMAX_re0J-&_nc_ht=scontent.fhan3-4.fna&oh=03_AVI2zmu_JJdmghH8KaQUciAygcsjrbiyYtY_SZqMU8NokA&oe=622EB3E7" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="https://scontent.fhan3-5.fna.fbcdn.net/v/t1.15752-9/272656727_988723208738125_3316638437383492412_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=zazb4l7mthkAX8qMb49&_nc_ht=scontent.fhan3-5.fna&oh=03_AVIvr3aPuPYMfmfV5mVasHVjmYC7kow4fIkHNCXFRCSr2A&oe=622C5FFC" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="https://scontent.fhan3-5.fna.fbcdn.net/v/t1.15752-9/272656727_988723208738125_3316638437383492412_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=zazb4l7mthkAX8qMb49&_nc_ht=scontent.fhan3-5.fna&oh=03_AVIvr3aPuPYMfmfV5mVasHVjmYC7kow4fIkHNCXFRCSr2A&oe=622C5FFC" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                </div>
-                <div class="category-recruit">
+                <!--<div class="category-recruit">-->
+                <div class="more_news">
                     <p>Front-end</p>
+                    <a href="MainController?action=goRecruitmentReadMore&txtCateID=4" 
+                       style="float: right;"
+                       class="more_news-item">
+                        Xem thêm
+                    </a>
                 </div>
-                <div class="grid type-travel--width">
-                    <div class="row margin-10px">
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
+                <c:if test="${requestScope.LIST_REC1 != null}">
+                    <c:if test="${not empty requestScope.LIST_REC1}">
+                        <div class="grid type-travel--width">
+                            <div class="row margin-10px">
+                                <c:forEach items="${requestScope.LIST_REC1}" var="list1">
+                                    <c:forEach items="${requestScope.COM1}" var="c1">
+                                        <c:if test="${list1.companyId eq c1.id}">
+                                            <div class="col l-3 m-6 c-12">
+                                                <div class="type-travel-item">
+                                                    <a href="MainController?action=goRecruitmentDetail&txtID=${list1.id}" 
+                                                        class="type-travel__link">
+                                                        <img src="${pageContext.request.contextPath}/user/assets/images/${c1.link}" alt="" class="type-travel__img">
+                                                    </a>
+                                                    <div class="type-travel__plan">
+                                                        <a class="type-travel__plan-link" href="MainController?action=goRecruitmentDetail&txtID=${list1.id}">
+                                                            <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
+                                                            <span>${c1.name}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="type-travel__intro">
+                                                        <a  href="MainController?action=goRecruitmentDetail&txtID=${list1.id}"
+                                                            class="type-travel__intro-link" >
+                                                            ${list1.name}
+                                                        </a>
+                                                        <div class="type-travel__info">
+                                                            <span class="type-travel__info-price">Lương khởi đầu ${list1.salary} triệu</span>
+                                                        </div>
+                                                        <p class="type-travel__intro-text">${c1.address}</p>
 
-                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
                             </div>
                         </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="assets/images/job1.png" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
+                    </c:if>
+                </c:if>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="assets/images/job2.png" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col l-3 m-6 c-12">
-                            <div class="type-travel-item">
-                                <a href="recruitment_content.jsp" class="type-travel__link">
-                                    <img src="assets/images/job3.png" alt="" class="type-travel__img">
-                                </a>
-                                <div class="type-travel__plan">
-                                    <a class="type-travel__plan-link" href="recruitment_content.jsp">
-                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                        <span>FPT Software HCM</span>
-                                    </a>
-                                </div>
-                                <div class="type-travel__intro">
-                                    <a class="type-travel__intro-link" href="">MODERN JAVASCRIPT DEVELOPER</a>
-                                    <div class="type-travel__info">
-                                        <span class="type-travel__info-price">Lương lên đến 10.000$</span>
-                                    </div>
-                                    <p class="type-travel__intro-text">Bình Thạnh, TP.HCM</p>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
+                <!--<div class="category-recruit">-->
+                <div class="more_news">
+                    <p>Back-end</p>
+                    <a href="MainController?action=goRecruitmentReadMore&txtCateID=5"
+                       style="float: right;"
+                       class="more_news-item">
+                        Xem thêm
+                    </a>
                 </div>
+                <c:if test="${requestScope.LIST_REC2 != null}">
+                    <c:if test="${not empty requestScope.LIST_REC2}">
+                        <div class="grid type-travel--width">
+                            <div class="row margin-10px">
+                                <c:forEach items="${requestScope.LIST_REC2}" var="list2">
+                                    <c:forEach items="${requestScope.COM2}" var="c2">
+                                        <c:if test="${list2.companyId eq c2.id}">
+                                            <div class="col l-3 m-6 c-12">
+                                                <div class="type-travel-item">
+                                                    <a href="MainController?action=goRecruitmentDetail&txtID=${list2.id}" 
+                                                       class="type-travel__link">
+                                                        <img src="${pageContext.request.contextPath}/user/assets/images/${c2.link}" alt="" class="type-travel__img">
+                                                    </a>
+                                                    <div class="type-travel__plan">
+                                                        <a class="type-travel__plan-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list2.id}">
+                                                            <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
+                                                            <span>${c2.name}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="type-travel__intro">
+                                                        <a class="type-travel__intro-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list2.id}">
+                                                            ${list2.name}
+                                                        </a>
+                                                        <div class="type-travel__info">
+                                                            <span class="type-travel__info-price">Lương khởi đầu ${list2.salary} triệu</span>
+                                                        </div>
+                                                        <p class="type-travel__intro-text">${c2.address}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
+                            </div>
 
+                        </div>
+                    </c:if>
+                </c:if>
+
+                <div class="more_news">
+                    <p>Mobile</p>
+                    <a href="MainController?action=goRecruitmentReadMore&txtCateID=6" 
+                       style="float: right;"
+                       class="more_news-item">
+                        Xem thêm
+                    </a>
+                </div>
+                <c:if test="${requestScope.LIST_REC3 != null}">
+                    <c:if test="${not empty requestScope.LIST_REC3}">
+                        <div class="grid type-travel--width">
+                            <div class="row margin-10px">
+                                <c:forEach items="${requestScope.LIST_REC3}" var="list3">
+                                    <c:forEach items="${requestScope.COM3}" var="c3">
+                                        <c:if test="${list3.companyId eq c3.id}">
+                                            <div class="col l-3 m-6 c-12">
+                                                <div class="type-travel-item">
+                                                    <a href="MainController?action=goRecruitmentDetail&txtID=${list3.id}" 
+                                                       class="type-travel__link">
+                                                        <img src="${pageContext.request.contextPath}/user/assets/images/${c3.link}" alt="" class="type-travel__img">
+                                                    </a>
+                                                    <div class="type-travel__plan">
+                                                        <a class="type-travel__plan-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list3.id}">
+                                                            <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
+                                                            <span>${c3.name}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="type-travel__intro">
+                                                        <a class="type-travel__intro-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list3.id}">
+                                                            ${list3.name}
+                                                        </a>
+                                                        <div class="type-travel__info">
+                                                            <span class="type-travel__info-price">Lương khởi đầu ${list3.salary} triệu</span>
+                                                        </div>
+                                                        <p class="type-travel__intro-text">${c3.address}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
+                            </div>
+
+                        </div>
+                    </c:if>
+                </c:if>
+                <div class="more_news">
+                    <p>Full-Stack</p>
+                    <a href="MainController?action=goRecruitmentReadMore&txtCateID=7" 
+                       style="float: right;"
+                       class="more_news-item">
+                        Xem thêm
+                    </a>
+                </div>
+                <c:if test="${requestScope.LIST_REC4 != null}">
+                    <c:if test="${not empty requestScope.LIST_REC4}">
+                        <div class="grid type-travel--width">
+                            <div class="row margin-10px">
+                                <c:forEach items="${requestScope.LIST_REC4}" var="list4">
+                                    <c:forEach items="${requestScope.COM4}" var="c4">
+                                        <c:if test="${list4.companyId eq c4.id}">
+                                            <div class="col l-3 m-6 c-12">
+                                                <div class="type-travel-item">
+                                                    <a href="MainController?action=goRecruitmentDetail&txtID=${list4.id}" 
+                                                       class="type-travel__link">
+                                                        <img src="${pageContext.request.contextPath}/user/assets/images/${c4.link}" alt="" class="type-travel__img">
+                                                    </a>
+                                                    <div class="type-travel__plan">
+                                                        <a class="type-travel__plan-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list4.id}">
+                                                            <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
+                                                            <span>${c4.name}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="type-travel__intro">
+                                                        <a class="type-travel__intro-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list4.id}">
+                                                            ${list4.name}
+                                                        </a>
+                                                        <div class="type-travel__info">
+                                                            <span class="type-travel__info-price">Lương khởi đầu ${list4.salary} triệu</span>
+                                                        </div>
+                                                        <p class="type-travel__intro-text">${c4.address}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
+                </c:if>
             </div>
+
 
         </div> 
 
@@ -318,7 +348,7 @@
                 <div class="row footer__content">
                     <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
                         <div  class="footer__logo-link">
-                            <img src="assets/images/tải xuống.png" alt="" class="footer__logo-img">
+                            <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img">
                         </div>
                         <div class="footer__contact">
                             <div class="footer__contact-address">

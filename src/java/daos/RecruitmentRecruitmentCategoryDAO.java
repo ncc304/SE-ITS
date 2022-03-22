@@ -15,12 +15,16 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import utils.MyConnection;
 
 /**
  *
  * @author Admin
  */
 public class RecruitmentRecruitmentCategoryDAO {
+
+    Connection con = null;
+
     public List<RecruitmentRecruitmentCategoryDTO> getListRecruitmentRecruitmentCategory() {
         List<RecruitmentRecruitmentCategoryDTO> listRecruitmentRecruitmentCategory = new ArrayList<>();
         int id = 0;
@@ -37,7 +41,7 @@ public class RecruitmentRecruitmentCategoryDAO {
             while (rs.next()) {
                 id = rs.getInt("id");
                 recruitmentId = rs.getInt("Recruitment_id");
-                recruitmentCategoryId = rs.getInt("Recruitment_Category_id");               
+                recruitmentCategoryId = rs.getInt("Recruitment_Category_id");
                 RecruitmentRecruitmentCategoryDTO dto = new RecruitmentRecruitmentCategoryDTO(id, recruitmentId, recruitmentCategoryId);
                 listRecruitmentRecruitmentCategory.add(dto);
             }
@@ -102,5 +106,31 @@ public class RecruitmentRecruitmentCategoryDAO {
         }
         return check;
     }
-    
+
+    // get navigation by ReID
+    public RecruitmentRecruitmentCategoryDTO getCateByReID(String reID) {
+        RecruitmentRecruitmentCategoryDTO dto = null;
+        int id = 0;
+        int recruitmentId = 0;
+        int recruitmentCategoryId = 0;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Recruitment_has_Recruitment_Category WHERE Recruitment_id = " + reID;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getInt("id");
+                recruitmentId = rs.getInt("Recruitment_id");
+                recruitmentCategoryId = rs.getInt("Recruitment_Category_id");
+                dto = new RecruitmentRecruitmentCategoryDTO(id, recruitmentId, recruitmentCategoryId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
 }

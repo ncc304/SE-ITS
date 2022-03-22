@@ -76,6 +76,18 @@
         <servlet-name>LoadNewsDetailController</servlet-name>
         <servlet-class>controllers.user.LoadNewsDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadRecruitmentUserPageController</servlet-name>
+        <servlet-class>controllers.user.LoadRecruitmentUserPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAllRecruitmentController</servlet-name>
+        <servlet-class>controllers.user.LoadAllRecruitmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadRecruitmentDetailController</servlet-name>
+        <servlet-class>controllers.user.LoadRecruitmentDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -151,6 +163,18 @@
     <servlet-mapping>
         <servlet-name>LoadNewsDetailController</servlet-name>
         <url-pattern>/LoadNewsDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadRecruitmentUserPageController</servlet-name>
+        <url-pattern>/LoadRecruitmentUserPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAllRecruitmentController</servlet-name>
+        <url-pattern>/LoadAllRecruitmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadRecruitmentDetailController</servlet-name>
+        <url-pattern>/LoadRecruitmentDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

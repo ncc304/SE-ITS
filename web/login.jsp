@@ -41,7 +41,7 @@
         <div class="container">
             <div class="wrapper">
                 <div class="form_container">
-                    <img class="login-form-title" src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" > </img>
+                    <img class="login-form-title" src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" style="position: static;"> </img>
                     <div class="container-login-form-btn">
 
                         <a class="login-form-btn" style="text-decoration: none"
@@ -50,8 +50,13 @@
                             Login with Google
                             <i class="fab fa-google"></i>
                         </a>
-                        <c:if test="${requestScope.XACTHUC != null}">
-                            <br/> <br/> <p style="color: red">${requestScope.XACTHUC}</p>
+                        <c:if test="${sessionScope.XACTHUC != null}">
+                            
+                            <div class="xacthuc">
+                                <p style="color: red; margin: 2.5% 1%; position: absolute;">
+                                    Thông báo: ${sessionScope.XACTHUC}
+                                </p>
+                            </div>
                         </c:if>
                         
                     </div>                    

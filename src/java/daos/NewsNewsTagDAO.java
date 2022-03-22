@@ -109,7 +109,7 @@ public class NewsNewsTagDAO {
 
     // ----------------- User Page -----------------
     // Lấy Tag theo NewsID để làm Navigation trong NewsDetail.jsp
-    public NewsNewsTagDTO getTagByNewsID(String idNews) {
+    public NewsNewsTagDTO getTagByNewsID(int idNews) {
         NewsNewsTagDTO dto = null;
         int id = 0;
         int newTagId = 0;

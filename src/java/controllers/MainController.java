@@ -40,8 +40,11 @@ public class MainController extends HttpServlet {
     private static final String GO_NEWS_USER = "LoadNewsUserPageController";
     private static final String GO_NEWS_TAG_USER = "LoadAllNewsTagController";
     private static final String GO_NEWS_DETAILS_USER = "LoadNewsDetailController";
-
     
+    // Recruitment   
+    private static final String GO_RECRUITMENT_USER = "LoadRecruitmentUserPageController";
+    private static final String GO_RECRUITMENT_READ_MORE_USER = "LoadAllRecruitmentController"; 
+    private static final String GO_RECRUITMENT_DETAILS_USER = "LoadRecruitmentDetailController"; 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -90,6 +93,15 @@ public class MainController extends HttpServlet {
                 url = GO_NEWS_TAG_USER;
             }else if("goNewsDetails".equals(action)){
                 url = GO_NEWS_DETAILS_USER;
+            }
+            
+            // Recruitment:
+            else if("goRecruitmentUser".equals(action)){
+                url = GO_RECRUITMENT_USER;
+            }else if("goRecruitmentReadMore".equals(action)){
+                url = GO_RECRUITMENT_READ_MORE_USER;
+            }else if("goRecruitmentDetail".equals(action)){
+                url = GO_RECRUITMENT_DETAILS_USER;
             }
             
         } catch (Exception e) {

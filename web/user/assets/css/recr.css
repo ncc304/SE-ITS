@@ -1,13 +1,13 @@
 .wrap_content{
     display: flex;
-padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 .main_contain-text{
-color: #333333;
-  width: 100%;
-  text-align: justify;
-  font-size: 1.6rem;
-  padding-top: 10px;
+    color: #333333;
+    width: 100%;
+    text-align: justify;
+    font-size: 1.6rem;
+    padding-top: 10px;
 }
 .figure{
     display: flex;
@@ -66,21 +66,21 @@ color: #333333;
 
 .wrap_content{
     display: flex;
-padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 .relative_news{
-flex: 1;
--webkit-box-flex: 0;
+    flex: 1;
+    -webkit-box-flex: 0;
     flex: 0 0 25%;
     max-width: 25%;
     padding-top: 20px;
 }
 .main_contain-text{
-color: #333333;
-  width: 100%;
-  text-align: justify;
-  font-size: 1.6rem;
-  padding-top: 10px;
+    color: #333333;
+    width: 100%;
+    text-align: justify;
+    font-size: 1.6rem;
+    padding-top: 10px;
 }
 .figure{
     display: flex;
@@ -121,7 +121,7 @@ color: #333333;
     position: absolute;
     width: 258px;
 }
-.relative_news::after{
+/*.relative_news::after{
     content: "";
     display: block;
     position: absolute;
@@ -130,8 +130,8 @@ color: #333333;
     background-color: #979797;
     right: 339px;
     top: 30%;
-    /* transform: translateY(-50%); */
-}
+     transform: translateY(-50%); 
+}*/
 .sub-time{
     margin-left: 52px;
 }
@@ -151,16 +151,16 @@ color: #333333;
     margin-top: 10px;
 }
 .btn-tag{
-  padding: 4px 6px;
-  text-align: center;
-  font-size: 12px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  background-color: white; 
-  color: black; 
-  border: 2px solid;
-  border-radius: 20%;
+    padding: 4px 6px;
+    text-align: center;
+    font-size: 12px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white; 
+    color: black; 
+    border: 2px solid;
+    border-radius: 20%;
 }
 .btn-tag:hover{
     background-color: #0004d8;
@@ -169,11 +169,12 @@ color: #333333;
 .caption:hover h5>a{
     color: #0004d8;
 }
-.category-recruit{
-    font-size: 23px;
-    background: linear-gradient(45deg, #003380 0%, #000000 100%);
-    padding: 1%;
-    color: #fdfbfb;
-    text-align: center;
-    margin-top: 50px;
+
+.category-recruit {
+  font-size: 23px;
+  background: linear-gradient(45deg, #003380 0%, #000000 100%);
+  padding: 1%;
+  color: #fdfbfb;
+  text-align: center;
+  margin-top: 50px;
 }

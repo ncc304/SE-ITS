@@ -1,61 +1,28 @@
-<%-- 
-    Document   : eventDetail
-    Created on : Mar 14, 2022, 8:43:19 AM
-    Author     : Admin
---%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>News</title>
         <link rel="icon" type="image/x-icon"
-              href="${pageContext.request.contextPath}/user/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
+              href="../Homepage/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/grid.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/base.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/responsive.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/content.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
-        <style>
-            .regis_link{
-                text-align: center;
-                height: 60px;
-            }
-            .regis_link-item{
-                padding: 18px 40px;
-                background-color: #0004d8;
-                color: #fff;
-                text-decoration: none;
-            }
-            .regis_link:hover{
-                opacity: 0.8
-            }
-            .relative_news::after{
-                content: "";
-                display: block;
-                position: absolute;
-                width: 1px;
-                height: 59%;
-                background-color: #979797;
-                right: 339px;
-                top: 30%;
-                /* transform: translateY(-50%); */
-            }
-        </style>
+        <title>JSP Page</title>
+
     </head>
-
     <body>
-
         <div class="wrapper" id="scroll-top">
             <!-- Header Navbar-->
             <div class="header">
@@ -131,143 +98,133 @@
                 </div>
             </div>
 
-        </div>
+            <!--TAG 1-->
+            <div class="slider">
+                <div class="banner banner--1">
+                    <img src="${pageContext.request.contextPath}/user/assets/images/news.jpg" alt="Friend" class="banner__img">
+                </div>
+                <div class="banner__content">
+                    <h2>Tuyển Dụng</h2>
+                </div>
+            </div> 
 
-        <div class="wrap_content">
-            <div class="main_contain">
 
-                <div class="heading-section padding-top-86px">
-
-                    <div class="site_map" style="width: auto">
-                        <a href="${pageContext.request.contextPath}/user/home.jsp" 
-                           style="font-size: 1.30em;">
-                            Trang chủ › 
-                        </a>
-                        <a href="${pageContext.request.contextPath}/MainController?action=goNewsUser" 
-                           style="font-size: 1.30em; color: #0882d9">
-                            Tin tức 
-                        </a>
-                        <c:if test="${requestScope.TAG_ID.newTagId eq 4}">
-                            <a href="MainController?action=goNewsTagReadMore&txtTagID=1" style="font-size: 1.30em;">› Đời sống sinh viên </a>
-                        </c:if>
-                        <c:if test="${requestScope.TAG_ID.newTagId eq 5}">
-                            <a href="MainController?action=goNewsTagReadMore&txtTagID=2" style="font-size: 1.30em;">› FPT High-tech </a>
-                        </c:if>
-                        <c:if test="${requestScope.TAG_ID.newTagId eq 6}">
-                            <a href="MainController?action=goNewsTagReadMore&txtTagID=3" style="font-size: 1.30em;">› Hội nhập quốc tế </a>
-                        </c:if>
-                        <a href="#" style="font-size: 1.30em;">› ${requestScope.NEWS_DETAIL.name}</a> 
-                        <div class="pubDate" style="float: right; font-size: 1.30em;">
-                            <div class="view" style="margin-left: 73%; position: relative">
-                                <span class="viewIcon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" style="color: gray;">
-                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                    </svg>
+            <div class="type-travel">
+                <div class="grid wide">
+                    <c:if test="${requestScope.txtCateID eq 4}">
+                        <div class="heading-section padding-top-86px">
+                            <div class="site_map" style="width: auto">
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tuyển Dụng 
+                                </a>
+                                <span style="font-size: 1.30em ">
+                                    › Front-End
                                 </span>
-                                <span class="viewNum" style="font-size: 14px; position: absolute; bottom: 4px; right: 4px;">
-                                    ${requestScope.NEWS_DETAIL.view}
-                                </span>
-                            </div>
-                            <br/>
-                            &ensp; ${requestScope.NEWS_DETAIL.createTime} 
+                            </div> 
+                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Front-End</h3>
                         </div>
+                    </c:if>
+                    <c:if test="${requestScope.txtCateID eq 5}">
+                        <div class="heading-section padding-top-86px">
+                            <div class="site_map" style="width: auto">
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tuyển Dụng 
+                                </a>
+                                <span style="font-size: 1.30em ">
+                                    › Back-End
+                                </span>
+                            </div> 
+                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Back-End</h3>
+                        </div>
+                    </c:if>
+                    <c:if test="${requestScope.txtCateID eq 6}">
+                        <div class="heading-section padding-top-86px">
+                            <div class="site_map" style="width: auto">
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tuyển Dụng 
+                                </a>
+                                <span style="font-size: 1.30em ">
+                                    › Mobile
+                                <span>
+                            </div> 
+                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Mobile</h3>
+                        </div>
+                    </c:if>
+                    <c:if test="${requestScope.txtCateID eq 7}">
+                        <div class="heading-section padding-top-86px">
+                            <div class="site_map" style="width: auto">
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tuyển Dụng 
+                                </a>
+                                <span style="font-size: 1.30em ">
+                                    › Full-Stack
+                                </span>
+                            </div> 
+                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Full-Stack</h3>
+                        </div>
+                    </c:if>
+                </div> 
+                <input type="radio" hidden name="dot" id="type-travel__input-one">
+                <input type="radio" hidden name="dot" id="type-travel__input-two">
 
-                    </div>
-                    <h3 class="sub-heading">${requestScope.NEWS_DETAIL.name}</h3>   
-                    <!--                    <ul class="text-info">
-                                            <li>Ngày đăng: $ {requestScope.NEWS_DETAIL.createTime}</li>
-                                            <li>Địa điểm: đại học FPT - HCM</li>
-                                        </ul>-->
-                </div>
-
-                <div class="main_contain-text para-heading--two-row">
-                    <p>
-                        ${requestScope.NEWS_DETAIL.content}
-                    </p>
-                </div>
-                <br/><br/><br/><br/><br/>
-                <div class="regis_link">
-                    <a class="regis_link-item" href="http">
-                        Đăng ký ngay
-                    </a>
-                </div>
-            </div>
-
-            <div class="relative_news para-heading--two-row" style="margin-left: auto">
-
-                <div class="heading-section padding-top-86px">
-                    <h3 class="sub-heading">Tin Tức gần đây</h3>
-                </div>
-                <c:if test="${requestScope.LIST4_RECENT != null}">
-                    <c:forEach items="${requestScope.LIST4_RECENT}" var="list4">
-                        <c:forEach items="${sessionScope.LIST_NEWS_IMG}" var="img">
-                            <c:if test="${img.newId eq list4.id}">
-                                <div class="thumb_item">
-                                    <div class="figure">
-                                        <div class="box_img">
-                                            <a href="MainController?action=goNewsDetails&txtID=${list4.id}">
-                                                <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}"/>
-                                            </a>
-                                        </div>
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="MainController?action=goNewsDetails&txtID=${list4.id}">
-                                                    ${list4.name}
+                <c:if test="${requestScope.LIST_REC != null}">
+                    <div class="grid type-travel--width">
+                        <div class="row margin-10px">
+                            <c:forEach items="${requestScope.LIST_REC}" var="list">
+                                <c:forEach items="${requestScope.COM}" var="c">
+                                    <c:if test="${list.companyId eq c.id}">
+                                        <div class="col l-3 m-6 c-12">
+                                            <div class="type-travel-item">
+                                                <a href="./recruitment_content.html" class="type-travel__link">
+                                                    <img src="${pageContext.request.contextPath}/user/assets/images/${c.link}" alt="" class="type-travel__img">
                                                 </a>
-                                                <br/>
-                                                <p style="font-size: 11px; font-style: italic;">
-                                                    ${list4.createTime}
-                                                </p>
-                                            </h5>
+                                                <div class="type-travel__plan">
+                                                    <a class="type-travel__plan-link" href="./recruitment_content.html">
+                                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
+                                                        <span>${c.name}</span>
+                                                    </a>
+                                                </div>
+                                                <div class="type-travel__intro">
+                                                    <a class="type-travel__intro-link" href="">${list.name}</a>
+                                                    <div class="type-travel__info">
+                                                        <span class="type-travel__info-price">Lương khởi đầu ${list.salary} triệu</span>
+                                                    </div>
+                                                    <p class="type-travel__intro-text">${c.address}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </c:if>
-                        </c:forEach>
-                    </c:forEach>
+                                    </c:if>
+                                </c:forEach>
+                            </c:forEach>
+                        </div>
+                    </div>
                 </c:if>
-                <div class="tags_news">
-                    <h3>Tags</h3>
-                    <a class="btn-tag" 
-                       style="text-decoration: none;"
-                       href="${pageContext.request.contextPath}/MainController?action=goNewsUser">
-                        Tin tức
-                    </a>
-                    <c:if test="${requestScope.TAG_ID.newTagId eq 4}">
-                        <a class="btn-tag" 
-                           style="text-decoration: none;"
-                           href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=1">
-                            Đời sống sinh viên
-                        </a>
+                <c:if test="${requestScope.LIST_REC == null}">
+                    <c:if test="${ empty requestScope.LIST_REC}">
+                        <h3 class="sub-heading">Không có tin tuyển dụng nào ở đây cả!</h3>
                     </c:if>
-                    <c:if test="${requestScope.TAG_ID.newTagId eq 5}">
-                        <a class="btn-tag" 
-                           style="text-decoration: none;"
-                           href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=2">
-                            FPT High-tech
-                        </a>
-                    </c:if>
-                    <c:if test="${requestScope.TAG_ID.newTagId eq 6}">
-                        <a class="btn-tag" 
-                           style="text-decoration: none;"
-                           href="${pageContext.request.contextPath}/MainController?action=goNewsTagReadMore&txtTagID=3">
-                            Hội nhập quốc tế
-                        </a>
-                    </c:if>
-
-                    <!--                        <button class="btn-tag">Back-end</button>
-                                            <button class="btn-tag">HCM</button>-->
-                </div>
+                </c:if>
             </div>
-        </div>
-        <br/> 
+
+
+
+
+        </div> 
 
         <div class="footer">
+
             <div class="grid wide">
                 <div class="row footer__content">
                     <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
-                        <div class="footer__logo-link">
+                        <div  class="footer__logo-link">
                             <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img">
                         </div>
                         <div class="footer__contact">
@@ -282,8 +239,7 @@
                                 </a>
                                 <div class="footer__contact-address-street">
                                     <i class="footer__contact-icon fas fa-map-marker-alt"></i>
-                                    <span>Lô E2a-7, Đường D1 Khu Công nghệ cao, P. Long Thạnh Mỹ, TP. Thủ Đức, TP. Hồ
-                                        Chí
+                                    <span>Lô E2a-7, Đường D1 Khu Công nghệ cao, P. Long Thạnh Mỹ, TP. Thủ Đức, TP. Hồ Chí
                                         Minh</span>
                                 </div>
                             </div>
@@ -326,5 +282,4 @@
 </div>
 </div>
 </body>
-
 </html>

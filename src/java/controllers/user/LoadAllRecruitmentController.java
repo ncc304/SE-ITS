@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.admin;
+package controllers.user;
 
-import daos.EventImageDAO;
-import daos.EventsDAO;
-import dtos.EventDTO;
-import dtos.EventsImageDTO;
+import daos.RecruitmentDAO;
+import dtos.CompanyDTO;
+import dtos.RecruitmentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,34 +22,39 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class LoadAdminPageController extends HttpServlet {
-    // Dashboard
-    
+public class LoadAllRecruitmentController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            EventsDAO dao = new EventsDAO();
-            
-            // Get 1 new event
-            EventDTO dto = dao.get1NewEvent();
-            if(dto != null){
-                request.setAttribute("EVENT", dto);
-            }
-            
-            // get list Event Image
-                EventImageDAO imgDAO = new EventImageDAO();
-                List<EventsImageDTO> listImg = imgDAO.getListEventsImageDesc();
-                HttpSession session = request.getSession();
+            RecruitmentDAO dao = new RecruitmentDAO();
+            String txtCate = request.getParameter("txtCateID");
+            HttpSession session = request.getSession();
+            List<CompanyDTO> listCom = (List<CompanyDTO>) session.getAttribute("LISTCOM");
 
-                if (listImg != null) {
-                    session.setAttribute("LIST_EVENT_IMG", listImg);
+            if (txtCate.equals("4") || txtCate.equals("5") || txtCate.equals("6") || txtCate.equals("7")) { 
+                List<RecruitmentDTO> listRE = dao.getAllNewRecruitmentByCateID(txtCate);
+                List<CompanyDTO> filter = new ArrayList<>();
+                if (listRE != null) {
+                    request.setAttribute("LIST_REC", listRE);
+                    for (RecruitmentDTO r : listRE) {
+                        for (CompanyDTO c : listCom) {
+                            if (c.getId() == r.getCompanyId()) {
+                                filter.add(c);
+                            }
+                        }
+                    }
+                    if (filter != null) {
+                        request.setAttribute("COM", filter);
+                        request.setAttribute("txtCateID", txtCate);
+                    }
                 }
-                
+            }
+
         } catch (Exception e) {
-        e.printStackTrace();
-        }finally{
-            request.getRequestDispatcher("admin/admin.jsp").forward(request, response);
+        } finally {
+            request.getRequestDispatcher("user/recruitmentReadMore.jsp").forward(request, response);
         }
     }
 

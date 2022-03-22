@@ -5,66 +5,78 @@
  */
 package controllers.user;
 
-import daos.NewsDAO;
-import daos.NewsNewsTagDAO;
-import dtos.NewsDTO;
-import dtos.NewsNewsTagDTO;
+import daos.RecruitmentDAO;
+import daos.RecruitmentRecruitmentCategoryDAO;
+import dtos.CompanyDTO;
+import dtos.RecruitmentDTO;
+import dtos.RecruitmentRecruitmentCategoryDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LoadNewsDetailController extends HttpServlet {
+public class LoadRecruitmentDetailController extends HttpServlet {
 
-    // hitCount -> đếm số lượt click: https://vietjack.com/servlets/hit_counter_trong_servlet.jsp
-//    private int hitCount;
-//
-//    public void init() {
-//        // Reset hit counter.
-//        hitCount = 0;
-//    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String newsIDStr = request.getParameter("txtID");
-            int newsID = Integer.parseInt(newsIDStr);
-            NewsDAO dao = new NewsDAO();
+            String txtID = request.getParameter("txtID");
+            RecruitmentDAO dao = new RecruitmentDAO();
+            RecruitmentDTO dto = dao.getRecruitmentByReID(txtID);
+            HttpSession session = request.getSession();
+            List<CompanyDTO> listCom = (List<CompanyDTO>) session.getAttribute("LISTCOM");
 
-            // Tăng lượt xem
-//            request.setAttribute("view", hitCount);
-            // Lấy NewsDetail + count View
-            NewsDTO dto = dao.getNewsByID(newsID);
             if (dto != null) {
-                request.setAttribute("NEWS_DETAIL", dto);
+                request.setAttribute("DTO", dto);
+                List<CompanyDTO> filter = new ArrayList<>();
+                for (CompanyDTO c : listCom) {
+                    if (c.getId() == dto.getCompanyId()) {
+                        filter.add(c);
+                    }
+                }
+                if(filter != null){
+                    request.setAttribute("COM", filter);
+                }
             }
 
-            // Lấy Navigation
-            NewsNewsTagDAO tagDAO = new NewsNewsTagDAO();
-            NewsNewsTagDTO tagDTO = tagDAO.getTagByNewsID(newsID);
-            if (tagDTO != null) {
-                request.setAttribute("TAG_ID", tagDTO);
+            // Get Navigation
+            RecruitmentRecruitmentCategoryDAO cateDAO = new RecruitmentRecruitmentCategoryDAO();
+            RecruitmentRecruitmentCategoryDTO cateDTO =  cateDAO.getCateByReID(txtID);
+            if(cateDTO != null){
+                request.setAttribute("CATE", cateDTO);
             }
-
-            // Lấy 4 Tin tức gần đây
-            List<NewsDTO> list4recent = dao.getList4NewNewsNoTag();
-            if (list4recent != null) {
-                request.setAttribute("LIST4_RECENT", list4recent);
+            
+            // Get 4 Recent Recruitment
+            List<RecruitmentDTO> list4Recent = dao.get4NewRecruitmentNoCateID();
+            if(list4Recent != null){
+                List<CompanyDTO> filter = new ArrayList<>();
+                request.setAttribute("lIST4_RECENT", list4Recent);
+                for(RecruitmentDTO r : list4Recent){
+                    for(CompanyDTO c : listCom){
+                        if (c.getId() == r.getCompanyId()) {
+                            filter.add(c);
+                        }
+                    }
+                }
+                if(filter != null){
+                    request.setAttribute("COM_RECENT", filter);
+                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher("user/newsDetail.jsp").forward(request, response);
+            request.getRequestDispatcher("user/recruitmentDetail.jsp").forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,7 +92,6 @@ public class LoadNewsDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-//        hitCount++; 
     }
 
     /**

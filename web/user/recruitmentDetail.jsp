@@ -1,8 +1,4 @@
-<%-- 
-    Document   : recruitment_content
-    Created on : Feb 13, 2022, 11:12:52 AM
-    Author     : Admin
---%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,16 +10,30 @@
         <title>Recruitment</title>
         <link rel="icon" type="image/x-icon"
               href="../Homepage/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
-        <link rel="stylesheet" href="./assets/css/reset.css">
-        <link rel="stylesheet" href="./assets/css/grid.css">
-        <link rel="stylesheet" href="./assets/css/base.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/css/responsive.css">
-        <link rel="stylesheet" href="./assets/css/recr.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/grid.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/base.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/recr.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
+
+        <style>
+            .relative_news::after{
+                content: "";
+                display: block;
+                position: absolute;
+                width: 1px;
+                height: 72%;
+                background-color: #979797;
+                right: 339px;
+                top: 30%;
+                /* transform: translateY(-50%); */
+            }
+        </style>
     </head>
 
     <body>
@@ -85,7 +95,7 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
@@ -102,136 +112,147 @@
                     </div>
                 </div>
             </div>
-           
+
 
             <div class="wrap_content">
                 <div class="main_contain">
-                    <div class="heading-section padding-top-86px">
-                        <div class="site_map"><a href="../Homepage/homepage.html">Trang chủ > </a><a href="./Recruitment.html">Tuyển dụng > </a><a href="#">MODERN JAVASCRIPT DEVELOPER</a></div>
-                        <h3 class="sub-heading">MODERN JAVASCRIPT DEVELOPER</h3>
-                        <ul class="text-info">
-                            <li>- Salary: up to 10.000$</li>
-                            <li>- Địa điểm: AP Tower, 518B Điện Biên Phủ, Phường 21, Quận Bình Thạnh, Thành phố Hồ Chí Minh
-                            </li>
-                            <li>- Kinh nghiệm: 3 năm</li>
-                            <li>- Chức vụ: nhân viên</li>
-                            <li>- Full time</li>
-                            <li>- Skills: Javascript, Front-end, ReactJS</li>
-                        </ul>
-                    </div>
+                    <c:if test="${requestScope.DTO != null}">
+                        <div class="heading-section padding-top-86px">
+                            <div class="site_map" style="width: auto">
+                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
+                                   style="font-size: 1.30em; color: #0882d9">
+                                    Tuyển Dụng 
+                                </a>›
+                                <c:if test="${requestScope.CATE.recruitmentCategoryId eq 4}">
+                                    <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=4"
+                                       style="font-size: 1.30em ">
+                                        Front-end
+                                    </a>
+                                </c:if>
+                                <c:if test="${requestScope.CATE.recruitmentCategoryId eq 5}">
+                                    <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=5"
+                                       style="font-size: 1.30em ">
+                                        Back-end
+                                    </a>
+                                </c:if>
+                                <c:if test="${requestScope.CATE.recruitmentCategoryId eq 6}">
+                                    <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=6r"
+                                       style="font-size: 1.30em ">
+                                        Mobile
+                                    </a>
+                                </c:if>
+                                <c:if test="${requestScope.CATE.recruitmentCategoryId eq 7}">
+                                    <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=7"
+                                       style="font-size: 1.30em ">
+                                        Full-Stack
+                                    </a>
+                                </c:if>    
+                                <span style="font-size: 1.30em ">
+                                    › ${requestScope.DTO.name}
+                                </span>
+                            </div> 
+                            <h3 class="sub-heading">${requestScope.DTO.name}</h3>
+                            <img src="${pageContext.request.contextPath}/user/assets/images/${requestScope.COM[0].link}" 
+                                 alt="..." class="type-travel__img"> <br/><br/><br/><br/>
 
-                    <div class="main_contain-text para-heading--two-row">
-                        <p>
-                            If you are looking for a company where you can show your skills in a dynamic environment, please
-                            come to us! Being part of our company, you will work with a funny and happy team
+                            <span class="text-info">
+                                - Công ty:  
+                            </span>
+                            <span style="font-size: 15px;">${requestScope.COM[0].name}</span> <br/>
 
-                            Additionally, you will also be able to contribute your skills, experience and knowledge to other
-                            project teams.
-                        </p>
-                    </div>
-                    <h3 class="text-info">Your role & responsibilities:</h3>
-                    <div class="main_contain-text para-heading--two-row">
-                        <ul class="list-qualified">
-                            <li>Develop custom data driven application using Newest Technology.</li>
-                            <li>Operate in an Agile/Scrum Environment.</li>
-                            <li>Participate in team brainstorming and design sessions.</li>
-                            <li>Communicate well with all team members, non-technical as well as technical.</li>
-                            <li>Suggest and give feedback within the team to improve performance and product.</li>
-                        </ul>
-                    </div>
-                    <h3 class="text-info">Your skills & qualifications:</h3>
-                    <div class="main_contain-text para-heading--two-row">
-                        <ul class="list-qualified">
-                            <li>Must be used to Modern Javascript (Common JS and ES6 or later)</li>
-                            <li>At least 3 years of career.</li>
-                            <li>Willing to learn a new thing.</li>
-                            <li>Back-end: good at handling Node.js with express, nest, koa). Be used to RDMS and SQL. Be able to make the service architecture quickly on AWS.</li>
-                            <li>Front-end: good at using React.js (next.js) with redux or another else. Be able to make any reusable components. Be able to make structural JSX with detail finishing.</li>
-                        </ul>
-                    </div>
-                    <h3 class="text-info">We don’t prefer:</h3>
-                    <div class="main_contain-text para-heading--two-row">
-                        <ul class="list-qualified">
-                            <li>Someone says I’m right always without persuading or reasonable reason.</li>
-                            <li>Someone is stubborn or cynical, complain or blame without a solution.</li>
-                            <li>Someone wants to be an artist: we have deadlines and limited-condition for each project and situation. We want an ‘Engineer’. Not an artist.</li>
-                            <li>Communicate well with all team members, non-technical as well as technical.</li>
-                            <li>Someone thinks TDD or BDD is time-wasting.</li>
-                        </ul>
-                    </div>
-                    <h3 class="text-info">Contact:</h3>
-                    <div class="main_contain-text para-heading--two-row">
-                        <ul class="list-qualified">
-                            <li>Phone: 09090909</li>
-                            <li>Email: FPTsoftware@gmail.com</li>
-                            <li>Someone wants to be an artist: we have deadlines and limited-condition for each project and situation. We want an ‘Engineer’. Not an artist.</li>
-                            <li>Address: AP Tower, 518B Điện Biên Phủ, Phường 21, Quận Bình Thạnh, Thành phố Hồ Chí Minh</li>
-                        </ul>
-                    </div>
+                            <span class="text-info">
+                                - Lương khởi điểm:  
+                            </span>
+                            <span style="font-size: 15px;">${requestScope.DTO.salary} triệu đồng</span> <br/>
+                            <span class="text-info">
+                                - Địa chỉ:  
+                            </span>
+                            <span style="font-size: 15px;">${requestScope.COM[0].address}</span> <br/>
+                            <span class="text-info">
+                                - Ngày bắt đầu tuyển:  
+                            </span>
+                            <span style="font-size: 15px;">${requestScope.DTO.startDate}</span> <br/>
+                            <span class="text-info">
+                                - Ngày kết thúc tuyển:  
+                            </span>
+                            <span style="font-size: 15px;">${requestScope.DTO.endDate}</span> <br/>
+                        </div>
 
+                        <div class="main_contain-text para-heading--two-row">
+                            <p>
+                                ${requestScope.DTO.description}
+                            </p>
+                        </div>
+                    </c:if>
                 </div>
+
+
+
                 <div class="relative_news para-heading--two-row">
                     <div class="heading-section padding-top-86px">
-                        <h3 class="sub-heading">Công việc khác</h3>
+                        <h3 class="sub-heading">Tin Tuyển Dụng Mới</h3>
                     </div>
-                    <div class="thumb_item">
-                        <div class="figure">
-                            <div class="box_img">
-                                <img src="assets/images/vng.jpg" />
-                            </div>
-                            <div class="caption">
-                                <h5>
-                                    <a href="http://">Java Developer</a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="thumb_item">
-                        <div class="figure">
-                            <div class="box_img">
-                                <img src="assets/images/job1.png" />
-                            </div>
-                            <div class="caption">
-                                <h5>
-                                    <a href="http://">NodeJS developer</a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="thumb_item">
-                        <div class="figure">
-                            <div class="box_img">
-                                <img src="assets/images/job2.png" />
-                            </div>
-                            <div class="caption">
-                                <h5>
-                                    <a href="http://">Ruby on Rails Developer</a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="thumb_item">
-                        <div class="figure">
-                            <div class="box_img">
-                                <img src="assets/images/job3.png" />
-                            </div>
-                            <div class="caption">
-                                <h5>
-                                    <a href="http://">JAVA Project Leader</a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
+                    <c:if test="${requestScope.lIST4_RECENT != null}">
+                        <c:forEach items="${requestScope.lIST4_RECENT}" var="list4">
+                            <c:forEach items="${requestScope.COM_RECENT}" var="com4">
+                                <c:if test="${com4.id eq list4.companyId}">
+                                    <div class="thumb_item">
+                                        <div class="figure">
+                                            <div class="box_img">
+                                                <img src="${pageContext.request.contextPath}/user/assets/images/${com4.link}" />
+                                            </div>
+                                            <div class="caption">
+                                                <h5>
+                                                    <a href="http://">${list4.name}</a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </c:forEach>
+                    </c:if>
                     <div class="tags_news">
                         <h3>Tags</h3>
-                        <button class="btn-tag">Back-end</button>
-                        <button class="btn-tag">HCM</button>
+                        <a class="btn-tag" 
+                           style="text-decoration: none;"
+                           href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser">
+                            tuyển dụng
+                        </a>
+                        <c:if test="${requestScope.CATE.recruitmentCategoryId eq 4}">
+                            <a class="btn-tag" 
+                               style="text-decoration: none;"
+                               href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=4">
+                                Front-end
+                            </a>
+                        </c:if>
+                        <c:if test="${requestScope.CATE.recruitmentCategoryId eq 5}">
+                            <a class="btn-tag" 
+                               style="text-decoration: none;"
+                               href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=5">
+                                Back-end
+                            </a>
+                        </c:if>
+                        <c:if test="${requestScope.CATE.recruitmentCategoryId eq 6}">
+                            <a class="btn-tag" 
+                               style="text-decoration: none;"
+                               href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=6">
+                                Mobile
+                            </a>
+                        </c:if>
+                        <c:if test="${requestScope.CATE.recruitmentCategoryId eq 7}">
+                            <a class="btn-tag" 
+                               style="text-decoration: none;"
+                               href="${pageContext.request.contextPath}/MainController?action=goRecruitmentReadMore&txtCateID=7">
+                                Full-stack
+                            </a>
+                        </c:if>
+                        <!--                        <button class="btn-tag">Back-end</button>
+                                                <button class="btn-tag">HCM</button>-->
                     </div>
-
                 </div>
-
             </div>
-
 
             <div class="footer">
 
@@ -239,7 +260,7 @@
                     <div class="row footer__content">
                         <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
                             <div class="footer__logo-link">
-                                <img src="assets/images/tải xuống.png" alt="" class="footer__logo-img">
+                                <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img" height="200" width="200">
                             </div>
                             <div class="footer__contact">
                                 <div class="footer__contact-address">

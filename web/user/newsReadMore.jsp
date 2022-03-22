@@ -84,7 +84,7 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                             </li>
                             <li class="navbar__item">
-                                <a href="<c:url value = "/user/recruitment.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
+                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
@@ -129,7 +129,7 @@
                                     › Đời sống sinh viên
                                 </a>
                             </div> 
-                            <h3 class="sub-heading">Danh Sách Các Tin Tức Đời Sống Sinh Viên Mới Nhất</h3>
+                            <h3 class="sub-heading">Danh Sách Các Tin Tức Đời Sống Sinh Viên Gần Đây</h3>
                         </div>
                     </div> 
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
@@ -182,7 +182,7 @@
                                     › FPT High-tech
                                 </a>
                             </div> 
-                            <h3 class="sub-heading">Danh Sách Các Tin Tức FPT High-tech Mới Nhất</h3>
+                            <h3 class="sub-heading">Danh Sách Các Tin Tức FPT High-tech Gần Đây</h3>
                         </div>
                     </div> 
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
@@ -234,7 +234,7 @@
                                     › Hội nhập quốc tế
                                 </a>
                             </div>
-                            <h3 class="sub-heading">Danh Sách Các Tin Tức Hội Nhập Quốc Tế Mới Nhất</h3>
+                            <h3 class="sub-heading">Danh Sách Các Tin Tức Hội Nhập Quốc Tế Gần Đây</h3>
                         </div>
                     </div> 
                     <input type="radio" hidden name="dot" id="type-travel__input-one">

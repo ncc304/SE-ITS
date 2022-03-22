@@ -259,12 +259,14 @@ public class NewsDAO {
                 } else {
                     status = true;
                 }
-//                createTime = rs.getDate("create_time").toString();
-                Timestamp timeTmp = new Timestamp(rs.getDate("create_time").getTime());
-                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
-                cal1.setTimeInMillis(timeTmp.getTime());
-                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                timeTmp = new Timestamp(cal1.getTime().getTime());
+                // chưa get dc HH:mm:ss
+                String creatDate1 = rs.getString("create_time");
+                java.util.Date d1 = formatCreateTime.parse(creatDate1);
+                Timestamp timeTmp = new Timestamp(d1.getTime());
+//                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+//                cal1.setTimeInMillis(timeTmp.getTime());
+//                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+//                timeTmp = new Timestamp(cal1.getTime().getTime());
                 createTime = formatCreateTime.format(timeTmp.getTime()); // convert to string
 
                 content = rs.getString("content");
@@ -309,12 +311,14 @@ public class NewsDAO {
                 } else {
                     status = true;
                 }
-//                createTime = rs.getDate("create_time").toString();
-                Timestamp timeTmp = new Timestamp(rs.getDate("create_time").getTime());
-                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
-                cal1.setTimeInMillis(timeTmp.getTime());
-                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                timeTmp = new Timestamp(cal1.getTime().getTime());
+                String createTimeTmp = rs.getString("create_time");
+                Date dTmp = formatCreateTime.parse(createTimeTmp);
+
+                Timestamp timeTmp = new Timestamp(dTmp.getTime());
+//                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+//                cal1.setTimeInMillis(timeTmp.getTime());
+//                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+//                timeTmp = new Timestamp(cal1.getTime().getTime());
                 createTime = formatCreateTime.format(timeTmp.getTime()); // convert to string
 
                 content = rs.getString("content");
@@ -329,9 +333,9 @@ public class NewsDAO {
         return listNews;
     }
 
-    public NewsDTO getNewsByID(String idNews) {
+    public NewsDTO getNewsByID(int idNews) { // + Count View
         NewsDTO dto = null;
-        int id = Integer.parseInt(idNews);
+        int id = idNews;
         String name = null;
         boolean status = false;
         String createTime = null;
@@ -344,10 +348,21 @@ public class NewsDAO {
 //            DataSource ds = (DataSource) envCtx.lookup("DBCon");
 //            Connection con = ds.getConnection();
             con = MyConnection.getConnection();
+            // check ID có trong DB không
+            String sql1 = "SELECT * FROM SWP391.News WHERE status = 1 AND id = " + id;
+            Statement stmt1 = con.createStatement();
+            ResultSet rs1 = stmt1.executeQuery(sql1);
+            if(rs1.next()){ // có thì update view + 1
+                countView(idNews);
+            }
+            
+            // Sau đó get News mới nhất với View đã dc cập nhật
+            SimpleDateFormat formatCreateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String sql = "SELECT * FROM SWP391.News WHERE status = 1 AND id = " + id;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
+            if (rs.next()) {
+                
                 id = rs.getInt("id");
                 name = rs.getString("name");
                 if (rs.getInt("status") == 0) {
@@ -355,12 +370,19 @@ public class NewsDAO {
                 } else {
                     status = true;
                 }
-                createTime = rs.getDate("create_time").toString();
+                String createTimeTmp = rs.getString("create_time");
+                Date dTmp = formatCreateTime.parse(createTimeTmp);
+                Timestamp timeTmp = new Timestamp(dTmp.getTime());
+//                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+//                cal1.setTimeInMillis(timeTmp.getTime());
+//                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+//                timeTmp = new Timestamp(cal1.getTime().getTime());
+                createTime = formatCreateTime.format(timeTmp.getTime()); // convert to string
+
                 content = rs.getString("content");
                 author = rs.getString("author");
                 view = rs.getInt("view");
                 dto = new NewsDTO(id, name, status, createTime, content, author, view);
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -369,7 +391,7 @@ public class NewsDAO {
     }
 
     // Lấy 4 Tin tức mới nhất ko cần tho Tag
-        public List<NewsDTO> getList4NewNewsNoTag() {
+    public List<NewsDTO> getList4NewNewsNoTag() {
         List<NewsDTO> listNews = new ArrayList<>();
         int id = 0;
         String name = null;
@@ -396,12 +418,13 @@ public class NewsDAO {
                 } else {
                     status = true;
                 }
-//                createTime = rs.getDate("create_time").toString();
-                Timestamp timeTmp = new Timestamp(rs.getDate("create_time").getTime());
-                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
-                cal1.setTimeInMillis(timeTmp.getTime());
-                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                timeTmp = new Timestamp(cal1.getTime().getTime());
+                String createTimeTmp = rs.getString("create_time");
+                Date dTmp = formatCreateTime.parse(createTimeTmp);
+                Timestamp timeTmp = new Timestamp(dTmp.getTime());
+//                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+//                cal1.setTimeInMillis(timeTmp.getTime());
+//                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+//                timeTmp = new Timestamp(cal1.getTime().getTime());
                 createTime = formatCreateTime.format(timeTmp.getTime()); // convert to string
 
                 content = rs.getString("content");
@@ -414,5 +437,38 @@ public class NewsDAO {
             e.printStackTrace();
         }
         return listNews;
+    }
+
+    // Tăng lượt xem
+    public boolean countView(int idNews) {
+        boolean check = false;
+        int view = 0;
+        boolean checkView = false;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+
+            String sql_1 = "SELECT [view] FROM [SWP391].[News] WHERE id = " + idNews;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql_1);
+            if (rs.next()) {
+                view = rs.getInt("view"); // Get View By ID
+                checkView = true;
+            }
+            if (checkView) { // Update View By ID
+                view++;
+                String sql_2 = "UPDATE [SWP391].[News] SET [view] = " + view + " WHERE id = " + idNews;
+                PreparedStatement pr = con.prepareStatement(sql_2);
+                check = pr.executeUpdate() > 0;
+                check = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
     }
 }

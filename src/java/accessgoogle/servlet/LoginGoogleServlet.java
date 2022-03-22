@@ -68,7 +68,7 @@ public class LoginGoogleServlet extends HttpServlet {
                 String check = dao.checkLogin(email);
                 if (check == "Login Fail") {
                     email = "You don't have permisstion";
-                    request.setAttribute("XACTHUC", "You don't have permisstion!");
+                    session.setAttribute("XACTHUC", "You don't have permisstion!");
                 } else {
                     url = adminPage;
                 }

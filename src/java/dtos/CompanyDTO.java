@@ -13,7 +13,7 @@ public class CompanyDTO {
     int id;
     String name;
     String address;
-
+    String link;
     public CompanyDTO() {
     }
 
@@ -21,6 +21,13 @@ public class CompanyDTO {
         this.id = id;
         this.name = name;
         this.address = address;
+    }
+
+    public CompanyDTO(int id, String name, String address, String link) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.link = link;
     }
 
     public int getId() {
@@ -46,6 +53,16 @@ public class CompanyDTO {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    
     
     
 }
