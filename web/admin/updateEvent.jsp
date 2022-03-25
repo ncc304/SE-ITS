@@ -142,7 +142,7 @@
                                     <div class="form-group">
                                         <span class="date1">
                                             <label>Ngày bắt đầu </label>
-                                            <c:out value="${dto.startDate}"/>
+                                            
                                             
                                             <!--<input value="$ {dto.startDate}" type="datetime-local" name="date1"  style="border: 1px solid #00000024; margin-left: 5px;">-->
                                             <input value="${dto.startDate}" type="datetime-local" name="date1"  style="border: 1px solid #00000024; margin-left: 5px;">
@@ -150,7 +150,7 @@
 
                                         <span class="date2" style="margin-left: 10%">
                                             <label>Ngày kết thúc </label>
-                                            <input type="datetime-local" name="date2" style="border: 1px solid #00000024; margin-left: 5px;">
+                                            <input value="${dto.endDate}" type="datetime-local" name="date2" style="border: 1px solid #00000024; margin-left: 5px;">
                                         </span>
                                     </div>
                                     <br/>
@@ -183,7 +183,7 @@
                                     <br/>
                                     <div class="form-group">
                                         <label>Tiêu đề</label>
-                                        <input type="text" class="form-control" name="txtTitle">
+                                        <input type="text" value="${dto.name}" class="form-control" name="txtTitle">
                                     </div>
                                     <br/>
 
@@ -214,7 +214,7 @@
                                     </span>
 
                                     <br/><br/><br/>
-                                    <input type="submit" value="Thêm sự kiện" name="action" id="btnCreate" class="btn btn-warning" style="margin-left: 50%"></input>
+                                    <input type="submit" value="Sửa sự kiện" name="action" id="btnCreate" class="btn btn-warning" style="margin-left: 50%"></input>
                                 </form>
                             </div>
                         </div>

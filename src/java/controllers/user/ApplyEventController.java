@@ -3,62 +3,48 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.admin;
+package controllers.user;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.EventAccountDAO;
+import dtos.EventAccountDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LoadEventByIDController extends HttpServlet {
+public class ApplyEventController extends HttpServlet {
+
+    // Đã login và thêm tiếp sự kiện
+    private static final String backEventDetail = "MainController?action=goEventDetails&txtID=";
+    private static final String ERROR = "error.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            String txtName = request.getParameter("txtEventName");
-            String txtStart = request.getParameter("txtStart");
-            String txtEnd = request.getParameter("txtEnd");
-            String txtStatus = request.getParameter("txtStatus");
-            String txtDes = request.getParameter("txtDes");
-            String txtType = request.getParameter("txtType");
-            String txtImg = request.getParameter("txtImg");
+            HttpSession session = request.getSession();
+            String txtEventID = request.getParameter("txtID");
+            int eventID = Integer.parseInt(txtEventID);
+            int userID = (Integer) session.getAttribute("USER_ID");
 
-            String[] tmp1 = txtStart.split(" ");
-            String startDate = tmp1[0] + "T" + tmp1[1];
-            
-            String[] tmp2 = txtEnd.split(" ");
-            String endDate = tmp2[0] + "T" + tmp2[1];
-            
-//            2018-06-12T19:30
-            EventDTO dto
-                    = new EventDTO(Integer.parseInt(txtID), txtName, startDate, endDate, Boolean.parseBoolean(txtStatus), txtDes, "", txtType, "");
+            EventAccountDAO eaDAO = new EventAccountDAO();
+            EventAccountDTO eaDTO = new EventAccountDTO(0, eventID, userID, true);
 
-            EventsDAO dao = new EventsDAO();
-
-            if (dto != null) {
-                request.setAttribute("EVENT", dto);
-                request.setAttribute("IMG", txtImg);
+            boolean check = eaDAO.createtEventAccount(eaDTO);
+            if (check) {
+                url = backEventDetail + eventID;
             }
-
         } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            request.getRequestDispatcher("admin/updateEvent.jsp").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

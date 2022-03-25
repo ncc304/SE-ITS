@@ -23,16 +23,18 @@ import utils.MyConnection;
  */
 public class NewsImageDAO {
     Connection con = null;
+    
     public List<NewsImageDTO> getListNewsImage() {
         List<NewsImageDTO> listNewsImage = new ArrayList<>();
         int id = 0;
         String link = null;
         int newsId = 0;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.News_Images;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);

@@ -88,6 +88,18 @@
         <servlet-name>LoadRecruitmentDetailController</servlet-name>
         <servlet-class>controllers.user.LoadRecruitmentDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApplyEventController</servlet-name>
+        <servlet-class>controllers.user.ApplyEventController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAllEventToCancelController</servlet-name>
+        <servlet-class>controllers.user.LoadAllEventToCancelController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelEventController</servlet-name>
+        <servlet-class>controllers.user.CancelEventController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -175,6 +187,18 @@
     <servlet-mapping>
         <servlet-name>LoadRecruitmentDetailController</servlet-name>
         <url-pattern>/LoadRecruitmentDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApplyEventController</servlet-name>
+        <url-pattern>/ApplyEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAllEventToCancelController</servlet-name>
+        <url-pattern>/LoadAllEventToCancelController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelEventController</servlet-name>
+        <url-pattern>/CancelEventController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

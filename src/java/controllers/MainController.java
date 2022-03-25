@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Admin
  */
 public class MainController extends HttpServlet {
+
     private static final String ERROR = "error.jsp";
     private static final String GO_LOGOUT = "LogoutController";
+
     
     // --------------------- Admin Page -------------------------
     private static final String GO_DASHBOARD = "LoadAdminPageController";
@@ -27,25 +29,31 @@ public class MainController extends HttpServlet {
     private static final String createEvent = "CreateEventController";
     private static final String deleteEvent = "DeleteEventController";
     private static final String goUpdateEvent = "LoadEventByIDController";
-    
-            
+
     // --------------------- User Page -------------------------
     // Event
     private static final String GO_EVENT_USER = "LoadEventUserPageController";
     private static final String GO_EVENT_ONLINE_USER = "LoadAllEventOnlController";
     private static final String GO_EVENT_OFFLINE_USER = "LoadAllEventOffController";
     private static final String GO_EVENT_DETAILS_USER = "LoadEventDetailController";
-    
+
+    // Apply Event
+    private static final String APPLY_EVENT = "ApplyEventController";
+
+    // Manage Event: Cancel Event
+    private static final String GO_CANCEL_EVENT = "LoadAllEventToCancelController";
+    private static final String CANCEL_EVENT = "CancelEventController";
+
     // News
     private static final String GO_NEWS_USER = "LoadNewsUserPageController";
     private static final String GO_NEWS_TAG_USER = "LoadAllNewsTagController";
     private static final String GO_NEWS_DETAILS_USER = "LoadNewsDetailController";
-    
+
     // Recruitment   
     private static final String GO_RECRUITMENT_USER = "LoadRecruitmentUserPageController";
-    private static final String GO_RECRUITMENT_READ_MORE_USER = "LoadAllRecruitmentController"; 
-    private static final String GO_RECRUITMENT_DETAILS_USER = "LoadRecruitmentDetailController"; 
-    
+    private static final String GO_RECRUITMENT_READ_MORE_USER = "LoadAllRecruitmentController";
+    private static final String GO_RECRUITMENT_DETAILS_USER = "LoadRecruitmentDetailController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -55,58 +63,58 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             // ------------------- Admin Page -------------------
             // Event:
-            if("goCreateEvent".equals(action)){
+            if ("goCreateEvent".equals(action)) {
                 url = GO_EVENT;
-            }else if("Thêm sự kiện".equals(action)){
+            } else if ("Thêm sự kiện".equals(action)) {
                 url = createEvent;
-            }else if("goEventPage".equals(action)){
+            } else if ("goEventPage".equals(action)) {
                 url = goEventPage;
-            }else if("deleteEvent".equals(action)){
+            } else if ("deleteEvent".equals(action)) {
                 url = deleteEvent;
-            }else if("goUpdateEvent".equals(action)){
+            } else if ("goUpdateEvent".equals(action)) {
                 url = goUpdateEvent;
-            }else if("goDashBoard".equals(action)){
+            } else if ("goDashBoard".equals(action)) {
                 url = GO_DASHBOARD;
-            }
-            // Logout:
-            else if("goLogout".equals(action)){
+            } // Logout:
+            else if ("goLogout".equals(action)) {
                 url = GO_LOGOUT;
-            }
-            
-            
-            // ------------------- User Page -------------------
-            // Event:
-            else if("goEventUser".equals(action)){
+            } // ------------------- User Page -------------------
+            else if ("applyEvent".equals(action)) {
+                url = APPLY_EVENT;
+            } // Event:
+            else if ("goEventUser".equals(action)) {
                 url = GO_EVENT_USER;
-            }else if("goEventOnlReadMore".equals(action)){
+            } else if ("goEventOnlReadMore".equals(action)) {
                 url = GO_EVENT_ONLINE_USER;
-            }else if("goEventOffReadMore".equals(action)){
+            } else if ("goEventOffReadMore".equals(action)) {
                 url = GO_EVENT_OFFLINE_USER;
-            }else if("goEventDetails".equals(action)){
+            } else if ("goEventDetails".equals(action)) {
                 url = GO_EVENT_DETAILS_USER;
+            } else if ("goEventCancel".equals(action)) {
+                url = GO_CANCEL_EVENT;
+            } else if ("cancelEvent".equals(action)) {
+                url = CANCEL_EVENT;
             }
             
             // News:
-            else if("goNewsUser".equals(action)){
+            else if ("goNewsUser".equals(action)) {
                 url = GO_NEWS_USER;
-            }else if("goNewsTagReadMore".equals(action)){
+            } else if ("goNewsTagReadMore".equals(action)) {
                 url = GO_NEWS_TAG_USER;
-            }else if("goNewsDetails".equals(action)){
+            } else if ("goNewsDetails".equals(action)) {
                 url = GO_NEWS_DETAILS_USER;
-            }
-            
-            // Recruitment:
-            else if("goRecruitmentUser".equals(action)){
+            } // Recruitment:
+            else if ("goRecruitmentUser".equals(action)) {
                 url = GO_RECRUITMENT_USER;
-            }else if("goRecruitmentReadMore".equals(action)){
+            } else if ("goRecruitmentReadMore".equals(action)) {
                 url = GO_RECRUITMENT_READ_MORE_USER;
-            }else if("goRecruitmentDetail".equals(action)){
+            } else if ("goRecruitmentDetail".equals(action)) {
                 url = GO_RECRUITMENT_DETAILS_USER;
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

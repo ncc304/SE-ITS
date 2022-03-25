@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+  <%--<%@ taglib uri="http://java.fckeditor.net" prefix="FCK" %>--%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -182,10 +183,16 @@
                                                                     </td>
                                                                     <td class="text-end">
                                                                         <!--<input type="hidden" name="txtStatus" value="$ {param.txtStatus}"/>-->
+
                                                                         <a class="btn btn-sm btn-neutral"  
                                                                            href="MainController?action=goUpdateEvent&txtEventID=${event.id}&txtEventName=${event.name}&txtStart=${event.startDate}&txtEnd=${event.endDate}&txtStatus=${event.status}&txtType=${event.type}&txtImg=${eventImg.link}">
-                                                                           
                                                                             <i class="bi bi-pencil"></i>
+                                                                            <!--<input type="hidden" name="txtDes" value=" {event.description}"/>-->
+                                                                            <FCK:editor instanceName="EditorDefault">
+                                                                                <jsp:attribute name="value">This is some <strong>sample text</strong>.
+                                                                                    You are using <a href="http://www.fckeditor.net">FCKeditor</a>.
+                                                                                </jsp:attribute>
+                                                                            </FCK:editor>
                                                                         </a>
                                                                         <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
                                                                            href="MainController?action=deleteEvent&txtEventID=${event.id}"
@@ -193,6 +200,7 @@
                                                                             <i class="bi bi-trash"></i>
                                                                         </a>
                                                                     </td>
+
                                                                 </c:if>
                                                             </tr>
                                                         </c:forEach>

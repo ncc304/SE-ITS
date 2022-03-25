@@ -66,6 +66,7 @@ public class EventsDAO {
 //        } 
         /////////// SQLServer
         try {
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Events;";
             Statement stmt = con.createStatement();
@@ -78,8 +79,24 @@ public class EventsDAO {
                 } else {
                     status = true;
                 }
-                startDate = rs.getString("startDate");
-                endDate = rs.getString("endDate");
+                String startDateTmp = rs.getString("startDate");
+                Date d1 = fmt.parse(startDateTmp);
+                Timestamp stamp1 = new Timestamp(d1.getTime());
+                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal1.setTimeInMillis(stamp1.getTime());
+                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp1 = new Timestamp(cal1.getTime().getTime());
+                startDate = fmt.format(stamp1);
+
+                String endDateTmp = rs.getString("endDate");
+                Date d2 = fmt.parse(endDateTmp);
+                Timestamp stamp2 = new Timestamp(d2.getTime());
+                Calendar cal2 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal2.setTimeInMillis(stamp2.getTime());
+                cal2.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp2 = new Timestamp(cal2.getTime().getTime());
+                endDate = fmt.format(stamp2);
+
                 description = rs.getString("description");
                 owner = rs.getString("owner");
                 type = rs.getString("type");
@@ -92,8 +109,8 @@ public class EventsDAO {
                 createDate1 = new Timestamp(cal.getTime().getTime());
                 // chuyển TimeStamp thành String
 //                createDate = createDate1.toString();   // format: 2022-01-01 00:00:00.0   
-                SimpleDateFormat formatCreateDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                createDate = formatCreateDate.format(createDate1.getTime());
+
+                createDate = fmt.format(createDate1.getTime());
 
                 EventDTO dto = new EventDTO(id, name, startDate, endDate, status, description, owner, type, createDate);
                 listEvent.add(dto);
@@ -343,7 +360,7 @@ public class EventsDAO {
                 Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
                 cal1.setTimeInMillis(stamp1.getTime());
                 cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                stamp1 = new Timestamp(cal1.getTime().getTime()); 
+                stamp1 = new Timestamp(cal1.getTime().getTime());
                 startDate = format.format(stamp1.getTime()); // convert to string
 
                 String endDateTmp = rs.getString("endDate");
@@ -353,7 +370,7 @@ public class EventsDAO {
                 Calendar cal2 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
                 cal2.setTimeInMillis(stamp2.getTime());
                 cal2.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                stamp2 = new Timestamp(cal2.getTime().getTime()); 
+                stamp2 = new Timestamp(cal2.getTime().getTime());
                 endDate = format.format(stamp2.getTime()); // convert to string
 
                 description = rs.getString("description");
@@ -525,76 +542,10 @@ public class EventsDAO {
         return listEvent;
     }
 
-    // For Admin Dashboard Page
-    public EventDTO get1NewEvent() {
-        EventDTO dto = null;
-        int id = 0;//
-        String name;//
-        String startDate;
-        String endDate;
-        boolean status;//
-        String description;
-        String owner;
-        String type;
-        String createDate;
-
-        /////////// SQLServer
-        try {
-            con = MyConnection.getConnection();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String sql = "SELECT TOP 1 * from SWP391.Events WHERE status = 1 Order By id DESC;";
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                id = rs.getInt("id");
-                name = rs.getString("name");
-                if (rs.getInt("status") == 0) {
-                    status = false;
-                } else {
-                    status = true;
-                }
-                // Thêm 2 ngày StartDate
-//                startDate = rs.getString("startDate");
-                Timestamp startDateTmp = new Timestamp(rs.getDate("startDate").getTime());
-                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
-                cal1.setTimeInMillis(startDateTmp.getTime());
-                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                startDateTmp = new Timestamp(cal1.getTime().getTime());
-                startDate = format.format(startDateTmp.getTime()); // convert to string
-
-                // Thêm 2 ngày EndDate
-//                endDate = rs.getString("endDate");
-                Timestamp endDateTmp = new Timestamp(rs.getDate("endDate").getTime());
-                Calendar cal2 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
-                cal2.setTimeInMillis(endDateTmp.getTime());
-                cal2.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                endDateTmp = new Timestamp(cal2.getTime().getTime());
-                endDate = format.format(endDateTmp.getTime()); // convert to string
-
-                description = rs.getString("description");
-                owner = rs.getString("owner");
-                type = rs.getString("type");
-
-                // Thêm 2 ngày CreateDate
-//                createDate = rs.getString("createDate");
-                Timestamp createDate3 = new Timestamp(rs.getDate("createDate").getTime());
-                Calendar cal3 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
-                cal3.setTimeInMillis(createDate3.getTime());
-                cal3.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
-                createDate3 = new Timestamp(cal3.getTime().getTime());
-                createDate = format.format(createDate3.getTime());
-                dto = new EventDTO(id, name, startDate, endDate, status, description, owner, type, createDate);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return dto;
-    }
-
     //Search event by event ID for event details
-    public EventDTO getEventByID(String idStr) {
+    public EventDTO getEventByID(int idEvent) {
         EventDTO dto = null;
-        int id = Integer.parseInt(idStr);//
+        int id = idEvent;//
         String name;//
         String startDate;
         String endDate;
@@ -702,7 +653,7 @@ public class EventsDAO {
                 cal1.add(Calendar.DAY_OF_MONTH, 2);
                 stamp1 = new Timestamp(cal1.getTime().getTime());
                 startDate = format.format(stamp1.getTime());
-                
+
                 String endDateTmp = rs.getString("endDate");
                 Date dTmp2 = format.parse(endDateTmp);
                 Timestamp stamp2 = new Timestamp(dTmp2.getTime());
@@ -711,12 +662,11 @@ public class EventsDAO {
                 cal2.add(Calendar.DAY_OF_MONTH, 2);
                 stamp2 = new Timestamp(cal2.getTime().getTime());
                 endDate = format.format(stamp2.getTime());
-                
-                
+
                 description = rs.getString("description");
                 owner = rs.getString("owner");
                 type = rs.getString("type");
-                
+
                 String createDateTmp = rs.getString("createDate");
                 Date dTmp3 = format.parse(createDateTmp);
                 Timestamp stamp3 = new Timestamp(dTmp3.getTime());
@@ -725,7 +675,7 @@ public class EventsDAO {
                 cal3.add(Calendar.DAY_OF_WEEK, 2);
                 stamp3 = new Timestamp(cal3.getTime().getTime());
                 createDate = format.format(stamp3.getTime());
-                
+
                 EventDTO dto = new EventDTO(id, name, startDate, endDate, status, description, owner, type, createDate);
                 listEvent.add(dto);
             }
@@ -733,5 +683,145 @@ public class EventsDAO {
             e.printStackTrace();
         }
         return listEvent;
+    }
+
+    // User cancel Event: Get những Event mà User đã apply
+    public List<EventDTO> getListEventByAccountID(int userID) {
+        List<EventDTO> listEvent = new ArrayList<>();
+        int id = 0;//
+        String name;//
+        String startDate;
+        String endDate;
+        boolean status;//
+        String description;
+        String owner;
+        String type;
+        String createDate;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+
+            con = MyConnection.getConnection();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String sql = "SELECT * FROM [SWP391].[Events] WHERE  id IN \n"
+                    + "(SELECT Events_id FROM  [SWP391].[Events_has_Account] "
+                    + " WHERE Account_id = "+userID+") Order By id DESC";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getInt("id");
+                name = rs.getString("name");
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                String startDateTmp = rs.getString("startDate");
+                Date dTmp1 = format.parse(startDateTmp);
+                Timestamp stamp1 = new Timestamp(dTmp1.getTime());
+                Calendar cal1 = Calendar.getInstance();
+                cal1.setTimeInMillis(stamp1.getTime());
+                cal1.add(Calendar.DAY_OF_MONTH, 2);
+                stamp1 = new Timestamp(cal1.getTime().getTime());
+                startDate = format.format(stamp1.getTime());
+
+                String endDateTmp = rs.getString("endDate");
+                Date dTmp2 = format.parse(endDateTmp);
+                Timestamp stamp2 = new Timestamp(dTmp2.getTime());
+                Calendar cal2 = Calendar.getInstance();
+                cal2.setTimeInMillis(stamp2.getTime());
+                cal2.add(Calendar.DAY_OF_MONTH, 2);
+                stamp2 = new Timestamp(cal2.getTime().getTime());
+                endDate = format.format(stamp2.getTime());
+
+                description = rs.getString("description");
+                owner = rs.getString("owner");
+                type = rs.getString("type");
+
+                String createDateTmp = rs.getString("createDate");
+                Date dTmp3 = format.parse(createDateTmp);
+                Timestamp stamp3 = new Timestamp(dTmp3.getTime());
+                Calendar cal3 = Calendar.getInstance();
+                cal3.setTimeInMillis(stamp3.getTime());
+                cal3.add(Calendar.DAY_OF_WEEK, 2);
+                stamp3 = new Timestamp(cal3.getTime().getTime());
+                createDate = format.format(stamp3.getTime());
+
+                EventDTO dto = new EventDTO(id, name, startDate, endDate, status, description, owner, type, createDate);
+                listEvent.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listEvent;
+    }
+
+    // -------------------- Admin Page -------------------------------
+    // For Admin Dashboard Page
+    public EventDTO get1NewEvent() {
+        EventDTO dto = null;
+        int id = 0;//
+        String name;//
+        String startDate;
+        String endDate;
+        boolean status;//
+        String description;
+        String owner;
+        String type;
+        String createDate;
+
+        /////////// SQLServer
+        try {
+            con = MyConnection.getConnection();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String sql = "SELECT TOP 1 * from SWP391.Events WHERE status = 1 Order By id DESC;";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                id = rs.getInt("id");
+                name = rs.getString("name");
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                // Thêm 2 ngày StartDate
+//                startDate = rs.getString("startDate");
+                Timestamp startDateTmp = new Timestamp(rs.getDate("startDate").getTime());
+                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal1.setTimeInMillis(startDateTmp.getTime());
+                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                startDateTmp = new Timestamp(cal1.getTime().getTime());
+                startDate = format.format(startDateTmp.getTime()); // convert to string
+
+                // Thêm 2 ngày EndDate
+//                endDate = rs.getString("endDate");
+                Timestamp endDateTmp = new Timestamp(rs.getDate("endDate").getTime());
+                Calendar cal2 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal2.setTimeInMillis(endDateTmp.getTime());
+                cal2.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                endDateTmp = new Timestamp(cal2.getTime().getTime());
+                endDate = format.format(endDateTmp.getTime()); // convert to string
+
+                description = rs.getString("description");
+                owner = rs.getString("owner");
+                type = rs.getString("type");
+
+                // Thêm 2 ngày CreateDate
+//                createDate = rs.getString("createDate");
+                Timestamp createDate3 = new Timestamp(rs.getDate("createDate").getTime());
+                Calendar cal3 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal3.setTimeInMillis(createDate3.getTime());
+                cal3.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                createDate3 = new Timestamp(cal3.getTime().getTime());
+                createDate = format.format(createDate3.getTime());
+                dto = new EventDTO(id, name, startDate, endDate, status, description, owner, type, createDate);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 }

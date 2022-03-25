@@ -52,7 +52,7 @@
                                 <i class="fas fa-times"></i>
                             </label>
                             <li class="navbar__item">
-                                <a href = "<c:url value = "/user/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
+                                <a href = "${pageContext.request.contextPath}/user/home.jsp" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
 
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
@@ -94,9 +94,16 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
-                                    Đăng nhập
-                                </a>
+                                <c:if test="${sessionScope.USER_ID == null}">
+                                    <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                        Đăng nhập
+                                    </a>
+                                </c:if>
+                                <c:if test="${sessionScope.USER_ID != null}">
+                                    <a href="${pageContext.request.contextPath}/MainController?action=goLogout" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                        Đăng Xuất
+                                    </a>
+                                </c:if>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                         </ul>   

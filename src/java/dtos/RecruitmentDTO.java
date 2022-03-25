@@ -20,19 +20,12 @@ public class RecruitmentDTO {
     int companyId;
     boolean status;
     String name;
+    String owner;
+    String createDate;
     public RecruitmentDTO() {
     }
 
-    public RecruitmentDTO(int id, String startDate, String endDate, float salary, String description, int companyId) {
-        this.id = id;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.salary = salary;
-        this.description = description;
-        this.companyId = companyId;
-    }
-
-    public RecruitmentDTO(int id, String startDate, String endDate, float salary, String description, int companyId, boolean status, String name) {
+    public RecruitmentDTO(int id, String startDate, String endDate, float salary, String description, int companyId, boolean status, String name, String owner) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -41,8 +34,25 @@ public class RecruitmentDTO {
         this.companyId = companyId;
         this.status = status;
         this.name = name;
+        this.owner = owner;
+    }
+    
+    // admin them createDate
+    public RecruitmentDTO(int id, String startDate, String endDate, float salary, String description, int companyId, boolean status, String name, String owner, String createDate) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.salary = salary;
+        this.description = description;
+        this.companyId = companyId;
+        this.status = status;
+        this.name = name;
+        this.owner = owner;
+        this.createDate = createDate;
     }
 
+    
+    
     public int getId() {
         return id;
     }
@@ -107,9 +117,21 @@ public class RecruitmentDTO {
         this.name = name;
     }
 
-    
+    public String getOwner() {
+        return owner;
+    }
 
-    
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
 
     
     

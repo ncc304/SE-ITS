@@ -33,7 +33,7 @@
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
                             .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
-                            .bi-person-square::before, .bi-box-arrow-left::before
+                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before
                             {
                                 color: black;
                             }
@@ -55,18 +55,20 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
-                                    <i class="bi bi-journal-bookmark"></i> Ngành học
-
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                    <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
-
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
+                                    <i class="bi bi-journal-bookmark"></i> Ngành học
+                                </a>
+                            </li>
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">
@@ -194,36 +196,38 @@
                                     <!--xanh #0066B2  cam #F26F21  xanh la #0EB04C-->
                                 </div>
                                 <div class="col-3">
-                                    <a href="#">
-                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
+                                    <a href="MainController?action=goNewsDetails&txtID=${requestScope.NEWS.id}">
+                                        <img src="${pageContext.request.contextPath}/user/assets/images/${requestScope.NEWS_IMG[0].link}"
                                              style="width: 150px; height: 100px; margin-left: 50%">
                                     </a>
-
                                 </div>
                                 <div class="col-7">
-                                    <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
+                                    <a href="MainController?action=goNewsDetails&txtID=${requestScope.NEWS.id}" 
+                                       class="text-warning">${requestScope.NEWS.name}.</a> <br/><br/>
                                     <label style="font-weight: bold">Tác giả: </label> 
                                     <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
-                                        <label style="font-weight: 500;">Admin 1</label>
+                                        <label style="font-weight: 500; font-size: 14px;">${requestScope.NEWS.author}</label>
                                     </span>
                                 </div>
                                 <br>
 
                                 <div class="col-10" style="margin-left: 2%; margin-top: 2%">
                                     <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #F26F21">
-                                        Ngành học
+                                        Tuyển Dụng
                                     </label>
                                 </div>
                                 <div class="col-3">
-                                    <a href="#">
-                                        <img src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg"
+                                    <a href="MainController?action=goRecruitmentDetail&txtID=${requestScope.RE.id}">
+                                        <img src="${pageContext.request.contextPath}/user/assets/images/${requestScope.RE_IMG[0].link}"
                                              style="width: 150px; height: 100px; margin-left: 50%">
                                     </a>
                                 </div>
                                 <div class="col-7">
-                                    <a href="#" class="text-warning">SV FPTU TP. HCM nhìn lại hành trình “Brothers & Sisters”.</a> <br/><br/>
-                                    <label style="font-weight: bold">Tác giả: </label> <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
-                                        Admin 1
+                                    <a href="MainController?action=goRecruitmentDetail&txtID=${requestScope.RE.id}" 
+                                       class="text-warning">${requestScope.RE.name}.</a> <br/><br/>
+                                    <label style="font-weight: bold">Tác giả: </label> 
+                                    <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
+                                        <label style="font-weight: 500; font-size: 14px;">${requestScope.RE.owner}</label>
                                     </span>
                                 </div>
                                 <br>
@@ -237,19 +241,18 @@
                                 <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="img">
                                     <c:if test="${img.eventId eq event.id}">
                                         <div class="col-3">
-                                            <a href="#">
-
+                                            <a href="MainController?action=goEventDetails&txtID=${event.id}">
                                                 <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}"
                                                      style="width: 150px; height: 100px; margin-left: 50%">
-
                                             </a>
                                         </div>
 
                                         <div class="col-7">
-                                            <a href="#" class="text-warning">${event.name}.</a> <br/><br/>
+                                            <a href="MainController?action=goEventDetails&txtID=${event.id}" 
+                                               class="text-warning">${event.name}.</a> <br/><br/>
                                             <label style="font-weight: bold">Tác giả: </label> 
                                             <span class="text-dark" style="background-color: #ff9400b3;border-radius: 15px;padding: 2px 5px;">
-                                                <label style="font-weight: 500;">${event.owner}</label>
+                                                <label style="font-weight: 500; font-size: 14px;">${event.owner}</label>
                                             </span>
                                         </div>
                                                 

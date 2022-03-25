@@ -352,17 +352,17 @@ public class NewsDAO {
             String sql1 = "SELECT * FROM SWP391.News WHERE status = 1 AND id = " + id;
             Statement stmt1 = con.createStatement();
             ResultSet rs1 = stmt1.executeQuery(sql1);
-            if(rs1.next()){ // có thì update view + 1
+            if (rs1.next()) { // có thì update view + 1
                 countView(idNews);
             }
-            
+
             // Sau đó get News mới nhất với View đã dc cập nhật
             SimpleDateFormat formatCreateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String sql = "SELECT * FROM SWP391.News WHERE status = 1 AND id = " + id;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
-                
+
                 id = rs.getInt("id");
                 name = rs.getString("name");
                 if (rs.getInt("status") == 0) {
@@ -470,5 +470,49 @@ public class NewsDAO {
             e.printStackTrace();
         }
         return check;
+    }
+
+    // -------------------- Admin Page -----------------------------------
+    // Load For DashBoard
+    public NewsDTO get1NewNews() {
+        NewsDTO dto = null;
+        int id = 0;
+        String name = null;
+        boolean status = false;
+        String createTime = null;
+        String content = null;
+        String author = null;
+        int view = 0;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            con = MyConnection.getConnection();
+            String sql = "SELECT TOP 1 * FROM SWP391.News  WHERE status = 1 Order By id DESC;";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getInt("id");
+                name = rs.getString("name");
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                String createTimeTmp = rs.getString("create_time");
+                Date d1 = fmt.parse(createTimeTmp);
+                Timestamp stamp = new Timestamp(d1.getTime());
+                createTime = fmt.format(stamp);
+                content = rs.getString("content");
+                author = rs.getString("author");
+                view = rs.getInt("view");
+                dto = new NewsDTO(id, name, status, createTime, content, author, view);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 }

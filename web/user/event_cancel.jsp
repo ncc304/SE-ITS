@@ -1,4 +1,8 @@
-
+<%-- 
+    Document   : event_offline
+    Created on : Mar 10, 2022, 11:55:12 PM
+    Author     : Admin
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +24,27 @@
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
         <title>JSP Page</title>
+        <style>
+            .regis_link{
+                text-align: center;
+                height: 60px;
+            }
+            .regis_link-item{
+                padding: 18px 40px;
+                background-color: #0004d8;
+                color: #fff;
+                text-decoration: none;
+            }
+            .regis_link:hover{
+                opacity: 0.8
+            }
 
+        </style>
+        <c:if test="${requestScope.MSG eq 'SUCCESS'}">
+            <script>
+                window.alert("Đã hủy đăng ký Sự Kiện: ${requestScope.EVENT_NAME} thành công");
+            </script>
+        </c:if>
     </head>
     <body>
         <div class="wrapper" id="scroll-top">
@@ -105,125 +129,88 @@
                 </div>
             </div>
 
-            <!--TAG 1-->
             <div class="slider">
                 <div class="banner banner--1">
                     <img src="${pageContext.request.contextPath}/user/assets/images/news.jpg" alt="Friend" class="banner__img">
                 </div>
                 <div class="banner__content">
-                    <h2>Tuyển Dụng</h2>
+                    <h2>Quản Lý Sự Kiện</h2>
                 </div>
-            </div> 
-
+            </div>
 
             <div class="type-travel">
                 <div class="grid wide">
-                    <c:if test="${requestScope.txtCateID eq 4}">
-                        <div class="heading-section padding-top-86px">
-                            <div class="site_map" style="width: auto">
-                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
-                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
-                                   style="font-size: 1.30em; color: #0882d9">
-                                    Tuyển Dụng 
-                                </a>
-                                <span style="font-size: 1.30em ">
-                                    › Front-End
-                                </span>
-                            </div> 
-                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Front-End</h3>
+                    <div class="heading-section padding-top-86px">
+                        <div class="site_map" style="width: auto;">
+                            <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
+                            <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" 
+                               style="font-size: 1.30em; color: #0882d9">
+                                Sự kiện 
+                            </a>
+                            <a href="#" style="font-size: 1.30em ">› Offline</a>
                         </div>
-                    </c:if>
-                    <c:if test="${requestScope.txtCateID eq 5}">
-                        <div class="heading-section padding-top-86px">
-                            <div class="site_map" style="width: auto">
-                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
-                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
-                                   style="font-size: 1.30em; color: #0882d9">
-                                    Tuyển Dụng 
-                                </a>
-                                <span style="font-size: 1.30em ">
-                                    › Back-End
-                                </span>
-                            </div> 
-                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Back-End</h3>
-                        </div>
-                    </c:if>
-                    <c:if test="${requestScope.txtCateID eq 6}">
-                        <div class="heading-section padding-top-86px">
-                            <div class="site_map" style="width: auto">
-                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
-                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
-                                   style="font-size: 1.30em; color: #0882d9">
-                                    Tuyển Dụng 
-                                </a>
-                                <span style="font-size: 1.30em ">
-                                    › Mobile
-                                <span>
-                            </div> 
-                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Mobile</h3>
-                        </div>
-                    </c:if>
-                    <c:if test="${requestScope.txtCateID eq 7}">
-                        <div class="heading-section padding-top-86px">
-                            <div class="site_map" style="width: auto">
-                                <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
-                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" 
-                                   style="font-size: 1.30em; color: #0882d9">
-                                    Tuyển Dụng 
-                                </a>
-                                <span style="font-size: 1.30em ">
-                                    › Full-Stack
-                                </span>
-                            </div> 
-                            <h3 class="sub-heading">Danh Sách Các Tin Tuyển Dụng Về Full-Stack</h3>
-                        </div>
-                    </c:if>
+                        <h3 class="sub-heading">Danh sách các Sự Kiện Offline Bạn đã tham gia</h3>
+
+                    </div>
+
                 </div> 
                 <input type="radio" hidden name="dot" id="type-travel__input-one">
                 <input type="radio" hidden name="dot" id="type-travel__input-two">
 
-                <c:if test="${requestScope.LIST_REC != null}">
+                <c:if test="${requestScope.LIST_EVENT != null}">
                     <div class="grid type-travel--width">
                         <div class="row margin-10px">
-                            <c:forEach items="${requestScope.LIST_REC}" var="list">
-                                <c:forEach items="${requestScope.COM}" var="c">
-                                    <c:if test="${list.companyId eq c.id}">
-                                        <div class="col l-3 m-6 c-12">
-                                            <div class="type-travel-item">
-                                                <a href="MainController?action=goRecruitmentDetail&txtID=${list.id}" 
-                                                   class="type-travel__link">
-                                                    <img src="${pageContext.request.contextPath}/user/assets/images/${c.link}" alt="" class="type-travel__img">
-                                                </a>
-                                                <div class="type-travel__plan">
-                                                    <a class="type-travel__plan-link" href="./recruitment_content.html">
-                                                        <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
-                                                        <span>${c.name}</span>
-                                                    </a>
-                                                </div>
-                                                <div class="type-travel__intro">
-                                                    <a class="type-travel__intro-link" href="">${list.name}</a>
-                                                    <div class="type-travel__info">
-                                                        <span class="type-travel__info-price">Lương khởi đầu ${list.salary} triệu</span>
+                            <c:forEach items="${requestScope.LIST_EVENT}" var="listEvent">
+                                <c:forEach items="${requestScope.LIST_EVENT_IMG}" var="img">
+                                    <c:forEach items="${requestScope.LIST_EA}" var="listEA">
+                                        <c:if test="${listEvent.id eq img.eventId}">
+                                            <c:if test="${listEvent.id eq listEA.eventId}">
+                                                <div class="col l-3 m-6 c-12">
+                                                    <div class="type-travel-item">
+                                                        <a href="MainController?action=goEventDetails&txtID=${listEvent.id}" class="type-travel__link">
+                                                            <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}" alt="" class="type-travel__img">
+                                                        </a>
+                                                        <div class="type-travel__intro">
+                                                            <a class="type-travel__intro-link" href="MainController?action=goEventDetails&txtID=${listEvent.id}">
+                                                                ${listEvent.name}
+                                                            </a>
+                                                            <p class="type-travel__intro-text">
+                                                                Ngày đăng: ${listEvent.createDate}
+                                                            </p>
+
+                                                            <c:if test="${listEA.status}">
+                                                                <div class="regis_link" style="margin-top: 15%;">
+                                                                    <a class="regis_link-item" style="font-family: Verdana; font-size: 12px;"
+                                                                       href="MainController?action=cancelEvent&txtID=${listEvent.id}&txtName=${listEvent.name}">
+                                                                        Hủy đăng ký
+                                                                    </a>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${!listEA.status}">
+                                                                <div class="regis_link">
+                                                                    <button class="regis_link-item" 
+                                                                            style="background-color: #6c757d; height: 48.8px; width: 143px; margin-top: 8%; font-family: Verdana" 
+                                                                            disabled="true">
+                                                                        Đã hủy
+                                                                    </button>
+                                                                </div>
+                                                            </c:if>
+                                                        </div>
                                                     </div>
-                                                    <p class="type-travel__intro-text">${c.address}</p>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </c:if>
+                                            </c:if>
+                                        </c:if>
+                                    </c:forEach>
+
                                 </c:forEach>
                             </c:forEach>
                         </div>
                     </div>
                 </c:if>
-                <c:if test="${requestScope.LIST_REC == null}">
-                    <c:if test="${ empty requestScope.LIST_REC}">
-                        <h3 class="sub-heading">Không có tin tuyển dụng nào ở đây cả!</h3>
-                    </c:if>
+                <c:if test="${requestScope.LIST_EVENT == null}">
+                    <p class="sub-heading" style="font-size: 25px;">Hiện tại bạn chưa đăng ký Sự Kiện nào</p>
                 </c:if>
             </div>
-
-
-
 
         </div> 
 

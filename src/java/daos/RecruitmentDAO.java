@@ -11,8 +11,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -35,6 +37,9 @@ public class RecruitmentDAO {
         float salary = 0;
         String description = null;
         int companyId = 0;
+        boolean status = false;
+        String name = null;
+        String owner = null;
         try {
             Context ctx = new InitialContext();
             Context envCtx = (Context) ctx.lookup("java:comp/env");
@@ -50,7 +55,14 @@ public class RecruitmentDAO {
                 salary = rs.getFloat("salary");
                 description = rs.getString("description");
                 companyId = rs.getInt("Company_id");
-                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId);
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                name = rs.getString("name");
+                owner = rs.getString("owner");
+                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name, owner);
                 listRecruitment.add(dto);
             }
         } catch (Exception e) {
@@ -144,6 +156,7 @@ public class RecruitmentDAO {
         int companyId = 0;
         boolean status = false;
         String name = null;
+        String owner = null;
         try {
 //            Context ctx = new InitialContext();
 //            Context envCtx = (Context) ctx.lookup("java:comp/env");
@@ -152,7 +165,7 @@ public class RecruitmentDAO {
             con = MyConnection.getConnection();
             String sql = "SELECT Top 4 * FROM SWP391.Recruitment \n"
                     + "where idRecruitment in (SELECT Recruitment_id FROM SWP391.Recruitment_has_Recruitment_Category \n"
-                    + "where Recruitment_Category_id = "+cateID+" ) AND status = 1 ORDER BY idRecruitment DESC;";
+                    + "where Recruitment_Category_id = " + cateID + " ) AND status = 1 ORDER BY idRecruitment DESC;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -168,7 +181,8 @@ public class RecruitmentDAO {
                 description = rs.getString("description");
                 companyId = rs.getInt("Company_id");
                 name = rs.getString("name");
-                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name);
+                owner = rs.getString("owner");
+                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name, owner);
                 listRecruitment.add(dto);
             }
         } catch (Exception e) {
@@ -176,7 +190,7 @@ public class RecruitmentDAO {
         }
         return listRecruitment;
     }
-    
+
     // Read More
     public List<RecruitmentDTO> getAllNewRecruitmentByCateID(String cateID) {
         List<RecruitmentDTO> listRecruitment = new ArrayList<>();
@@ -188,6 +202,7 @@ public class RecruitmentDAO {
         int companyId = 0;
         boolean status = false;
         String name = null;
+        String owner = null;
         try {
 //            Context ctx = new InitialContext();
 //            Context envCtx = (Context) ctx.lookup("java:comp/env");
@@ -196,7 +211,7 @@ public class RecruitmentDAO {
             con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Recruitment \n"
                     + "where idRecruitment in (SELECT Recruitment_id FROM SWP391.Recruitment_has_Recruitment_Category \n"
-                    + "where Recruitment_Category_id = "+cateID+" ) AND status = 1 ORDER BY idRecruitment DESC;";
+                    + "where Recruitment_Category_id = " + cateID + " ) AND status = 1 ORDER BY idRecruitment DESC;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -212,7 +227,8 @@ public class RecruitmentDAO {
                 description = rs.getString("description");
                 companyId = rs.getInt("Company_id");
                 name = rs.getString("name");
-                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name);
+                owner = rs.getString("owner");
+                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name, owner);
                 listRecruitment.add(dto);
             }
         } catch (Exception e) {
@@ -220,7 +236,7 @@ public class RecruitmentDAO {
         }
         return listRecruitment;
     }
-    
+
     // Get 1 Re by ID
     public RecruitmentDTO getRecruitmentByReID(String reID) {
         RecruitmentDTO dto = null;
@@ -232,13 +248,17 @@ public class RecruitmentDAO {
         int companyId = 0;
         boolean status = false;
         String name = null;
+        String owner = null;
+        String createDate = null;
         try {
 //            Context ctx = new InitialContext();
 //            Context envCtx = (Context) ctx.lookup("java:comp/env");
 //            DataSource ds = (DataSource) envCtx.lookup("DBCon");
 //            Connection con = ds.getConnection();
+            SimpleDateFormat fmt1 = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat fmt2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             con = MyConnection.getConnection();
-            String sql = "SELECT * FROM SWP391.Recruitment WHERE status=1 AND idRecruitment = "+reID;
+            String sql = "SELECT * FROM SWP391.Recruitment WHERE status=1 AND idRecruitment = " + reID;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
@@ -248,20 +268,46 @@ public class RecruitmentDAO {
                     status = true;
                 }
                 id = rs.getInt("idRecruitment");
-                startDate = rs.getString("startDate");
-                endDate = rs.getString("endDate");
+                String startDateTmp = rs.getString("startDate");
+                java.util.Date d1 = fmt1.parse(startDateTmp);
+                Timestamp stamp1 = new Timestamp(d1.getTime());
+                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal1.setTimeInMillis(stamp1.getTime());
+                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp1 = new Timestamp(cal1.getTime().getTime());
+                startDate = fmt1.format(stamp1);
+
+                String endDateTmp = rs.getString("endDate");
+                java.util.Date d2 = fmt1.parse(endDateTmp);
+                Timestamp stamp2 = new Timestamp(d2.getTime());
+                Calendar cal2 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal2.setTimeInMillis(stamp2.getTime());
+                cal2.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp2 = new Timestamp(cal2.getTime().getTime());
+                endDate = fmt1.format(stamp2);
+
                 salary = rs.getFloat("salary");
                 description = rs.getString("description");
                 companyId = rs.getInt("Company_id");
                 name = rs.getString("name");
-                dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name);
+                owner = rs.getString("owner");
+
+                String createDateTmp = rs.getString("createDate");
+                java.util.Date d3 = fmt2.parse(createDateTmp);
+                Timestamp stamp3 = new Timestamp(d3.getTime());
+                Calendar cal3 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal3.setTimeInMillis(stamp3.getTime());
+                cal3.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp3 = new Timestamp(cal3.getTime().getTime());
+                createDate = fmt2.format(stamp3);
+                dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name, owner, createDate);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return dto;
     }
-    
+
     // 4 recent recruitment
     public List<RecruitmentDTO> get4NewRecruitmentNoCateID() {
         List<RecruitmentDTO> listRecruitment = new ArrayList<>();
@@ -273,6 +319,7 @@ public class RecruitmentDAO {
         int companyId = 0;
         boolean status = false;
         String name = null;
+        String owner = null;
         try {
 //            Context ctx = new InitialContext();
 //            Context envCtx = (Context) ctx.lookup("java:comp/env");
@@ -280,7 +327,7 @@ public class RecruitmentDAO {
 //            Connection con = ds.getConnection();
             con = MyConnection.getConnection();
             String sql = "SELECT Top 4 * FROM SWP391.Recruitment WHERE status = 1 ORDER BY idRecruitment DESC";
-                    
+
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -296,12 +343,87 @@ public class RecruitmentDAO {
                 description = rs.getString("description");
                 companyId = rs.getInt("Company_id");
                 name = rs.getString("name");
-                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name);
+                owner = rs.getString("owner");
+                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name, owner);
                 listRecruitment.add(dto);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listRecruitment;
+    }
+
+    //------------------------- Admin Page ---------------------------
+    // DashBoard
+    public RecruitmentDTO get1NewRecruitment() {
+        RecruitmentDTO dto = null;
+        int id = 0;
+        String startDate = null;
+        String endDate = null;
+        float salary = 0;
+        String description = null;
+        int companyId = 0;
+        boolean status = false;
+        String name = null;
+        String owner = null;
+        String createDate = null;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            SimpleDateFormat fmt1 = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat fmt2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            con = MyConnection.getConnection();
+            String sql = "SELECT Top 1 * FROM SWP391.Recruitment WHERE status = 1 ORDER BY idRecruitment DESC";
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                id = rs.getInt("idRecruitment");
+
+                String startDateTmp = rs.getString("startDate");
+                java.util.Date d1 = fmt1.parse(startDateTmp);
+                Timestamp stamp1 = new Timestamp(d1.getTime());
+                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal1.setTimeInMillis(stamp1.getTime());
+                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp1 = new Timestamp(cal1.getTime().getTime());
+                startDate = fmt1.format(stamp1);
+
+                String endDateTmp = rs.getString("endDate");
+                java.util.Date d2 = fmt1.parse(endDateTmp);
+                Timestamp stamp2 = new Timestamp(d2.getTime());
+                Calendar cal2 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal2.setTimeInMillis(stamp2.getTime());
+                cal2.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp2 = new Timestamp(cal2.getTime().getTime());
+                endDate = fmt1.format(stamp2);
+
+                salary = rs.getFloat("salary");
+                description = rs.getString("description");
+                companyId = rs.getInt("Company_id");
+                name = rs.getString("name");
+                owner = rs.getString("owner");
+
+                String createDateTmp = rs.getString("createDate");
+                java.util.Date d3 = fmt2.parse(createDateTmp);
+                Timestamp stamp3 = new Timestamp(d3.getTime());
+                Calendar cal3 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+                cal3.setTimeInMillis(stamp3.getTime());
+                cal3.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+                stamp3 = new Timestamp(cal3.getTime().getTime());
+                createDate = fmt2.format(stamp3);
+                dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name, owner, createDate);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 }

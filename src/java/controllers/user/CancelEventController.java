@@ -3,62 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.admin;
+package controllers.user;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.EventAccountDAO;
+import dtos.EventAccountDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LoadEventByIDController extends HttpServlet {
+public class CancelEventController extends HttpServlet {
 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String txtID = request.getParameter("txtEventID");
-            String txtName = request.getParameter("txtEventName");
-            String txtStart = request.getParameter("txtStart");
-            String txtEnd = request.getParameter("txtEnd");
-            String txtStatus = request.getParameter("txtStatus");
-            String txtDes = request.getParameter("txtDes");
-            String txtType = request.getParameter("txtType");
-            String txtImg = request.getParameter("txtImg");
-
-            String[] tmp1 = txtStart.split(" ");
-            String startDate = tmp1[0] + "T" + tmp1[1];
+            // Update  tbl EventHasAcount  status = 0
+            String txtEventID = request.getParameter("txtID");
+            String txtEventName = request.getParameter("txtName");
+            HttpSession session = request.getSession();
+            int eventID = Integer.parseInt(txtEventID);
+            int userID = (Integer) session.getAttribute("USER_ID");
             
-            String[] tmp2 = txtEnd.split(" ");
-            String endDate = tmp2[0] + "T" + tmp2[1];
             
-//            2018-06-12T19:30
-            EventDTO dto
-                    = new EventDTO(Integer.parseInt(txtID), txtName, startDate, endDate, Boolean.parseBoolean(txtStatus), txtDes, "", txtType, "");
-
-            EventsDAO dao = new EventsDAO();
-
-            if (dto != null) {
-                request.setAttribute("EVENT", dto);
-                request.setAttribute("IMG", txtImg);
+            
+            EventAccountDAO dao = new EventAccountDAO();
+            EventAccountDTO dto = new EventAccountDTO(userID, eventID, userID, false);
+            boolean check = dao.updateEventAccount(dto);
+            if(check){
+                request.setAttribute("MSG", "SUCCESS");
+                request.setAttribute("EVENT_NAME", txtEventName);
             }
-
+            
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher("admin/updateEvent.jsp").forward(request, response);
+        }finally{
+            request.getRequestDispatcher("LoadAllEventToCancelController").forward(request, response);
         }
     }
 

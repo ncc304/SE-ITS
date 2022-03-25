@@ -81,15 +81,30 @@
                             <li class="navbar__item">
                                 <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
+                                <c:if test="${sessionScope.USER_ID != null}">
+                                    <ul class="subnav__list">
+                                    <li class="subnav__item">
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                    </li>
+                                    </ul>
+                                </c:if>
                             </li>
                             <li class="navbar__item">
                                 <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
-                                    Đăng nhập
-                                </a>
+                                <c:if test="${sessionScope.USER_ID == null}">
+                                    <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                        Đăng nhập
+                                    </a>
+                                </c:if>
+                                <c:if test="${sessionScope.USER_ID != null}">
+                                    <a href="${pageContext.request.contextPath}/MainController?action=goLogout" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                        Đăng Xuất
+                                    </a>
+                                </c:if>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                         </ul>   
@@ -102,33 +117,33 @@
             </div>
             <div class="slideshow-container">
 
-<!--                <div class="mySlides fade">
-                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event1.jpg" style="width: 100%" class="banner__img2">
+                <!--                <div class="mySlides fade">
+                                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event1.jpg" style="width: 100%" class="banner__img2">
+                                </div>
+                
+                                <div class="mySlides fade slider">
+                                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" style="width: 100%" class="banner__img2">
+                                </div>
+                
+                                <div class="mySlides fade">
+                                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
+                                </div>-->
+                <div class="mySlides fade">
+                    <img src="${pageContext.request.contextPath}/user/assets/images/background-img/thumnailhethongotovadieukhien-min.jpg" class="banner__img2">
+                    <div class="banner__content banner__content--1">
+                        <h2>Let's go now</h2>
+                        <h1>SE and ITS</h1>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima expedita tenetur eius ipsum ea, voluptatibus possimus perspiciatis consequatur</p>
+                    </div>
                 </div>
 
                 <div class="mySlides fade slider">
-                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" style="width: 100%" class="banner__img2">
+                    <img src="${pageContext.request.contextPath}/user/assets/images/background-img/event1.jpg" class="banner__img2">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="$ {pageContext.request.contextPath}/guest/assets/images/background-img/event.png" style="width: 100%" class="banner__img2">
-                </div>-->
-                <div class="mySlides fade">
-              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/thumnailhethongotovadieukhien-min.jpg" class="banner__img2">
-              <div class="banner__content banner__content--1">
-                <h2>Let's go now</h2>
-                <h1>SE and ITS</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima expedita tenetur eius ipsum ea, voluptatibus possimus perspiciatis consequatur</p>
-            </div>
-            </div>
-            
-            <div class="mySlides fade slider">
-              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/event1.jpg" class="banner__img2">
-            </div>
-            
-            <div class="mySlides fade">
-              <img src="${pageContext.request.contextPath}/user/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" class="banner__img2">
-            </div>
+                    <img src="${pageContext.request.contextPath}/user/assets/images/background-img/76638495_2379894415466870_1693149431764877312_n.jpg" class="banner__img2">
+                </div>
 
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -256,32 +271,32 @@
 </div>
 
 
-    <script>
-        var slideIndex = 0;
-        showSlides();
+<script>
+    var slideIndex = 0;
+    showSlides();
 
-        function showSlides() {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-            setTimeout(showSlides, 3000); // Change image every 2 seconds
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
         }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 3000); // Change image every 2 seconds
+    }
 
 
-        
-    </script>
+
+</script>
 
 
 

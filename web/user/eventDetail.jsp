@@ -75,7 +75,7 @@
                                 <i class="fas fa-times"></i>
                             </label>
                             <li class="navbar__item">
-                                <a href = "<c:url value = "/user/home.jsp"/>" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
+                                <a href = "${pageContext.request.contextPath}/user/home.jsp" class="navbar__item-link" style="text-decoration: none;">Trang chủ</a>
 
                                 <input type="radio" name="nav-select" id="show-subnav__list--1">
                             </li>
@@ -117,9 +117,16 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                             <li class="navbar__item">
-                                <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
-                                    Đăng nhập
-                                </a>
+                                <c:if test="${sessionScope.USER_ID == null}">
+                                    <a href="${pageContext.request.contextPath}/login.jsp" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                        Đăng nhập
+                                    </a>
+                                </c:if>
+                                <c:if test="${sessionScope.USER_ID != null}">
+                                    <a href="${pageContext.request.contextPath}/MainController?action=goLogout" class="navbar__item-link" data-toggle="modal" data-target="#loginModal" style="text-decoration: none;">
+                                        Đăng Xuất
+                                    </a>
+                                </c:if>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
                         </ul>   
@@ -183,11 +190,44 @@
                     </p>
                 </div>
                 <br/><br/><br/><br/><br/>
-                <div class="regis_link">
-                    <a class="regis_link-item" href="http">
-                        Đăng ký ngay
-                    </a>
-                </div>
+
+                <!--Apply Event Function for Offline Event-->
+                
+                <c:if test="${requestScope.DTO_DETAIL.type eq 'offline'}">
+                    <!--Case 1: Chưa Login, Chưa có account trong DB-->
+                    <c:if test="${sessionScope.USER_ID == null}">
+                        <div class="regis_link">
+                            <a class="regis_link-item" style="font-family: Verdana; font-size: 12px;"
+                               href="MainController?action=registerAccount">
+                                Đăng ký ngay
+                            </a>
+                        </div>
+                    </c:if>
+                    
+                    <!--Case 2: Check Event: Match EventID trong DB-->
+                    <c:if test="${requestScope.CHECKEVENT == 'found'}">
+                        <div class="regis_link">
+                            <button class="regis_link-item" style="background-color: #6c757d; font-family: Verdana" disabled="true">
+                                Đã đăng ký
+                            </button>
+                        </div>
+                    </c:if>
+                    
+                    <!--Case 3: Check Event:Không Match EventID trong DB -->
+                    <c:if test="${requestScope.CHECKEVENT == 'notFound'}">
+                        <div class="regis_link">
+                            <a class="regis_link-item" style="font-family: Verdana; font-size: 12px;"
+                               href="MainController?action=applyEvent&txtID=${requestScope.DTO_DETAIL.id}">
+                                Đăng ký ngay
+                            </a>
+                        </div>
+                    </c:if>
+                    
+                    
+                    
+                </c:if>
+
+
             </div>
             <div class="relative_news para-heading--two-row" style="margin-left: auto">
                 <div class="heading-section padding-top-86px">

@@ -50,25 +50,27 @@ public class AccountDAO {
 //            }
             // SQLServer
             Connection con = MyConnection.getConnection();
-                String sql = "SELECT * FROM SWP391.Account WHERE email LIKE '" + email + "';";
-                PreparedStatement pr = con.prepareStatement(sql);
+            String sql = "SELECT * FROM SWP391.Account WHERE email LIKE '" + email + "';";
+            PreparedStatement pr = con.prepareStatement(sql);
 //            pr.setString(1, email.trim());
-                ResultSet rs = pr.executeQuery();
+            ResultSet rs = pr.executeQuery();
+            if (rs != null) {
                 while (rs.next()) {
                     if (rs.getInt("isAdmin") == 1) {
-                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 5 WHERE email LIKE ?";
+                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 4 WHERE email LIKE ?";
                         PreparedStatement pr2 = con.prepareStatement(sql2);
                         pr2.setString(1, rs.getString("email"));
                         pr2.executeUpdate();
                         return "Admin";
                     } else {
-                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 5 WHERE email LIKE ?";
+                        String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 4 WHERE email LIKE ?";
                         PreparedStatement pr2 = con.prepareStatement(sql2);
                         pr2.setString(1, rs.getString("email"));
                         pr2.executeUpdate();
                         return "User";
                     }
                 }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,11 +81,12 @@ public class AccountDAO {
     public boolean addAccountRegisEvent(AccountDTO account) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "INSERT INTO `SWP391`.`Account` (`email`, `Account_Status_idAccount_Status`, `name`, `phone_number`, `isAdmin`) VALUES (?, ?, ?, ?, ?);";
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "INSERT INTO SWP391.Account (email, Account_Status_idAccount_Status, name, phone_number, isAdmin) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             int tmp = 0;
             if (account.isIsAdmin()) {
@@ -123,12 +126,12 @@ public class AccountDAO {
         int userID = -1;
         try {
             con = MyConnection.getConnection();
-                String sql = "SELECT id FROM SWP391.Account WHERE email LIKE '" + email + "';";
-                PreparedStatement pr = con.prepareStatement(sql);
-                ResultSet rs = pr.executeQuery();
-                if (rs.next()) {
-                    userID = rs.getInt("id");
-                }
+            String sql = "SELECT id FROM SWP391.Account WHERE email LIKE '%" + email + "%';";
+            PreparedStatement pr = con.prepareStatement(sql);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                userID = rs.getInt("id");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,7 +156,7 @@ public class AccountDAO {
 //        }
 //        return userName;
 
-            String userName = "";
+        String userName = "";
         try {
             con = MyConnection.getConnection();
             String sql = "SELECT name FROM SWP391.Account WHERE email LIKE '" + email + "';";
@@ -167,4 +170,39 @@ public class AccountDAO {
         }
         return userName;
     }
+    
+    public AccountDTO getAccountByEmail(String emailStr) {
+        AccountDTO dto = null;
+        
+        int userID = 0;
+        String email = null;
+        int accountStatus = 0;
+        String name = null;
+        String phone = null;
+        boolean isAdmin = false;
+        
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Account WHERE email LIKE '" + emailStr + "';";
+            PreparedStatement pr = con.prepareStatement(sql);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                userID = rs.getInt("id");
+                email = rs.getString("email");
+                accountStatus = rs.getInt("Account_Status_idAccount_Status");
+                name = rs.getString("name");
+                phone = rs.getString("phone_number");
+                if(rs.getInt("isAdmin") == 1){
+                    isAdmin = true;
+                }else{
+                    isAdmin = false;
+                }
+                dto = new AccountDTO(userID, email, accountStatus, name, phone, isAdmin);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
+    
 }

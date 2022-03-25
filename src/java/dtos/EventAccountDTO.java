@@ -13,14 +13,22 @@ public class EventAccountDTO {
     int id;
     int eventId;
     int accountId;
-
+    boolean status;
+    
     public EventAccountDTO() {
     }
 
-    public EventAccountDTO(int id, int eventId, int accountId) {
+//    public EventAccountDTO(int id, int eventId, int accountId) {
+//        this.id = id;
+//        this.eventId = eventId;
+//        this.accountId = accountId;
+//    }
+
+    public EventAccountDTO(int id, int eventId, int accountId, boolean status) {
         this.id = id;
         this.eventId = eventId;
         this.accountId = accountId;
+        this.status = status;
     }
 
     public int getId() {
@@ -46,6 +54,16 @@ public class EventAccountDTO {
     public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    
     
     
 }
