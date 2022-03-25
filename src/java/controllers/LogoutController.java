@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import daos.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -24,8 +25,13 @@ public class LogoutController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            AccountDAO dao = new AccountDAO();
             HttpSession session = request.getSession();
-            if (session != null) {
+            int userID = (Integer) session.getAttribute("USER_ID");
+            int status = 5;
+            boolean check = dao.updateStatus(userID, status);
+            
+            if (check && session != null) {
                 session.invalidate();
             }
         } catch (Exception e) {

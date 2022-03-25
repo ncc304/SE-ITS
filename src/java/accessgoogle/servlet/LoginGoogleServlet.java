@@ -62,11 +62,7 @@ public class LoginGoogleServlet extends HttpServlet {
 
                 String check = dao.checkLogin(email);
                 if (check == "Login Fail") {
-//                    email = "You don't have permisstion";
-//                    session.setAttribute("XACTHUC", "You don't have permisstion!");
 
-                    // Account ko có trong DB -> INSERT table Account
-//                  AccountDTO(int id, String email, int statusId, String name, String phoneNumber, boolean isAdmin)
                     String[] sliter = email.split("@");
                     name = sliter[0];
                     if (name != null) {
@@ -91,25 +87,11 @@ public class LoginGoogleServlet extends HttpServlet {
                             } catch (Exception e) { // user chưa apply event
                                 url = home;
                             }
-
-//                            if (eventID > 0) { // từ trang eventDetails -> đăng ký ngay
-//                                // Get Account DTO
-//                                AccountDTO dto_hasData = dao.getAccountByEmail(email);
-//                                // INSERT tblEventHasAccount
-//                                EventAccountDAO eaDAO = new EventAccountDAO();
-//                                EventAccountDTO eaDTO = new EventAccountDTO(0, eventID, dto_hasData.getId());
-//                                boolean check3 = eaDAO.createtEventAccount(eaDTO);
-//                                if (check3) {
-//                                    url = backEventDetail + eventID;
-//                                    session.setAttribute("DONE_REGISTER", "DONE_REGISTER");
-//                                }
-//                            } else {
-//                                session.setAttribute("XACTHUC", "You don't have permisstion!");
-//                            }
                         }
                     }
 
                 } else if (check == "Admin") {
+                    userID = dao.getUserID(email);
                     url = adminPage;
                 } else { // User
                     userID = dao.getUserID(email);

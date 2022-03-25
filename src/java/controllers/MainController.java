@@ -53,6 +53,9 @@ public class MainController extends HttpServlet {
     private static final String GO_RECRUITMENT_USER = "LoadRecruitmentUserPageController";
     private static final String GO_RECRUITMENT_READ_MORE_USER = "LoadAllRecruitmentController";
     private static final String GO_RECRUITMENT_DETAILS_USER = "LoadRecruitmentDetailController";
+    
+    // Tư vấn học tập:
+    private static final String Go_TuVan = "AddInfoTuVanController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,8 +65,12 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             // ------------------- Admin Page -------------------
+            // Tư vấn học tập:
+            if ("TuVan".equals(action)) {
+                url = Go_TuVan;
+            }
             // Event:
-            if ("goCreateEvent".equals(action)) {
+            else if ("goCreateEvent".equals(action)) {
                 url = GO_EVENT;
             } else if ("Thêm sự kiện".equals(action)) {
                 url = createEvent;

@@ -19,7 +19,11 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;500;700&family=Roboto:wght@400;500;700&family=Satisfy&display=swap"
             rel="stylesheet">
-
+        <c:if test="${requestScope.MSG eq 'DKTUVAN_SUCCESS'}">
+            <script>
+                window.alert("Cám ơn bạn đã quan tâm đến trường đại học FPTU! Chúng tôi sẽ liên hệ với bạn trong vòng 24h.");
+            </script>
+        </c:if>
         <style>
             .category-recruit {
                 font-size: 23px;
@@ -230,6 +234,14 @@
                             <li class="navbar__item">
                                 <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" class="navbar__item-link" style="text-decoration: none;">Sự kiện</a>
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
+                                <c:if test="${sessionScope.USER_ID != null}">
+                                    <ul class="subnav__list">
+                                    <li class="subnav__item">
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                    </li>
+                                    </ul>
+                                </c:if>
                             </li>
                             <li class="navbar__item">
                                 <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentUser" class="navbar__item-link" style="text-decoration: none;">Tuyển dụng</a>
@@ -417,19 +429,25 @@
                     <div class="col l-3 m-6 c-12 margin-bottom-mobile">
                         <div class="footer__subscribe">
                             <h5 class="footer__heading">Tư vấn học tập</h5>
-                            <div class="footer__form">
-                                <div class="footer__form-item">
-                                    <i class="footer__form-icon fas fa-user"></i>
-                                    <input type="text" class="footer__form-input" placeholder="Tên" required>
+                            <form action="${pageContext.request.contextPath}/MainController" method="POST">
+                                <div class="footer__form">
+                                    <div class="footer__form-item">
+                                        <i class="footer__form-icon fa fa-user"></i>
+                                        <input type="text" name="txtName"
+                                               class="footer__form-input" placeholder="Tên" required>
+                                    </div>
+                                    <div class="footer__form-item">
+                                        <i class="footer__form-icon fa fa-phone"></i>
+                                        <input type="text" name="txtPhone"
+                                               class="footer__form-input" placeholder="SĐT" maxlength="10" required>
+                                    </div>
+                                    <div class="footer__form-item">
+                                        <input type="hidden" name="txtType" value="event"/>
+                                        <button type="submit"  name="action" value="TuVan"
+                                                class="footer__form-submit">Đăng ký</button>
+                                    </div>
                                 </div>
-                                <div class="footer__form-item">
-                                    <i class="footer__form-icon far fa-envelope"></i>
-                                    <input type="email" class="footer__form-input" placeholder="SĐT" required>
-                                </div>
-                                <div class="footer__form-item">
-                                    <button type="submit" class="footer__form-submit">Đăng ký</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

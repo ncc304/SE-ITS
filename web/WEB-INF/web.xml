@@ -100,6 +100,10 @@
         <servlet-name>CancelEventController</servlet-name>
         <servlet-class>controllers.user.CancelEventController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddInfoTuVanController</servlet-name>
+        <servlet-class>controllers.user.AddInfoTuVanController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -199,6 +203,10 @@
     <servlet-mapping>
         <servlet-name>CancelEventController</servlet-name>
         <url-pattern>/CancelEventController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddInfoTuVanController</servlet-name>
+        <url-pattern>/AddInfoTuVanController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

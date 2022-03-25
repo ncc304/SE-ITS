@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FPT University</title>
         <link rel="icon" type="image/x-icon"
-              href="${pageContext.request.contextPath}/guest/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
+              href="${pageContext.request.contextPath}/user/assets/images/Những-thông-điệp-sâu-sắc-phía-sau-logo-FPT.png" />
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/user/assets/css/grid.css">
@@ -23,6 +23,12 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <c:if test="${requestScope.MSG eq 'DKTUVAN_SUCCESS'}">
+            <script>
+                window.alert("Cám ơn bạn đã quan tâm đến trường đại học FPTU! Chúng tôi sẽ liên hệ với bạn trong vòng 24h.");
+            </script>
+        </c:if>
     </head>
 
     <body>
@@ -83,10 +89,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                                 <c:if test="${sessionScope.USER_ID != null}">
                                     <ul class="subnav__list">
-                                    <li class="subnav__item">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
-                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
-                                    </li>
+                                        <li class="subnav__item">
+                                            <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                               class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                        </li>
                                     </ul>
                                 </c:if>
                             </li>
@@ -236,19 +242,25 @@
                     <div class="col l-3 m-6 c-12 margin-bottom-mobile">
                         <div class="footer__subscribe">
                             <h5 class="footer__heading">Tư vấn học tập</h5>
-                            <div class="footer__form">
-                                <div class="footer__form-item">
-                                    <i class="footer__form-icon fas fa-user"></i>
-                                    <input type="text" class="footer__form-input" placeholder="Tên" required>
+                            <form action="${pageContext.request.contextPath}/MainController" method="POST">
+                                <div class="footer__form">
+                                    <div class="footer__form-item">
+                                        <i class="footer__form-icon fa fa-user"></i>
+                                        <input type="text" name="txtName"
+                                               class="footer__form-input" placeholder="Tên" required>
+                                    </div>
+                                    <div class="footer__form-item">
+                                        <i class="footer__form-icon fa fa-phone"></i>
+                                        <input type="text" name="txtPhone"
+                                               class="footer__form-input" placeholder="SĐT" maxlength="10" required>
+                                    </div>
+                                    <div class="footer__form-item">
+                                        <input type="hidden" name="txtType" value="home"/>
+                                        <button type="submit"  name="action" value="TuVan"
+                                                class="footer__form-submit">Đăng ký</button>
+                                    </div>
                                 </div>
-                                <div class="footer__form-item">
-                                    <i class="footer__form-icon far fa-envelope"></i>
-                                    <input type="email" class="footer__form-input" placeholder="SĐT" required>
-                                </div>
-                                <div class="footer__form-item">
-                                    <button type="submit" class="footer__form-submit">Đăng ký</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -205,4 +205,17 @@ public class AccountDAO {
         return dto;
     }
     
+    public boolean updateStatus(int id, int status){
+        boolean check = false;
+        
+        try {
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = "+status+" WHERE id ="+id;
+            PreparedStatement pr = con.prepareStatement(sql);
+            check = pr.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
 }
