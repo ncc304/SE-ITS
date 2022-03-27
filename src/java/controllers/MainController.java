@@ -56,11 +56,13 @@ public class MainController extends HttpServlet {
     private static final String GO_NEWS_USER = "LoadNewsUserPageController";
     private static final String GO_NEWS_TAG_USER = "LoadAllNewsTagController";
     private static final String GO_NEWS_DETAILS_USER = "LoadNewsDetailController";
+    private static final String SEARCH_NEWS_BY_NAME_USER = "SearchNewsByNameController";
 
     // Recruitment   
     private static final String GO_RECRUITMENT_USER = "LoadRecruitmentUserPageController";
     private static final String GO_RECRUITMENT_READ_MORE_USER = "LoadAllRecruitmentController";
     private static final String GO_RECRUITMENT_DETAILS_USER = "LoadRecruitmentDetailController";
+    private static final String SEARCH_RECRUITMENT_BY_NAME_USER = "SearchRecruitmentByNameController";
 
     // Tư vấn học tập:
     private static final String Go_TuVan = "AddInfoTuVanController";
@@ -129,13 +131,17 @@ public class MainController extends HttpServlet {
                 url = GO_NEWS_TAG_USER;
             } else if ("goNewsDetails".equals(action)) {
                 url = GO_NEWS_DETAILS_USER;
-            } // Recruitment:
+            } else if ("Search_News_By_Name".equals(action)) {
+                url = SEARCH_NEWS_BY_NAME_USER;
+            }// Recruitment:
             else if ("goRecruitmentUser".equals(action)) {
                 url = GO_RECRUITMENT_USER;
             } else if ("goRecruitmentReadMore".equals(action)) {
                 url = GO_RECRUITMENT_READ_MORE_USER;
             } else if ("goRecruitmentDetail".equals(action)) {
                 url = GO_RECRUITMENT_DETAILS_USER;
+            }else if ("Search_Recruiment_By_Name".equals(action)) {
+                url = SEARCH_RECRUITMENT_BY_NAME_USER;
             }// Tư vấn học tập:
             if ("TuVan".equals(action)) {
                 url = Go_TuVan;

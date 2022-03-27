@@ -181,16 +181,18 @@
                         </div>
                     </div> 
 
-                    <div class="search_form">
-                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                        <button type="button" class="btn-search">Tìm kiếm</button>  
-                    </div>
-
+                    <form action="MainController">
+                        <div class="search_form">
+                            <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                            <button type="submit" class="btn-search" name="action" value="Search_News_By_Name">Tìm kiếm</button>
+                            <input type="hidden" name="txtTagID" value="1" />
+                        </div>
+                    </form>
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
                     <c:if test="${requestScope.TAG_READMORE != null}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="display:block">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.TAG_READMORE}" var="tag">
                                     <c:forEach items="${sessionScope.LIST_NEWS_IMG}" var="img">
@@ -239,15 +241,18 @@
                             <h3 class="sub-heading">Danh Sách Các Tin Tức FPT High-tech Gần Đây</h3>
                         </div>
                     </div>
-                    <div class="search_form">
-                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                        <button type="button" class="btn-search">Tìm kiếm</button>  
-                    </div>
+                    <form action="MainController">
+                        <div class="search_form">
+                            <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                            <button type="submit" class="btn-search" name="action" value="Search_News_By_Name">Tìm kiếm</button>
+                            <input type="hidden" name="txtTagID" value="2" />
+                        </div>
+                    </form>
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
                     <c:if test="${requestScope.TAG_READMORE != null}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="display:block">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.TAG_READMORE}" var="tag">
                                     <c:forEach items="${sessionScope.LIST_NEWS_IMG}" var="img">
@@ -295,15 +300,18 @@
                             <h3 class="sub-heading">Danh Sách Các Tin Tức Hội Nhập Quốc Tế Gần Đây</h3>
                         </div>
                     </div> 
-                    <div class="search_form">
-                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                        <button type="button" class="btn-search">Tìm kiếm</button>  
-                    </div>
+                    <form action="MainController">
+                        <div class="search_form">
+                            <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                            <button type="submit" class="btn-search" name="action" value="Search_News_By_Name">Tìm kiếm</button>
+                            <input type="hidden" name="txtTagID" value="3" />
+                        </div>
+                    </form>
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
                     <c:if test="${requestScope.TAG_READMORE != null}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="display:block">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.TAG_READMORE}" var="tag">
                                     <c:forEach items="${sessionScope.LIST_NEWS_IMG}" var="img">

@@ -25,7 +25,7 @@
                 window.alert("Cám ơn bạn đã quan tâm đến trường đại học FPTU! Chúng tôi sẽ liên hệ với bạn trong vòng 24h.");
             </script>
         </c:if>
-            <style>
+        <style>
             .search-name{
                 width: 280px;
                 height: 36px;
@@ -221,10 +221,13 @@
                                         </div>
                                     </c:if>
                                     </div> 
-                                    <div class="search_form">
-                                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                                        <button type="button" class="btn-search">Tìm kiếm</button>  
-                                    </div>
+                                    <form action="MainController">
+                                        <div class="search_form">
+                                            <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                                            <button type="submit" class="btn-search" name="action" value="Search_Recruiment_By_Name">Tìm kiếm</button>
+                                            <input type="hidden" name="txtCateID" value="${requestScope.txtCateID}" />
+                                        </div>
+                                    </form>
                                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 

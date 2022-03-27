@@ -26,7 +26,7 @@ public class MyConnection {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             //Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS/Databases/SWP391;user=sa;password=123456");
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=SWP391;user=sa;password=123456");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;databaseName=SWP391;user=sa;password=1234");
             if (con != null) {
                 return con;
             }

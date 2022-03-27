@@ -26,8 +26,8 @@
         position: fixed;
         display: inline-block;
         left: -50%;
-        top: var(--header-navbar-height);
-        background: var(--gradient-color);
+/*        top: var(--header-navbar-height);
+        background: var(--gradient-color);*/
         height: 100vh;
         width: 40%;
         line-height: unset;

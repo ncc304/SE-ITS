@@ -120,6 +120,14 @@
         <servlet-name>LoadTuVanPageController</servlet-name>
         <servlet-class>controllers.admin.LoadTuVanPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchNewsByNameController</servlet-name>
+        <servlet-class>controllers.user.SearchNewsByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchRecruitmentByNameController</servlet-name>
+        <servlet-class>controllers.user.SearchRecruitmentByNameController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -239,6 +247,14 @@
     <servlet-mapping>
         <servlet-name>LoadTuVanPageController</servlet-name>
         <url-pattern>/LoadTuVanPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchNewsByNameController</servlet-name>
+        <url-pattern>/SearchNewsByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchRecruitmentByNameController</servlet-name>
+        <url-pattern>/SearchRecruitmentByNameController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
