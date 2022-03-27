@@ -49,7 +49,7 @@ public class CreateEventController extends HttpServlet {
 
             
             EventsDAO dao = new EventsDAO();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             java.util.Date createDate = new java.util.Date();
             String createDateStr = format.format(createDate);
             

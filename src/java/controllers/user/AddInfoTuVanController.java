@@ -30,7 +30,7 @@ public class AddInfoTuVanController extends HttpServlet {
             String txtType = request.getParameter("txtType");
             
             StudentApplicationDAO dao = new StudentApplicationDAO();
-            StudentApplicationDTO dto = new StudentApplicationDTO(1, txtName, txtPhone, true);
+            StudentApplicationDTO dto = new StudentApplicationDTO(1, txtName, txtPhone, false);
             
             boolean check = dao.createtStudentApplication(dto);
             if (check) {

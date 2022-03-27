@@ -35,13 +35,14 @@
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
                             .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
-                            .bi-person-square::before, .bi-box-arrow-left::before   
+                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, .bi-person-fill::before
                             {
                                 color: black;
                             }
                         </style>
+
                         <!-- Navigation -->
-                                                <ul class="navbar-nav">
+                        <ul class="navbar-nav">
                             <li class="nav-item">
 
                                 <a class="nav-link " href = "/SE_ITS/MainController?action=goDashBoard">
@@ -56,18 +57,25 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<c:url value = "/admin/major.jsp"/>">
-                                    <i class="bi bi-journal-bookmark"></i> Ngành học
-
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                    <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
-
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
-                            
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<c:url value = "/admin/major.jsp"/>">
+                                    <i class="bi bi-journal-bookmark"></i> Ngành học
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<c:url value = "/admin/user.jsp"/>">
+                                    <i class="bi bi-person-fill"></i> Người dùng
+                                </a>
+                            </li>
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">

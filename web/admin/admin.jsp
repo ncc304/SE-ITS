@@ -32,8 +32,10 @@
 
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
-                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
-                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before
+                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, 
+                            .bi-calendar-event::before, .bi-people::before,
+                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
+                            .bi-person-fill::before, .bi-telephone-fill::before
                             {
                                 color: black;
                             }
@@ -67,6 +69,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
                                     <i class="bi bi-journal-bookmark"></i> Ngành học
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goUserPage">
+                                    <i class="bi bi-person-fill"></i> Người dùng
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goTuVanPage">
+                                    <i class="bi bi-telephone-fill"></i> Tư vấn học tập
                                 </a>
                             </li>
                         </ul>

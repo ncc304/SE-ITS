@@ -104,6 +104,22 @@
         <servlet-name>AddInfoTuVanController</servlet-name>
         <servlet-class>controllers.user.AddInfoTuVanController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadUserPageController</servlet-name>
+        <servlet-class>controllers.admin.LoadUserPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteUserController</servlet-name>
+        <servlet-class>controllers.admin.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserController</servlet-name>
+        <servlet-class>controllers.admin.UpdateUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadTuVanPageController</servlet-name>
+        <servlet-class>controllers.admin.LoadTuVanPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -207,6 +223,22 @@
     <servlet-mapping>
         <servlet-name>AddInfoTuVanController</servlet-name>
         <url-pattern>/AddInfoTuVanController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadUserPageController</servlet-name>
+        <url-pattern>/LoadUserPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUserController</servlet-name>
+        <url-pattern>/DeleteUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserController</servlet-name>
+        <url-pattern>/UpdateUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadTuVanPageController</servlet-name>
+        <url-pattern>/LoadTuVanPageController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

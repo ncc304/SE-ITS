@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,29 +27,7 @@ public class AccountDAO {
 
     public String checkLogin(String email) {
         try {
-//            Context ctx = new InitialContext();
-//            Context envCtx = (Context) ctx.lookup("java:comp/env");
-//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-//            Connection con = ds.getConnection();
-//            String sql = "SELECT * FROM SWP391.Account WHERE email LIKE '"+email+"';";
-//            PreparedStatement pr = con.prepareStatement(sql);
-////            pr.setString(1, email.trim());
-//            ResultSet rs = pr.executeQuery(sql);
-//            while (rs.next()) {
-//                if (rs.getInt("isAdmin") == 1) {
-//                    String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = \"2\" WHERE email LIKE ?";
-//                    PreparedStatement pr2 = con.prepareStatement(sql2);
-//                    pr2.setString(1, rs.getString(2));
-//                    pr2.executeUpdate();
-//                    return "Admin";
-//                } else {
-//                    String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = \"2\" WHERE email LIKE ?";
-//                    PreparedStatement pr2 = con.prepareStatement(sql2);
-//                    pr2.setString(1, rs.getString(2));
-//                    pr2.executeUpdate();
-//                    return "User";
-//                }
-//            }
+
             // SQLServer
             Connection con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Account WHERE email LIKE '" + email + "';";
@@ -217,5 +197,73 @@ public class AccountDAO {
             e.printStackTrace();
         }
         return check;
+    }
+    
+    public List<AccountDTO> getAllAccountUser() {
+        List<AccountDTO> list = new ArrayList<>();
+        AccountDTO dto = null;
+        int userID = 0;
+        String email = null;
+        int accountStatus = 0;
+        String name = null;
+        String phone = null;
+        boolean isAdmin = false;
+        
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Account WHERE isAdmin = 0 ";
+            PreparedStatement pr = con.prepareStatement(sql);
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                userID = rs.getInt("id");
+                email = rs.getString("email");
+                accountStatus = rs.getInt("Account_Status_idAccount_Status");
+                name = rs.getString("name");
+                phone = rs.getString("phone_number");
+                if(rs.getInt("isAdmin") == 1){
+                    isAdmin = true;
+                }else{
+                    isAdmin = false;
+                }
+                dto = new AccountDTO(userID, email, accountStatus, name, phone, isAdmin);
+                list.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    public AccountDTO getAccountByID(int id) {
+        AccountDTO dto = null;
+        int userID = 0;
+        String email = null;
+        int accountStatus = 0;
+        String name = null;
+        String phone = null;
+        boolean isAdmin = false;
+        
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Account WHERE isAdmin = 0 AND id = "+id;
+            PreparedStatement pr = con.prepareStatement(sql);
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                userID = rs.getInt("id");
+                email = rs.getString("email");
+                accountStatus = rs.getInt("Account_Status_idAccount_Status");
+                name = rs.getString("name");
+                phone = rs.getString("phone_number");
+                if(rs.getInt("isAdmin") == 1){
+                    isAdmin = true;
+                }else{
+                    isAdmin = false;
+                }
+                dto = new AccountDTO(userID, email, accountStatus, name, phone, isAdmin);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 }

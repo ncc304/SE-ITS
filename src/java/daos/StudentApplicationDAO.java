@@ -38,7 +38,7 @@ public class StudentApplicationDAO {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                id = rs.getInt("idStudentApplication");
+                id = rs.getInt("id");
                 name = rs.getString("name");
                 phone = rs.getString("phone");
                 if (rs.getInt("status") == 0) {

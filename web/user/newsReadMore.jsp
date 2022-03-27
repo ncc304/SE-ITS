@@ -29,6 +29,36 @@
                 window.alert("Cám ơn bạn đã quan tâm đến trường đại học FPTU! Chúng tôi sẽ liên hệ với bạn trong vòng 24h.");
             </script>
         </c:if>
+        <style>
+            .search-name{
+                width: 280px;
+                height: 36px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                margin-right: 10px;
+            }
+            .search-name:focus{
+                outline-color: rgb(71, 98, 250);
+            }
+            .btn-search{
+                width: 100px;
+                height: 28px;
+                background-color: #003380;
+                color: #fff;
+                border-radius: 5px;
+                border: none;
+                margin-right: 15px;
+
+            }
+            .btn-search:hover{
+                opacity: 0.8;
+                cursor: pointer;
+            }
+            .search_form{
+                float: right;
+            }
+        </style>
     </head>
     <body>
         <div class="wrapper" id="scroll-top">
@@ -88,10 +118,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                                 <c:if test="${sessionScope.USER_ID != null}">
                                     <ul class="subnav__list">
-                                    <li class="subnav__item">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
-                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
-                                    </li>
+                                        <li class="subnav__item">
+                                            <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                               class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                        </li>
                                     </ul>
                                 </c:if>
                             </li>
@@ -135,7 +165,6 @@
                 <div class="type-travel">
 
                     <div class="grid wide">
-
                         <div class="heading-section padding-top-86px">
                             <div class="site_map" style="width: auto">
                                 <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em ">Trang chủ › </a>
@@ -151,6 +180,12 @@
                             <h3 class="sub-heading">Danh Sách Các Tin Tức Đời Sống Sinh Viên Gần Đây</h3>
                         </div>
                     </div> 
+
+                    <div class="search_form">
+                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
+                        <button type="button" class="btn-search">Tìm kiếm</button>  
+                    </div>
+
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
@@ -203,7 +238,11 @@
                             </div> 
                             <h3 class="sub-heading">Danh Sách Các Tin Tức FPT High-tech Gần Đây</h3>
                         </div>
-                    </div> 
+                    </div>
+                    <div class="search_form">
+                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
+                        <button type="button" class="btn-search">Tìm kiếm</button>  
+                    </div>
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
@@ -256,6 +295,10 @@
                             <h3 class="sub-heading">Danh Sách Các Tin Tức Hội Nhập Quốc Tế Gần Đây</h3>
                         </div>
                     </div> 
+                    <div class="search_form">
+                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
+                        <button type="button" class="btn-search">Tìm kiếm</button>  
+                    </div>
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 

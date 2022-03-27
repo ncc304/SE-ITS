@@ -29,6 +29,36 @@
                 window.alert("Cám ơn bạn đã quan tâm đến trường đại học FPTU! Chúng tôi sẽ liên hệ với bạn trong vòng 24h.");
             </script>
         </c:if>
+        <style>
+            .search-name{
+                width: 280px;
+                height: 36px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                margin-right: 10px;
+            }
+            .search-name:focus{
+                outline-color: rgb(71, 98, 250);
+            }
+            .btn-search{
+                width: 100px;
+                height: 28px;
+                background-color: #003380;
+                color: #fff;
+                border-radius: 5px;
+                border: none;
+                margin-right: 15px;
+
+            }
+            .btn-search:hover{
+                opacity: 0.8;
+                cursor: pointer;
+            }
+            .search_form{
+                float: right;
+            }
+        </style>
     </head>
     <body>
         <div class="wrapper" id="scroll-top">
@@ -144,6 +174,12 @@
                         <h3 class="sub-heading">Danh sách các Sự Kiện Online</h3>
                     </div>
                 </div> 
+
+                <div class="search_form">
+                    <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
+                    <button type="button" class="btn-search">Tìm kiếm</button>  
+                </div>
+
                 <input type="radio" hidden name="dot" id="type-travel__input-one">
                 <input type="radio" hidden name="dot" id="type-travel__input-two">
 

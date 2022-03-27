@@ -8,6 +8,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 
         <title>Admin Page</title>
+        
+        <c:if test="${requestScope.MSG eq 'DELETE_USER_SUCCESS'}">
+        <script>
+            window.alert("Đã chặn Người Dùng tên: ${requestScope.USER_NAME} thành công!");
+        </script>
+        </c:if>
+        
+        <c:if test="${requestScope.MSG eq 'ACTIVE_USER_SUCCESS'}">
+        <script>
+            window.alert("Đã bỏ chặn Người Dùng tên: ${requestScope.USER_NAME} thành công!");
+        </script>
+        </c:if>
+        
     </head>
     <body>
 
@@ -63,7 +76,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
@@ -73,8 +86,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/user.jsp"/>">
+                                <a class="nav-link " href="<c:url value = "/admin/user.jsp"/>">
                                     <i class="bi bi-person-fill"></i> Người dùng
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goTuVanPage">
+                                    <i class="bi bi-telephone-fill"></i> Tư vấn học tập
                                 </a>
                             </li>
                         </ul>
@@ -108,19 +126,19 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Sự Kiện</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Người Dùng</h1>
                                 </div>
                                 <!-- Actions -->
-                                <div class="col-sm-6 col-12 text-sm-end">
+<!--                                <div class="col-sm-6 col-12 text-sm-end">
                                     <div class="mx-n1">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goCreateEvent" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                        <a href="$ {pageContext.request.contextPath}/MainController?action=goCreateEvent" class="btn d-inline-flex btn-sm btn-primary mx-1">
                                             <span class=" pe-2">
                                                 <i class="bi bi-plus"></i>
                                             </span>
                                             <span>Thêm</span>
                                         </a>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <!-- Nav -->
                             <br/>
@@ -133,58 +151,49 @@
 
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">Danh sách các bài viết về Sự Kiện</h5>
+                                <h5 class="mb-0">Danh sách các Người Dùng có trong hệ thống</h5>
                             </div>
                             <div class="table-responsive">
                                 <form action="MainController" method="POST">
-                                    <c:if test="${requestScope.LIST_EVENT != null}">
-                                        <c:if test="${not empty requestScope.LIST_EVENT}">
+                                    <c:if test="${requestScope.LIST_TUVAN != null}">
+                                        <c:if test="${not empty requestScope.LIST_TUVAN}">
                                             <table class="table table-hover table-nowrap">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col">STT</th>
-                                                        <th scope="col">Tiêu đề</th>
-                                                        <th scope="col">Tác giả</th>
-                                                        <th scope="col">Ngày bắt đầu</th>
-                                                        <th scope="col">Ngày kết thúc</th>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Tên</th>
+                                                        <th scope="col">Số điện thoại</th>
                                                         <th scope="col">Trạng thái</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach items="${requestScope.LIST_EVENT}" var="event" varStatus="counter">
-                                                        <c:forEach items="${requestScope.LIST_EVENT_IMG}" var="eventImg">
+                                                    <c:forEach items="${requestScope.LIST_TUVAN}" var="user" varStatus="counter">
                                                             <tr>
-                                                                <c:if test="${event.id eq eventImg.eventId}">
                                                                     <td><strong>${counter.count}</strong></td>
+                                
                                                                     <td>
-                                                                        <img alt="..." src="${pageContext.request.contextPath}/user/assets/images/${eventImg.link}" class="avatar avatar-sm rounded-circle me-2">
-                                                                        <a class="text-heading font-semibold" href="#">
-                                                                            ${event.name}
-                                                                        </a>
+                                                                        ${user.id}
                                                                     </td>
                                                                     <td>
-                                                                        ${event.owner}
-                                                                    </td>
-                                                                    <td>
-                                                                        <!--<img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">-->
                                                                         <a class="text-heading font-semibold" href="#">
-                                                                            ${event.startDate}
+                                                                            ${user.name}
                                                                         </a>
                                                                     </td>
                                                                     <td>
                                                                         <a class="text-heading font-semibold" href="#">
-                                                                            ${event.endDate}
+                                                                            ${user.phone}
                                                                         </a>
                                                                     </td>
                                                                     <td>
                                                                         <span class="badge badge-lg badge-dot">
                                                                             <c:choose>
-                                                                                <c:when test="${event.status}">
-                                                                                    <i class="bg-success"></i>Đã đăng
+                                                                                <c:when test="${user.status}">
+                                                                                    <i class="bg-success"></i>Đã gọi
                                                                                 </c:when>
                                                                                 <c:otherwise>
-                                                                                    <i class="bg-danger"></i>Đã xóa
+                                                                                    <i class="bg-danger"></i>Chưa gọi
                                                                                 </c:otherwise>
                                                                             </c:choose>
                                                                         </span>
@@ -193,29 +202,27 @@
                                                                         <!--<input type="hidden" name="txtStatus" value="$ {param.txtStatus}"/>-->
 
                                                                         <a class="btn btn-sm btn-neutral"  
-                                                                           href="MainController?action=goUpdateEvent&txtEventID=${event.id}&txtEventName=${event.name}&txtStart=${event.startDate}&txtEnd=${event.endDate}&txtStatus=${event.status}&txtType=${event.type}&txtImg=${eventImg.link}">
+                                                                           href="MainController?action=updateUser&txtUserID=${user.id}">
                                                                             <i class="bi bi-pencil"></i>
                                                                             <!--<input type="hidden" name="txtDes" value=" {event.description}"/>-->
                                                                             
                                                                         </a>
                                                                         <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                                                           href="MainController?action=deleteEvent&txtEventID=${event.id}"
-                                                                           onclick='return confirm("Bạn có muốn xóa Sự Kiện này không?");'>
+                                                                           href="MainController?action=deleteUser&txtUserID=${user.id}"
+                                                                           onclick='return confirm("Bạn có muốn chặn Người Dùng này không?");'>
                                                                             <i class="bi bi-trash"></i>
                                                                         </a>
                                                                     </td>
 
-                                                                </c:if>
                                                             </tr>
-                                                        </c:forEach>
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
                                         </c:if>
                                     </c:if>
                                 </form>
-                                <c:if test="${requestScope.LIST_EVENT == null || empty requestScope.LIST_EVENT}">
-                                    Not found Event
+                                <c:if test="${requestScope.LIST_TUVAN == null || empty requestScope.LIST_TUVAN}">
+                                    Not found Danh sách tư vấn
                                 </c:if>
                             </div>
                             <div class="card-footer border-0 py-5">
