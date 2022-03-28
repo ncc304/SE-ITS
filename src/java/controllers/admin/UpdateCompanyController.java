@@ -5,9 +5,10 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.CompanyDAO;
+import dtos.CompanyDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,31 +18,40 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
-    
+public class UpdateCompanyController extends HttpServlet {
+
+    private static final String SUCCESS = "LoadCompanyController";
+    private static final String ERROR = "admin/updateCompany.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
-            
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
-            if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
-                }
+            String txtID = request.getParameter("txtID");
+            int id = Integer.parseInt(txtID);
+            String txtName = request.getParameter("txtName");
+            String txtAddress = request.getParameter("txtAddress");
+            String txtLogo = request.getParameter("logo");
+            String txtLogoOld = request.getParameter("logoOld");
+            if(txtLogo == null || txtLogo.isEmpty()){
+                txtLogo = txtLogoOld;
             }
+            String txtStatus = request.getParameter("status");
+            boolean status = false;
+            if(txtStatus.equals("1")){
+                status = true;
+            }
+            CompanyDAO dao = new CompanyDAO();
+            CompanyDTO dto = new CompanyDTO(id, txtName, txtAddress, txtLogo, status);
+            boolean check = dao.updateCompany(dto);
+            if(check){
+                request.setAttribute("MSG", "UPDATE_COM_SUCCESS");
+                request.setAttribute("COMDTO", dto);
+                url = SUCCESS;
+            }            
         } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

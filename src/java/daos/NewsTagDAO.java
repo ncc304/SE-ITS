@@ -15,22 +15,25 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import utils.MyConnection;
 
 /**
  *
  * @author Admin
  */
 public class NewsTagDAO {
+    Connection con = null;
+    
     public List<NewsTagDTO> getListNewsTag() {
         List<NewsTagDTO> listNewsTag = new ArrayList<>();
         int id = 0;
         String name = null;
-        int eventId = 0;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.News_Tags;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -99,5 +102,5 @@ public class NewsTagDAO {
         }
         return check;
     }
-    
+
 }

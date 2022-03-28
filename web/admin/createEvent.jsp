@@ -7,27 +7,17 @@
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.92/dist/index.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
 
-
         <!--for CKEditor:-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdn.ckeditor.com/4.17.1/full-all/ckeditor.js"></script>
-
-        <!--DatePicker-->
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
-        <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>-->
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">-->
         <style>
             label{
                 font-weight: 500;
             }
         </style>
-
+        
         <title>Admin Page</title>
-
+        
     </head>
     <body>
 
@@ -55,11 +45,14 @@
                     <!-- Collapse -->
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
-                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
-                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, .bi-person-fill::before
+                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, 
+                            .bi-calendar-event::before, .bi-people::before,
+                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
+                            .bi-person-fill::before, .bi-telephone-fill::before, .bi-building::before,
+                            .bi-book::before
                             {
-                                color: black;
-                            }
+                                color: black; 
+                           }
                         </style>
 
                         <!-- Navigation -->
@@ -73,12 +66,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/news.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goRecruitmentPage">
                                     <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
                             </li>
@@ -88,13 +81,28 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
-                                    <i class="bi bi-journal-bookmark"></i> Ngành học
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goMajorPage">
+                                    <i class="bi bi-journal-bookmark"></i> Bộ môn
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/user.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goUserPage">
                                     <i class="bi bi-person-fill"></i> Người dùng
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goTuVanPage">
+                                    <i class="bi bi-telephone-fill"></i> Tư vấn học tập
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goCompany">
+                                    <i class="bi bi-building"></i> Công ty
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goSubject">
+                                    <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>
                         </ul>
@@ -138,10 +146,9 @@
                     <div class="container-fluid">
 
                         <div class="card shadow border-0 mb-7">
-                            <div class="card-header">
-                                <!--                                <h5 class="mb-0">Tạo bài viết về Sự Kiện</h5>-->
+                            <div class="card-header" style="border-bottom: 1px solid #eceef3">
                                 <div class="col-10" style="margin-left: 2%; margin-top: 2%">
-                                    <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #F26F21">
+                                    <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #0EB04C">
                                         Tạo sự kiện
                                     </label>
                                 </div>
@@ -247,7 +254,7 @@
     $(document).ready(function () {
         editor = CKEDITOR.replace('content');
 
-    })
+    });
 
 //    function LayNoiDung() {
 //        var data = CKEDITOR.instances.content.getData();
@@ -293,6 +300,5 @@
         var fileName = input.files[0].name;
         infoArea.textContent = 'File name: ' + fileName;
     }
-</script>
 </script>
 

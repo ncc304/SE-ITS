@@ -5,9 +5,10 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.MajorDAO;
+import dtos.MajorDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,33 +18,37 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
+public class UpdateMajorController extends HttpServlet {
+     private static final String SUCCESS = "LoadMajorController";
+     private static final String ERROR = "admin/updateMajor.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = SUCCESS;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String txtMajorID = request.getParameter("txtID");
+            int majorID = Integer.parseInt(txtMajorID);
+            String txtName = request.getParameter("txtName");
+            String txtOverView = request.getParameter("overView");
+            String txtSkill = request.getParameter("skill");
+            String txtOp = request.getParameter("opportunity");
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
+            MajorDAO dao = new MajorDAO();
+            MajorDTO dto = new MajorDTO(majorID, txtName, txtOverView, txtSkill, "", txtOp);
+            
+            boolean check = dao.updateMajor(dto);
             if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
-                }
+                request.setAttribute("MSG", "UPDATE_MAJOR_SUCCESS");
+                request.setAttribute("MAJORNAME", dto.getName());
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -31,10 +31,11 @@ public class RecruitmentRecruitmentCategoryDAO {
         int recruitmentId = 0;
         int recruitmentCategoryId = 0;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Recruitment_has_Recruitment_Category;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -54,11 +55,12 @@ public class RecruitmentRecruitmentCategoryDAO {
     public boolean createtRecruitmentRecruitmentCategory(RecruitmentRecruitmentCategoryDTO recruitmentRecruitmentCategory) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "INSERT INTO `SWP391`.`Recruitment_has_Recruitment_Category` (`Recruitment_id`, `Recruitment_Category_id`) VALUES (?, ?);";
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "INSERT INTO SWP391.Recruitment_has_Recruitment_Category (Recruitment_id, Recruitment_Category_id) VALUES (?, ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setInt(1, recruitmentRecruitmentCategory.getRecruitmentId());
             pr.setInt(2, recruitmentRecruitmentCategory.getRecruitmentCategoryId());

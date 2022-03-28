@@ -5,9 +5,12 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.AccountDAO;
+import daos.StudentApplicationDAO;
+import dtos.AccountDTO;
+import dtos.StudentApplicationDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,32 +20,29 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
+public class DeleteTuVanController extends HttpServlet {
+    //Đã gọi xong: Update status chưa gọi -> đã gọi
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String txtUserID = request.getParameter("txtUserID");
+            int userID = Integer.parseInt(txtUserID);
+            StudentApplicationDAO dao = new StudentApplicationDAO();
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
-            if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
-                }
+            boolean check = dao.updateStatusStudentApplication(userID, 1); // 6 trong DB là delete
+            if (check) {
+                request.setAttribute("MSG", "DELETE_USER_SUCCESS");
+                // Get UserName
+                StudentApplicationDTO dto = dao.getStudentApplicationByID(userID);
+                request.setAttribute("USER_NAME", dto.getName());
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+        } finally {
+            request.getRequestDispatcher("LoadTuVanPageController").forward(request, response);
+//            response.sendRedirect("MainController?action=deleteUser&MSG='abc'");
         }
     }
 

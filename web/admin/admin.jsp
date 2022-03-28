@@ -35,10 +35,11 @@
                             .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, 
                             .bi-calendar-event::before, .bi-people::before,
                             .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
-                            .bi-person-fill::before, .bi-telephone-fill::before
+                            .bi-person-fill::before, .bi-telephone-fill::before, .bi-building::before,
+                            .bi-book::before
                             {
-                                color: black;
-                            }
+                                color: black; 
+                           }
                         </style>
 
                         <!-- Navigation -->
@@ -52,12 +53,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/news.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goRecruitmentPage">
                                     <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
                             </li>
@@ -67,8 +68,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
-                                    <i class="bi bi-journal-bookmark"></i> Ngành học
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goMajorPage">
+                                    <i class="bi bi-journal-bookmark"></i> Bộ môn
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -79,6 +80,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/SE_ITS/MainController?action=goTuVanPage">
                                     <i class="bi bi-telephone-fill"></i> Tư vấn học tập
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goCompany">
+                                    <i class="bi bi-building"></i> Công ty
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goSubject">
+                                    <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>
                         </ul>
@@ -160,11 +171,6 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-                            <!--                            <li class="nav-item">
-                                                            <a class="nav-link" href="#">
-                                                                <i class="bi bi-person-square"></i> Tài khoản
-                                                            </a>
-                                                        </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="/SE_ITS/MainController?action=goLogout">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất

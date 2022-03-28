@@ -5,9 +5,11 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.NewsTagDAO;
+import dtos.NewsTagDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,33 +19,24 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
+public class LoadCreateNewsCateController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
-            
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
-            if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
-                }
+            NewsTagDAO dao = new NewsTagDAO();
+            List<NewsTagDTO> listTag  = dao.getListNewsTag();
+            if(listTag.size() > 0){
+                request.setAttribute("LIST_TAG", listTag);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("admin/createNews.jsp").forward(request, response);
         }
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

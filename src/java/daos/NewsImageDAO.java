@@ -22,8 +22,9 @@ import utils.MyConnection;
  * @author Admin
  */
 public class NewsImageDAO {
+
     Connection con = null;
-    
+
     public List<NewsImageDTO> getListNewsImage() {
         List<NewsImageDTO> listNewsImage = new ArrayList<>();
         int id = 0;
@@ -54,11 +55,12 @@ public class NewsImageDAO {
     public boolean createtNewsImage(NewsImageDTO newsImage) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "INSERT INTO `SWP391`.`News_Images` (`link`, `News_id`) VALUES (?, ?);";
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "INSERT INTO SWP391.News_Images (link, News_id) VALUES (?, ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setString(1, newsImage.getLink());
             pr.setInt(2, newsImage.getNewId());
@@ -106,7 +108,7 @@ public class NewsImageDAO {
         }
         return check;
     }
-    
+
     public List<NewsImageDTO> getListNewsImageDesc() {
         List<NewsImageDTO> listNewsImage = new ArrayList<>();
         int id = 0;
@@ -140,8 +142,7 @@ public class NewsImageDAO {
                 NewsImageDTO dto = new NewsImageDTO(id, link, newsId);
                 listNewsImage.add(dto);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return listNewsImage;

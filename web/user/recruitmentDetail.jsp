@@ -211,7 +211,7 @@
 
 
 
-                <div class="relative_news para-heading--two-row">
+                <div class="relative_news para-heading--two-row" style="margin-left: auto">
                     <div class="heading-section padding-top-86px">
                         <h3 class="sub-heading">Tin Tuyển Dụng Mới</h3>
                     </div>

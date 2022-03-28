@@ -5,9 +5,10 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.SubjectDAO;
+import dtos.SubjectDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,32 +18,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
+public class LoadSubjectDetailController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String txtSubID = request.getParameter("txtID");
+            int subID = Integer.parseInt(txtSubID);
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
-            if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
-                }
+            SubjectDAO dao = new SubjectDAO();
+            SubjectDTO dto = dao.getSubjectByID(subID);
+            if(dto != null){
+                request.setAttribute("SUB", dto);
             }
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("admin/updateSubject.jsp").forward(request, response);
         }
     }
 

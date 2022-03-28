@@ -14,6 +14,8 @@ public class CompanyDTO {
     String name;
     String address;
     String link;
+    boolean status;
+    
     public CompanyDTO() {
     }
 
@@ -30,6 +32,16 @@ public class CompanyDTO {
         this.link = link;
     }
 
+    public CompanyDTO(int id, String name, String address, String link, boolean status) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.link = link;
+        this.status = status;
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
@@ -60,6 +72,14 @@ public class CompanyDTO {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     

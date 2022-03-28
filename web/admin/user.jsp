@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-  <%--<%@ taglib uri="http://java.fckeditor.net" prefix="FCK" %>--%>
+<%--<%@ taglib uri="http://java.fckeditor.net" prefix="FCK" %>--%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,19 +8,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 
         <title>Admin Page</title>
-        
+
         <c:if test="${requestScope.MSG eq 'DELETE_USER_SUCCESS'}">
-        <script>
-            window.alert("Đã chặn Người Dùng tên: ${requestScope.USER_NAME} thành công!");
-        </script>
+            <script>
+                window.alert("Đã chặn Người Dùng tên: ${requestScope.USER_NAME} thành công!");
+            </script>
         </c:if>
-        
+
         <c:if test="${requestScope.MSG eq 'ACTIVE_USER_SUCCESS'}">
-        <script>
-            window.alert("Đã bỏ chặn Người Dùng tên: ${requestScope.USER_NAME} thành công!");
-        </script>
+            <script>
+                window.alert("Đã bỏ chặn Người Dùng tên: ${requestScope.USER_NAME} thành công!");
+            </script>
         </c:if>
-        
+
     </head>
     <body>
 
@@ -48,11 +48,14 @@
                     <!-- Collapse -->
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
-                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
-                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, .bi-person-fill::before
+                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, 
+                            .bi-calendar-event::before, .bi-people::before,
+                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
+                            .bi-person-fill::before, .bi-telephone-fill::before, .bi-building::before,
+                            .bi-book::before
                             {
-                                color: black;
-                            }
+                                color: black; 
+                           }
                         </style>
 
                         <!-- Navigation -->
@@ -66,12 +69,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/news.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goRecruitmentPage">
                                     <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
                             </li>
@@ -81,13 +84,28 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
-                                    <i class="bi bi-journal-bookmark"></i> Ngành học
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goMajorPage">
+                                    <i class="bi bi-journal-bookmark"></i> Bộ môn
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<c:url value = "/admin/user.jsp"/>">
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goUserPage">
                                     <i class="bi bi-person-fill"></i> Người dùng
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goTuVanPage">
+                                    <i class="bi bi-telephone-fill"></i> Tư vấn học tập
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goCompany">
+                                    <i class="bi bi-building"></i> Công ty
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goSubject">
+                                    <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>
                         </ul>
@@ -124,16 +142,16 @@
                                     <h1 class="h2 mb-0 ls-tight">Người Dùng</h1>
                                 </div>
                                 <!-- Actions -->
-<!--                                <div class="col-sm-6 col-12 text-sm-end">
-                                    <div class="mx-n1">
-                                        <a href="$ {pageContext.request.contextPath}/MainController?action=goCreateEvent" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                                            <span class=" pe-2">
-                                                <i class="bi bi-plus"></i>
-                                            </span>
-                                            <span>Thêm</span>
-                                        </a>
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="col-sm-6 col-12 text-sm-end">
+                                                                    <div class="mx-n1">
+                                                                        <a href="$ {pageContext.request.contextPath}/MainController?action=goCreateEvent" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                                                            <span class=" pe-2">
+                                                                                <i class="bi bi-plus"></i>
+                                                                            </span>
+                                                                            <span>Thêm</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>-->
                             </div>
                             <!-- Nav -->
                             <br/>
@@ -165,51 +183,60 @@
                                                 </thead>
                                                 <tbody>
                                                     <c:forEach items="${requestScope.LIST_USER}" var="user" varStatus="counter">
-                                                            <tr>
-                                                                    <td><strong>${counter.count}</strong></td>
-                                
-                                                                    <td>
-                                                                        ${user.id}
-                                                                    </td>
-                                                                    <td>
-                                                                        <a class="text-heading font-semibold" href="#">
-                                                                            ${user.name}
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a class="text-heading font-semibold" href="#">
-                                                                            ${user.email}
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span class="badge badge-lg badge-dot">
-                                                                            <c:choose>
-                                                                                <c:when test="${user.statusId == 6}">
-                                                                                    <i class="bg-danger"></i>Đã chặn
-                                                                                </c:when>
-                                                                                <c:otherwise>
-                                                                                    <i class="bg-success"></i>Đang hoạt động
-                                                                                </c:otherwise>
-                                                                            </c:choose>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td class="text-end">
-                                                                        <!--<input type="hidden" name="txtStatus" value="$ {param.txtStatus}"/>-->
+                                                        <tr>
+                                                            <td><strong>${counter.count}</strong></td>
 
-                                                                        <a class="btn btn-sm btn-neutral"  
-                                                                           href="MainController?action=updateUser&txtUserID=${user.id}">
-                                                                            <i class="bi bi-pencil"></i>
-                                                                            <!--<input type="hidden" name="txtDes" value=" {event.description}"/>-->
-                                                                            
-                                                                        </a>
-                                                                        <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                                                           href="MainController?action=deleteUser&txtUserID=${user.id}"
-                                                                           onclick='return confirm("Bạn có muốn chặn Người Dùng này không?");'>
-                                                                            <i class="bi bi-trash"></i>
-                                                                        </a>
-                                                                    </td>
+                                                            <td>
+                                                                ${user.id}
+                                                            </td>
+                                                            <td>
+                                                                <a class="text-heading font-semibold" href="#">
+                                                                    ${user.name}
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="text-heading font-semibold" href="#">
+                                                                    ${user.email}
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <span class="badge badge-lg badge-dot">
+                                                                    <c:choose>
+                                                                        <c:when test="${user.statusId == 6}">
+                                                                            <i class="bg-danger"></i>Đã chặn
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <i class="bg-success"></i>Đang hoạt động
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-end">
 
-                                                            </tr>
+                                                                <c:if test="${user.statusId != 6}">
+
+                                                                    <button class="btn btn-sm btn-neutral"  disabled="true">
+                                                                        <i class="bi bi-arrow-counterclockwise"></i>                                                                            
+                                                                    </button>
+                                                                    <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
+                                                                       href="MainController?action=deleteUser&txtUserID=${user.id}"
+                                                                       onclick='return confirm("Bạn có muốn chặn Người Dùng này không?");'>
+                                                                        <i class="bi bi-trash"></i>
+                                                                    </a>
+                                                                </c:if>  
+                                                                <c:if test="${user.statusId == 6}"> 
+                                                                    <a class="btn btn-sm btn-neutral"  
+                                                                       href="MainController?action=updateUser&txtUserID=${user.id}">
+                                                                        <i class="bi bi-arrow-counterclockwise"></i>                                                                            
+                                                                    </a>
+                                                                    <button class="btn btn-sm btn-square btn-neutral text-danger-hover" disabled="true">
+
+                                                                        <i class="bi bi-trash"></i>
+                                                                    </button>
+                                                                </c:if> 
+                                                            </td>
+
+                                                        </tr>
                                                     </c:forEach>
                                                 </tbody>
                                             </table>

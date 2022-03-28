@@ -54,11 +54,12 @@ public class NewsNewsTagDAO {
     public boolean createtNewsNewsTag(NewsNewsTagDTO newsNewsTag) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "INSERT INTO `SWP391`.`News_Tags_has_News` (`News_Tags_idNews_Tags`, `News_id`) VALUES (?, ?);";
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "INSERT INTO SWP391.News_Tags_has_News (News_Tags_idNews_Tags, News_id) VALUES (?, ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setInt(1, newsNewsTag.getNewTagId());
             pr.setInt(2, newsNewsTag.getNewId());

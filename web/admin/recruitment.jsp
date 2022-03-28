@@ -6,14 +6,14 @@
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
         <title>Admin Page</title>
-        <c:if test="${requestScope.MSG eq 'DELETE_NEWS_SUCCESS'}">
+        <c:if test="${requestScope.MSG eq 'DELETE_RE_SUCCESS'}">
             <script>
-                window.alert("Đã xóa Tin Tức: ${requestScope.NewsName} thành công");
+                window.alert("Đã xóa tin Tuyển Dụng: ${requestScope.RENAME} thành công!");
             </script>
         </c:if>
-        <c:if test="${requestScope.MSG eq 'CREATE_NEWS_SUCCESS'}">
+        <c:if test="${requestScope.MSG eq 'CREATE_RE_SUCCESS'}">
             <script>
-                window.alert("Đã thêm Tin Tức: ${requestScope.NEWS_NAME} thành công!");
+                window.alert("Đã thêm tin Tuyển Dụng: ${requestScope.RENAME} thành công!");
             </script>
         </c:if>
     </head>
@@ -63,12 +63,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="/SE_ITS/MainController?action=goNewsPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goRecruitmentPage">
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goRecruitmentPage">
                                     <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
                             </li>
@@ -138,7 +138,7 @@
                                 <!-- Actions -->
                                 <div class="col-sm-6 col-12 text-sm-end">
                                     <div class="mx-n1">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goCreateNews" 
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goCreateRe" 
                                            class="btn d-inline-flex btn-sm btn-primary mx-1">
                                             <span class=" pe-2">
                                                 <i class="bi bi-plus"></i>
@@ -159,12 +159,12 @@
 
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">Danh sách các bài viết về Tin Tức</h5>
+                                <h5 class="mb-0">Danh sách các bài viết về Tuyển Dụng</h5>
                             </div>
                             <div class="table-responsive">
                                 <form action="MainController" method="POST">
-                                    <c:if test="${requestScope.LIST_NEWS != null}">
-                                        <c:if test="${not empty requestScope.LIST_NEWS}">
+                                    <c:if test="${requestScope.LIST_RE != null}">
+                                        <c:if test="${not empty requestScope.LIST_RE}">
                                             <table class="table table-hover table-nowrap">
                                                 <thead class="thead-light">
                                                     <tr>
@@ -178,88 +178,84 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach items="${requestScope.LIST_NEWS}" var="news" varStatus="counter">
+                                                    <c:forEach items="${requestScope.LIST_RE}" var="re" varStatus="counter">
                                                         <tr>
                                                             <td>
-                                                                <c:if test="${news.status}">
+                                                                <c:if test="${re.status}">
                                                                     <strong>${counter.count}</strong>
                                                                 </c:if>
-                                                                <c:if test="${!news.status}">
+                                                                <c:if test="${!re.status}">
                                                                     ${counter.count}
                                                                 </c:if>
                                                             </td>
                                                             <td>
-                                                                ${news.id}
+                                                                ${re.id}
                                                             </td>
                                                             <td>
-                                                                <c:if test="${news.status}">
+                                                                <c:if test="${re.status}">
                                                                     <a class="text-heading font-semibold" 
-                                                                       href="MainController?action=goNewsDetails&txtID=${news.id}">
-                                                                        ${news.name}
+                                                                       href="MainController?action=goRecruitmentDetail&txtID=${re.id}">
+                                                                        ${re.name}
                                                                     </a>
                                                                 </c:if>
 
-                                                                <c:if test="${!news.status}">
-                                                                    ${news.name}
+                                                                <c:if test="${!re.status}">
+                                                                    ${re.name}
                                                                 </c:if>
                                                             </td>
                                                             <td>
-                                                                ${news.author}
+                                                                ${re.owner}
                                                             </td>
                                                             <td>
-                                                                <c:if test="${news.status}">
-                                                                    <a class="text-heading font-semibold" 
-                                                                       href="MainController?action=goNewsDetails&txtID=${news.id}">
-                                                                        ${news.createTime}
-                                                                    </a>
+                                                                <c:if test="${re.status}">
+                                                                <a class="text-heading font-semibold" 
+                                                                   href="MainController?action=goRecruitmentDetail&txtID=${re.id}">
+                                                                    ${re.createDate}
+                                                                </a>
                                                                 </c:if>
-                                                                <c:if test="${!news.status}">
-                                                                    ${news.createTime}
+                                                                <c:if test="${!re.status}">
+                                                                    ${re.createDate}
                                                                 </c:if>
                                                             </td>
+
                                                             <td>
-                                                                <c:if test="${news.status}">
+                                                                <c:if test="${re.status}">
                                                                     <span class="badge badge-lg badge-dot">
                                                                         <i class="bg-success"></i>Đã đăng
                                                                     </span>
                                                                 </c:if>
 
-                                                                <c:if test="${!news.status}">
+                                                                <c:if test="${!re.status}">
                                                                     <span class="badge badge-lg badge-dot">
                                                                         <i class="bg-danger"></i>Đã xóa
                                                                     </span>
                                                                 </c:if>
                                                             </td>
                                                             <td class="text-end">
-
-                                                                <a href="" 
-                                                                   class="btn btn-sm btn-neutral" >
-                                                                    <i class="bi bi-pencil"></i>
-                                                                </a>
-                                                                <c:if test="${news.status}">
-                                                                    <a href="MainController?action=deleteNews&txtID=${news.id}"
-                                                                       class="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                                                       onclick='return confirm("Bạn có muốn xóa Tin Tức này không?");'>
+                                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
+                                                                    <c:if test="${re.status}">
+                                                                    <a  href="MainController?action=deleteRe&txtID=${re.id}"
+                                                                        onclick='return confirm("Bạn có muốn xóa tin Tuyển Dụng này không?");'
+                                                                        class="btn btn-sm btn-square btn-neutral text-danger-hover">
                                                                         <i class="bi bi-trash"></i>
                                                                     </a>
                                                                 </c:if>
-                                                                <c:if test="${!news.status}">
+                                                                <c:if test="${!re.status}">
                                                                     <button disabled="true"
                                                                             class="btn btn-sm btn-square btn-neutral text-danger-hover">
                                                                         <i class="bi bi-trash"></i>
-                                                                    </button >
+                                                                    </button>
                                                                 </c:if>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
-
                                                 </tbody>
                                             </table>
                                         </c:if>
                                     </c:if>
                                 </form>
-                                <c:if test="${requestScope.LIST_NEWS == null || empty requestScope.LIST_NEWS}">
-                                    Not found News
+                                <c:if test="${requestScope.LIST_RE == null || empty requestScope.LIST_RE}">
+                                    Not found Recruitment
                                 </c:if>
                             </div>
                             <div class="card-footer border-0 py-5">

@@ -5,9 +5,10 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.NewsDAO;
+import dtos.NewsDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,32 +18,28 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
+public class DeleteNewsController extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String txtNewsID = request.getParameter("txtID");
+            int newsID = Integer.parseInt(txtNewsID);
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
+            NewsDAO dao = new NewsDAO();
+            boolean check = dao.updateNewsStatus(newsID, 0);
             if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
+                request.setAttribute("MSG", "DELETE_NEWS_SUCCESS");
+                NewsDTO dto = dao.getNewsByID_NotCount(newsID);
                 if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
+                    request.setAttribute("NewsName", dto.getName());
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+        } finally {
+            request.getRequestDispatcher("LoadNewsPageController").forward(request, response);
         }
     }
 

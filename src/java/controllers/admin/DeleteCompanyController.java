@@ -5,9 +5,10 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.CompanyDAO;
+import dtos.CompanyDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,32 +18,29 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
+public class DeleteCompanyController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
-            
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
+            String txtComID = request.getParameter("txtID");
+            int comID = Integer.parseInt(txtComID);
+            CompanyDAO dao = new CompanyDAO();
+            boolean check = dao.updateCompanyStatus(comID, 0);
             if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
+                request.setAttribute("MSG", "DELETE_COM_SUCCESS");
+                CompanyDTO dto = dao.getCompanyByID(comID);
                 if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
+                    request.setAttribute("COMNAME", dto.getName());
                 }
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("LoadCompanyController").forward(request, response);
         }
     }
 

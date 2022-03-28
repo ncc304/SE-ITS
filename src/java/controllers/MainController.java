@@ -22,7 +22,10 @@ public class MainController extends HttpServlet {
     private static final String GO_LOGOUT = "LogoutController";
 
     // --------------------- Admin Page -------------------------
+    // Dashboad
     private static final String GO_DASHBOARD = "LoadAdminPageController";
+    
+    // Sự kiện
     private static final String GO_EVENT = "LoadEventCategoryController";
     private static final String goEventPage = "LoadEventPageController";
     private static final String createEvent = "CreateEventController";
@@ -33,12 +36,50 @@ public class MainController extends HttpServlet {
     private static final String GO_USER = "LoadUserPageController";
     private static final String DELETE_USER = "DeleteUserController";
     private static final String UPDATE_USER = "UpdateUserController";
-    
+
     // Tư vấn
     private static final String GO_TuVan_ADMIN = "LoadTuVanPageController";
+    private static final String DELETE_TuVan = "DeleteTuVanController";
+    private static final String UNDO_TuVan_CALL = "UpdateTuVanController";
+
+    // News
+    private static final String GO_NEWS_ADMIN = "LoadNewsPageController";
+    private static final String DELETE_NEWS = "DeleteNewsController";
+    private static final String GO_CREATE_NEWS = "LoadCreateNewsCateController";
+    private static final String CREATE_NEWS = "CreateNewsController";
     
     
-    // --------------------- User Page -------------------------
+    // Recruitment
+    private static final String GO_RECRUITMENT_ADMIN = "LoadRecruitmentPageController";
+    private static final String DELETE_RE = "DeleteRecruitmentController";
+    private static final String GO_CREATE_RE = "LoadCreateRecruitmentController";
+    private static final String CREATE_RE = "CreateRecruitmentController";
+    
+    
+    // Company
+    private static final String GO_COMPANY = "LoadCompanyController";
+    private static final String DELETE_COMPANY = "DeleteCompanyController"; 
+    private static final String GO_UPDATE_COMPANY = "LoadCompanyDetailController";
+    private static final String UPDATE_COMPANY = "UpdateCompanyController";
+    private static final String GO_CREATE_COMPANY = "admin/createCompany.jsp";
+    private static final String CREATE_COMPANY = "CreateCompanyController";
+    
+    // Subject 
+    private static final String GO_SUBJECT = "LoadSubjectController";
+    private static final String GO_CREATE_SUBJECT = "admin/createSubject.jsp";
+    private static final String CREATE_SUBJECT = "CreateSubjectController";
+    private static final String DELETE_SUBJECT = "DeleteSubjectController";
+    private static final String GO_UPDATE_SUBJECT = "LoadSubjectDetailController";
+    private static final String UPDATE_SUBJECT = "UpdateSubjectController";
+    
+    // Major
+    private static final String GO_MAJOR = "LoadMajorController";
+    private static final String GO_UPDATE_MAJOR = "LoadMajorDetailController";
+    private static final String UPDATE_MAJOR = "UpdateMajorController";
+    
+    
+    
+    // --------------------- User Page -------------------------------------------
     // Event
     private static final String GO_EVENT_USER = "LoadEventUserPageController";
     private static final String GO_EVENT_ONLINE_USER = "LoadAllEventOnlController";
@@ -86,18 +127,82 @@ public class MainController extends HttpServlet {
                 url = goUpdateEvent;
             } else if ("goDashBoard".equals(action)) {
                 url = GO_DASHBOARD;
-            } 
-            // User:
+            } // User:
             else if ("goUserPage".equals(action)) {
                 url = GO_USER;
-            }else if ("deleteUser".equals(action)) {
+            } else if ("deleteUser".equals(action)) {
                 url = DELETE_USER;
-            }else if ("updateUser".equals(action)) {
+            } else if ("updateUser".equals(action)) {
                 url = UPDATE_USER;
-            }
-            // Tư vấn
+            } // Tư vấn 
             else if ("goTuVanPage".equals(action)) {
                 url = GO_TuVan_ADMIN;
+            } else if ("deleteTuVan".equals(action)) {
+                url = DELETE_TuVan;
+            } else if ("undoUserCall".equals(action)) {
+                url = UNDO_TuVan_CALL;
+            } 
+
+            // Tin tức  
+            else if ("goNewsPage".equals(action)) {
+                url = GO_NEWS_ADMIN;
+            } else if ("deleteNews".equals(action)) {
+                url = DELETE_NEWS;
+            }else if ("goCreateNews".equals(action)) {
+                url = GO_CREATE_NEWS;
+            }  else if ("Thêm Tin Tức".equals(action)) {
+                url = CREATE_NEWS;
+            }
+            
+            
+            // Tuyển dụng 
+            else if ("goRecruitmentPage".equals(action)) {
+                url = GO_RECRUITMENT_ADMIN;
+            }else if ("deleteRe".equals(action)) {
+                url = DELETE_RE;
+            }else if ("goCreateRe".equals(action)) {
+                url = GO_CREATE_RE;
+            }else if ("Thêm tin tuyển dụng".equals(action)) {
+                url = CREATE_RE;
+            }
+            
+            // Công ty 
+            else if ("goCompany".equals(action)) { 
+                url = GO_COMPANY;
+            }else if ("deleteCom".equals(action)) { 
+                url = DELETE_COMPANY;
+            }else if ("goUpdateCom".equals(action)) { 
+                url = GO_UPDATE_COMPANY;
+            }else if ("Sửa công ty".equals(action)) { 
+                url = UPDATE_COMPANY;
+            }else if ("goCreateCom".equals(action)) {  
+                url = GO_CREATE_COMPANY;
+            }else if ("Thêm công ty".equals(action)) {  
+                url = CREATE_COMPANY;
+            }
+            
+            // Môn học 
+            else if ("goSubject".equals(action)) {  
+                url = GO_SUBJECT;
+            }else if ("goCreateSubject".equals(action)) {  
+                url = GO_CREATE_SUBJECT;
+            }else if ("Thêm môn học".equals(action)) {  
+                url = CREATE_SUBJECT;
+            }else if ("deleteSubject".equals(action)) {   
+                url = DELETE_SUBJECT;
+            }else if ("goUpdateSubject".equals(action)) {  
+                url = GO_UPDATE_SUBJECT;
+            }else if ("Cập nhập môn học".equals(action)) {  
+                url = UPDATE_SUBJECT;
+            }
+            
+            // Bộ môn
+            else if ("goMajorPage".equals(action)) {  
+                url = GO_MAJOR;
+            }else if ("updateMajor".equals(action)) {  
+                url = GO_UPDATE_MAJOR;
+            }else if ("Cập nhập bộ môn".equals(action)) {  
+                url = UPDATE_MAJOR;
             }
             
             // Logout:

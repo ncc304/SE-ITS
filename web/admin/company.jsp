@@ -6,14 +6,19 @@
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
         <title>Admin Page</title>
-        <c:if test="${requestScope.MSG eq 'DELETE_NEWS_SUCCESS'}">
+        <c:if test="${requestScope.MSG eq 'DELETE_COM_SUCCESS'}">
             <script>
-                window.alert("Đã xóa Tin Tức: ${requestScope.NewsName} thành công");
+                window.alert("Đã xóa Công Ty: ${requestScope.COMNAME} thành công");
             </script>
         </c:if>
-        <c:if test="${requestScope.MSG eq 'CREATE_NEWS_SUCCESS'}">
+        <c:if test="${requestScope.MSG eq 'UPDATE_COM_SUCCESS'}">
             <script>
-                window.alert("Đã thêm Tin Tức: ${requestScope.NEWS_NAME} thành công!");
+                window.alert("Đã cập nhật Công Ty: ${requestScope.COMDTO.name} với Mã Số: ${requestScope.COMDTO.id} thành công!");
+            </script>
+        </c:if>
+            <c:if test="${requestScope.MSG eq 'CREATE_COM_SUCCESS'}">
+            <script>
+                window.alert("Đã thêm Công Ty: ${requestScope.COMDTO.name} với Mã Số: ${requestScope.COMDTO.id} thành công!");
             </script>
         </c:if>
     </head>
@@ -63,7 +68,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="/SE_ITS/MainController?action=goNewsPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
@@ -93,7 +98,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goCompany">
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goCompany">
                                     <i class="bi bi-building"></i> Công ty
                                 </a>
                             </li>
@@ -133,12 +138,12 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Tin Tức</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Công Ty</h1>
                                 </div>
                                 <!-- Actions -->
                                 <div class="col-sm-6 col-12 text-sm-end">
                                     <div class="mx-n1">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goCreateNews" 
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goCreateCom" 
                                            class="btn d-inline-flex btn-sm btn-primary mx-1">
                                             <span class=" pe-2">
                                                 <i class="bi bi-plus"></i>
@@ -159,72 +164,51 @@
 
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">Danh sách các bài viết về Tin Tức</h5>
+                                <h5 class="mb-0">Danh sách các Công Ty có trong hệ thống</h5>
                             </div>
                             <div class="table-responsive">
                                 <form action="MainController" method="POST">
-                                    <c:if test="${requestScope.LIST_NEWS != null}">
-                                        <c:if test="${not empty requestScope.LIST_NEWS}">
+                                    <c:if test="${requestScope.LIST_COM != null}">
+                                        <c:if test="${not empty requestScope.LIST_COM}">
                                             <table class="table table-hover table-nowrap">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col">STT</th>
                                                         <th scope="col">ID</th>
-                                                        <th scope="col">Tiêu đề</th>
-                                                        <th scope="col">Tác giả</th>
-                                                        <th scope="col">Ngày đăng</th>
+                                                        <th scope="col">Tên</th>
                                                         <th scope="col">Trạng thái</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach items="${requestScope.LIST_NEWS}" var="news" varStatus="counter">
+                                                    <c:forEach items="${requestScope.LIST_COM}" var="com" varStatus="counter">
                                                         <tr>
+                                                            <td><strong>${counter.count}</strong></td>
                                                             <td>
-                                                                <c:if test="${news.status}">
-                                                                    <strong>${counter.count}</strong>
-                                                                </c:if>
-                                                                <c:if test="${!news.status}">
-                                                                    ${counter.count}
-                                                                </c:if>
+                                                                ${com.id}
                                                             </td>
                                                             <td>
-                                                                ${news.id}
-                                                            </td>
-                                                            <td>
-                                                                <c:if test="${news.status}">
-                                                                    <a class="text-heading font-semibold" 
-                                                                       href="MainController?action=goNewsDetails&txtID=${news.id}">
-                                                                        ${news.name}
+                                                                <img alt="..." src="${pageContext.request.contextPath}/user/assets/images/${com.link}" class="avatar avatar-sm rounded-circle me-2">
+
+                                                                <c:if test="${com.status}">
+                                                                    <a class="text-heading font-semibold" href="#">
+                                                                        ${com.name}
                                                                     </a>
                                                                 </c:if>
 
-                                                                <c:if test="${!news.status}">
-                                                                    ${news.name}
+                                                                <c:if test="${!com.status}">
+                                                                    ${com.name}
                                                                 </c:if>
                                                             </td>
+
                                                             <td>
-                                                                ${news.author}
-                                                            </td>
-                                                            <td>
-                                                                <c:if test="${news.status}">
-                                                                    <a class="text-heading font-semibold" 
-                                                                       href="MainController?action=goNewsDetails&txtID=${news.id}">
-                                                                        ${news.createTime}
-                                                                    </a>
-                                                                </c:if>
-                                                                <c:if test="${!news.status}">
-                                                                    ${news.createTime}
-                                                                </c:if>
-                                                            </td>
-                                                            <td>
-                                                                <c:if test="${news.status}">
+                                                                <c:if test="${com.status}">
                                                                     <span class="badge badge-lg badge-dot">
-                                                                        <i class="bg-success"></i>Đã đăng
+                                                                        <i class="bg-success"></i>Đang hoạt động
                                                                     </span>
                                                                 </c:if>
 
-                                                                <c:if test="${!news.status}">
+                                                                <c:if test="${!com.status}">
                                                                     <span class="badge badge-lg badge-dot">
                                                                         <i class="bg-danger"></i>Đã xóa
                                                                     </span>
@@ -232,18 +216,18 @@
                                                             </td>
                                                             <td class="text-end">
 
-                                                                <a href="" 
+                                                                <a href="MainController?action=goUpdateCom&txtID=${com.id}" 
                                                                    class="btn btn-sm btn-neutral" >
                                                                     <i class="bi bi-pencil"></i>
                                                                 </a>
-                                                                <c:if test="${news.status}">
-                                                                    <a href="MainController?action=deleteNews&txtID=${news.id}"
+                                                                <c:if test="${com.status}">
+                                                                    <a href="MainController?action=deleteCom&txtID=${com.id}"
                                                                        class="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                                                       onclick='return confirm("Bạn có muốn xóa Tin Tức này không?");'>
+                                                                       onclick='return confirm("Bạn có muốn xóa Công Ty này không?");'>
                                                                         <i class="bi bi-trash"></i>
                                                                     </a>
                                                                 </c:if>
-                                                                <c:if test="${!news.status}">
+                                                                <c:if test="${!com.status}">
                                                                     <button disabled="true"
                                                                             class="btn btn-sm btn-square btn-neutral text-danger-hover">
                                                                         <i class="bi bi-trash"></i>
@@ -258,8 +242,8 @@
                                         </c:if>
                                     </c:if>
                                 </form>
-                                <c:if test="${requestScope.LIST_NEWS == null || empty requestScope.LIST_NEWS}">
-                                    Not found News
+                                <c:if test="${requestScope.LIST_COM == null || empty requestScope.LIST_COM}">
+                                    Not found Company
                                 </c:if>
                             </div>
                             <div class="card-footer border-0 py-5">

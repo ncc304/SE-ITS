@@ -1,21 +1,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
+        <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.92/dist/index.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
 
+
         <!--for CKEditor:-->
-        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdn.ckeditor.com/4.17.1/full-all/ckeditor.js"></script>
 
+        <!--DatePicker-->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+        <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>-->
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">-->
+        <style>
+            label{
+                font-weight: 500;
+            }
+        </style>
+
         <title>Admin Page</title>
+
     </head>
     <body>
 
         <!-- Dashboard -->
-        <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary"  >
+        <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
             <!-- Vertical Navbar -->
             <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
                 <style>
@@ -45,7 +63,7 @@
                             .bi-book::before
                             {
                                 color: black; 
-                           }
+                            }
                         </style>
 
                         <!-- Navigation -->
@@ -74,7 +92,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/SE_ITS/MainController?action=goMajorPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goMajorPage">
                                     <i class="bi bi-journal-bookmark"></i> Bộ môn
                                 </a>
                             </li>
@@ -94,7 +112,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goSubject">
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goSubject">
                                     <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>
@@ -106,11 +124,7 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="bi bi-person-square"></i> Tài khoản
-                                </a>
-                            </li>-->
+
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -129,21 +143,11 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Ngành học</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Bộ Môn</h1>
                                 </div>
-                                <!-- Actions -->
-<!--                                <div class="col-sm-6 col-12 text-sm-end">
-                                    <div class="mx-n1">
-                                        <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                                            <span class=" pe-2">
-                                                <i class="bi bi-plus"></i>
-                                            </span>
-                                            <span>Thêm</span>
-                                        </a>
-                                    </div>
-                                </div>-->
+
                             </div>
-                            <!-- Nav -->
+
                             <br/>
                         </div>
                     </div>
@@ -153,38 +157,54 @@
                     <div class="container-fluid">
 
                         <div class="card shadow border-0 mb-7">
-                            <div class="card-header">
-                                <h5 class="mb-0">Tạo bài viết về Ngành học</h5>
+                            <div class="card-header" style="border-bottom: 1px solid #eceef3">
+                                <!--                                <h5 class="mb-0">Tạo bài viết về Sự Kiện</h5>-->
+                                <div class="col-10" style="margin-left: 2%; margin-top: 2%">
+                                    <label class="p-3 mb-2 text-white" style="border-radius: 50px 20px; font-weight: bold; background-color: #F26F21">
+                                        Cập Nhật Bộ Môn
+                                    </label>
+                                </div>
                             </div>
-
+                            <c:set var="dto" scope="request" value="${requestScope.MAJOR}"/>
                             <div class="card-footer border-0 py-5">
-                                <form>
+                                <form method="POST" action="${pageContext.request.contextPath}/MainController" id="formSubmit">
                                     <div class="form-group">
-                                        <label>Thumbnail</label> <br/>
-                                        <input type="file" class="form-control-file" accept="image/png, image/jpeg">
+                                        <label>ID</label>
+                                        <input type="text" value="${dto.id}" class="form-control" name="txtID" readonly="true">
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label>Tên</label>
+                                        <input type="text" value="${dto.name}" class="form-control" name="txtName">
                                     </div>
                                     <br/>
 
                                     <div class="form-group">
-                                        <label>Tiêu đề</label>
-                                        <input type="email" class="form-control" >
+                                        <label>Tổng quan về bộ môn ${dto.name}</label>
+                                        <textarea class="form-control" rows="5" id="content" name="overView">
+                                            ${dto.overview}
+                                        </textarea>
                                     </div>
                                     <br/>
 
                                     <div class="form-group">
-                                        <label>Nội dung</label>
-                                        <textarea class="form-control" rows="5" id="content" name="content"></textarea>
+                                        <label>Kỹ năng đạt được</label>
+                                        <textarea class="form-control" rows="5" id="content2" name="skill">
+                                            ${dto.skill}
+                                        </textarea>
                                     </div>
                                     <br/>
 
-                                    <select class="custom-select custom-select-md">
-                                        <option selected>Ngành học</option>
-                                        <option value="1">SE</option>
-                                        <option value="2">ITS</option>
-                                    </select>
-                                    <br/> <br/> 
+                                    <div class="form-group">
+                                        <label>Cơ hội việc làm</label>
+                                        <textarea class="form-control" rows="5" id="content3" name="opportunity">
+                                            ${dto.job_opportunity}
+                                        </textarea>
+                                    </div>
+                                    <br/>
 
-                                    <button type="submit" class="btn btn-warning" style="margin-left: 45%">Thêm</button>
+                                    <br/><br/><br/>
+                                    <input type="submit" value="Cập nhập bộ môn" name="action" id="btnCreate" class="btn btn-warning" style="margin-left: 42%"></input>
                                 </form>
                             </div>
                         </div>
@@ -208,6 +228,10 @@
     var editor = '';
     $(document).ready(function () {
         editor = CKEDITOR.replace('content');
-    })
+        editor = CKEDITOR.replace('content2');
+        editor = CKEDITOR.replace('content3');
+
+    });
 
 </script>
+

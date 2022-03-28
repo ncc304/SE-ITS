@@ -5,9 +5,10 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.SubjectDAO;
+import dtos.SubjectDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,31 +18,43 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
-    
+public class UpdateSubjectController extends HttpServlet {
+
+    private static final String SUCCESS = "LoadSubjectController";
+    private static final String ERROR = "admin/updateSubject.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String txtSubID = request.getParameter("txtID");
+            int subID = Integer.parseInt(txtSubID);
+            String txtName = request.getParameter("txtName");
+            String txtSource = request.getParameter("txtSource");
+            String major = request.getParameter("major");
+            int majorID = Integer.parseInt(major);
+            String statusStr = request.getParameter("status");
+            boolean status = false;
+            if(statusStr.equals("1")){
+                status = true;
+            }
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
+            SubjectDTO dto = new SubjectDTO(subID, txtSource, txtName, majorID, status);
+            SubjectDAO dao = new SubjectDAO();
+            boolean check = dao.updateSubject(dto);
             if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
+                request.setAttribute("MSG", "UPDATE_SUB_SUCCESS");
+                SubjectDTO dto1 = dao.getSubjectByID(subID);
+                if(dto1 != null){
+                    request.setAttribute("SUBNAME", dto1.getName());
+                    url = SUCCESS;
                 }
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

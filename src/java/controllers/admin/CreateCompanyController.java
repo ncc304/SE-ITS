@@ -5,9 +5,10 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.CompanyDAO;
+import dtos.CompanyDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,31 +18,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
-    
+public class CreateCompanyController extends HttpServlet {
+
+    private static final String SUCCESS = "LoadCompanyController";
+    private static final String ERROR = "createCompany.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String txtName = request.getParameter("txtName");
+            String txtAddress = request.getParameter("txtAddress");
+            String txtLogo = request.getParameter("logo");
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
+            CompanyDTO dto = new CompanyDTO(0, txtName, txtAddress, txtLogo, true);
+            CompanyDAO dao = new CompanyDAO();
+            boolean check = dao.createCompany(dto);
             if(check){
+                request.setAttribute("MSG", "CREATE_COM_SUCCESS");
+                CompanyDTO dto1 = dao.getListCompanyAdmin().get(dao.getListCompanyAdmin().size() - 1);
+                request.setAttribute("COMDTO", dto1);
                 url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
-                }
             }
+                    
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

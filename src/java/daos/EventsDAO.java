@@ -144,8 +144,8 @@ public class EventsDAO {
             Date parsed2 = format.parse(events.getStartDate());
 //            java.sql.Date sqlDate2 = new java.sql.Date(parsed2.getTime());
             java.sql.Timestamp sqlDate2 = new java.sql.Timestamp(parsed2.getTime());
-            Date parsed3 = formatCreateDate.parse(events.getCreateDate());
-            java.sql.Date sqlDate3 = new java.sql.Date(parsed3.getTime());
+//            Date parsed3 = formatCreateDate.parse(events.getCreateDate());
+//            java.sql.Date sqlDate3 = new java.sql.Date(parsed3.getTime());
 
             pr.setString(1, events.getName());
             pr.setTimestamp(2, sqlDate2);
@@ -154,7 +154,7 @@ public class EventsDAO {
             pr.setString(5, events.getDescription());
             pr.setString(6, events.getOwner());
             pr.setString(7, events.getType());
-            pr.setDate(8, sqlDate3);
+            pr.setString(8, events.getCreateDate());
             check = pr.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -514,7 +514,7 @@ public class EventsDAO {
     }
 
     //Search event by event ID for event details
-    public EventDTO getEventByID(int idEvent) {
+        public EventDTO getEventByID(int idEvent) {
         EventDTO dto = null;
         int id = idEvent;//
         String name;//
@@ -531,7 +531,7 @@ public class EventsDAO {
 //            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             con = MyConnection.getConnection();
-            String sql = "SELECT * from SWP391.Events WHERE id = " + id;
+            String sql = "SELECT * from SWP391.Events WHERE status = 1 AND id = " + id;
             Statement stmt = con.createStatement();
 
             ResultSet rs = stmt.executeQuery(sql);

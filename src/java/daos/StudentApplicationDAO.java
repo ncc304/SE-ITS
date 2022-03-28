@@ -151,4 +151,62 @@ public class StudentApplicationDAO {
         }
         return check;
     }
+    
+    // --------------------- Admin -------------------------------
+    // update status
+    public boolean updateStatusStudentApplication(int id, int status) {
+        boolean check = false;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.Student_Application SET status = ? WHERE (id = ?);";
+            PreparedStatement pr = con.prepareStatement(sql);
+
+            pr.setInt(1, status);
+            pr.setInt(2, id);
+            check = pr.executeUpdate() > 0;
+            return check;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+    // get data by id
+    public StudentApplicationDTO getStudentApplicationByID(int idUser) {
+        List<StudentApplicationDTO> listStudentApplication = new ArrayList<>();
+        StudentApplicationDTO dto = null;
+        int id = 0;
+        String name = null;
+        String phone = null;
+        boolean status = false;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Student_Application WHERE id = "+idUser;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                id = rs.getInt("id");
+                name = rs.getString("name");
+                phone = rs.getString("phone");
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                dto = new StudentApplicationDTO(id, name, phone, status);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
+    
 }

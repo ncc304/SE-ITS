@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-  <%--<%@ taglib uri="http://java.fckeditor.net" prefix="FCK" %>--%>
+<%--<%@ taglib uri="http://java.fckeditor.net" prefix="FCK" %>--%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,6 +8,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 
         <title>Admin Page</title>
+        <c:if test="${requestScope.MSG eq 'CREATE_EVENT_SUCCESS'}">
+            <script>
+                window.alert("Đã tạo một Sự Kiện: ${requestScope.EVENT_NAME} thành công!");
+            </script>
+        </c:if>
+        <c:if test="${requestScope.MSG eq 'DELETE_EVENT_SUCCESS'}">
+            <script>
+                window.alert("Đã tạo một Sự Kiện: ${requestScope.EVENT_NAME} thành công!");
+            </script>
+        </c:if>
     </head>
     <body>
 
@@ -35,11 +45,14 @@
                     <!-- Collapse -->
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
-                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
-                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, .bi-person-fill::before
+                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, 
+                            .bi-calendar-event::before, .bi-people::before,
+                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
+                            .bi-person-fill::before, .bi-telephone-fill::before, .bi-building::before,
+                            .bi-book::before
                             {
-                                color: black;
-                            }
+                                color: black; 
+                           }
                         </style>
 
                         <!-- Navigation -->
@@ -53,12 +66,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/news.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goRecruitmentPage">
                                     <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
                             </li>
@@ -68,13 +81,28 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/major.jsp"/>">
-                                    <i class="bi bi-journal-bookmark"></i> Ngành học
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goMajorPage">
+                                    <i class="bi bi-journal-bookmark"></i> Bộ môn
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/user.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goUserPage">
                                     <i class="bi bi-person-fill"></i> Người dùng
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goTuVanPage">
+                                    <i class="bi bi-telephone-fill"></i> Tư vấn học tập
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goCompany">
+                                    <i class="bi bi-building"></i> Công ty
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goSubject">
+                                    <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>
                         </ul>
@@ -85,11 +113,7 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-                            <!--                            <li class="nav-item">
-                                                            <a class="nav-link" href="#">
-                                                                <i class="bi bi-person-square"></i> Tài khoản
-                                                            </a>
-                                                        </li>-->
+
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -143,10 +167,10 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col">STT</th>
+                                                        <th scope="col">ID</th>
                                                         <th scope="col">Tiêu đề</th>
                                                         <th scope="col">Tác giả</th>
-                                                        <th scope="col">Ngày bắt đầu</th>
-                                                        <th scope="col">Ngày kết thúc</th>
+                                                        <th scope="col">Ngày tạo</th>
                                                         <th scope="col">Trạng thái</th>
                                                         <th></th>
                                                     </tr>
@@ -156,26 +180,39 @@
                                                         <c:forEach items="${requestScope.LIST_EVENT_IMG}" var="eventImg">
                                                             <tr>
                                                                 <c:if test="${event.id eq eventImg.eventId}">
-                                                                    <td><strong>${counter.count}</strong></td>
                                                                     <td>
-                                                                        <img alt="..." src="${pageContext.request.contextPath}/user/assets/images/${eventImg.link}" class="avatar avatar-sm rounded-circle me-2">
-                                                                        <a class="text-heading font-semibold" href="#">
+                                                                        <c:if test="${event.status}">
+                                                                            <strong>${counter.count}</strong>
+                                                                        </c:if>
+                                                                        <c:if test="${!event.status}">
+                                                                            ${counter.count}
+                                                                        </c:if>
+                                                                    </td>
+                                                                    <td>${event.id}</td>
+                                                                    <td>
+                                                                        <c:if test="${event.status}">
+                                                                            <a class="text-heading font-semibold" 
+                                                                               href="MainController?action=goEventDetails&txtID=${event.id}">
+                                                                                ${event.name}
+                                                                            </a>
+                                                                        </c:if>
+                                                                        <c:if test="${!event.status}">
                                                                             ${event.name}
-                                                                        </a>
+                                                                        </c:if>
                                                                     </td>
                                                                     <td>
                                                                         ${event.owner}
                                                                     </td>
                                                                     <td>
-                                                                        <!--<img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">-->
-                                                                        <a class="text-heading font-semibold" href="#">
-                                                                            ${event.startDate}
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a class="text-heading font-semibold" href="#">
-                                                                            ${event.endDate}
-                                                                        </a>
+                                                                        <c:if test="${event.status}">
+                                                                            <a class="text-heading font-semibold" 
+                                                                               href="MainController?action=goEventDetails&txtID=${event.id}">
+                                                                                ${event.createDate}
+                                                                            </a>
+                                                                        </c:if>
+                                                                        <c:if test="${!event.status}">
+                                                                            ${event.createDate}
+                                                                        </c:if>
                                                                     </td>
                                                                     <td>
                                                                         <span class="badge badge-lg badge-dot">
@@ -196,7 +233,7 @@
                                                                            href="MainController?action=goUpdateEvent&txtEventID=${event.id}&txtEventName=${event.name}&txtStart=${event.startDate}&txtEnd=${event.endDate}&txtStatus=${event.status}&txtType=${event.type}&txtImg=${eventImg.link}">
                                                                             <i class="bi bi-pencil"></i>
                                                                             <!--<input type="hidden" name="txtDes" value=" {event.description}"/>-->
-                                                                            
+
                                                                         </a>
                                                                         <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
                                                                            href="MainController?action=deleteEvent&txtEventID=${event.id}"

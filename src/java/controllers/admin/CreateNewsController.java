@@ -5,43 +5,71 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.NewsDAO;
+import daos.NewsImageDAO;
+import daos.NewsNewsTagDAO;
+import dtos.NewsDTO;
+import dtos.NewsImageDTO;
+import dtos.NewsNewsTagDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
-    
+public class CreateNewsController extends HttpServlet {
+
+    private static final String ERROR = "admin/createNews.jsp";
+    private static final String SUCCESS = "LoadNewsPageController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String thumbnail = request.getParameter("thumbnail");
+            String title = request.getParameter("txtTitle");
+            String content = request.getParameter("content");
+            String category = request.getParameter("category");
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
+            HttpSession session = request.getSession();
+            String userName = (String) session.getAttribute("USER_NAME");
+            
+            NewsDAO newsDAO = new NewsDAO();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            java.util.Date createDateTmp = new java.util.Date();
+            String createDate = format.format(createDateTmp);
+            
+            NewsDTO dto = new NewsDTO(0, title, true, createDate, content, userName, 0);
+            boolean check = newsDAO.createtNews(dto); // Thêm tbl News
             if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
+                NewsImageDAO imgDAO = new NewsImageDAO();
+                NewsDTO lastestID = newsDAO.getListNews().get(newsDAO.getListNews().size() - 1);
+                NewsImageDTO imgDTO = new NewsImageDTO(0, thumbnail, lastestID.getId());
+                boolean check1 = imgDAO.createtNewsImage(imgDTO); // Thêm tbl News Image
+                if(check1){
+                    NewsNewsTagDAO tagDao = new NewsNewsTagDAO();
+                    NewsNewsTagDTO tagDTO = new NewsNewsTagDTO(0, Integer.parseInt(category), lastestID.getId());
+                    boolean check3 = tagDao.createtNewsNewsTag(tagDTO); // Thêm tbl News Tag
+                    if(check3){
+                            request.setAttribute("MSG", "CREATE_NEWS_SUCCESS");
+                        request.setAttribute("NEWS_NAME", dto.getName());
+                        url = SUCCESS;
+                    }
                 }
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

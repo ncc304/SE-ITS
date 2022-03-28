@@ -5,14 +5,13 @@
  */
 package controllers.admin;
 
-import daos.EventEventCategoryDAO;
-import daos.EventImageDAO;
-import daos.EventsDAO;
-import dtos.EventDTO;
-import dtos.EventEventCategoryDTO;
-import dtos.EventsImageDTO;
+import daos.RecruitmentDAO;
+import daos.RecruitmentRecruitmentCategoryDAO;
+import dtos.RecruitmentDTO;
+import dtos.RecruitmentRecruitmentCategoryDTO;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,62 +22,53 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class CreateEventController extends HttpServlet {
-    private static final String ERROR = "admin/createEvent.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
-    
+public class CreateRecruitmentController extends HttpServlet {
+
+    private static final String ERROR = "admin/createRecruitment.jsp";
+    private static final String SUCCESS = "LoadRecruitmentPageController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         String url = ERROR;
         try {
             String date1 = request.getParameter("date1");
             String date2 = request.getParameter("date2");
-            String thumbnail = request.getParameter("thumbnail");
             String title = request.getParameter("txtTitle");
             String content = request.getParameter("content");
+            String salary = request.getParameter("txtSalary");
+            String company = request.getParameter("company");
             String category = request.getParameter("category");
-            String method = request.getParameter("method");
             
             HttpSession session = request.getSession();
-//            String email = (String) session.getAttribute("email");
-//            int userID = (Integer) session.getAttribute("USER_ID");
             String userName = (String) session.getAttribute("USER_NAME");
-//            int userID = Integer.parseInt(userIDStr);
-
             
-            EventsDAO dao = new EventsDAO();
+            RecruitmentDAO reDAO = new RecruitmentDAO();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             java.util.Date createDate = new java.util.Date();
             String createDateStr = format.format(createDate);
             
-            EventDTO dto = new EventDTO(0, title, date1, date2, true, content, userName, method, createDateStr);
-            boolean check = dao.createtEvent(dto); // INSERT tbl EVENT
-
-            if(check){
-//                request.setAttribute("CONTENT", dto.getDescription());
-                EventImageDAO imgDAO = new EventImageDAO();
-                
-                EventDTO lastestID = dao.getListEvent().get(dao.getListEvent().size()-1);//get latest EventID
-                EventsImageDTO imgDTO = new EventsImageDTO(thumbnail, lastestID.getId());
-               
-                boolean checkImg = imgDAO.createtEventsImage(imgDTO); // INSERT tbl EVENT_IMAGE
-                if(checkImg == true ){ 
-                    EventEventCategoryDAO cateDAO = new EventEventCategoryDAO();
-                    EventEventCategoryDTO cateDTO = 
-                            new EventEventCategoryDTO(0, lastestID.getId(), Integer.parseInt(category));
-                    boolean checkCate = cateDAO.createtEventEventCategory(cateDTO);//INSERT tbl Event_Category_has_Events
-                    if(checkCate){
-                        request.setAttribute("MSG", "CREATE_EVENT_SUCCESS");
-                        request.setAttribute("EVENT_NAME", dto.getName());
+            RecruitmentDTO reDTO =
+                    new RecruitmentDTO(0, date1, date2, Float.parseFloat(salary), content, Integer.parseInt(company), true, title, userName, createDateStr);
+            boolean check1 = reDAO.createtRecruitment(reDTO); // Thêm tbl Recruitment
+            if(check1){
+                RecruitmentDTO lastestID = reDAO.getListRecruitment().get(reDAO.getListRecruitment().size() - 1);
+                RecruitmentRecruitmentCategoryDAO cateDAO = new RecruitmentRecruitmentCategoryDAO();
+                RecruitmentRecruitmentCategoryDTO cateDTO = new RecruitmentRecruitmentCategoryDTO(0, lastestID.getId(), Integer.parseInt(category));
+                if(cateDTO != null){
+                    boolean check2 = cateDAO.createtRecruitmentRecruitmentCategory(cateDTO); // Thêm tbl Recruitment sub Cate
+                    if(check2){
                         url = SUCCESS;
+                        request.setAttribute("MSG", "CREATE_RE_SUCCESS");
+                        request.setAttribute("RENAME", lastestID.getName());
+                        
                     }
                 }
-            }
+                
+            }                        
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

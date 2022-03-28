@@ -40,10 +40,12 @@ public class NewsDAO {
         String author = null;
         int view = 0;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.News;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -55,7 +57,10 @@ public class NewsDAO {
                 } else {
                     status = true;
                 }
-                createTime = rs.getDate("create_time").toString();
+                String createTimeTmp = rs.getString("create_time");
+                Date d = fmt.parse(createTimeTmp);
+                Timestamp stamp = new Timestamp(d.getTime());
+                createTime = fmt.format(stamp);
                 content = rs.getString("content");
                 author = rs.getString("author");
                 view = rs.getInt("view");
@@ -71,42 +76,27 @@ public class NewsDAO {
     public boolean createtNews(NewsDTO news) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             if (news.getCreateTime() != null) {
-                String sql = "INSERT INTO SWP391.News (`name`, `status`, `create_time`  , `content`, `author`, `view`) VALUES (?, ?,?, ?, ?,?);";
+                String sql = "INSERT INTO SWP391.News (name, status, create_time, content, author, [view]) VALUES (?, ?,?, ?, ?,?);";
                 PreparedStatement pr = con.prepareStatement(sql);
                 int tmp = 0;
                 if (news.isStatus()) {
                     tmp = 1;
                 }
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date parsed = format.parse(news.getCreateTime());
-                java.sql.Date sqlDate = new java.sql.Date(parsed.getTime());
+
                 pr.setString(1, news.getName());
                 pr.setInt(2, tmp);
-                pr.setDate(3, sqlDate);
+                pr.setString(3, news.getCreateTime());
                 pr.setString(4, news.getContent());
                 pr.setString(5, news.getAuthor());
                 pr.setInt(6, news.getView());
                 check = pr.executeUpdate() > 0;
-                return check;
             }
-            String sql = "INSERT INTO SWP391.News (`name`, `status` , `content`, `author`, `view`) VALUES (?, ?,?, ?, ?);";
-            PreparedStatement pr = con.prepareStatement(sql);
-            int tmp = 0;
-            if (news.isStatus()) {
-                tmp = 1;
-            }
-            pr.setString(1, news.getName());
-            pr.setInt(2, tmp);
-            pr.setString(3, news.getContent());
-            pr.setString(4, news.getAuthor());
-            pr.setInt(5, news.getView());
-
-            check = pr.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -505,6 +495,68 @@ public class NewsDAO {
                 Date d1 = fmt.parse(createTimeTmp);
                 Timestamp stamp = new Timestamp(d1.getTime());
                 createTime = fmt.format(stamp);
+                content = rs.getString("content");
+                author = rs.getString("author");
+                view = rs.getInt("view");
+                dto = new NewsDTO(id, name, status, createTime, content, author, view);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
+
+    // update status - delete function
+    public boolean updateNewsStatus(int id, int status) {
+        boolean check = false;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.News SET status = " + status + " WHERE id = " + id;
+            PreparedStatement pr = con.prepareStatement(sql);
+            check = pr.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+
+    public NewsDTO getNewsByID_NotCount(int idNews) { // + Count View
+        NewsDTO dto = null;
+        int id = idNews;
+        String name = null;
+        boolean status = false;
+        String createTime = null;
+        String content = null;
+        String author = null;
+        int view = 0;
+        try {
+
+            con = MyConnection.getConnection();
+            SimpleDateFormat formatCreateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String sql = "SELECT * FROM SWP391.News WHERE id = " + id;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                id = rs.getInt("id");
+                name = rs.getString("name");
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                String createTimeTmp = rs.getString("create_time");
+                Date dTmp = formatCreateTime.parse(createTimeTmp);
+                Timestamp timeTmp = new Timestamp(dTmp.getTime());
+//                Calendar cal1 = Calendar.getInstance(); // gọi Calendar để tăng thêm 2 ngày
+//                cal1.setTimeInMillis(timeTmp.getTime());
+//                cal1.add(Calendar.DAY_OF_MONTH, 2); // tăng 2 ngày
+//                timeTmp = new Timestamp(cal1.getTime().getTime());
+                createTime = formatCreateTime.format(timeTmp.getTime()); // convert to string
+
                 content = rs.getString("content");
                 author = rs.getString("author");
                 view = rs.getInt("view");

@@ -7,6 +7,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
 
         <title>Admin Page</title>
+        <c:if test="${requestScope.MSG eq 'UPDATE_MAJOR_SUCCESS'}">
+            <script>
+                window.alert("Đã chỉnh sửa Bộ Môn: ${requestScope.MAJORNAME} thành công!");
+            </script>
+        </c:if>
     </head>
     <body>
 
@@ -34,10 +39,13 @@
                     <!-- Collapse -->
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         <style>
-                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, .bi-calendar-event::before, .bi-people::before,
-                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, .bi-person-fill::before
+                            .bi-house::before, .bi-newspaper::before, .bi-journal-bookmark::before, 
+                            .bi-calendar-event::before, .bi-people::before,
+                            .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
+                            .bi-person-fill::before, .bi-telephone-fill::before, .bi-building::before,
+                            .bi-book::before
                             {
-                                color: black;
+                                color: black; 
                             }
                         </style>
 
@@ -52,12 +60,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/news.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goRecruitmentPage">
                                     <i class="bi bi-briefcase-fill"></i> Tuyển dụng
                                 </a>
                             </li>
@@ -67,13 +75,28 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<c:url value = "/admin/major.jsp"/>">
-                                    <i class="bi bi-journal-bookmark"></i> Ngành học
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goMajorPage">
+                                    <i class="bi bi-journal-bookmark"></i> Bộ môn
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<c:url value = "/admin/user.jsp"/>">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goUserPage">
                                     <i class="bi bi-person-fill"></i> Người dùng
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goTuVanPage">
+                                    <i class="bi bi-telephone-fill"></i> Tư vấn học tập
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goCompany">
+                                    <i class="bi bi-building"></i> Công ty
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goSubject">
+                                    <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>
                         </ul>
@@ -84,11 +107,11 @@
                         <div class="mt-auto"></div>
                         <!-- User (md) -->
                         <ul class="navbar-nav">
-<!--                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="bi bi-person-square"></i> Tài khoản
-                                </a>
-                            </li>-->
+                            <!--                            <li class="nav-item">
+                                                            <a class="nav-link" href="#">
+                                                                <i class="bi bi-person-square"></i> Tài khoản
+                                                            </a>
+                                                        </li>-->
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="bi bi-box-arrow-left"></i> Đăng xuất
@@ -107,10 +130,10 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Ngành Học</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Bộ Môn</h1>
                                 </div>
                                 <!-- Actions -->
-                                <div class="col-sm-6 col-12 text-sm-end">
+<!--                                <div class="col-sm-6 col-12 text-sm-end">
                                     <div class="mx-n1">
                                         <a href="createMajor.jsp" class="btn d-inline-flex btn-sm btn-primary mx-1">
                                             <span class=" pe-2">
@@ -119,7 +142,7 @@
                                             <span>Thêm</span>
                                         </a>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <!-- Nav -->
                             <br/>
@@ -132,82 +155,58 @@
 
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">Danh sách các bài viết về Ngành Học</h5>
+                                <h5 class="mb-0">Danh sách về 2 Bộ Môn có trong hệ thống</h5>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover table-nowrap">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">Tiêu đề</th>
-                                            <th scope="col">Tác giả</th>
-                                            <th scope="col">Ngày đăng</th>
-                                            <th scope="col">Trạng thái</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <img alt="..." src="https://daihoc.fpt.edu.vn/media/2022/01/271273208_5410510728964838_5683207586585387410_n-373x206.jpeg" class="avatar avatar-sm rounded-circle me-2">
-                                                <a class="text-heading font-semibold" href="#">
-                                                    SV Ngành SE kể chuyện chọn trường, "ngành" đúng đắn
-                                                </a>
-                                            </td>
-                                            <td>
-                                                Trần Duy Hưng
-                                            </td>
-                                            <td>
-                                                <!--<img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">-->
-                                                <a class="text-heading font-semibold" href="#">
-                                                    14/01/2022
-                                                </a>
-                                            </td>
-                                            <!--                                            
-                                            -->                                            <td>
-                                                <span class="badge badge-lg badge-dot">
-                                                    <i class="bg-success"></i>Đã đăng
-                                                </span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
-                                                <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
+                                <form action="MainController" method="POST">
+                                    <c:if test="${requestScope.MAJOR != null}">
+                                        <c:if test="${not empty requestScope.MAJOR}">
+                                            <table class="table table-hover table-nowrap">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">STT</th>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Tên</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${requestScope.MAJOR}" var="major" varStatus="counter">
+                                                        <tr>
+                                                            <td><strong>${counter.count}</strong></td>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <img alt="..." src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/271719124_4900691723302883_6013686438905834773_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=730e14&_nc_ohc=cTqz2ihLer0AX_OdDhb&tn=dukyNjARcINWNWzp&_nc_ht=scontent.fsgn5-12.fna&oh=00_AT8hQ4RsD4ovlPcCkJkFbraWNVgd2Oknfmsn5YSxuuomUg&oe=61E8163E" 
-                                                     class="avatar avatar-sm rounded-circle me-2">
-                                                <a class="text-heading font-semibold" href="#">
-                                                    Đại học FPT là trường đại học đầu tiên áp dụng MC ảo
-                                                </a>
-                                            </td>
-                                            <td>
-                                                Nguyễn Thành Long
-                                            </td>
-                                            <td>
-                                                <a class="text-heading font-semibold" href="#">
-                                                    14/01/2022
-                                                </a>
-                                            </td>
+                                                            <td>
+                                                                ${major.id}
+                                                            </td>
+                                                            <td>
+                                                                <a class="text-heading font-semibold" href="#">
+                                                                    ${major.name}
+                                                                </a>
+                                                            </td>
+                                                            
+                                                            <td class="text-end">
+                                                                <a class="btn btn-sm btn-neutral"  
+                                                                   href="MainController?action=updateMajor&txtID=${major.id}">
+                                                                    <i class="bi bi-pencil"></i>                                                                            
+                                                                </a>
+<!--                                                                <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
+                                                                   href="MainController?action=deleteUser&txtUserID=$ {user.id}"
+                                                                   onclick='return confirm("Bạn có muốn chặn Người Dùng này không?");'>
+                                                                    <i class="bi bi-trash"></i>
+                                                                </a>-->
 
-                                            <td>
-                                                <span class="badge badge-lg badge-dot">
-                                                    <i class="bg-danger"></i>Đã xóa
-                                                </span>
-                                            </td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
-                                                <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                                            </td>
 
-                                    </tbody>
-                                </table>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </c:if>
+                                    </c:if>
+                                </form>
+                                <c:if test="${requestScope.MAJOR == null || empty requestScope.MAJOR}">
+                                    Not found Major
+                                </c:if>
                             </div>
                             <div class="card-footer border-0 py-5">
                                 <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
