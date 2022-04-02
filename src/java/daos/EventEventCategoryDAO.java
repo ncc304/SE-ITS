@@ -22,25 +22,27 @@ import utils.MyConnection;
  * @author Admin
  */
 public class EventEventCategoryDAO {
+
     private Connection con = null;
-    
+
     public List<EventEventCategoryDTO> getListEventEventCategory() {
         List<EventEventCategoryDTO> listEventEventCategory = new ArrayList<>();
         int id = 0;
         int eventId = 0;
         int eventCategoryId = 0;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Event_Category_has_Events;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 id = rs.getInt("id");
                 eventId = rs.getInt("Events_id");
-                eventCategoryId = rs.getInt("Event_Category_id");               
+                eventCategoryId = rs.getInt("Event_Category_id");
                 EventEventCategoryDTO dto = new EventEventCategoryDTO(id, eventId, eventCategoryId);
                 listEventEventCategory.add(dto);
             }
@@ -71,8 +73,7 @@ public class EventEventCategoryDAO {
             pr.setInt(1, eventEventCategory.getEventCategoryId());
             pr.setInt(2, eventEventCategory.getEventId());
             check = pr.executeUpdate() > 0;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return check;
@@ -115,5 +116,5 @@ public class EventEventCategoryDAO {
         }
         return check;
     }
-    
+
 }

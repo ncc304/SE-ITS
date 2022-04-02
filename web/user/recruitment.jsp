@@ -101,10 +101,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -114,10 +114,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                                 <c:if test="${sessionScope.USER_ID != null}">
                                     <ul class="subnav__list">
-                                    <li class="subnav__item">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
-                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
-                                    </li>
+                                        <li class="subnav__item">
+                                            <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                               class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                        </li>
                                     </ul>
                                 </c:if>
                             </li>
@@ -173,7 +173,7 @@
                 </div>
                 <c:if test="${requestScope.LIST_REC1 != null}">
                     <c:if test="${not empty requestScope.LIST_REC1}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.LIST_REC1}" var="list1">
                                     <c:forEach items="${requestScope.COM1}" var="c1">
@@ -222,7 +222,7 @@
                 </div>
                 <c:if test="${requestScope.LIST_REC2 != null}">
                     <c:if test="${not empty requestScope.LIST_REC2}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.LIST_REC2}" var="list2">
                                     <c:forEach items="${requestScope.COM2}" var="c2">
@@ -271,7 +271,7 @@
                 </div>
                 <c:if test="${requestScope.LIST_REC3 != null}">
                     <c:if test="${not empty requestScope.LIST_REC3}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.LIST_REC3}" var="list3">
                                     <c:forEach items="${requestScope.COM3}" var="c3">
@@ -319,7 +319,7 @@
                 </div>
                 <c:if test="${requestScope.LIST_REC4 != null}">
                     <c:if test="${not empty requestScope.LIST_REC4}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.LIST_REC4}" var="list4">
                                     <c:forEach items="${requestScope.COM4}" var="c4">

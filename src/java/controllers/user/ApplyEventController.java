@@ -9,6 +9,8 @@ import daos.EventAccountDAO;
 import dtos.EventAccountDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,10 +40,24 @@ public class ApplyEventController extends HttpServlet {
             EventAccountDAO eaDAO = new EventAccountDAO();
             EventAccountDTO eaDTO = new EventAccountDTO(0, eventID, userID, true);
 
-            boolean check = eaDAO.createtEventAccount(eaDTO);
-            if (check) {
-                url = backEventDetail + eventID;
+            // check event_id đã có trong db table event has acount chưa
+            if (userID > 0 && eventID > 0) {
+                boolean checkEventID = eaDAO.checkEventID(userID, eventID);
+                if (checkEventID) {     // update status 0              
+                    EventAccountDTO eaDTO2 = new EventAccountDTO(0, eventID, userID, true);
+                    boolean check = eaDAO.updateEventAccount(eaDTO2);
+                    if (check) {
+                        url = backEventDetail + eventID;
+                    }
+                } else { // insert tbl  
+                    boolean check = eaDAO.createtEventAccount(eaDTO);
+                    if (check) {
+                        url = backEventDetail + eventID;
+                    }
+                }
+
             }
+
         } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

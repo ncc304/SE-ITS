@@ -63,7 +63,7 @@
                             .bi-book::before
                             {
                                 color: black; 
-                           }
+                            }
                         </style>
 
                         <!-- Navigation -->
@@ -167,14 +167,15 @@
                             </div>
                             <c:set var="dto" scope="request" value="${requestScope.EVENT}"/>
                             <c:set var="img" scope="request" value="${requestScope.IMG}"/>
-                            
+
                             <div class="card-footer border-0 py-5">
                                 <form method="POST" action="${pageContext.request.contextPath}/MainController" id="formSubmit">
                                     <div class="form-group">
                                         <span class="date1">
+                                            <input type="hidden" name="txtID" value="${dto.id}"/>
                                             <label>Ngày bắt đầu </label>
-                                            
-                                            
+
+
                                             <!--<input value="$ {dto.startDate}" type="datetime-local" name="date1"  style="border: 1px solid #00000024; margin-left: 5px;">-->
                                             <input value="${dto.startDate}" type="datetime-local" name="date1"  style="border: 1px solid #00000024; margin-left: 5px;">
                                         </span>
@@ -196,6 +197,8 @@
                                         <!--</label>-->
                                         <!--<p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p>-->
                                         <!--</span>-->  
+                                        <br/>
+                                        <input type="hidden" name="txtImg" value="${img}"/>
                                         <div class="image-area">
                                             <img id="imageResult"
                                                  src="${pageContext.request.contextPath}/user/assets/images/${requestScope.IMG}"
@@ -220,32 +223,56 @@
 
                                     <div class="form-group">
                                         <label>Nội dung</label>
-                                        <textarea class="form-control" rows="5" id="content" name="content"></textarea>
+                                        <textarea class="form-control" rows="5" id="content" name="content">${dto.description}</textarea>
                                     </div>
 
                                     <br/>
-                                    <span id="category">
+                                    <div class="form-group">
                                         <label>Thể loại</label>
                                         <select class="custom-select custom-select-md" name="category" style="border: 1px solid #00000024; margin-left: 5px;">
-                                            <option selected>--Chọn thể loại--</option>
-<!--                                            <option value="ai">Trí tuệ nhân tạo</option>
-                                            <option value="music">Nhạc cụ</option>-->
-                                            <c:forEach items="${requestScope.EVENT_CATE}" var="cate">
-                                                <option value="${cate.id}">${cate.nsme}</option>
+
+                                            <c:forEach items="${requestScope.CATE1}" var="cate1">
+                                                <c:forEach items="${requestScope.CATE}" var="cate">
+                                                    <c:if test="${dto.id eq cate.eventId && cate.eventCategoryId eq  cate1.id}">
+                                                        <option value="${cate1.id}" selected="true">${cate1.nsme}</option>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <option value="${cate1.id}">${cate1.nsme}</option>
                                             </c:forEach> 
+
                                         </select> 
-                                    </span>
-                                    <span id="method" style="margin-left: 40%;">
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
                                         <label>Phương thức</label>
                                         <select class="custom-select custom-select-md" name="method" style="border: 1px solid #00000024;">
-                                            <option selected>--Chọn phương thức--</option>
-                                            <option value="offline">Offline</option>
-                                            <option value="online">Online</option>
+                                            <c:if test="${dto.type eq 'offline'}">
+                                                <option value="offline" selected="true">Offline</option>
+                                                <option value="online" >Online</option>
+                                            </c:if>
+                                            <c:if test="${dto.type eq 'online'}">
+                                                <option value="online" selected="true">Online</option>
+                                                <option value="online">Offline</option>
+                                            </c:if>
                                         </select>
-                                    </span>
-
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label>Trạng thái</label>
+                                        <select class="custom-select custom-select-md" name="status" style="border: 1px solid #00000024;">
+                                            <c:if test="${dto.status}">
+                                            <option value="1" selected="true">Đang hoạt động</option>
+                                            <option value="0" >Đã xóa</option>
+                                            </c:if>
+                                            <c:if test="${!dto.status}">
+                                            <option value="0" selected="true">Đã xóa</option>
+                                            <option value="1">Đang hoạt động</option>
+                                            </c:if>
+                                        </select>
+                                    </div>
+                                    
                                     <br/><br/><br/>
-                                    <input type="submit" value="Sửa sự kiện" name="action" id="btnCreate" class="btn btn-warning" style="margin-left: 50%"></input>
+                                    <input type="submit" value="Sửa sự kiện" name="action" id="btnCreate" class="btn btn-warning" style="margin-left: 45%"></input>
                                 </form>
                             </div>
                         </div>

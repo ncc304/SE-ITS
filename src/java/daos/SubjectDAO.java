@@ -178,4 +178,40 @@ public class SubjectDAO {
         return check;
     }
     
+    // -------------------- User Page --------------------
+    public List<SubjectDTO> getListSubjectUser() {
+        List<SubjectDTO> listSubject = new ArrayList<>();
+        int id = 0;
+        String link = null;
+        String name = null;
+        int majorId = 0;
+        boolean status = false;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Subjects WHERE Status = 1";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getInt("idSubjects");
+                name = rs.getString("name");
+                link = rs.getString("link");
+                majorId = rs.getInt("Major_idMajor");
+                if(rs.getInt("status") == 1){
+                    status = true;
+                }else{
+                    status = false;
+                }
+                SubjectDTO dto = new SubjectDTO(id, link, name, majorId, status);
+                listSubject.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listSubject;
+    }
+    
 }

@@ -81,10 +81,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -94,10 +94,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                                 <c:if test="${sessionScope.USER_ID != null}">
                                     <ul class="subnav__list">
-                                    <li class="subnav__item">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
-                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
-                                    </li>
+                                        <li class="subnav__item">
+                                            <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                               class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                        </li>
                                     </ul>
                                 </c:if>
                             </li>
@@ -180,7 +180,7 @@
                         </p>
                     </div>
                     <div class="more_btn l-3 m-6 c-12">
-                        <a href="its.jsp" class="more_sub">Xem thêm</a>
+                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="more_sub">Xem thêm</a>
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@
 
                     </div>
                     <div class="more_btn l-3 m-6 c-12">
-                        <a href="se.jsp" class="more_sub">Xem thêm</a>
+                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="more_sub">Xem thêm</a>
                     </div>
                 </div>
 

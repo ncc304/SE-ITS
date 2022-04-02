@@ -4,6 +4,8 @@
     Author     : Admin
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -105,10 +107,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -118,10 +120,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                                 <c:if test="${sessionScope.USER_ID != null}">
                                     <ul class="subnav__list">
-                                    <li class="subnav__item">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
-                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
-                                    </li>
+                                        <li class="subnav__item">
+                                            <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                               class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                        </li>
                                     </ul>
                                 </c:if>
                             </li>
@@ -150,206 +152,202 @@
                     </div>
                 </div>
             </div>
+            <div class="wrap_content">
+                <div class="main_contain">
 
-        </div>
-
-        <div class="wrap_content">
-            <div class="main_contain">
-
-                <div class="heading-section padding-top-86px">
-                    <div class="site_map" style="width: auto">
-                        <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em;">Trang chủ › </a>
-                        <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" 
-                           style="font-size: 1.30em; color: #0882d9">
-                            Sự kiện 
-                        </a>
-                        <c:if test="${requestScope.DTO_DETAIL.type eq 'online'}">
-                            <a href="MainController?action=goEventOnlReadMore" 
-                               style="font-size: 1.30em;">
-                                › Online 
+                    <div class="heading-section padding-top-86px">
+                        <div class="site_map" style="width: auto">
+                            <a href="${pageContext.request.contextPath}/user/home.jsp" style="font-size: 1.30em;">Trang chủ › </a>
+                            <a href="${pageContext.request.contextPath}/MainController?action=goEventUser" 
+                               style="font-size: 1.30em; color: #0882d9">
+                                Sự kiện 
                             </a>
-                        </c:if>
-                        <c:if test="${requestScope.DTO_DETAIL.type eq 'offline'}">
-                            <a href="MainController?action=goEventOffReadMore" 
-                               style="font-size: 1.30em;">
-                                › Offline 
-                            </a>
-                        </c:if>
-                        <a href="#" style="font-size: 1.30em;">› ${requestScope.DTO_DETAIL.name}</a> 
-                        <div class="pubDate" style="float: right; font-size: 1.30em;">
-                            &ensp;${requestScope.DTO_DETAIL.createDate}
+                            <c:if test="${requestScope.DTO_DETAIL.type eq 'online'}">
+                                <a href="MainController?action=goEventOnlReadMore" 
+                                   style="font-size: 1.30em;">
+                                    › Online 
+                                </a>
+                            </c:if>
+                            <c:if test="${requestScope.DTO_DETAIL.type eq 'offline'}">
+                                <a href="MainController?action=goEventOffReadMore" 
+                                   style="font-size: 1.30em;">
+                                    › Offline 
+                                </a>
+                            </c:if>
+                            <a href="#" style="font-size: 1.30em;">› ${requestScope.DTO_DETAIL.name}</a> 
+                            <div class="pubDate" style="float: right; font-size: 1.30em;">
+                                &ensp;${requestScope.DTO_DETAIL.createDate}
+                            </div>
                         </div>
+                        <h3 class="sub-heading">${requestScope.DTO_DETAIL.name}</h3>   
+                        <!--                    <ul class="text-info">
+                                                <li>Ngày Đăng: $ {requestScope.DTO_DETAIL.createDate}</li>
+                                                <li>Bắt đầu: $ {requestScope.DTO_DETAIL.startDate}</li>
+                                                <li>Kết Thúc: $ {requestScope.DTO_DETAIL.endDate}</li>
+                                                <li>Địa điểm: đại học FPT - HCM</li>
+                                            </ul>-->
+                        <span class="text-info">
+                            Bắt đầu:  
+                        </span>
+                        <span style="font-size: 13px;">${requestScope.DTO_DETAIL.startDate}</span> <br/>
+                        <span class="text-info">
+                            Kết Thúc:  
+                        </span>
+                        <span style="font-size: 13px;">${requestScope.DTO_DETAIL.endDate}</span>
                     </div>
-                    <h3 class="sub-heading">${requestScope.DTO_DETAIL.name}</h3>   
-                    <!--                    <ul class="text-info">
-                                            <li>Ngày Đăng: $ {requestScope.DTO_DETAIL.createDate}</li>
-                                            <li>Bắt đầu: $ {requestScope.DTO_DETAIL.startDate}</li>
-                                            <li>Kết Thúc: $ {requestScope.DTO_DETAIL.endDate}</li>
-                                            <li>Địa điểm: đại học FPT - HCM</li>
-                                        </ul>-->
-                    <span class="text-info">
-                        Bắt đầu:  
-                    </span>
-                    <span style="font-size: 13px;">${requestScope.DTO_DETAIL.startDate}</span> <br/>
-                    <span class="text-info">
-                        Kết Thúc:  
-                    </span>
-                    <span style="font-size: 13px;">${requestScope.DTO_DETAIL.endDate}</span>
-                </div>
 
-                <div class="main_contain-text para-heading--two-row">
-                    <p>
-                        ${requestScope.DTO_DETAIL.description}
-                    </p>
-                </div>
-                <br/><br/><br/><br/><br/>
+                    <div class="main_contain-text para-heading--two-row">
+                        <p>
+                            ${requestScope.DTO_DETAIL.description}
+                        </p>
+                    </div>
+                    <br/><br/><br/><br/><br/>
 
-                <!--Apply Event Function for Offline Event-->
-                
-                <c:if test="${requestScope.DTO_DETAIL.type eq 'offline'}">
-                    <!--Case 1: Chưa Login, Chưa có account trong DB-->
-                    <c:if test="${sessionScope.USER_ID == null}">
-                        <div class="regis_link">
-                            <a class="regis_link-item" style="font-family: Verdana; font-size: 12px;"
-                               href="MainController?action=registerAccount">
-                                Đăng ký ngay
-                            </a>
-                        </div>
-                    </c:if>
-                    
-                    <!--Case 2: Check Event: Match EventID trong DB-->
-                    <c:if test="${requestScope.CHECKEVENT == 'found'}">
-                        <div class="regis_link">
-                            <button class="regis_link-item" style="background-color: #6c757d; font-family: Verdana" disabled="true">
-                                Đã đăng ký
-                            </button>
-                        </div>
-                    </c:if>
-                    
-                    <!--Case 3: Check Event:Không Match EventID trong DB -->
-                    <c:if test="${requestScope.CHECKEVENT == 'notFound'}">
-                        <div class="regis_link">
-                            <a class="regis_link-item" style="font-family: Verdana; font-size: 12px;"
-                               href="MainController?action=applyEvent&txtID=${requestScope.DTO_DETAIL.id}">
-                                Đăng ký ngay
-                            </a>
-                        </div>
-                    </c:if>
-                    
-                    
-                    
-                </c:if>
+                    <!--Apply Event Function for Offline Event-->
+                    <c:if test="${requestScope.CHECKTIME eq 'OK'}">
+                        <c:if test="${requestScope.DTO_DETAIL.type eq 'offline' && sessionScope.XACTHUC ne 'USER'}">
+                            <h5 class="sub-heading">Bạn cần Login để tham dự Sự Kiện Offline của trường</h5>
+                        </c:if>
 
-
-            </div>
-            <div class="relative_news para-heading--two-row" style="margin-left: auto">
-                <div class="heading-section padding-top-86px">
-                    <h3 class="sub-heading">Sự kiện gần đây</h3>
-                </div>
-                <c:if test="${requestScope.LIST4EVENTRECENT != null}">
-                    <c:forEach items="${requestScope.LIST4EVENTRECENT}" var="list4">
-                        <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="eventImg">
-                            <c:if test="${eventImg.eventId eq list4.id}">
-                                <div class="thumb_item">
-                                    <div class="figure">
-                                        <div class="box_img">
-                                            <a href="MainController?action=goEventDetails&txtID=${list4.id}">
-                                                <img src="${pageContext.request.contextPath}/user/assets/images/${eventImg.link}"/>
-                                            </a>
-                                        </div>
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="MainController?action=goEventDetails&txtID=${list4.id}">
-                                                    ${list4.name}
-                                                </a>
-                                                <br/>
-                                                <p style="font-size: 11px; font-style: italic;">
-                                                    ${list4.createDate}
-                                                </p>
-                                            </h5>
-                                        </div>
-                                    </div>
+                        <c:if test="${requestScope.DTO_DETAIL.type eq 'offline' && sessionScope.XACTHUC eq 'USER'}">                        
+                            <!--Case 1: Check Event: Match EventID trong DB-->
+                            <c:if test="${requestScope.CHECKEVENT == 'found'}">
+                                <div class="regis_link">
+                                    <button class="regis_link-item" style="background-color: #6c757d; font-family: Verdana" disabled="true">
+                                        Đã đăng ký
+                                    </button>
                                 </div>
                             </c:if>
-                        </c:forEach>
-                    </c:forEach>
-                </c:if>
 
+                            <!--Case 2: Check Event: Không Match EventID trong DB -->
+                            <c:if test="${requestScope.CHECKEVENT == 'notFound'}">
+                                <div class="regis_link">
+                                    <a class="regis_link-item" style="font-family: Verdana; font-size: 12px;"
+                                       href="MainController?action=applyEvent&txtID=${requestScope.DTO_DETAIL.id}">
+                                        Đăng ký ngay
+                                    </a>
+                                </div>
+                            </c:if>                        
+                        </c:if>
+                    </c:if>
+                    <c:if test="${requestScope.CHECKTIME eq 'TIMEOVER'}">
+                        <c:if test="${requestScope.DTO_DETAIL.type eq 'offline'}">
+                            <h5 class="sub-heading">Sự kiện đã quá hạn</h5>
+                        </c:if>
+                        
+                    </c:if>
+
+                </div>
+
+
+                <div class="relative_news para-heading--two-row" style="margin-left: auto">
+                    <div class="heading-section padding-top-86px">
+                        <h3 class="sub-heading">Sự kiện gần đây</h3>
+                    </div>
+                    <c:if test="${requestScope.LIST4EVENTRECENT != null}">
+                        <c:forEach items="${requestScope.LIST4EVENTRECENT}" var="list4">
+                            <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="eventImg">
+                                <c:if test="${eventImg.eventId eq list4.id}">
+                                    <div class="thumb_item">
+                                        <div class="figure">
+                                            <div class="box_img">
+                                                <a href="MainController?action=goEventDetails&txtID=${list4.id}">
+                                                    <img src="${pageContext.request.contextPath}/user/assets/images/${eventImg.link}"/>
+                                                </a>
+                                            </div>
+                                            <div class="caption">
+                                                <h5>
+                                                    <a href="MainController?action=goEventDetails&txtID=${list4.id}">
+                                                        ${list4.name}
+                                                    </a>
+                                                    <br/>
+                                                    <p style="font-size: 11px; font-style: italic;">
+                                                        ${list4.createDate}
+                                                    </p>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </c:forEach>
+                    </c:if>
+
+
+                </div>
 
             </div>
-
-        </div>
-        <br/> 
+            <br/> 
 
 
-        <div class="footer">
+            <div class="footer">
 
-            <div class="grid wide">
-                <div class="row footer__content">
-                    <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
-                        <div class="footer__logo-link">
-                            <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img">
-                        </div>
-                        <div class="footer__contact">
-                            <div class="footer__contact-address">
-                                <a href="mailto:setsail@qode.com" class="footer__contact-gmail">
-                                    <i class="footer__contact-icon far fa-envelope"></i>
-                                    <span>daihocfpt@fpt.edu.vn</span>
-                                </a>
-                                <a href="tel:1 562 867 5309" class="footer__contact-phone">
-                                    <i class="footer__contact-icon fas fa-phone-alt"></i>
-                                    <span>028 7300 1866</span>
-                                </a>
-                                <div class="footer__contact-address-street">
-                                    <i class="footer__contact-icon fas fa-map-marker-alt"></i>
-                                    <span>Lô E2a-7, Đường D1 Khu Công nghệ cao, P. Long Thạnh Mỹ, TP. Thủ Đức, TP. Hồ
-                                        Chí
-                                        Minh</span>
+                <div class="grid wide">
+                    <div class="row footer__content">
+                        <div class="m-6 c-12 margin-bottom-tablet margin-bottom-mobile footer_access">
+                            <div class="footer__logo-link">
+                                <img src="${pageContext.request.contextPath}/user/assets/images/tải xuống.png" alt="" class="footer__logo-img">
+                            </div>
+                            <div class="footer__contact">
+                                <div class="footer__contact-address">
+                                    <a href="mailto:setsail@qode.com" class="footer__contact-gmail">
+                                        <i class="footer__contact-icon far fa-envelope"></i>
+                                        <span>daihocfpt@fpt.edu.vn</span>
+                                    </a>
+                                    <a href="tel:1 562 867 5309" class="footer__contact-phone">
+                                        <i class="footer__contact-icon fas fa-phone-alt"></i>
+                                        <span>028 7300 1866</span>
+                                    </a>
+                                    <div class="footer__contact-address-street">
+                                        <i class="footer__contact-icon fas fa-map-marker-alt"></i>
+                                        <span>Lô E2a-7, Đường D1 Khu Công nghệ cao, P. Long Thạnh Mỹ, TP. Thủ Đức, TP. Hồ
+                                            Chí
+                                            Minh</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col l-3 m-6 c-12 margin-bottom-mobile">
-                        <div class="footer__subscribe">
-                            <h5 class="footer__heading">Tư vấn học tập</h5>
-                            <form action="${pageContext.request.contextPath}/MainController" method="POST">
-                                <div class="footer__form">
-                                    <div class="footer__form-item">
-                                        <i class="footer__form-icon fa fa-user"></i>
-                                        <input type="text" name="txtName"
-                                               class="footer__form-input" placeholder="Tên" required>
+                        <div class="col l-3 m-6 c-12 margin-bottom-mobile">
+                            <div class="footer__subscribe">
+                                <h5 class="footer__heading">Tư vấn học tập</h5>
+                                <form action="${pageContext.request.contextPath}/MainController" method="POST">
+                                    <div class="footer__form">
+                                        <div class="footer__form-item">
+                                            <i class="footer__form-icon fa fa-user"></i>
+                                            <input type="text" name="txtName"
+                                                   class="footer__form-input" placeholder="Tên" required>
+                                        </div>
+                                        <div class="footer__form-item">
+                                            <i class="footer__form-icon fa fa-phone"></i>
+                                            <input type="text" name="txtPhone"
+                                                   class="footer__form-input" placeholder="SĐT" maxlength="10" required>
+                                        </div>
+                                        <div class="footer__form-item">
+                                            <input type="hidden" name="txtType" value="eventDetails"/>
+                                            <button type="submit"  name="action" value="TuVan"
+                                                    class="footer__form-submit">Đăng ký</button>
+                                        </div>
                                     </div>
-                                    <div class="footer__form-item">
-                                        <i class="footer__form-icon fa fa-phone"></i>
-                                        <input type="text" name="txtPhone"
-                                               class="footer__form-input" placeholder="SĐT" maxlength="10" required>
-                                    </div>
-                                    <div class="footer__form-item">
-                                        <input type="hidden" name="txtType" value="eventDetails"/>
-                                        <button type="submit"  name="action" value="TuVan"
-                                                class="footer__form-submit">Đăng ký</button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="footer__copyright">
-                <div class="grid wide">
-                    <p class="footer__copyright-text">
-                        Powered by @
-                        <a href="" class="footer__copyright-link">Team 4_SWP391</a>
-                    </p>
+                <div class="footer__copyright">
+                    <div class="grid wide">
+                        <p class="footer__copyright-text">
+                            Powered by @
+                            <a href="" class="footer__copyright-link">Team 4_SWP391</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="btn-scroll-top">
+            <a href="#scroll-top" class="btn-scroll-top__link">Top</a>
+        </div>
     </div>
-    <div class="btn-scroll-top">
-        <a href="#scroll-top" class="btn-scroll-top__link">Top</a>
-    </div>
-</div>
 </div>
 </body>
 

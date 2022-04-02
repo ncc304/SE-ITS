@@ -24,13 +24,14 @@ public class MainController extends HttpServlet {
     // --------------------- Admin Page -------------------------
     // Dashboad
     private static final String GO_DASHBOARD = "LoadAdminPageController";
-    
+
     // Sự kiện
     private static final String GO_EVENT = "LoadEventCategoryController";
     private static final String goEventPage = "LoadEventPageController";
     private static final String createEvent = "CreateEventController";
     private static final String deleteEvent = "DeleteEventController";
     private static final String goUpdateEvent = "LoadEventByIDController";
+    private static final String updateEvent = "UpdateEventController";
 
     // User
     private static final String GO_USER = "LoadUserPageController";
@@ -47,23 +48,21 @@ public class MainController extends HttpServlet {
     private static final String DELETE_NEWS = "DeleteNewsController";
     private static final String GO_CREATE_NEWS = "LoadCreateNewsCateController";
     private static final String CREATE_NEWS = "CreateNewsController";
-    
-    
+
     // Recruitment
     private static final String GO_RECRUITMENT_ADMIN = "LoadRecruitmentPageController";
     private static final String DELETE_RE = "DeleteRecruitmentController";
     private static final String GO_CREATE_RE = "LoadCreateRecruitmentController";
     private static final String CREATE_RE = "CreateRecruitmentController";
-    
-    
+
     // Company
     private static final String GO_COMPANY = "LoadCompanyController";
-    private static final String DELETE_COMPANY = "DeleteCompanyController"; 
+    private static final String DELETE_COMPANY = "DeleteCompanyController";
     private static final String GO_UPDATE_COMPANY = "LoadCompanyDetailController";
     private static final String UPDATE_COMPANY = "UpdateCompanyController";
     private static final String GO_CREATE_COMPANY = "admin/createCompany.jsp";
     private static final String CREATE_COMPANY = "CreateCompanyController";
-    
+
     // Subject 
     private static final String GO_SUBJECT = "LoadSubjectController";
     private static final String GO_CREATE_SUBJECT = "admin/createSubject.jsp";
@@ -71,23 +70,23 @@ public class MainController extends HttpServlet {
     private static final String DELETE_SUBJECT = "DeleteSubjectController";
     private static final String GO_UPDATE_SUBJECT = "LoadSubjectDetailController";
     private static final String UPDATE_SUBJECT = "UpdateSubjectController";
-    
+
     // Major
     private static final String GO_MAJOR = "LoadMajorController";
     private static final String GO_UPDATE_MAJOR = "LoadMajorDetailController";
     private static final String UPDATE_MAJOR = "UpdateMajorController";
-    
-    
-    
+
     // --------------------- User Page -------------------------------------------
     // Event
     private static final String GO_EVENT_USER = "LoadEventUserPageController";
     private static final String GO_EVENT_ONLINE_USER = "LoadAllEventOnlController";
     private static final String GO_EVENT_OFFLINE_USER = "LoadAllEventOffController";
     private static final String GO_EVENT_DETAILS_USER = "LoadEventDetailController";
+    private static final String SEARCH_EVENT_BY_NAME_USER = "SearchEventByNameController";
 
     // Apply Event
-    private static final String APPLY_EVENT = "ApplyEventController";
+    private static final String APPLY_EVENT = "ApplyEventController"; // đã có account trong db
+    private static final String FIRST_LOGIN = "LoginGoogleServlet";
 
     // Manage Event: Cancel Event
     private static final String GO_CANCEL_EVENT = "LoadAllEventToCancelController";
@@ -97,14 +96,22 @@ public class MainController extends HttpServlet {
     private static final String GO_NEWS_USER = "LoadNewsUserPageController";
     private static final String GO_NEWS_TAG_USER = "LoadAllNewsTagController";
     private static final String GO_NEWS_DETAILS_USER = "LoadNewsDetailController";
+    private static final String SEARCH_NEWS_BY_NAME_USER = "SearchNewsByNameController";
 
     // Recruitment   
     private static final String GO_RECRUITMENT_USER = "LoadRecruitmentUserPageController";
     private static final String GO_RECRUITMENT_READ_MORE_USER = "LoadAllRecruitmentController";
     private static final String GO_RECRUITMENT_DETAILS_USER = "LoadRecruitmentDetailController";
+    private static final String SEARCH_RECRUITMENT_BY_NAME_USER = "SearchRecruitmentByNameController";
 
     // Tư vấn học tập:
     private static final String Go_TuVan = "AddInfoTuVanController";
+
+    // ITS Page
+    private static final String Go_ITS = "LoadITSUserPageController";
+
+    // SE Page
+    private static final String Go_SE = "LoadSESUserPageController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -127,14 +134,20 @@ public class MainController extends HttpServlet {
                 url = goUpdateEvent;
             } else if ("goDashBoard".equals(action)) {
                 url = GO_DASHBOARD;
-            } // User:
+            } else if ("Sửa sự kiện".equals(action)) {
+                url = updateEvent;
+            } 
+
+            // User:
             else if ("goUserPage".equals(action)) {
                 url = GO_USER;
             } else if ("deleteUser".equals(action)) {
                 url = DELETE_USER;
             } else if ("updateUser".equals(action)) {
                 url = UPDATE_USER;
-            } // Tư vấn 
+            } 
+
+            // Tư vấn 
             else if ("goTuVanPage".equals(action)) {
                 url = GO_TuVan_ADMIN;
             } else if ("deleteTuVan".equals(action)) {
@@ -148,72 +161,71 @@ public class MainController extends HttpServlet {
                 url = GO_NEWS_ADMIN;
             } else if ("deleteNews".equals(action)) {
                 url = DELETE_NEWS;
-            }else if ("goCreateNews".equals(action)) {
+            } else if ("goCreateNews".equals(action)) {
                 url = GO_CREATE_NEWS;
-            }  else if ("Thêm Tin Tức".equals(action)) {
+            } else if ("Thêm Tin Tức".equals(action)) {
                 url = CREATE_NEWS;
-            }
-            
-            
+            } 
+
             // Tuyển dụng 
             else if ("goRecruitmentPage".equals(action)) {
                 url = GO_RECRUITMENT_ADMIN;
-            }else if ("deleteRe".equals(action)) {
+            } else if ("deleteRe".equals(action)) {
                 url = DELETE_RE;
-            }else if ("goCreateRe".equals(action)) {
+            } else if ("goCreateRe".equals(action)) {
                 url = GO_CREATE_RE;
-            }else if ("Thêm tin tuyển dụng".equals(action)) {
+            } else if ("Thêm tin tuyển dụng".equals(action)) {
                 url = CREATE_RE;
-            }
-            
+            } 
+
             // Công ty 
-            else if ("goCompany".equals(action)) { 
+            else if ("goCompany".equals(action)) {
                 url = GO_COMPANY;
-            }else if ("deleteCom".equals(action)) { 
+            } else if ("deleteCom".equals(action)) {
                 url = DELETE_COMPANY;
-            }else if ("goUpdateCom".equals(action)) { 
+            } else if ("goUpdateCom".equals(action)) {
                 url = GO_UPDATE_COMPANY;
-            }else if ("Sửa công ty".equals(action)) { 
+            } else if ("Sửa công ty".equals(action)) {
                 url = UPDATE_COMPANY;
-            }else if ("goCreateCom".equals(action)) {  
+            } else if ("goCreateCom".equals(action)) {
                 url = GO_CREATE_COMPANY;
-            }else if ("Thêm công ty".equals(action)) {  
+            } else if ("Thêm công ty".equals(action)) {
                 url = CREATE_COMPANY;
-            }
+            } 
             
             // Môn học 
-            else if ("goSubject".equals(action)) {  
+            else if ("goSubject".equals(action)) {
                 url = GO_SUBJECT;
-            }else if ("goCreateSubject".equals(action)) {  
+            } else if ("goCreateSubject".equals(action)) {
                 url = GO_CREATE_SUBJECT;
-            }else if ("Thêm môn học".equals(action)) {  
+            } else if ("Thêm môn học".equals(action)) {
                 url = CREATE_SUBJECT;
-            }else if ("deleteSubject".equals(action)) {   
+            } else if ("deleteSubject".equals(action)) {
                 url = DELETE_SUBJECT;
-            }else if ("goUpdateSubject".equals(action)) {  
+            } else if ("goUpdateSubject".equals(action)) {
                 url = GO_UPDATE_SUBJECT;
-            }else if ("Cập nhập môn học".equals(action)) {  
+            } else if ("Cập nhập môn học".equals(action)) {
                 url = UPDATE_SUBJECT;
-            }
-            
+            } 
+
             // Bộ môn
-            else if ("goMajorPage".equals(action)) {  
+            else if ("goMajorPage".equals(action)) {
                 url = GO_MAJOR;
-            }else if ("updateMajor".equals(action)) {  
+            } else if ("updateMajor".equals(action)) {
                 url = GO_UPDATE_MAJOR;
-            }else if ("Cập nhập bộ môn".equals(action)) {  
+            } else if ("Cập nhập bộ môn".equals(action)) {
                 url = UPDATE_MAJOR;
-            }
-            
+            } 
+
             // Logout:
             else if ("goLogout".equals(action)) {
                 url = GO_LOGOUT;
             } 
-            // ------------------- User Page -------------------
+
+        // ------------------- User Page -------------------
             else if ("applyEvent".equals(action)) {
                 url = APPLY_EVENT;
-            } 
-            // Event:
+            } // Event:
             else if ("goEventUser".equals(action)) {
                 url = GO_EVENT_USER;
             } else if ("goEventOnlReadMore".equals(action)) {
@@ -224,9 +236,14 @@ public class MainController extends HttpServlet {
                 url = GO_EVENT_DETAILS_USER;
             } else if ("goEventCancel".equals(action)) {
                 url = GO_CANCEL_EVENT;
-            } else if ("cancelEvent".equals(action)) {
+            } else if ("cancelEvent".equals(action)) { 
                 url = CANCEL_EVENT;
-            } 
+            } else if ("registerAccount".equals(action)) {
+                url = FIRST_LOGIN;
+            } else if ("Search_Event_By_Name".equals(action)) {
+                url = SEARCH_EVENT_BY_NAME_USER;
+            }
+
             // News:
             else if ("goNewsUser".equals(action)) {
                 url = GO_NEWS_USER;
@@ -234,6 +251,8 @@ public class MainController extends HttpServlet {
                 url = GO_NEWS_TAG_USER;
             } else if ("goNewsDetails".equals(action)) {
                 url = GO_NEWS_DETAILS_USER;
+            } else if ("Search_News_By_Name".equals(action)) {
+                url = SEARCH_NEWS_BY_NAME_USER;
             } // Recruitment:
             else if ("goRecruitmentUser".equals(action)) {
                 url = GO_RECRUITMENT_USER;
@@ -241,9 +260,21 @@ public class MainController extends HttpServlet {
                 url = GO_RECRUITMENT_READ_MORE_USER;
             } else if ("goRecruitmentDetail".equals(action)) {
                 url = GO_RECRUITMENT_DETAILS_USER;
-            }// Tư vấn học tập:
+            } else if ("Search_Recruiment_By_Name".equals(action)) {
+                url = SEARCH_RECRUITMENT_BY_NAME_USER;
+            }
+
+            // Tư vấn học tập:
             if ("TuVan".equals(action)) {
                 url = Go_TuVan;
+            }
+            // ITS Page
+            if ("goITS".equals(action)) {
+                url = Go_ITS;
+            }
+            // SE Page
+            if ("goSE".equals(action)) {
+                url = Go_SE;
             }
 
         } catch (Exception e) {

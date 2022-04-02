@@ -76,10 +76,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -113,6 +113,7 @@
                                 </c:if>
                                 <input type="radio" name="nav-select" id="show-subnav__list--5">
                             </li>
+                           
                         </ul>   
 
                         <a href="" class="navbar-mobile__user">
@@ -181,7 +182,9 @@
 
 
         <div class="service" id="se">
-            <img src="${pageContext.request.contextPath}/user/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
+            <img src="${pageContext.request.contextPath}/user/assets/images/SE5.jpg" 
+                 alt="Image traveler" class="img_service" width="650">
+                 
 
             <div class="heading-section padding-top-106px">
                 <h3 class="sub-heading sub-heading--white">Bộ môn SE</h3>
@@ -190,7 +193,8 @@
                     Chương trình được thiết kế theo chuẩn của Hiệp hội Máy tính (Association for Computing Machinery-ACM), chuẩn đào tạo kỹ sư phần mềm của Accreditation Board for Engineering and Technology (ABET – Mỹ), Hiệp hội Phần mềm Việt Nam (VINASA), Chương trình Đào tạo của EC-Council, Học viện Mạng và Phần cứng Jetking (Ấn Độ); với sự tư vấn của các chuyên gia và doanh nghiệp CNTT như Tập đoàn FPT, Tập đoàn IBM, đồng thời tích hợp các chuẩn kiến thức của giới công nghiệp như Oracle, Cisco… Nội dung đào tạo chuyên ngành Kỹ thuật phần mềm của Đại học FPT tích hợp cân bằng giữa kiến thức nền tảng với công nghệ, kỹ thuật mới: không chỉ bao gồm các kiến thức về khoa học cơ bản của nhóm ngành CNTT mà còn đào tạo đầy đủ về quy trình phát triển phần mềm, từ phương pháp, kỹ thuật, công nghệ trong phân tích, thiết kế, phát triển, kiểm thử, bảo trì phần mềm và quản lý dự án phần mềm cũng như các ứng dụng CNTT; cân bằng giữa lý thuyết với ứng dụng và thực hành: thời gian học lý thuyết chiếm chỉ tối đa một nửa thời gian của hầu hết các môn học.
                 </p>
                 <div class="more_btn col l-3 m-6 c-12">
-                    <a href="../ITS_Page/its.html" class="more_sub">Xem thêm</a>
+                    <a href="${pageContext.request.contextPath}/MainController?action=goSE" 
+                       class="more_sub">Xem thêm</a>
                 </div>
             </div>
 
@@ -205,10 +209,12 @@
                     Chương trình được thiết kế theo chuẩn của Hiệp hội Máy tính (Association for Computing Machinery-ACM), chuẩn đào tạo kỹ sư phần mềm của Accreditation Board for Engineering and Technology (ABET – Mỹ), Hiệp hội Phần mềm Việt Nam (VINASA), Chương trình Đào tạo của EC-Council, Học viện Mạng và Phần cứng Jetking (Ấn Độ); với sự tư vấn của các chuyên gia và doanh nghiệp CNTT như Tập đoàn FPT, Tập đoàn IBM, đồng thời tích hợp các chuẩn kiến thức của giới công nghiệp như Oracle, Cisco… Nội dung đào tạo chuyên ngành Kỹ thuật phần mềm của Đại học FPT tích hợp cân bằng giữa kiến thức nền tảng với công nghệ, kỹ thuật mới: không chỉ bao gồm các kiến thức về khoa học cơ bản của nhóm ngành CNTT mà còn đào tạo đầy đủ về quy trình phát triển phần mềm, từ phương pháp, kỹ thuật, công nghệ trong phân tích, thiết kế, phát triển, kiểm thử, bảo trì phần mềm và quản lý dự án phần mềm cũng như các ứng dụng CNTT; cân bằng giữa lý thuyết với ứng dụng và thực hành: thời gian học lý thuyết chiếm chỉ tối đa một nửa thời gian của hầu hết các môn học.
                 </p>
                 <div class="more_btn col l-3 m-6 c-12">
-                    <a href="its.jsp" class="more_sub">Xem thêm</a>
+                    <a href="${pageContext.request.contextPath}/MainController?action=goITS" 
+                       class="more_sub">Xem thêm</a>
                 </div>
             </div>
-            <img src="${pageContext.request.contextPath}/user/assets/images/background-img/fancy-image-13.jpg" alt="Image traveler" class="img_service">
+            <img src="${pageContext.request.contextPath}/user/assets/images/SE6.jpg" 
+                 alt="Image traveler" class="img_service" width="650">
 
         </div>
 

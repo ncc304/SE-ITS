@@ -105,10 +105,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -175,16 +175,19 @@
                     </div>
                 </div> 
 
-                <div class="search_form">
-                    <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                    <button type="button" class="btn-search">Tìm kiếm</button>  
-                </div>
+                <form action="MainController">
+                    <div class="search_form">
+                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                        <button type="submit" class="btn-search" name="action" value="Search_Event_By_Name">Tìm kiếm</button>
+                        <input type="hidden" name="txtCate" value="online" />
+                    </div>
+                </form>
 
                 <input type="radio" hidden name="dot" id="type-travel__input-one">
                 <input type="radio" hidden name="dot" id="type-travel__input-two">
 
                 <c:if test="${requestScope.LISTEVENTONL != null}">
-                    <div class="grid type-travel--width">
+                    <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                         <div class="row margin-10px">
                             <c:forEach items="${requestScope.LISTEVENTONL}" var="onl">
                                 <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="img">

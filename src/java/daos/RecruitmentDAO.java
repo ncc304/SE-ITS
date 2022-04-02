@@ -462,6 +462,54 @@ public class RecruitmentDAO {
         return dto;
     }
     
+    //Search Recruiment By Name
+    public List<RecruitmentDTO> searchAllNewRecruitmentByCateID(String cateID,String searchName) {
+        List<RecruitmentDTO> listRecruitment = new ArrayList<>();
+        int id = 0;
+        String startDate = null;
+        String endDate = null;
+        float salary = 0;
+        String description = null;
+        int companyId = 0;
+        boolean status = false;
+        String name = null;
+        String owner = null;
+        try {
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Recruitment \n"
+                    + "where idRecruitment in (SELECT Recruitment_id FROM SWP391.Recruitment_has_Recruitment_Category \n"
+                    + "where Recruitment_Category_id = " + cateID + " ) AND status = 1 AND name LIKE ? ORDER BY idRecruitment DESC;";
+            PreparedStatement pr = con.prepareStatement(sql);
+            pr.setString(1, "%" + searchName + "%");
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                if (rs.getInt("status") == 0) {
+                    status = false;
+                } else {
+                    status = true;
+                }
+                id = rs.getInt("idRecruitment");
+                startDate = rs.getString("startDate");
+                endDate = rs.getString("endDate");
+                salary = rs.getFloat("salary");
+                description = rs.getString("description");
+                companyId = rs.getInt("Company_id");
+                name = rs.getString("name");
+                owner = rs.getString("owner");
+                RecruitmentDTO dto = new RecruitmentDTO(id, startDate, endDate, salary, description, companyId, status, name, owner);
+                listRecruitment.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listRecruitment;
+    }
+    
+    
     // ----------------------- Admin ------------------------
     // delete function: update status
     public boolean updateRecruitmentStatus(int id, int status) {

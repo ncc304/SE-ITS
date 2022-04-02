@@ -223,10 +223,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -236,10 +236,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                                 <c:if test="${sessionScope.USER_ID != null}">
                                     <ul class="subnav__list">
-                                    <li class="subnav__item">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
-                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
-                                    </li>
+                                        <li class="subnav__item">
+                                            <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                               class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                        </li>
                                     </ul>
                                 </c:if>
                             </li>
@@ -338,7 +338,7 @@
                 <input type="radio" hidden name="dot" id="type-travel__input-one">
                 <input type="radio" hidden name="dot" id="type-travel__input-two">
                 <c:if test="${requestScope.ONLINE4 != null}">
-                    <div class="grid type-travel--width">
+                    <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
 
                         <div class="row margin-10px">
                             <c:forEach items="${requestScope.ONLINE4}" var="onl">
@@ -370,7 +370,7 @@
                     <a href="MainController?action=goEventOffReadMore" class="more_news-item">Xem thêm</a>
                 </div>
                 <c:if test="${requestScope.OFFLINE4 != null}">
-                    <div class="grid type-travel--width">
+                    <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                         <div class="row margin-10px">
                             <c:forEach items="${requestScope.OFFLINE4}" var="off">
                                 <c:forEach items="${sessionScope.LIST_EVENT_IMG}" var="img">

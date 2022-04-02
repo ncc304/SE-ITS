@@ -11,7 +11,9 @@ import dtos.EventAccountDTO;
 import dtos.EventDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +30,8 @@ public class LoadEventDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
 
+        try {
             String txtEventID = (String) request.getParameter("txtID");
             int eventID = Integer.parseInt(txtEventID);
             EventsDAO dao = new EventsDAO();
@@ -37,7 +39,20 @@ public class LoadEventDetailController extends HttpServlet {
             HttpSession session = request.getSession();
             if (dto != null) {
                 request.setAttribute("DTO_DETAIL", dto);
-                session.setAttribute("BACK_TO_EVENTDETAIL", dto.getId());
+                // Check Event còn thời hạn không
+                SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date endDate = fmt.parse(dto.getEndDate());
+
+                Date tmp = new Date();
+                String tmpStr = fmt.format(tmp.getTime());
+                Date now = fmt.parse(tmpStr);
+
+                if (now.before(endDate)) {
+                    request.setAttribute("CHECKTIME", "OK");
+                } else {
+                    request.setAttribute("CHECKTIME", "TIMEOVER");
+                }
+
             }
 
             // Sự kiện gần đây
@@ -58,12 +73,18 @@ public class LoadEventDetailController extends HttpServlet {
                         filter.add(ea);
                     }
                 }
-                if (filter.size() > 0) {
-                    request.setAttribute("CHECKEVENT", "found"); // đã đăng ký
-                } else { 
+                try { // Nếu đã apply Event trước đó
+                    if (filter.get(0).isStatus()) {
+                        request.setAttribute("CHECKEVENT", "found"); // đã đăng ký
+                    } else if (!filter.get(0).isStatus()) {
+                        request.setAttribute("CHECKEVENT", "notFound");  // đằng ký ngay
+                    }
+                } catch (Exception e) { // Chưa apply Event này bao giờ
                     request.setAttribute("CHECKEVENT", "notFound");  // đằng ký ngay
+
                 }
-            } 
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

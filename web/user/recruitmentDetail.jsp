@@ -86,10 +86,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -99,10 +99,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--4">
                                 <c:if test="${sessionScope.USER_ID != null}">
                                     <ul class="subnav__list">
-                                    <li class="subnav__item">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
-                                           class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
-                                    </li>
+                                        <li class="subnav__item">
+                                            <a href="${pageContext.request.contextPath}/MainController?action=goEventCancel" 
+                                               class="subnav__link" style="text-decoration: none;">Quản lý Sự Kiện</a>
+                                        </li>
                                     </ul>
                                 </c:if>
                             </li>
@@ -222,11 +222,16 @@
                                     <div class="thumb_item">
                                         <div class="figure">
                                             <div class="box_img">
-                                                <img src="${pageContext.request.contextPath}/user/assets/images/${com4.link}" />
+                                                <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentDetail&txtID=${list4.id}">
+                                                  <img src="${pageContext.request.contextPath}/user/assets/images/${com4.link}"/>  
+                                                </a>
+                                                
                                             </div>
                                             <div class="caption">
                                                 <h5>
-                                                    <a href="http://">${list4.name}</a>
+                                                    <a href="${pageContext.request.contextPath}/MainController?action=goRecruitmentDetail&txtID=${list4.id}">
+                                                        ${list4.name}
+                                                    </a>
                                                 </h5>
                                             </div>
                                         </div>

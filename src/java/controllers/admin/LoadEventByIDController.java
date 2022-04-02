@@ -5,8 +5,12 @@
  */
 package controllers.admin;
 
+import daos.EventCategoryDAO;
+import daos.EventEventCategoryDAO;
 import daos.EventsDAO;
+import dtos.EventCategoryDTO;
 import dtos.EventDTO;
+import dtos.EventEventCategoryDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
@@ -30,31 +34,62 @@ public class LoadEventByIDController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String txtID = request.getParameter("txtEventID");
-            String txtName = request.getParameter("txtEventName");
-            String txtStart = request.getParameter("txtStart");
-            String txtEnd = request.getParameter("txtEnd");
-            String txtStatus = request.getParameter("txtStatus");
-            String txtDes = request.getParameter("txtDes");
-            String txtType = request.getParameter("txtType");
+            int id = Integer.parseInt(txtID);
             String txtImg = request.getParameter("txtImg");
+//            String txtName = request.getParameter("txtEventName");
+//            String txtStart = request.getParameter("txtStart");
+//            String txtEnd = request.getParameter("txtEnd");
+//            String txtStatus = request.getParameter("txtStatus");
+//            String txtDes = request.getParameter("txtDes");
+//            String txtType = request.getParameter("txtType");
 
-            String[] tmp1 = txtStart.split(" ");
-            String startDate = tmp1[0] + "T" + tmp1[1];
-            
-            String[] tmp2 = txtEnd.split(" ");
-            String endDate = tmp2[0] + "T" + tmp2[1];
-            
-//            2018-06-12T19:30
-            EventDTO dto
-                    = new EventDTO(Integer.parseInt(txtID), txtName, startDate, endDate, Boolean.parseBoolean(txtStatus), txtDes, "", txtType, "");
-
+//
+//            String[] tmp1 = txtStart.split(" ");
+//            String startDate = tmp1[0] + "T" + tmp1[1];
+//            
+//            String[] tmp2 = txtEnd.split(" ");
+//            String endDate = tmp2[0] + "T" + tmp2[1];
+//            
+////            2018-06-12T19:30
+//            EventDTO dto
+//                    = new EventDTO(Integer.parseInt(txtID), txtName, startDate, endDate, Boolean.parseBoolean(txtStatus), txtDes, "", txtType, "");
+//
+//            EventsDAO dao = new EventsDAO();
+//
+//            if (dto != null) {
+//                request.setAttribute("EVENT", dto);
+//                request.setAttribute("IMG", txtImg);
+//            }
             EventsDAO dao = new EventsDAO();
-
+            EventDTO dto = dao.getEventByID_Admin(id);
             if (dto != null) {
+
+                String[] tmp1 = dto.getStartDate().split(" ");
+                String startDate = tmp1[0] + "T" + tmp1[1];
+
+                String[] tmp2 = dto.getEndDate().split(" ");
+                String endDate = tmp2[0] + "T" + tmp2[1];
+                dto.setStartDate(startDate);
+                dto.setEndDate(endDate);
                 request.setAttribute("EVENT", dto);
                 request.setAttribute("IMG", txtImg);
             }
-
+            
+            EventEventCategoryDAO cateDAO = new EventEventCategoryDAO();
+            List<EventEventCategoryDTO> listCate = cateDAO.getListEventEventCategory();
+            if(listCate.size() > 0){
+                request.setAttribute("CATE", listCate);
+            
+            }
+            
+            EventCategoryDAO cateDAO1 = new EventCategoryDAO();
+            List<EventCategoryDTO> listCate1 = cateDAO1.getListEventCategory();
+            if(listCate1.size() > 0){
+                request.setAttribute("CATE1", listCate1);
+            
+            }
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

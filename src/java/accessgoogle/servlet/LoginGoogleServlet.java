@@ -6,7 +6,6 @@
 package accessgoogle.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +15,8 @@ import accessgoogle.common.GooglePojo;
 import accessgoogle.common.GoogleUtils;
 import daos.AccountDAO;
 import daos.EventAccountDAO;
-import daos.EventImageDAO;
 import dtos.AccountDTO;
 import dtos.EventAccountDTO;
-import dtos.EventsImageDTO;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -33,9 +28,9 @@ public class LoginGoogleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String adminPage = "LoadAdminPageController";
     private static final String error = "login.jsp";
-    private static final String backEventDetail = "MainController?action=goEventDetails&txtID=";
+//    private static final String backEventDetail = "MainController?action=goEventDetails&txtID=";
     private static final String home = "user/home.jsp";
-    private static final String isUser = "LoadEventUserPageController";
+    private static final String eventPage = "LoadEventUserPageController";
 
     public LoginGoogleServlet() {
         super();
@@ -46,7 +41,7 @@ public class LoginGoogleServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = error;
         try {
-
+            
             String code = request.getParameter("code");
             if (code != null || !code.isEmpty()) {
                 HttpSession session = request.getSession();
@@ -61,8 +56,7 @@ public class LoginGoogleServlet extends HttpServlet {
                 int eventID = 0;
 
                 String check = dao.checkLogin(email);
-                if (check == "Login Fail") {
-
+                if (check == "Login Fail") { // Lần đầu Login
                     String[] sliter = email.split("@");
                     name = sliter[0];
                     if (name != null) {
@@ -70,32 +64,35 @@ public class LoginGoogleServlet extends HttpServlet {
                         // INSERT tblAccount
                         boolean check2 = dao.addAccountRegisEvent(dto);
                         if (check2) {
-                            try { // Apply Event: từ trang eventDetails -> đăng ký ngay
-                                userID = dao.getUserID(email);
-                                eventID = (Integer) session.getAttribute("BACK_TO_EVENTDETAIL");
-                                if (eventID > 0) {
-                                    // Get Account DTO
-                                    AccountDTO dto_hasData = dao.getAccountByEmail(email);
-                                    // INSERT tblEventHasAccount
-                                    EventAccountDAO eaDAO = new EventAccountDAO();
-                                    EventAccountDTO eaDTO = new EventAccountDTO(0, eventID, dto_hasData.getId(), true);
-                                    boolean check3 = eaDAO.createtEventAccount(eaDTO);
-                                    if (check3) {
-                                        url = backEventDetail + eventID;
-                                    }
-                                }
-                            } catch (Exception e) { // user chưa apply event
-                                url = home;
-                            }
+//                            try { // Apply Event: từ trang eventDetails -> đăng ký ngay
+//                                userID = dao.getUserID(email);
+//                                eventID = (Integer) session.getAttribute("BACK_TO_EVENTDETAIL");
+//                                if (eventID > 0) {
+//                                    // Get Account DTO
+//                                    AccountDTO dto_hasData = dao.getAccountByEmail(email);
+//                                    // INSERT tblEventHasAccount
+//                                    EventAccountDAO eaDAO = new EventAccountDAO();
+//                                    EventAccountDTO eaDTO = new EventAccountDTO(0, eventID, dto_hasData.getId(), true);
+//                                    boolean check3 = eaDAO.createtEventAccount(eaDTO);
+//                                    if (check3) {
+//                                        url = backEventDetail + eventID;
+//                                    }
+//                                }
+//                            } catch (Exception e) { // user chưa apply event
+//                                url = home;
+//                            }
+                            url = eventPage;
                         }
                     }
 
                 } else if (check == "Admin") {
                     userID = dao.getUserID(email);
                     url = adminPage;
+                    session.setAttribute("XACTHUC", "ADMIN");
                 } else { // User
                     userID = dao.getUserID(email);
-                    url = isUser;
+                    url = eventPage;
+                    session.setAttribute("XACTHUC", "USER");
                 }
 
                 String userName = dao.getUserName(email);

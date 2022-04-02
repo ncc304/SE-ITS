@@ -105,10 +105,10 @@
                                 <input type="radio" name="nav-select" id="show-subnav__list--3">
                                 <ul class="subnav__list">
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/its.jsp"/>" class="subnav__link" style="text-decoration: none;">ITS</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goITS" class="subnav__link" style="text-decoration: none;">ITS</a>
                                     </li>
                                     <li class="subnav__item">
-                                        <a href="<c:url value = "/user/se.jsp"/>" class="subnav__link" style="text-decoration: none;">SE</a>
+                                        <a href="${pageContext.request.contextPath}/MainController?action=goSE" class="subnav__link" style="text-decoration: none;">SE</a>
                                     </li>
 
                                 </ul>
@@ -181,16 +181,19 @@
                         </div>
                     </div> 
 
-                    <div class="search_form">
-                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                        <button type="button" class="btn-search">Tìm kiếm</button>  
-                    </div>
+                    <form action="MainController">
+                        <div class="search_form">
+                            <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                            <button type="submit" class="btn-search" name="action" value="Search_News_By_Name">Tìm kiếm</button>
+                            <input type="hidden" name="txtTagID" value="1" />
+                        </div>
+                    </form>
 
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
                     <c:if test="${requestScope.TAG_READMORE != null}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.TAG_READMORE}" var="tag">
                                     <c:forEach items="${sessionScope.LIST_NEWS_IMG}" var="img">
@@ -239,26 +242,30 @@
                             <h3 class="sub-heading">Danh Sách Các Tin Tức FPT High-tech Gần Đây</h3>
                         </div>
                     </div>
-                    <div class="search_form">
-                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                        <button type="button" class="btn-search">Tìm kiếm</button>  
-                    </div>
+                    <form action="MainController">
+                        <div class="search_form">
+                            <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                            <button type="submit" class="btn-search" name="action" value="Search_News_By_Name">Tìm kiếm</button>
+                            <input type="hidden" name="txtTagID" value="2" />
+                        </div>
+                    </form>
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
                     <c:if test="${requestScope.TAG_READMORE != null}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.TAG_READMORE}" var="tag">
                                     <c:forEach items="${sessionScope.LIST_NEWS_IMG}" var="img">
                                         <c:if test="${tag.id eq img.newId}">
                                             <div class="col l-3 m-6 c-12">
                                                 <div class="type-travel-item">
-                                                    <a href="../ContentPage/Content.html" class="type-travel__link">
+                                                    <a href="MainController?action=goNewsDetails&txtID=${tag.id}" class="type-travel__link">
                                                         <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}" alt="" class="type-travel__img">
                                                     </a>
                                                     <div class="type-travel__intro">
-                                                        <a class="type-travel__intro-link" href="../ContentPage/Content.html">
+                                                        <a class="type-travel__intro-link" 
+                                                           href="MainController?action=goNewsDetails&txtID=${tag.id}">
                                                             ${tag.name}
                                                         </a>
                                                         <p class="type-travel__intro-text">
@@ -295,26 +302,30 @@
                             <h3 class="sub-heading">Danh Sách Các Tin Tức Hội Nhập Quốc Tế Gần Đây</h3>
                         </div>
                     </div> 
-                    <div class="search_form">
-                        <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name"></input>
-                        <button type="button" class="btn-search">Tìm kiếm</button>  
-                    </div>
+                    <form action="MainController">
+                        <div class="search_form">
+                            <input placeholder="Tìm kiếm theo Tên" type="text" class="search-name" name="searchName"></input>
+                            <button type="submit" class="btn-search" name="action" value="Search_News_By_Name">Tìm kiếm</button>
+                            <input type="hidden" name="txtTagID" value="3" />
+                        </div>
+                    </form>
                     <input type="radio" hidden name="dot" id="type-travel__input-one">
                     <input type="radio" hidden name="dot" id="type-travel__input-two">
 
                     <c:if test="${requestScope.TAG_READMORE != null}">
-                        <div class="grid type-travel--width">
+                        <div class="grid type-travel--width" style="flex-direction: column; flex-wrap: wrap;">
                             <div class="row margin-10px">
                                 <c:forEach items="${requestScope.TAG_READMORE}" var="tag">
                                     <c:forEach items="${sessionScope.LIST_NEWS_IMG}" var="img">
                                         <c:if test="${img.newId eq tag.id}">
                                             <div class="col l-3 m-6 c-12">
                                                 <div class="type-travel-item">
-                                                    <a href="../ContentPage/Content.html" class="type-travel__link">
+                                                    <a href="MainController?action=goNewsDetails&txtID=${tag.id}" class="type-travel__link">
                                                         <img src="${pageContext.request.contextPath}/user/assets/images/${img.link}" alt="" class="type-travel__img">
                                                     </a>
                                                     <div class="type-travel__intro">
-                                                        <a class="type-travel__intro-link" href="../ContentPage/Content.html">
+                                                        <a class="type-travel__intro-link" 
+                                                           href="MainController?action=goNewsDetails&txtID=${tag.id}">
                                                             ${tag.name}
                                                         </a>
                                                         <p class="type-travel__intro-text">

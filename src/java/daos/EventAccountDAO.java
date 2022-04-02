@@ -142,7 +142,7 @@ public class EventAccountDAO {
 //            DataSource ds = (DataSource) envCtx.lookup("DBCon");
 //            Connection con = ds.getConnection();
             con = MyConnection.getConnection();
-            String sql = "SELECT * FROM SWP391.Events_has_Account WHERE Account_id = " + userID;
+            String sql = "SELECT * FROM SWP391.Events_has_Account WHERE Account_id = " + userID ;
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -154,6 +154,7 @@ public class EventAccountDAO {
                 }
                 EventAccountDTO dto = new EventAccountDTO(id, eventId, accountId, status);
                 list.add(dto);
+                status = false;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -161,4 +162,22 @@ public class EventAccountDAO {
         return list;
     }
 
+    // Check Event_id có trong tbl chưa
+    public boolean checkEventID(int userID, int eventID) {
+        boolean check = false;
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Events_has_Account WHERE Account_id = "+userID+" AND Events_id = "+eventID;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                check = true;
+            }
+        } catch (Exception e) {
+            check = false;
+            e.printStackTrace();
+        }
+        return check;
+    }
+    
 }

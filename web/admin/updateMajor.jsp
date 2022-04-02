@@ -92,7 +92,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goMajorPage">
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goMajorPage">
                                     <i class="bi bi-journal-bookmark"></i> Bộ môn
                                 </a>
                             </li>
@@ -112,7 +112,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/SE_ITS/MainController?action=goSubject">
+                                <a class="nav-link " href="/SE_ITS/MainController?action=goSubject">
                                     <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>

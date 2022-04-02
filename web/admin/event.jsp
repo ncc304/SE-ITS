@@ -52,7 +52,7 @@
                             .bi-book::before
                             {
                                 color: black; 
-                           }
+                            }
                         </style>
 
                         <!-- Navigation -->
@@ -227,14 +227,15 @@
                                                                         </span>
                                                                     </td>
                                                                     <td class="text-end">
-                                                                        <!--<input type="hidden" name="txtStatus" value="$ {param.txtStatus}"/>-->
-
-                                                                        <a class="btn btn-sm btn-neutral"  
-                                                                           href="MainController?action=goUpdateEvent&txtEventID=${event.id}&txtEventName=${event.name}&txtStart=${event.startDate}&txtEnd=${event.endDate}&txtStatus=${event.status}&txtType=${event.type}&txtImg=${eventImg.link}">
+                                                                        <a class="btn btn-sm btn-neutral"
+                                                                            href="MainController?action=goUpdateEvent&txtEventID=${event.id}&txtImg=${eventImg.link}">
                                                                             <i class="bi bi-pencil"></i>
-                                                                            <!--<input type="hidden" name="txtDes" value=" {event.description}"/>-->
-
                                                                         </a>
+<!--                                                                        <button class="btn btn-sm btn-neutral" name="action" type="submit" value="goUpdateEvent" >
+                                                                            <i class="bi bi-pencil"></i>
+                                                                            <input type="hidden" name="txtEventID" value="$ {event.id}"/>
+                                                                        </button>-->
+
                                                                         <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
                                                                            href="MainController?action=deleteEvent&txtEventID=${event.id}"
                                                                            onclick='return confirm("Bạn có muốn xóa Sự Kiện này không?");'>
@@ -244,6 +245,7 @@
 
                                                                 </c:if>
                                                             </tr>
+
                                                         </c:forEach>
                                                     </c:forEach>
                                                 </tbody>
