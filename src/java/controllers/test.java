@@ -14,11 +14,13 @@ import java.text.SimpleDateFormat;
 public class test {
 
     public static void main(String[] args) throws Exception{
-        String d = "2022-03-25 17:24:40";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        java.util.Date util = format.parse(d);
+        String d = "2022-03-25";
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date util = fmt.parse(d);
+        SimpleDateFormat fmt2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = fmt2.format(util.getTime());
         
-        System.out.println(util);
+        System.out.println(date);
     }
 
 }

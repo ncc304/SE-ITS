@@ -5,9 +5,17 @@
  */
 package controllers.admin;
 
-import daos.EventsDAO;
-import dtos.EventDTO;
+import daos.NewsDAO;
+import daos.NewsImageDAO;
+import daos.NewsNewsTagDAO;
+import daos.NewsTagDAO;
+import dtos.NewsDTO;
+import dtos.NewsImageDTO;
+import dtos.NewsNewsTagDTO;
+import dtos.NewsTagDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,32 +25,44 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeleteEventController extends HttpServlet {
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "LoadEventPageController";
+public class LoadNewsByIDController extends HttpServlet {
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            String txtID = request.getParameter("txtEventID");
-            int eventID = Integer.parseInt(txtID);
+            String txtID = request.getParameter("txtID");
+            int id = Integer.parseInt(txtID);
+           
+            NewsDAO dao = new NewsDAO();
+            NewsDTO dto = dao.getNewsByID_NotCount(id);
+            if(dto != null){
+                request.setAttribute("NEWS", dto);
+            }
             
-            EventsDAO dao = new EventsDAO();
-            boolean check = dao.unableEvent(eventID);
-            if(check){
-                url = SUCCESS;
-                request.setAttribute("MSG", "DELETE_EVENT_SUCCESS");
-                EventDTO dto = dao.getEventByID_Admin(eventID);
-                if(dto != null){
-                    request.setAttribute("EVENT_NAME", dto.getName());
-                }
+            NewsImageDAO imgDAO = new NewsImageDAO();
+            NewsImageDTO imgDTO = imgDAO.getNewsImageByID(id);
+            if(imgDTO != null){
+                request.setAttribute("IMG", imgDTO);
+            }
+            
+            NewsTagDAO tagDAO = new NewsTagDAO();
+            List<NewsTagDTO> listTag = tagDAO.getListNewsTag();
+            if(listTag.size() >0){
+                request.setAttribute("LIST_TAG", listTag);
+            }
+            
+            // sub Tag
+            NewsNewsTagDAO subTagDAO = new NewsNewsTagDAO();
+            NewsNewsTagDTO subTag = subTagDAO.getTagByNewsID(id);
+            if(subTag != null){
+                request.setAttribute("SUB_TAG", subTag);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("admin/updateNews.jsp").forward(request, response);
         }
     }
 

@@ -31,10 +31,6 @@ public class NewsImageDAO {
         String link = null;
         int newsId = 0;
         try {
-//            Context ctx = new InitialContext();
-//            Context envCtx = (Context) ctx.lookup("java:comp/env");
-//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-//            Connection con = ds.getConnection();
             con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.News_Images;";
             Statement stmt = con.createStatement();
@@ -74,11 +70,8 @@ public class NewsImageDAO {
     public boolean updateNewsImage(NewsImageDTO newsImage) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "UPDATE `SWP391`.`News_Images` SET `link` = ?, `News_id` = ? WHERE (`idNews_Images` = ?);";
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.News_Images SET link = ?, News_id = ? WHERE (idNews_Images = ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setString(1, newsImage.getLink());
             pr.setInt(2, newsImage.getNewId());
@@ -114,22 +107,6 @@ public class NewsImageDAO {
         int id = 0;
         String link = null;
         int newsId = 0;
-//        try {
-//            Context ctx = new InitialContext();
-//            Context envCtx = (Context) ctx.lookup("java:comp/env");
-//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-//            Connection con = ds.getConnection();
-//            String sql = "SELECT * FROM SWP391.Event_Images;";
-//            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                id = rs.getInt("idEvent_Images");
-//                link = rs.getString("link");
-//                eventId = rs.getInt("Events_id");
-//                EventsImageDTO dto = new EventsImageDTO(id, link, eventId);
-//                listEventsImage.add(dto);
-//            }
-//        }
         try {
             con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.News_Images ORDER BY idNews_Images DESC;";
@@ -146,5 +123,27 @@ public class NewsImageDAO {
             e.printStackTrace();
         }
         return listNewsImage;
+    }
+    
+    public NewsImageDTO getNewsImageByID(int newsID) {
+        NewsImageDTO dto = null;
+        int id = 0;
+        String link = null;
+        int newsId = 0;
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.News_Images WHERE News_id = "+newsID;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getInt("idNews_Images");
+                link = rs.getString("link");
+                newsId = rs.getInt("News_id");
+                dto = new NewsImageDTO(id, link, newsId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 }

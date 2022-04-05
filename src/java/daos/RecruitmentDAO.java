@@ -136,24 +136,30 @@ public class RecruitmentDAO {
 
     public boolean updateRecruitment(RecruitmentDTO recruitment) {
         boolean check = false;
+        int status = 0;
+        if(recruitment.isStatus()){
+            status = 1;
+        }
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "UPDATE `SWP391`.`Recruitment` SET `startDate` = ?, `endDate` = ?, `salary` = ?, `description` = ?, `Company_id` = ? WHERE (`idRecruitment` = ?);";
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.Recruitment SET startDate = ?, endDate = ?, salary = ?, description = ?, Company_id = ?, status =  ?, name = ?, createDate = ? "
+                    + " WHERE (idRecruitment = ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsed1 = format.parse(recruitment.getEndDate());
             java.sql.Date sqlDate1 = new java.sql.Date(parsed1.getTime());
             java.util.Date parsed2 = format.parse(recruitment.getStartDate());
-            java.sql.Date sqlDate2 = new java.sql.Date(parsed1.getTime());
+            java.sql.Date sqlDate2 = new java.sql.Date(parsed2.getTime());
+            
             pr.setDate(1, sqlDate2);
             pr.setDate(2, sqlDate1);
             pr.setFloat(3, recruitment.getSalary());
             pr.setString(4, recruitment.getDescription());
             pr.setInt(5, recruitment.getCompanyId());
-            pr.setInt(6, recruitment.getId());
+            pr.setInt(6, status);
+            pr.setString(7, recruitment.getName());
+            pr.setString(8, recruitment.getCreateDate());
+            pr.setInt(9, recruitment.getId());
             check = pr.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();

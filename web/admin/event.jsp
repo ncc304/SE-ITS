@@ -15,7 +15,12 @@
         </c:if>
         <c:if test="${requestScope.MSG eq 'DELETE_EVENT_SUCCESS'}">
             <script>
-                window.alert("Đã tạo một Sự Kiện: ${requestScope.EVENT_NAME} thành công!");
+                window.alert("Đã xóa một Sự Kiện: ${requestScope.EVENT_NAME} thành công!");
+            </script>
+        </c:if>
+        <c:if test="${requestScope.MSG eq 'UPDATE_EVENT_SUCCESS'}">
+            <script>
+                window.alert("Đã chỉnh sửa một Sự Kiện: ${requestScope.EVENT_INFO.name} với Mã Số: ${requestScope.EVENT_INFO.id} thành công!");
             </script>
         </c:if>
     </head>
@@ -228,13 +233,13 @@
                                                                     </td>
                                                                     <td class="text-end">
                                                                         <a class="btn btn-sm btn-neutral"
-                                                                            href="MainController?action=goUpdateEvent&txtEventID=${event.id}&txtImg=${eventImg.link}">
+                                                                           href="MainController?action=goUpdateEvent&txtEventID=${event.id}&txtImg=${eventImg.link}">
                                                                             <i class="bi bi-pencil"></i>
                                                                         </a>
-<!--                                                                        <button class="btn btn-sm btn-neutral" name="action" type="submit" value="goUpdateEvent" >
-                                                                            <i class="bi bi-pencil"></i>
-                                                                            <input type="hidden" name="txtEventID" value="$ {event.id}"/>
-                                                                        </button>-->
+                                                                        <!--                                                                        <button class="btn btn-sm btn-neutral" name="action" type="submit" value="goUpdateEvent" >
+                                                                                                                                                    <i class="bi bi-pencil"></i>
+                                                                                                                                                    <input type="hidden" name="txtEventID" value="$ {event.id}"/>
+                                                                                                                                                </button>-->
 
                                                                         <a class="btn btn-sm btn-square btn-neutral text-danger-hover"
                                                                            href="MainController?action=deleteEvent&txtEventID=${event.id}"

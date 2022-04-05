@@ -5,16 +5,15 @@
  */
 package controllers.admin;
 
-import daos.EventEventCategoryDAO;
-import daos.EventImageDAO;
-import daos.EventsDAO;
-import dtos.EventDTO;
-import dtos.EventEventCategoryDTO;
-import dtos.EventsImageDTO;
+import daos.NewsDAO;
+import daos.NewsImageDAO;
+import daos.NewsNewsTagDAO;
+import dtos.NewsDTO;
+import dtos.NewsImageDTO;
+import dtos.NewsNewsTagDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,63 +24,63 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class UpdateEventController extends HttpServlet {
-
-    private static final String SUCCESS = "LoadEventPageController";
-    private static final String ERROR = "admin/updateEvent.jsp";
+public class UpdateNewsController extends HttpServlet {
+private static final String SUCCESS = "LoadNewsPageController";
+private static final String ERROR = "admin/updateNews.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String txtID = request.getParameter("txtID"); // eventID
-            int id = Integer.parseInt(txtID);
-            String startDate = request.getParameter("date1");
-            String endDate = request.getParameter("date2");
+            int id = Integer.parseInt(request.getParameter("txtID"));
             String thumbnail = request.getParameter("thumbnail");
             String txtImg = request.getParameter("txtImg");
-            if (thumbnail.isEmpty() || thumbnail.equals("")) {
+            if (thumbnail.equals("") || thumbnail.isEmpty()) {
                 thumbnail = txtImg;
             }
             String txtTitle = request.getParameter("txtTitle");
             String content = request.getParameter("content");
-            String category = request.getParameter("category");
-            int cate = Integer.parseInt(category);
-            String method = request.getParameter("method");
-            String statusStr = request.getParameter("status");
+            int cate = Integer.parseInt(request.getParameter("category"));
+            int statusInt = Integer.parseInt(request.getParameter("status"));
             boolean status = false;
-            if (statusStr.equals("1")) {
+            if(statusInt == 1){
                 status = true;
-            } else {
-                status = false;
             }
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date now = new Date();
-            String createDate = fmt.format(now);
             HttpSession session = request.getSession();
             String userName = (String) session.getAttribute("USER_NAME");
-            EventDTO dto = new EventDTO(id, txtTitle, startDate, endDate, status, content, userName, method, createDate);
 
-            EventsDAO dao = new EventsDAO();
-            boolean check1 = dao.updateEvent(dto); // Update tbl Event
-            if (check1) {
-                EventsImageDTO imgDTO = new EventsImageDTO(thumbnail, id);
-                EventImageDAO imgDAO = new EventImageDAO();
-                boolean check2 = imgDAO.updateEventsImage(imgDTO); // Update tbl Event Image
-                if (check2) {
-                    EventEventCategoryDAO cateDAO = new EventEventCategoryDAO();
-                    EventEventCategoryDTO cateDTO = new EventEventCategoryDTO(0, id, cate);
-                    boolean check3 = cateDAO.updateEventEventCategory(cateDTO);
-                    if(check3){
-                        request.setAttribute("MSG", "UPDATE_EVENT_SUCCESS");
-                        request.setAttribute("EVENT_INFO", dto);
-                        url = SUCCESS;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            java.util.Date createDateTmp = new java.util.Date();
+            String createDate = format.format(createDateTmp);
+            
+            NewsDAO newsDAO = new NewsDAO();
+            NewsDTO dtoDetail = newsDAO.getNewsByID_NotCount(id);
+            if(dtoDetail != null){
+                NewsDTO newsDTO = new NewsDTO(id, txtTitle, status, createDate, content, userName, dtoDetail.getView());
+                boolean check1 = newsDAO.updateNews(newsDTO); // Update tbl News
+                if(check1){
+                    NewsImageDAO imgDAO = new NewsImageDAO();
+                    NewsImageDTO imgDTODetail = imgDAO.getNewsImageByID(id);
+                    if(imgDTODetail != null){
+                        NewsImageDTO imgDTO = new NewsImageDTO(imgDTODetail.getId(), thumbnail, id);
+                        boolean check2 = imgDAO.updateNewsImage(imgDTO); // Update tbl News Image
+                        if(check2){
+                            NewsNewsTagDAO tagDAO = new NewsNewsTagDAO();
+                            NewsNewsTagDTO tagDTODetail = tagDAO.getTagByNewsID(id);
+                            if(tagDTODetail != null){
+                                NewsNewsTagDTO tagDTO = new NewsNewsTagDTO(tagDTODetail.getId(), cate, id);
+                                boolean check3 = tagDAO.updateNewsNewsTag(tagDTO);
+                                if(check3){
+                                    request.setAttribute("MSG", "UPDATE_NEWS_SUCCESS");
+                                    request.setAttribute("INFO", newsDTO);
+                                    url = SUCCESS;
+                                }
+                            }
+                        }
                     }
-                    
                 }
-
-            }
+            }        
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

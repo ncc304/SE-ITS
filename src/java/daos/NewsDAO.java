@@ -106,13 +106,10 @@ public class NewsDAO {
     public boolean updateNews(NewsDTO news) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             if (news.getCreateTime() != null) {
-                String sql = "UPDATE SWP391.News SET `name` = ?, `status` = ?,"
-                        + " `create_time` = ?, `content` = ?, `author` = ?, `view` = ? WHERE (`id` LIKE ?);";
+                String sql = "UPDATE SWP391.News SET name = ?, status = ?,"
+                        + " create_time = ?, content = ?, author = ?, [view] = ? WHERE (id LIKE ?);";
                 PreparedStatement pr = con.prepareStatement(sql);
                 int tmp = 0;
                 if (news.isStatus()) {
@@ -131,8 +128,8 @@ public class NewsDAO {
                 check = pr.executeUpdate() > 0;
                 return check;
             }
-            String sql = "UPDATE SWP391.News SET `name` = ?, `status` = ?,"
-                    + "`content` = ?, `author` = ?, `view` = ? WHERE (`id` LIKE ?);";
+            String sql = "UPDATE SWP391.News SET name = ?, status = ?,"
+                    + "content = ?, author = ?, view = ? WHERE (id LIKE ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             int tmp = 0;
             if (news.isStatus()) {
@@ -578,7 +575,7 @@ public class NewsDAO {
         return check;
     }
 
-    public NewsDTO getNewsByID_NotCount(int idNews) { // + Count View
+    public NewsDTO getNewsByID_NotCount(int idNews) { 
         NewsDTO dto = null;
         int id = idNews;
         String name = null;

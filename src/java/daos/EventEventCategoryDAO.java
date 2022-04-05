@@ -31,10 +31,6 @@ public class EventEventCategoryDAO {
         int eventId = 0;
         int eventCategoryId = 0;
         try {
-//            Context ctx = new InitialContext();
-//            Context envCtx = (Context) ctx.lookup("java:comp/env");
-//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-//            Connection con = ds.getConnection();
             con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.Event_Category_has_Events;";
             Statement stmt = con.createStatement();
@@ -82,16 +78,17 @@ public class EventEventCategoryDAO {
     public boolean updateEventEventCategory(EventEventCategoryDTO eventEventCategory) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "UPDATE `SWP391`.`Event_Category_has_Events` SET `Event_Category_id` = ?, `Events_id` = ? WHERE (`id` = ?);";
-            PreparedStatement pr = con.prepareStatement(sql);
-            pr.setInt(1, eventEventCategory.getEventCategoryId());
-            pr.setInt(2, eventEventCategory.getEventId());
-            pr.setInt(3, eventEventCategory.getId());
-            check = pr.executeUpdate() > 0;
+            con = MyConnection.getConnection();
+            EventEventCategoryDTO dto = getEventEventCategoryByEventID(eventEventCategory.getEventId());
+            if (dto != null) {
+                String sql = "UPDATE SWP391.Event_Category_has_Events SET Event_Category_id = ?, Events_id = ? WHERE (id = ?);";
+                PreparedStatement pr = con.prepareStatement(sql);
+                pr.setInt(1, eventEventCategory.getEventCategoryId());
+                pr.setInt(2, eventEventCategory.getEventId());
+                pr.setInt(3, dto.getId());
+                check = pr.executeUpdate() > 0;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,4 +114,26 @@ public class EventEventCategoryDAO {
         return check;
     }
 
+    // Get Cate by eventID
+    public EventEventCategoryDTO getEventEventCategoryByEventID(int eventIDTmp) {
+        EventEventCategoryDTO dto = null;
+        int id = 0;
+        int eventId = 0;
+        int eventCategoryId = 0;
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Event_Category_has_Events WHERE Events_id = " + eventIDTmp;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                id = rs.getInt("id");
+                eventId = rs.getInt("Events_id");
+                eventCategoryId = rs.getInt("Event_Category_id");
+                dto = new EventEventCategoryDTO(id, eventId, eventCategoryId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
 }

@@ -48,12 +48,16 @@ public class MainController extends HttpServlet {
     private static final String DELETE_NEWS = "DeleteNewsController";
     private static final String GO_CREATE_NEWS = "LoadCreateNewsCateController";
     private static final String CREATE_NEWS = "CreateNewsController";
+    private static final String GO_UPDATE_NEWS = "LoadNewsByIDController";
+    private static final String UPDATE_NEWS = "UpdateNewsController";
 
     // Recruitment
     private static final String GO_RECRUITMENT_ADMIN = "LoadRecruitmentPageController";
     private static final String DELETE_RE = "DeleteRecruitmentController";
     private static final String GO_CREATE_RE = "LoadCreateRecruitmentController";
     private static final String CREATE_RE = "CreateRecruitmentController";
+    private static final String GO_UPDATE_RE = "LoadRecruitmentByIDController";
+    private static final String UPDATE_RE = "UpdateRecruitmentController";
 
     // Company
     private static final String GO_COMPANY = "LoadCompanyController";
@@ -120,7 +124,7 @@ public class MainController extends HttpServlet {
         String url = ERROR;
         try {
             String action = request.getParameter("action");
-            // ------------------- Admin Page -------------------
+            // ------------------- Admin Page ------------------------
             // Event:
             if ("goCreateEvent".equals(action)) {
                 url = GO_EVENT;
@@ -136,36 +140,34 @@ public class MainController extends HttpServlet {
                 url = GO_DASHBOARD;
             } else if ("Sửa sự kiện".equals(action)) {
                 url = updateEvent;
-            } 
-
-            // User:
+            } // User:
             else if ("goUserPage".equals(action)) {
                 url = GO_USER;
             } else if ("deleteUser".equals(action)) {
                 url = DELETE_USER;
             } else if ("updateUser".equals(action)) {
                 url = UPDATE_USER;
-            } 
-
-            // Tư vấn 
+            } // Tư vấn 
             else if ("goTuVanPage".equals(action)) {
                 url = GO_TuVan_ADMIN;
             } else if ("deleteTuVan".equals(action)) {
                 url = DELETE_TuVan;
             } else if ("undoUserCall".equals(action)) {
                 url = UNDO_TuVan_CALL;
-            } 
-
-            // Tin tức  
+            } // Tin tức  
             else if ("goNewsPage".equals(action)) {
                 url = GO_NEWS_ADMIN;
             } else if ("deleteNews".equals(action)) {
                 url = DELETE_NEWS;
             } else if ("goCreateNews".equals(action)) {
                 url = GO_CREATE_NEWS;
-            } else if ("Thêm Tin Tức".equals(action)) {
+            } else if ("Thêm Tin Tức".equals(action)) { 
                 url = CREATE_NEWS;
-            } 
+            } else if ("goUpdateNews".equals(action)) {
+                url = GO_UPDATE_NEWS ;
+            } else if ("Sửa tin tức".equals(action)) {
+                url = UPDATE_NEWS ;
+            }
 
             // Tuyển dụng 
             else if ("goRecruitmentPage".equals(action)) {
@@ -176,6 +178,10 @@ public class MainController extends HttpServlet {
                 url = GO_CREATE_RE;
             } else if ("Thêm tin tuyển dụng".equals(action)) {
                 url = CREATE_RE;
+            } else if ("goUpdateRE".equals(action)) {
+                url = GO_UPDATE_RE;
+            } else if ("Sửa tin tuyển dụng".equals(action)) {
+                url = UPDATE_RE;
             } 
 
             // Công ty 
@@ -191,9 +197,7 @@ public class MainController extends HttpServlet {
                 url = GO_CREATE_COMPANY;
             } else if ("Thêm công ty".equals(action)) {
                 url = CREATE_COMPANY;
-            } 
-            
-            // Môn học 
+            } // Môn học 
             else if ("goSubject".equals(action)) {
                 url = GO_SUBJECT;
             } else if ("goCreateSubject".equals(action)) {
@@ -206,23 +210,17 @@ public class MainController extends HttpServlet {
                 url = GO_UPDATE_SUBJECT;
             } else if ("Cập nhập môn học".equals(action)) {
                 url = UPDATE_SUBJECT;
-            } 
-
-            // Bộ môn
+            } // Bộ môn
             else if ("goMajorPage".equals(action)) {
                 url = GO_MAJOR;
             } else if ("updateMajor".equals(action)) {
                 url = GO_UPDATE_MAJOR;
             } else if ("Cập nhập bộ môn".equals(action)) {
                 url = UPDATE_MAJOR;
-            } 
-
-            // Logout:
+            } // Logout:
             else if ("goLogout".equals(action)) {
                 url = GO_LOGOUT;
-            } 
-
-        // ------------------- User Page -------------------
+            } // ------------------- User Page -------------------
             else if ("applyEvent".equals(action)) {
                 url = APPLY_EVENT;
             } // Event:
@@ -236,15 +234,13 @@ public class MainController extends HttpServlet {
                 url = GO_EVENT_DETAILS_USER;
             } else if ("goEventCancel".equals(action)) {
                 url = GO_CANCEL_EVENT;
-            } else if ("cancelEvent".equals(action)) { 
+            } else if ("cancelEvent".equals(action)) {
                 url = CANCEL_EVENT;
             } else if ("registerAccount".equals(action)) {
                 url = FIRST_LOGIN;
             } else if ("Search_Event_By_Name".equals(action)) {
                 url = SEARCH_EVENT_BY_NAME_USER;
-            }
-
-            // News:
+            } // News:
             else if ("goNewsUser".equals(action)) {
                 url = GO_NEWS_USER;
             } else if ("goNewsTagReadMore".equals(action)) {

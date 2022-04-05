@@ -16,6 +16,11 @@
                 window.alert("Đã thêm tin Tuyển Dụng: ${requestScope.RENAME} thành công!");
             </script>
         </c:if>
+        <c:if test="${requestScope.MSG eq 'UPDATE_RE_SUCCESS'}">
+            <script>
+                window.alert("Đã cập nhật tin Tuyển Dụng: ${requestScope.MainDTO.name} với Mã Số: ${requestScope.MainDTO.id} thành công!");
+            </script>
+        </c:if>
     </head>
     <body>
         <!-- Dashboard -->
@@ -49,7 +54,7 @@
                             .bi-book::before
                             {
                                 color: black; 
-                           }
+                            }
                         </style>
 
                         <!-- Navigation -->
@@ -208,10 +213,10 @@
                                                             </td>
                                                             <td>
                                                                 <c:if test="${re.status}">
-                                                                <a class="text-heading font-semibold" 
-                                                                   href="MainController?action=goRecruitmentDetail&txtID=${re.id}">
-                                                                    ${re.createDate}
-                                                                </a>
+                                                                    <a class="text-heading font-semibold" 
+                                                                       href="MainController?action=goRecruitmentDetail&txtID=${re.id}">
+                                                                        ${re.createDate}
+                                                                    </a>
                                                                 </c:if>
                                                                 <c:if test="${!re.status}">
                                                                     ${re.createDate}
@@ -232,8 +237,11 @@
                                                                 </c:if>
                                                             </td>
                                                             <td class="text-end">
-                                                                <a href="#" class="btn btn-sm btn-neutral"> <i class="bi bi-pencil"></i></a>
-                                                                    <c:if test="${re.status}">
+                                                                <a href="MainController?action=goUpdateRE&txtID=${re.id}" 
+                                                                   class="btn btn-sm btn-neutral"> 
+                                                                    <i class="bi bi-pencil"></i>
+                                                                </a>
+                                                                <c:if test="${re.status}">
                                                                     <a  href="MainController?action=deleteRe&txtID=${re.id}"
                                                                         onclick='return confirm("Bạn có muốn xóa tin Tuyển Dụng này không?");'
                                                                         class="btn btn-sm btn-square btn-neutral text-danger-hover">

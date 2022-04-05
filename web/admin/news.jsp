@@ -16,6 +16,11 @@
                 window.alert("Đã thêm Tin Tức: ${requestScope.NEWS_NAME} thành công!");
             </script>
         </c:if>
+        <c:if test="${requestScope.MSG eq 'UPDATE_NEWS_SUCCESS'}">
+            <script>
+                window.alert("Đã cập nhật Tin Tức: ${requestScope.INFO.name} với Mã Số: ${requestScope.INFO.id} thành công!");
+            </script>
+        </c:if>
     </head>
     <body>
         <!-- Dashboard -->
@@ -49,7 +54,7 @@
                             .bi-book::before
                             {
                                 color: black; 
-                           }
+                            }
                         </style>
 
                         <!-- Navigation -->
@@ -231,8 +236,7 @@
                                                                 </c:if>
                                                             </td>
                                                             <td class="text-end">
-
-                                                                <a href="" 
+                                                                <a href="MainController?action=goUpdateNews&txtID=${news.id}" 
                                                                    class="btn btn-sm btn-neutral" >
                                                                     <i class="bi bi-pencil"></i>
                                                                 </a>

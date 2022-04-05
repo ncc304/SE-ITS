@@ -31,10 +31,11 @@ public class NewsNewsTagDAO {
         int newTagId = 0;
         int newId = 0;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
+//            Context ctx = new InitialContext();
+//            Context envCtx = (Context) ctx.lookup("java:comp/env");
+//            DataSource ds = (DataSource) envCtx.lookup("DBCon");
+//            Connection con = ds.getConnection();
+            con = MyConnection.getConnection();
             String sql = "SELECT * FROM SWP391.News_Tags_has_News;";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -73,11 +74,8 @@ public class NewsNewsTagDAO {
     public boolean updateNewsNewsTag(NewsNewsTagDTO newsNewsTag) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "UPDATE `SWP391`.`News_Tags_has_News` SET `News_Tags_idNews_Tags` = ?, `News_id` = ? WHERE (`id` = ?);";
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.News_Tags_has_News SET News_Tags_idNews_Tags = ?, News_id = ? WHERE (id = ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setInt(1, newsNewsTag.getNewTagId());
             pr.setInt(2, newsNewsTag.getNewId());

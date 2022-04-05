@@ -74,11 +74,8 @@ public class RecruitmentRecruitmentCategoryDAO {
     public boolean updateRecruitmentRecruitmentCategory(RecruitmentRecruitmentCategoryDTO recruitmentRecruitmentCategory) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "UPDATE `SWP391`.`Recruitment_has_Recruitment_Category` SET `Recruitment_id` = ?, `Recruitment_Category_id` = ? WHERE (`id` = ?);";
+            con = MyConnection.getConnection();
+            String sql = "UPDATE SWP391.Recruitment_has_Recruitment_Category SET Recruitment_id = ?, Recruitment_Category_id = ? WHERE (id = ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setInt(1, recruitmentRecruitmentCategory.getRecruitmentId());
             pr.setInt(2, recruitmentRecruitmentCategory.getRecruitmentCategoryId());

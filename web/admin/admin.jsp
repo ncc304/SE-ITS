@@ -36,7 +36,7 @@
                             .bi-calendar-event::before, .bi-people::before,
                             .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
                             .bi-person-fill::before, .bi-telephone-fill::before, .bi-building::before,
-                            .bi-book::before
+                            .bi-book::before, .bi-calendar2-check-fill::before
                             {
                                 color: black; 
                            }
@@ -92,6 +92,12 @@
                                     <i class="bi bi-book"></i> Môn học
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goApplyEvent">
+                                    <i class="bi bi-calendar2-check-fill"></i> Đăng ký Sự Kiện
+                                </a>
+                            </li>
+                            
                         </ul>
                         <!-- Divider -->
                         <hr class="navbar-divider my-5 opacity-20">

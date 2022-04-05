@@ -171,8 +171,13 @@
                             <div class="card-footer border-0 py-5">
                                 <form method="POST" action="${pageContext.request.contextPath}/MainController" id="formSubmit">
                                     <div class="form-group">
+                                        <label>Mã số: </label>
+                                        <input type="text" name="txtID" value="${dto.id}" readonly="true" style="background-color: #e7eaf075; font-weight: 500;"/>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
                                         <span class="date1">
-                                            <input type="hidden" name="txtID" value="${dto.id}"/>
+
                                             <label>Ngày bắt đầu </label>
 
 
@@ -227,7 +232,8 @@
                                     </div>
 
                                     <br/>
-                                    <div class="form-group">
+                                    <span id="category">
+                                        <!--<div class="form-group">-->
                                         <label>Thể loại</label>
                                         <select class="custom-select custom-select-md" name="category" style="border: 1px solid #00000024; margin-left: 5px;">
 
@@ -238,12 +244,12 @@
                                                     </c:if>
                                                 </c:forEach>
                                                 <option value="${cate1.id}">${cate1.nsme}</option>
-                                            </c:forEach> 
-
+                                            </c:forEach>                                                                                                         
                                         </select> 
-                                    </div>
-                                    <br/>
-                                    <div class="form-group">
+                                        <!--</div>-->
+                                    </span>
+                                    <span id="method" style="margin-left: 20%;">
+                                        <!--<div class="form-group">-->
                                         <label>Phương thức</label>
                                         <select class="custom-select custom-select-md" name="method" style="border: 1px solid #00000024;">
                                             <c:if test="${dto.type eq 'offline'}">
@@ -252,25 +258,26 @@
                                             </c:if>
                                             <c:if test="${dto.type eq 'online'}">
                                                 <option value="online" selected="true">Online</option>
-                                                <option value="online">Offline</option>
+                                                <option value="offline">Offline</option>
                                             </c:if>
                                         </select>
-                                    </div>
-                                    <br/>
-                                    <div class="form-group">
+                                        <!--</div>-->
+                                    </span>
+                                    <span id="status" style="margin-left: 20%;">
+                                        <!--<div class="form-group">-->
                                         <label>Trạng thái</label>
                                         <select class="custom-select custom-select-md" name="status" style="border: 1px solid #00000024;">
                                             <c:if test="${dto.status}">
-                                            <option value="1" selected="true">Đang hoạt động</option>
-                                            <option value="0" >Đã xóa</option>
+                                                <option value="1" selected="true">Đang hoạt động</option>
+                                                <option value="0" >Đã xóa</option>
                                             </c:if>
                                             <c:if test="${!dto.status}">
-                                            <option value="0" selected="true">Đã xóa</option>
-                                            <option value="1">Đang hoạt động</option>
+                                                <option value="0" selected="true">Đã xóa</option>
+                                                <option value="1">Đang hoạt động</option>
                                             </c:if>
                                         </select>
-                                    </div>
-                                    
+                                        <!--</div>-->
+                                    </span>
                                     <br/><br/><br/>
                                     <input type="submit" value="Sửa sự kiện" name="action" id="btnCreate" class="btn btn-warning" style="margin-left: 45%"></input>
                                 </form>
@@ -295,6 +302,7 @@
 <script>
     var editor = '';
     $(document).ready(function () {
+
         editor = CKEDITOR.replace('content');
 
     })
@@ -344,5 +352,5 @@
         infoArea.textContent = 'File name: ' + fileName;
     }
 </script>
-</script>
+
 

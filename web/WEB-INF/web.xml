@@ -232,6 +232,22 @@
         <servlet-name>SearchEventByNameController</servlet-name>
         <servlet-class>controllers.user.SearchEventByNameController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadNewsByIDController</servlet-name>
+        <servlet-class>controllers.admin.LoadNewsByIDController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateNewsController</servlet-name>
+        <servlet-class>controllers.admin.UpdateNewsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadRecruitmentByIDController</servlet-name>
+        <servlet-class>controllers.admin.LoadRecruitmentByIDController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateRecruitmentController</servlet-name>
+        <servlet-class>controllers.admin.UpdateRecruitmentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -463,6 +479,22 @@
     <servlet-mapping>
         <servlet-name>SearchEventByNameController</servlet-name>
         <url-pattern>/SearchEventByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadNewsByIDController</servlet-name>
+        <url-pattern>/LoadNewsByIDController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateNewsController</servlet-name>
+        <url-pattern>/UpdateNewsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadRecruitmentByIDController</servlet-name>
+        <url-pattern>/LoadRecruitmentByIDController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRecruitmentController</servlet-name>
+        <url-pattern>/UpdateRecruitmentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

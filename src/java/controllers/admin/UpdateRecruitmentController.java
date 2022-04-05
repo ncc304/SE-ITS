@@ -3,82 +3,76 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.user;
+package controllers.admin;
 
 import daos.CompanyDAO;
 import daos.RecruitmentDAO;
 import daos.RecruitmentRecruitmentCategoryDAO;
-import dtos.CompanyDTO;
 import dtos.RecruitmentDTO;
 import dtos.RecruitmentRecruitmentCategoryDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class LoadRecruitmentDetailController extends HttpServlet {
+public class UpdateRecruitmentController extends HttpServlet {
+
+    private static final String SUCCESS = "LoadRecruitmentPageController";
+    private static final String ERROR = "admin/updateRecruitment.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
             String txtID = request.getParameter("txtID");
-            RecruitmentDAO dao = new RecruitmentDAO();
-            RecruitmentDTO dto = dao.getRecruitmentByReID(txtID);
-            HttpSession session = request.getSession();
+            int id = Integer.parseInt(txtID);
+            String startDate = request.getParameter("date1");
+            String endDate = request.getParameter("date2");
             
-            CompanyDAO comDAO = new CompanyDAO();
-            List<CompanyDTO> listAllCom = comDAO.getListCompany();
-            
-            if (dto != null) {
-                request.setAttribute("DTO", dto);
-                List<CompanyDTO> filter = new ArrayList<>();
-                for (CompanyDTO c : listAllCom) {
-                    if (c.getId() == dto.getCompanyId()) {
-                        filter.add(c);
-                    }
-                }
-                if (filter != null) {
-                    request.setAttribute("COM", filter);
-                }
+            String txtTitle = request.getParameter("txtTitle");
+            String content = request.getParameter("content");
+            String txtSalary = request.getParameter("txtSalary");
+            float salary = Float.parseFloat(txtSalary);
+            String company = request.getParameter("company");
+            int companyID = Integer.parseInt(company);
+            String category = request.getParameter("category");
+            int cateID = Integer.parseInt(category);
+            String statusStr = request.getParameter("status");
+            boolean status = false;
+            if (statusStr.equals("1")) {
+                status = true;
             }
-
-            // Get Navigation
-            RecruitmentRecruitmentCategoryDAO cateDAO = new RecruitmentRecruitmentCategoryDAO();
-            RecruitmentRecruitmentCategoryDTO cateDTO = cateDAO.getCateByReID(txtID);
-            if (cateDTO != null) {
-                request.setAttribute("CATE", cateDTO);
-            }
-
-            // Get 4 Recent Recruitment
-            List<RecruitmentDTO> list4Recent = dao.get4NewRecruitmentNoCateID();
-            if (list4Recent != null) {
-                List<CompanyDTO> filter = new ArrayList<>();
-                request.setAttribute("lIST4_RECENT", list4Recent);
-                for (RecruitmentDTO r : list4Recent) {
-                    for (CompanyDTO c : listAllCom) {
-                        if (c.getId() == r.getCompanyId()) {
-                            filter.add(c);
-                        }
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date now = new java.util.Date();
+            String createDate = format.format(now.getTime());
+            RecruitmentDTO reDTO = new RecruitmentDTO(id, startDate, endDate, salary, content, companyID, status, txtTitle, "", createDate);
+            RecruitmentDAO reDAO = new RecruitmentDAO();
+            boolean check1 = reDAO.updateRecruitment(reDTO); // Update tbl Re
+            if (check1) {
+                RecruitmentRecruitmentCategoryDAO subCateDAO = new RecruitmentRecruitmentCategoryDAO();
+                RecruitmentRecruitmentCategoryDTO cateDTOTmp = subCateDAO.getCateByReID(txtID);
+                if (cateDTOTmp != null) {
+                    RecruitmentRecruitmentCategoryDTO cateDTO = new RecruitmentRecruitmentCategoryDTO(cateDTOTmp.getId(), id, cateID);
+                    boolean check2 = subCateDAO.updateRecruitmentRecruitmentCategory(cateDTO);
+                    if(check2){
+                        request.setAttribute("MSG", "UPDATE_RE_SUCCESS");
+                        request.setAttribute("MainDTO", reDTO);
+                        url = SUCCESS;
                     }
-                }
-                if (filter != null) {
-                    request.setAttribute("COM_RECENT", filter);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher("user/recruitmentDetail.jsp").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

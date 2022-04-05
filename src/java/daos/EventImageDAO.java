@@ -95,16 +95,17 @@ public class EventImageDAO {
     public boolean updateEventsImage(EventsImageDTO eventImage) {
         boolean check = false;
         try {
-            Context ctx = new InitialContext();
-            Context envCtx = (Context) ctx.lookup("java:comp/env");
-            DataSource ds = (DataSource) envCtx.lookup("DBCon");
-            Connection con = ds.getConnection();
-            String sql = "UPDATE SWP391.Event_Images SET `link` = ?, `Events_id` = ? WHERE (`idEvent_Images` = ?);";
+            
+            con = MyConnection.getConnection();
+            EventsImageDTO dto = GetIDByEventID(eventImage.getEventId()); // tìm idEvent_Images theo eventID
+            if(dto != null){
+                String sql = "UPDATE SWP391.Event_Images SET link = ?, Events_id = ? WHERE (idEvent_Images = ?);";
             PreparedStatement pr = con.prepareStatement(sql);
             pr.setString(1, eventImage.getLink());
             pr.setInt(2, eventImage.getEventId());
-            pr.setInt(3, eventImage.getId());
+            pr.setInt(3, dto.getId());
             check = pr.executeUpdate() > 0;
+            }            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,5 +171,29 @@ public class EventImageDAO {
             e.printStackTrace();
         }
         return listEventsImage;
+    }
+    
+    public EventsImageDTO GetIDByEventID(int eventID){
+        EventsImageDTO dto = null;
+        int id = 0;
+        String link = null;
+        int eventId = 0;
+
+        try {
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Event_Images WHERE Events_id = "+eventID;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                id = rs.getInt("idEvent_Images");
+                link = rs.getString("link");
+                eventId = rs.getInt("Events_id");
+                dto = new EventsImageDTO(id, link, eventId);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 }
