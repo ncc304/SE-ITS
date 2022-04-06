@@ -36,7 +36,10 @@ public class AccountDAO {
             ResultSet rs = pr.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    if (rs.getInt("isAdmin") == 1) {
+                    if(rs.getInt("Account_Status_idAccount_Status") == 6){
+                        return "Blocked";
+                    }
+                    else if (rs.getInt("isAdmin") == 1) {
                         String sql2 = "UPDATE SWP391.Account SET Account_Status_idAccount_Status = 4 WHERE email LIKE ?";
                         PreparedStatement pr2 = con.prepareStatement(sql2);
                         pr2.setString(1, rs.getString("email"));

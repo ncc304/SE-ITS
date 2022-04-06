@@ -80,6 +80,9 @@ public class MainController extends HttpServlet {
     private static final String GO_UPDATE_MAJOR = "LoadMajorDetailController";
     private static final String UPDATE_MAJOR = "UpdateMajorController";
 
+    // Danh sách User đăng ký sự kiện 
+    private static final String GO_APPLY_EVENT = "LoadApplyEventController";
+    
     // --------------------- User Page -------------------------------------------
     // Event
     private static final String GO_EVENT_USER = "LoadEventUserPageController";
@@ -217,7 +220,13 @@ public class MainController extends HttpServlet {
                 url = GO_UPDATE_MAJOR;
             } else if ("Cập nhập bộ môn".equals(action)) {
                 url = UPDATE_MAJOR;
-            } // Logout:
+            } 
+            // Danh sách apply event
+            else if ("goApplyEvent".equals(action)) {
+                url = GO_APPLY_EVENT;
+            } 
+            
+            // Logout:
             else if ("goLogout".equals(action)) {
                 url = GO_LOGOUT;
             } // ------------------- User Page -------------------

@@ -59,6 +59,37 @@ public class EventAccountDAO {
         return listEventAccount;
     }
 
+    public List<EventAccountDTO> getListEventAccount_Admin() {
+        List<EventAccountDTO> listEventAccount = new ArrayList<>();
+        int id = 0;
+        int eventId = 0;
+        int accountId = 0;
+        boolean status = false;
+        try {
+
+            con = MyConnection.getConnection();
+            String sql = "SELECT * FROM SWP391.Events_has_Account";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getInt("id");
+                eventId = rs.getInt("Events_id");
+                accountId = rs.getInt("Account_id");
+                int tmp = rs.getInt("status");
+                if (tmp == 1) {
+                    status = true;
+                } else {
+                    status = false;
+                }
+                EventAccountDTO dto = new EventAccountDTO(id, eventId, accountId, status);
+                listEventAccount.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listEventAccount;
+    }
+    
     public boolean createtEventAccount(EventAccountDTO eventAccount) {
         boolean check = false;
         int tmp = 0;

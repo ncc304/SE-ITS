@@ -319,14 +319,6 @@
                         </c:if>
                     </div>
 
-
-
-
-
-
-
-
-
                 </div>
             </c:if>
             <div class="type-travel">

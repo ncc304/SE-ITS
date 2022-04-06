@@ -181,25 +181,25 @@
                                             <div class="col l-3 m-6 c-12">
                                                 <div class="type-travel-item">
                                                     <a href="MainController?action=goRecruitmentDetail&txtID=${list1.id}" 
-                                                        class="type-travel__link">
+                                                       class="type-travel__link">
                                                         <img src="${pageContext.request.contextPath}/user/assets/images/${c1.link}" alt="" class="type-travel__img">
                                                     </a>
                                                     <div class="type-travel__plan">
-                                                        <a class="type-travel__plan-link" href="MainController?action=goRecruitmentDetail&txtID=${list1.id}">
+                                                        <a class="type-travel__plan-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list1.id}">
                                                             <!-- <i class="type-travel__plan-icon fas fa-map-marker-alt"></i> -->
                                                             <span>${c1.name}</span>
                                                         </a>
                                                     </div>
                                                     <div class="type-travel__intro">
-                                                        <a  href="MainController?action=goRecruitmentDetail&txtID=${list1.id}"
-                                                            class="type-travel__intro-link" >
+                                                        <a class="type-travel__intro-link" 
+                                                           href="MainController?action=goRecruitmentDetail&txtID=${list1.id}">
                                                             ${list1.name}
                                                         </a>
                                                         <div class="type-travel__info">
                                                             <span class="type-travel__info-price">Lương khởi đầu ${list1.salary} triệu</span>
                                                         </div>
                                                         <p class="type-travel__intro-text">${c1.address}</p>
-
                                                     </div>
                                                 </div>
                                             </div>

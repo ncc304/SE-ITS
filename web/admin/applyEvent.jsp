@@ -5,24 +5,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@1.1.5/dist/index.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css">
+
         <title>Admin Page</title>
-        <c:if test="${requestScope.MSG eq 'DELETE_NEWS_SUCCESS'}">
-            <script>
-                window.alert("Đã xóa Tin Tức: ${requestScope.NewsName} thành công");
-            </script>
-        </c:if>
-        <c:if test="${requestScope.MSG eq 'CREATE_NEWS_SUCCESS'}">
-            <script>
-                window.alert("Đã thêm Tin Tức: ${requestScope.NEWS_NAME} thành công!");
-            </script>
-        </c:if>
-        <c:if test="${requestScope.MSG eq 'UPDATE_NEWS_SUCCESS'}">
-            <script>
-                window.alert("Đã cập nhật Tin Tức: ${requestScope.INFO.name} với Mã Số: ${requestScope.INFO.id} thành công!");
-            </script>
-        </c:if>
+        <%--<c:if test="${requestScope.MSG eq 'UPDATE_MAJOR_SUCCESS'}">--%>
+        <!--<script>-->
+        <!--window.alert("Đã chỉnh sửa Bộ Môn: $ {requestScope.MAJORNAME} thành công!");-->
+        <!--</script>-->
+        <%--</c:if>--%>
     </head>
     <body>
+
         <!-- Dashboard -->
         <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary"  >
             <!-- Vertical Navbar -->
@@ -68,7 +60,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="/SE_ITS/MainController?action=goNewsPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goNewsPage">
                                     <i class="bi bi-newspaper"></i> Tin tức
                                 </a>
                             </li>
@@ -78,7 +70,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link " href="/SE_ITS/MainController?action=goEventPage">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
@@ -108,7 +100,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/SE_ITS/MainController?action=goApplyEvent">
+                                <a class="nav-link active" href="/SE_ITS/MainController?action=goApplyEvent">
                                     <i class="bi bi-calendar2-check-fill"></i> Đăng ký Sự Kiện
                                 </a>
                             </li>
@@ -143,20 +135,19 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Tin Tức</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Sự Kiện Đã Tham Gia</h1>
                                 </div>
                                 <!-- Actions -->
-                                <div class="col-sm-6 col-12 text-sm-end">
-                                    <div class="mx-n1">
-                                        <a href="${pageContext.request.contextPath}/MainController?action=goCreateNews" 
-                                           class="btn d-inline-flex btn-sm btn-primary mx-1">
-                                            <span class=" pe-2">
-                                                <i class="bi bi-plus"></i>
-                                            </span>
-                                            <span>Thêm</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                <!--                                <div class="col-sm-6 col-12 text-sm-end">
+                                                                    <div class="mx-n1">
+                                                                        <a href="createMajor.jsp" class="btn d-inline-flex btn-sm btn-primary mx-1">
+                                                                            <span class=" pe-2">
+                                                                                <i class="bi bi-plus"></i>
+                                                                            </span>
+                                                                            <span>Thêm</span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>-->
                             </div>
                             <!-- Nav -->
                             <br/>
@@ -169,106 +160,66 @@
 
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">Danh sách các bài viết về Tin Tức</h5>
+                                <h5 class="mb-0">Danh sách những người dùng tham gia vào sự kiện</h5>
                             </div>
                             <div class="table-responsive">
                                 <form action="MainController" method="POST">
-                                    <c:if test="${requestScope.LIST_NEWS != null}">
-                                        <c:if test="${not empty requestScope.LIST_NEWS}">
+                                    <c:if test="${requestScope.LIST_EVT_ACC != null}">
+                                        <c:if test="${not empty requestScope.LIST_EVT_ACC}">
                                             <table class="table table-hover table-nowrap">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th scope="col">STT</th>
-                                                        <th scope="col">ID</th>
-                                                        <th scope="col">Tiêu đề</th>
-                                                        <th scope="col">Tác giả</th>
-                                                        <th scope="col">Ngày đăng</th>
+                                                        <th scope="col">Tên người dùng</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Tên sự kiện</th>
                                                         <th scope="col">Trạng thái</th>
-                                                        <th></th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach items="${requestScope.LIST_NEWS}" var="news" varStatus="counter">
-                                                        <tr>
-                                                            <td>
-                                                                <c:if test="${news.status}">
-                                                                    <strong>${counter.count}</strong>
+                                                    <c:forEach items="${requestScope.LIST_EVT_ACC}" var="ea" varStatus="counter">
+                                                        <c:forEach items="${requestScope.LIST_EVENT}" var="event">
+                                                            <c:forEach items="${requestScope.LIST_ACC}" var="acc">
+                                                                <c:if test="${ea.eventId eq event.id && ea.accountId eq acc.id}">
+                                                                    <tr>
+                                                                        <td><strong>${counter.count}</strong></td>
+                                                                        <td>
+                                                                            ${acc.name}
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>${acc.email}</strong>     
+                                                                        </td>
+                                                                        <td>
+                                                                            <a class="text-heading font-semibold" 
+                                                                               href="MainController?action=goEventDetails&txtID=${event.id}">
+                                                                                ${event.name}
+                                                                            </a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="badge badge-lg badge-dot">
+                                                                                <c:choose>
+                                                                                    <c:when test="${!ea.status}">
+                                                                                        <i class="bg-danger"></i>Đã hủy
+                                                                                    </c:when>
+                                                                                    <c:otherwise>
+                                                                                        <i class="bg-success"></i>Đã tham gia
+                                                                                    </c:otherwise>
+                                                                                </c:choose>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
                                                                 </c:if>
-                                                                <c:if test="${!news.status}">
-                                                                    ${counter.count}
-                                                                </c:if>
-                                                            </td>
-                                                            <td>
-                                                                ${news.id}
-                                                            </td>
-                                                            <td>
-                                                                <c:if test="${news.status}">
-                                                                    <a class="text-heading font-semibold" 
-                                                                       href="MainController?action=goNewsDetails&txtID=${news.id}">
-                                                                        ${news.name}
-                                                                    </a>
-                                                                </c:if>
-
-                                                                <c:if test="${!news.status}">
-                                                                    ${news.name}
-                                                                </c:if>
-                                                            </td>
-                                                            <td>
-                                                                ${news.author}
-                                                            </td>
-                                                            <td>
-                                                                <c:if test="${news.status}">
-                                                                    <a class="text-heading font-semibold" 
-                                                                       href="MainController?action=goNewsDetails&txtID=${news.id}">
-                                                                        ${news.createTime}
-                                                                    </a>
-                                                                </c:if>
-                                                                <c:if test="${!news.status}">
-                                                                    ${news.createTime}
-                                                                </c:if>
-                                                            </td>
-                                                            <td>
-                                                                <c:if test="${news.status}">
-                                                                    <span class="badge badge-lg badge-dot">
-                                                                        <i class="bg-success"></i>Đã đăng
-                                                                    </span>
-                                                                </c:if>
-
-                                                                <c:if test="${!news.status}">
-                                                                    <span class="badge badge-lg badge-dot">
-                                                                        <i class="bg-danger"></i>Đã xóa
-                                                                    </span>
-                                                                </c:if>
-                                                            </td>
-                                                            <td class="text-end">
-                                                                <a href="MainController?action=goUpdateNews&txtID=${news.id}" 
-                                                                   class="btn btn-sm btn-neutral" >
-                                                                    <i class="bi bi-pencil"></i>
-                                                                </a>
-                                                                <c:if test="${news.status}">
-                                                                    <a href="MainController?action=deleteNews&txtID=${news.id}"
-                                                                       class="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                                                       onclick='return confirm("Bạn có muốn xóa Tin Tức này không?");'>
-                                                                        <i class="bi bi-trash"></i>
-                                                                    </a>
-                                                                </c:if>
-                                                                <c:if test="${!news.status}">
-                                                                    <button disabled="true"
-                                                                            class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                                        <i class="bi bi-trash"></i>
-                                                                    </button >
-                                                                </c:if>
-                                                            </td>
-                                                        </tr>
+                                                            </c:forEach>
+                                                        </c:forEach>
                                                     </c:forEach>
-
                                                 </tbody>
                                             </table>
                                         </c:if>
                                     </c:if>
                                 </form>
-                                <c:if test="${requestScope.LIST_NEWS == null || empty requestScope.LIST_NEWS}">
-                                    Not found News
+                                <c:if test="${requestScope.LIST_EVT_ACC == null || empty requestScope.LIST_EVT_ACC}">
+                                    Not found List User Applied Event
                                 </c:if>
                             </div>
                             <div class="card-footer border-0 py-5">

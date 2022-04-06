@@ -89,10 +89,14 @@ public class LoginGoogleServlet extends HttpServlet {
                     userID = dao.getUserID(email);
                     url = adminPage;
                     session.setAttribute("XACTHUC", "ADMIN");
-                } else { // User
+                } else if (check == "User") { // User
                     userID = dao.getUserID(email);
                     url = eventPage;
                     session.setAttribute("XACTHUC", "USER");
+                } 
+                else if (check == "Blocked"){
+                    url = error;
+                    request.setAttribute("BLOCKED", "Tài khoản của bạn đã bị chặn!");
                 }
 
                 String userName = dao.getUserName(email);

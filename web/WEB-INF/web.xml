@@ -248,6 +248,10 @@
         <servlet-name>UpdateRecruitmentController</servlet-name>
         <servlet-class>controllers.admin.UpdateRecruitmentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadApplyEventController</servlet-name>
+        <servlet-class>controllers.admin.LoadApplyEventController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -495,6 +499,10 @@
     <servlet-mapping>
         <servlet-name>UpdateRecruitmentController</servlet-name>
         <url-pattern>/UpdateRecruitmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadApplyEventController</servlet-name>
+        <url-pattern>/LoadApplyEventController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

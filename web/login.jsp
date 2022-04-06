@@ -48,18 +48,14 @@
                            href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SE_ITS/LoginGoogleServlet&response_type=code
                            &client_id=271591125288-cfqpinm6g112ddkbh2v0da5oo5d2g0ig.apps.googleusercontent.com&approval_prompt=force">
                             Login with Google
-                            <i class="fab fa-google"></i>
-                            <%--<c:param name="txtID" value="${requestScope.txtID}"/>--%>
-                            
-                            <!--<input type="hidden" name="txtID" value="$ {param.txtID}"/>-->
+                            <i class="fab fa-google"></i>                            
                         </a>
-                        <c:if test="${sessionScope.XACTHUC != null}">
-                            
-<!--                            <div class="xacthuc">
+                        <c:if test="${requestScope.BLOCKED != null}">
+                            <div class="xacthuc">
                                 <p style="color: red; margin: 2.5% 1%; position: absolute;">
-                                    Thông báo: $ {sessionScope.XACTHUC}
+                                    Thông báo: ${requestScope.BLOCKED}
                                 </p>
-                            </div>-->
+                            </div>
                         </c:if>
                         
                     </div>                    

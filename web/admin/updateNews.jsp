@@ -48,7 +48,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <!-- Brand -->
-                    <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
+                    <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="${pageContext.request.contextPath}/user/home.jsp">
                         <img src="https://dnuni.fpt.edu.vn/wp-content/uploads/2020/02/logo-1.png" alt="..." style="height: 50px; width: 152px"/>
                         <hr style="background-color: while"/>    
                     </a>
@@ -60,10 +60,10 @@
                             .bi-calendar-event::before, .bi-people::before,
                             .bi-person-square::before, .bi-box-arrow-left::before, .bi-briefcase-fill::before, 
                             .bi-person-fill::before, .bi-telephone-fill::before, .bi-building::before,
-                            .bi-book::before
+                            .bi-book::before, .bi-calendar2-check-fill::before
                             {
                                 color: black; 
-                            }
+                           }
                         </style>
 
                         <!-- Navigation -->
@@ -87,7 +87,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="/SE_ITS/MainController?action=goEventPage">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goEventPage">
                                     <i class="bi bi-calendar-event"></i> Sự kiện
                                 </a>
                             </li>
@@ -114,6 +114,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/SE_ITS/MainController?action=goSubject">
                                     <i class="bi bi-book"></i> Môn học
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/SE_ITS/MainController?action=goApplyEvent">
+                                    <i class="bi bi-calendar2-check-fill"></i> Đăng ký Sự Kiện
                                 </a>
                             </li>
                         </ul>
