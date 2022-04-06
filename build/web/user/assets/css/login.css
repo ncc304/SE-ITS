@@ -1,0 +1,59 @@
+.wrapper{
+    height: 340px;
+ width: 500px; 
+    /* background-size: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    margin-top: 5.7%;
+    
+}
+/*body{
+    background: url(/SE_ITS/user/assets/images/bg-login.jpg);
+}*/
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin-top: 6%;
+}
+.form_container{
+   background-color: #fff;
+   display: flex;
+   flex-direction: column;
+}
+.login-form-title{
+    position: relative;
+    top: -60px;
+    font-size: 20px;
+    color: rgb(240, 49, 49);
+    font-weight: bold
+}
+.container-login-form-btn{
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.login-form-btn{
+    padding: 20px 70px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+}
+.img_login{
+    width: 467px;
+    justify-content: center;
+    align-items: center;
+}
+.wrap_img{
+    position: relative;
+    top: 41px;
+}
+.login-form-btn:hover{
+    opacity: 0.7
+}
